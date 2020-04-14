@@ -1,1 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33.29 246.88"><defs><style>.cls-1,.cls-3{fill:none;stroke-miterlimit:10;}.cls-1{stroke:#fff;stroke-width:0.25px;}.cls-2{fill:#4950f5;}.cls-3{stroke:#4950f5;stroke-linecap:round;stroke-width:7px;}</style></defs><title>Datový zdroj 2</title><g id="Vrstva_2" data-name="Vrstva 2"><g id="Vrstva_2-2" data-name="Vrstva 2"><path class="cls-1" d="M23.88,215.39a16.51,16.51,0,1,1-14.46,0"/><circle class="cls-2" cx="16.65" cy="230.23" r="12.65"/><path class="cls-1" d="M23.88,215.39V7.35A7.23,7.23,0,0,0,16.65.13h0A7.23,7.23,0,0,0,9.42,7.35v208"/><line class="cls-3" x1="16.65" y1="230.23" x2="16.64" y2="58.96"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.02 246.88">
+    <defs>
+        <style>.cls-1,.cls-3,.cls-5{fill:none;stroke-miterlimit:10;}.cls-1{stroke:#fff;stroke-width:0.25px;}.cls-2{fill:#4950f5;}.cls-3{stroke:#4950f5;stroke-linecap:round;stroke-width:7px;}.cls-4{font-size:12px;fill:#fff;font-family:CenturyGothic, Century Gothic;}.cls-5{stroke:#1d1d1b;}</style>
+    </defs>
+    <title>Datový zdroj 4</title>
+    <g id="Vrstva_2" data-name="Vrstva 2">
+        <g id="Vrstva_2-2" data-name="Vrstva 2">
+            <path class="cls-1" d="M23.88,215.39a16.51,16.51,0,1,1-14.46,0"/>
+            <circle class="cls-2" cx="16.65" cy="230.23" r="12.65"/>
+            <path class="cls-1" d="M23.88,215.39V7.35A7.23,7.23,0,0,0,16.65.13h0A7.23,7.23,0,0,0,9.42,7.35v208"/>
+            <line class="cls-3" x1="16.65" y1="230.23" x2="16.64" y2="58.96"/>
+            <line class="cls-1" x1="60.39" y1="58.96" x2="16.65" y2="58.96"/>
+            <text class="cls-4" transform="translate(33.17 56.19)">20°C</text>
+            <polyline class="cls-5" points="4.29 227.53 9.43 224.93 16.64 227.53 23.39 224.93 29 227.53"/>
+            <polyline class="cls-5" points="4.29 224.93 9.43 227.53 16.64 224.93 23.39 227.53 29 224.93"/>
+        </g>
+    </g>
+</svg>
