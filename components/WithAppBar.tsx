@@ -4,7 +4,8 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import InboxIcon from '@material-ui/icons/Inbox'
-import MailIcon from '@material-ui/icons/Mail'
+import Brightness7Icon from '@material-ui/icons/Brightness7';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
 import PhoneIcon from '@material-ui/icons/Phone'
 import ApartmentIcon from '@material-ui/icons/Apartment';
 import PersonPinIcon from '@material-ui/icons/Person'
@@ -144,6 +145,9 @@ export default function WithAppBar(props) {
                         {props.text}
                     </Typography>
                     <div className={classes.grow}/>
+                    <IconButton onClick={compProps.switchTheme} aria-label="display more actions" edge="end" color="inherit">
+                        {compProps.theme===true?<Brightness7Icon />:<Brightness4Icon />}
+                    </IconButton>
                     <Link href={{pathname:"/login", query:{refresh:'false'}}}>
                         <IconButton aria-label="display more actions" edge="end" color="inherit">
                             <VpnKeyIcon />
@@ -176,7 +180,7 @@ export default function WithAppBar(props) {
                 <List>
 
                         <ListItem button>
-                            <ListItemIcon>{<MailIcon />}</ListItemIcon>
+                            <ListItemIcon>{<InboxIcon />}</ListItemIcon>
                             <ListItemText primary={"mail"} />
                         </ListItem>
 
@@ -185,7 +189,7 @@ export default function WithAppBar(props) {
                 <List>
                     {['All mail', 'Trash', 'Spam'].map((text, index) => (
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : null}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}
