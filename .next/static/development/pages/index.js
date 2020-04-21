@@ -1,5 +1,195 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\index.js"],{
 
+/***/ "./assets/tempIcon.tsx":
+/*!*****************************!*\
+  !*** ./assets/tempIcon.tsx ***!
+  \*****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TempIcon; });
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/extends */ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+
+var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\assets\\tempIcon.tsx";
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+function TempIcon(props) {
+  return __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["SvgIcon"], Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, props, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 5
+    },
+    __self: this
+  }), __jsx("svg", {
+    viewBox: "0 0 512 512",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    },
+    __self: this
+  }, __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    },
+    __self: this
+  }, __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    },
+    __self: this
+  }, __jsx("path", {
+    d: "M341.333,288.593V85.333C341.333,38.205,303.128,0,256,0s-85.333,38.205-85.333,85.333v203.259\r C144.48,312.03,128,346.091,128,384c0,70.693,57.308,128,128,128s128-57.307,128-128C384,346.091,367.52,312.03,341.333,288.593z\r M256,469.333c-47.128,0-85.333-38.205-85.333-85.333c0-24.637,10.441-47.492,28.455-63.615l14.212-12.72V85.333\r c0-23.564,19.103-42.667,42.667-42.667s42.667,19.102,42.667,42.667v222.332l14.212,12.72\r c18.014,16.123,28.455,38.977,28.455,63.615C341.333,431.128,303.128,469.333,256,469.333z",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    },
+    __self: this
+  }))), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 16
+    },
+    __self: this
+  }, __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 17
+    },
+    __self: this
+  }, __jsx("rect", {
+    x: "234.667",
+    y: "170.667",
+    width: "42.667",
+    height: "256",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 18
+    },
+    __self: this
+  }))), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 21
+    },
+    __self: this
+  }, __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 22
+    },
+    __self: this
+  }, __jsx("circle", {
+    cx: "256",
+    cy: "384",
+    r: "64",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 23
+    },
+    __self: this
+  }))), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 28
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 30
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 32
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 34
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 36
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 38
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 40
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 42
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 44
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 46
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 48
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 50
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 52
+    },
+    __self: this
+  }), __jsx("g", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 54
+    },
+    __self: this
+  })));
+}
+
+/***/ }),
+
 /***/ "./components/Tempmeter.js":
 /*!*********************************!*\
   !*** ./components/Tempmeter.js ***!
@@ -721,10 +911,10 @@ function Termostat(props) {
 
 /***/ }),
 
-/***/ "./components/WithAppBar.js":
-/*!**********************************!*\
-  !*** ./components/WithAppBar.js ***!
-  \**********************************/
+/***/ "./components/WithAppBar.tsx":
+/*!***********************************!*\
+  !*** ./components/WithAppBar.tsx ***!
+  \***********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -757,21 +947,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_icons_ChevronLeft__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_ChevronLeft__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _material_ui_icons_Inbox__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @material-ui/icons/Inbox */ "./node_modules/@material-ui/icons/Inbox.js");
 /* harmony import */ var _material_ui_icons_Inbox__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Inbox__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var _material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/icons/Mail */ "./node_modules/@material-ui/icons/Mail.js");
-/* harmony import */ var _material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var _material_ui_icons_Phone__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/icons/Phone */ "./node_modules/@material-ui/icons/Phone.js");
-/* harmony import */ var _material_ui_icons_Phone__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Phone__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var _material_ui_icons_Apartment__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @material-ui/icons/Apartment */ "./node_modules/@material-ui/icons/Apartment.js");
-/* harmony import */ var _material_ui_icons_Apartment__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Apartment__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var _material_ui_icons_Person__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @material-ui/icons/Person */ "./node_modules/@material-ui/icons/Person.js");
-/* harmony import */ var _material_ui_icons_Person__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Person__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_20__);
-/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-/* harmony import */ var _firebase_index__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../firebase/index */ "./firebase/index.js");
+/* harmony import */ var _material_ui_icons_Brightness7__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/icons/Brightness7 */ "./node_modules/@material-ui/icons/Brightness7.js");
+/* harmony import */ var _material_ui_icons_Brightness7__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Brightness7__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var _material_ui_icons_Brightness4__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/icons/Brightness4 */ "./node_modules/@material-ui/icons/Brightness4.js");
+/* harmony import */ var _material_ui_icons_Brightness4__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Brightness4__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
+/* harmony import */ var _firebase_index__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../firebase/index */ "./firebase/index.js");
+/* harmony import */ var _assets_tempIcon__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../assets/tempIcon */ "./assets/tempIcon.tsx");
 
 
 
@@ -781,8 +968,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\components\\WithAppBar.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_20___default.a.createElement;
+var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\components\\WithAppBar.tsx";
+var __jsx = react__WEBPACK_IMPORTED_MODULE_18___default.a.createElement;
 
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -802,8 +989,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-
-var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_22__["makeStyles"])(function (theme) {
+var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_20__["makeStyles"])(function (theme) {
   return {
     root: {
       display: 'flex'
@@ -886,9 +1072,9 @@ function WithAppBar(props) {
   var _clsx3, _clsx4;
 
   var classes = useStyles();
-  var theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_22__["useTheme"])();
+  var theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_20__["useTheme"])();
 
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_20___default.a.useState(false),
+  var _React$useState = react__WEBPACK_IMPORTED_MODULE_18___default.a.useState(false),
       _React$useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_7__["default"])(_React$useState, 2),
       open = _React$useState2[0],
       setOpen = _React$useState2[1];
@@ -904,61 +1090,52 @@ function WithAppBar(props) {
     setOpen(false);
   };
 
-  var _React$useState3 = react__WEBPACK_IMPORTED_MODULE_20___default.a.useState(0),
-      _React$useState4 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_7__["default"])(_React$useState3, 2),
-      value = _React$useState4[0],
-      setValue = _React$useState4[1];
-
   var handleLogout = function handleLogout() {
-    _firebase_index__WEBPACK_IMPORTED_MODULE_23__["auth"].signOut().then(function () {
+    _firebase_index__WEBPACK_IMPORTED_MODULE_21__["auth"].signOut().then(function () {
       alert('Logout successful');
     })["catch"](function (error) {
       alert('OOps something went wrong check your console');
-      console.log(err);
+      console.log(error);
     });
-  };
-
-  var handleChange = function handleChange(event, newValue) {
-    setValue(newValue);
   };
 
   return __jsx("div", {
     className: classes.root,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 127
+      lineNumber: 139
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["AppBar"], {
     position: "fixed",
-    className: Object(clsx__WEBPACK_IMPORTED_MODULE_21__["default"])(classes.appBar, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])({}, classes.appBarShift, open)),
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_19__["default"])(classes.appBar, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])({}, classes.appBarShift, open)),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 128
+      lineNumber: 140
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["Toolbar"], {
     variant: "dense",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 131
+      lineNumber: 143
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["IconButton"], {
     onClick: handleDrawerOpen,
     edge: "start",
-    className: Object(clsx__WEBPACK_IMPORTED_MODULE_21__["default"])(classes.menuButton, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])({}, classes.hide, open)),
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_19__["default"])(classes.menuButton, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])({}, classes.hide, open)),
     color: "inherit",
     "aria-label": "open drawer",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 132
+      lineNumber: 144
     },
     __self: this
   }, __jsx(_material_ui_icons_menu__WEBPACK_IMPORTED_MODULE_10___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 141
+      lineNumber: 153
     },
     __self: this
   })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["Typography"], {
@@ -968,17 +1145,39 @@ function WithAppBar(props) {
     component: "div",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 143
+      lineNumber: 155
     },
     __self: this
-  }, props.text), __jsx("div", {
+  }, "props.text"), __jsx("div", {
     className: classes.grow,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 146
+      lineNumber: 158
     },
     __self: this
-  }), __jsx(next_link__WEBPACK_IMPORTED_MODULE_19___default.a, {
+  }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["IconButton"], {
+    onClick: compProps.switchTheme,
+    "aria-label": "display more actions",
+    edge: "end",
+    color: "inherit",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 159
+    },
+    __self: this
+  }, compProps.theme === true ? __jsx(_material_ui_icons_Brightness7__WEBPACK_IMPORTED_MODULE_15___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 160
+    },
+    __self: this
+  }) : __jsx(_material_ui_icons_Brightness4__WEBPACK_IMPORTED_MODULE_16___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 160
+    },
+    __self: this
+  })), __jsx(next_link__WEBPACK_IMPORTED_MODULE_17___default.a, {
     href: {
       pathname: "/login",
       query: {
@@ -987,7 +1186,7 @@ function WithAppBar(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 147
+      lineNumber: 162
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["IconButton"], {
@@ -996,13 +1195,13 @@ function WithAppBar(props) {
     color: "inherit",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 148
+      lineNumber: 163
     },
     __self: this
   }, __jsx(_material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_11___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 164
     },
     __self: this
   }))), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["IconButton"], {
@@ -1012,100 +1211,100 @@ function WithAppBar(props) {
     color: "inherit",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 152
+      lineNumber: 167
     },
     __self: this
   }, __jsx(_material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_11___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 153
+      lineNumber: 168
     },
     __self: this
   })))), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["Drawer"], {
     variant: "permanent",
-    className: Object(clsx__WEBPACK_IMPORTED_MODULE_21__["default"])(classes.drawer, (_clsx3 = {}, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(_clsx3, classes.drawerOpen, open), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(_clsx3, classes.drawerClose, !open), _clsx3)),
+    className: Object(clsx__WEBPACK_IMPORTED_MODULE_19__["default"])(classes.drawer, (_clsx3 = {}, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(_clsx3, classes.drawerOpen, open), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(_clsx3, classes.drawerClose, !open), _clsx3)),
     classes: {
-      paper: Object(clsx__WEBPACK_IMPORTED_MODULE_21__["default"])((_clsx4 = {}, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(_clsx4, classes.drawerOpen, open), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(_clsx4, classes.drawerClose, !open), _clsx4))
+      paper: Object(clsx__WEBPACK_IMPORTED_MODULE_19__["default"])((_clsx4 = {}, Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(_clsx4, classes.drawerOpen, open), Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_8__["default"])(_clsx4, classes.drawerClose, !open), _clsx4))
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 157
+      lineNumber: 172
     },
     __self: this
   }, __jsx("div", {
     className: classes.toolbar,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 170
+      lineNumber: 185
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["IconButton"], {
     onClick: handleDrawerClose,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 171
+      lineNumber: 186
     },
     __self: this
   }, theme.direction === 'rtl' ? __jsx(_material_ui_icons_ChevronRight__WEBPACK_IMPORTED_MODULE_12___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 172
+      lineNumber: 187
     },
     __self: this
   }) : __jsx(_material_ui_icons_ChevronLeft__WEBPACK_IMPORTED_MODULE_13___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 172
+      lineNumber: 187
     },
     __self: this
   }))), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["Divider"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 175
+      lineNumber: 190
     },
     __self: this
   }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["List"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 176
+      lineNumber: 191
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["ListItem"], {
     button: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 178
+      lineNumber: 192
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["ListItemIcon"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 179
+      lineNumber: 193
     },
     __self: this
-  }, __jsx(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_15___default.a, {
+  }, __jsx(_assets_tempIcon__WEBPACK_IMPORTED_MODULE_22__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 179
+      lineNumber: 193
     },
     __self: this
   })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["ListItemText"], {
     primary: "mail",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 180
+      lineNumber: 194
     },
     __self: this
   }))), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["Divider"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 184
+      lineNumber: 198
     },
     __self: this
   }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["List"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 185
+      lineNumber: 199
     },
     __self: this
   }, ['All mail', 'Trash', 'Spam'].map(function (text, index) {
@@ -1114,32 +1313,32 @@ function WithAppBar(props) {
       key: text,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 187
+        lineNumber: 201
       },
       __self: this
     }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["ListItemIcon"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 188
+        lineNumber: 202
       },
       __self: this
     }, index % 2 === 0 ? __jsx(_material_ui_icons_Inbox__WEBPACK_IMPORTED_MODULE_14___default.a, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 188
+        lineNumber: 202
       },
       __self: this
-    }) : __jsx(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_15___default.a, {
+    }) : __jsx("div", {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 188
+        lineNumber: 202
       },
       __self: this
     })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["ListItemText"], {
       primary: text,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 189
+        lineNumber: 203
       },
       __self: this
     }));
@@ -1147,20 +1346,20 @@ function WithAppBar(props) {
     className: classes.content,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 194
+      lineNumber: 208
     },
     __self: this
   }, __jsx("div", {
     className: classes.toolbarOffset,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 195
+      lineNumber: 209
     },
     __self: this
   }), __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_6__["default"])({}, compProps, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 196
+      lineNumber: 210
     },
     __self: this
   }))));
@@ -1168,10 +1367,10 @@ function WithAppBar(props) {
 
 /***/ }),
 
-/***/ "./components/WithAuth.js":
-/*!********************************!*\
-  !*** ./components/WithAuth.js ***!
-  \********************************/
+/***/ "./components/WithAuth.tsx":
+/*!*********************************!*\
+  !*** ./components/WithAuth.tsx ***!
+  \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1194,7 +1393,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\components\\WithAuth.js";
+var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\components\\WithAuth.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement;
 
 
@@ -1236,21 +1435,25 @@ var withAuth = function withAuth(Component) {
       }, {
         key: "renderContent",
         value: function renderContent() {
+          // @ts-ignore
           var status = this.state.status;
 
           if (status == 'LOADING') {
             return __jsx("h1", {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 26
+                lineNumber: 29
               },
               __self: this
             }, "Loading ......");
           } else if (status == 'SIGNED_IN') {
-            return __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, this.props, {
+            // @ts-ignore
+            return __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+              user: _firebase_index__WEBPACK_IMPORTED_MODULE_8__["auth"].currentUser.uid
+            }, this.props, {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 28
+                lineNumber: 32
               },
               __self: this
             }));
@@ -1262,7 +1465,7 @@ var withAuth = function withAuth(Component) {
           return __jsx(react__WEBPACK_IMPORTED_MODULE_6___default.a.Fragment, {
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 33
+              lineNumber: 37
             },
             __self: this
           }, this.renderContent());
@@ -57584,10 +57787,10 @@ var withWidth = function withWidth() {
 
 /***/ }),
 
-/***/ "./node_modules/@material-ui/icons/Apartment.js":
-/*!******************************************************!*\
-  !*** ./node_modules/@material-ui/icons/Apartment.js ***!
-  \******************************************************/
+/***/ "./node_modules/@material-ui/icons/Brightness4.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material-ui/icons/Brightness4.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -57606,8 +57809,37 @@ var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_mod
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
 
 var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
-  d: "M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"
-}), 'Apartment');
+  d: "M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6c3.31 0 6 2.69 6 6s-2.69 6-6 6z"
+}), 'Brightness4');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/Brightness7.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material-ui/icons/Brightness7.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
+  d: "M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z"
+}), 'Brightness7');
 
 exports.default = _default;
 
@@ -57695,93 +57927,6 @@ var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/crea
 var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
   d: "M19 3H4.99c-1.11 0-1.98.89-1.98 2L3 19c0 1.1.88 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2zm0 12h-4c0 1.66-1.35 3-3 3s-3-1.34-3-3H4.99V5H19v10z"
 }), 'Inbox');
-
-exports.default = _default;
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/icons/Mail.js":
-/*!*************************************************!*\
-  !*** ./node_modules/@material-ui/icons/Mail.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
-
-var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
-  d: "M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-}), 'Mail');
-
-exports.default = _default;
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/icons/Person.js":
-/*!***************************************************!*\
-  !*** ./node_modules/@material-ui/icons/Person.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
-
-var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
-  d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-}), 'Person');
-
-exports.default = _default;
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/icons/Phone.js":
-/*!**************************************************!*\
-  !*** ./node_modules/@material-ui/icons/Phone.js ***!
-  \**************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
-
-var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
-  d: "M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
-}), 'Phone');
 
 exports.default = _default;
 
@@ -81319,15 +81464,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var _components_WithAuth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/WithAuth */ "./components/WithAuth.js");
-/* harmony import */ var _components_WithAppBar__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/WithAppBar */ "./components/WithAppBar.js");
-/* harmony import */ var _components_Tempmeter__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Tempmeter */ "./components/Tempmeter.js");
-/* harmony import */ var _components_Termostat__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Termostat */ "./components/Termostat.js");
-/* harmony import */ var _firebase_index_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../firebase/index.js */ "./firebase/index.js");
+/* harmony import */ var _components_WithAuth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/WithAuth */ "./components/WithAuth.tsx");
+/* harmony import */ var _components_WithAppBar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/WithAppBar */ "./components/WithAppBar.tsx");
+/* harmony import */ var _components_Tempmeter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Tempmeter */ "./components/Tempmeter.js");
+/* harmony import */ var _components_Termostat__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Termostat */ "./components/Termostat.js");
+/* harmony import */ var _firebase_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../firebase/index.js */ "./firebase/index.js");
 var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\pages\\index.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
-
 
 
 
@@ -81353,7 +81496,7 @@ function Index(props) {
       temp = _useState[0],
       setTemp = _useState[1];
 
-  var tempData = _firebase_index_js__WEBPACK_IMPORTED_MODULE_7__["firebase"].database().ref("/greenhouse/temp");
+  var tempData = _firebase_index_js__WEBPACK_IMPORTED_MODULE_6__["firebase"].database().ref("/users/" + props.user + "/greenhouse/temp");
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     tempData.on('value', function (data) {
       setTemp(data.val());
@@ -81363,56 +81506,48 @@ function Index(props) {
     className: classes.center,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 42
+      lineNumber: 38
     },
     __self: this
-  }, props.session !== null ? __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Typography"], {
-    variant: "h4",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 43
-    },
-    __self: this
-  }, props.session) : null, __jsx("div", {
+  }, __jsx("div", {
     className: classes.tempmeter,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 44
+      lineNumber: 39
     },
     __self: this
-  }, __jsx(_components_Tempmeter__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, __jsx(_components_Tempmeter__WEBPACK_IMPORTED_MODULE_4__["default"], {
     theme: props.theme,
     temp: temp,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 45
+      lineNumber: 40
     },
     __self: this
-  }), __jsx(_components_Termostat__WEBPACK_IMPORTED_MODULE_6__["default"], {
+  }), __jsx(_components_Termostat__WEBPACK_IMPORTED_MODULE_5__["default"], {
     theme: props.theme,
     defaultValue: 40,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 41
     },
     __self: this
   })));
 }
 
 function ex(props) {
-  return __jsx(_components_WithAppBar__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return __jsx(_components_WithAppBar__WEBPACK_IMPORTED_MODULE_3__["default"], {
     component: Index,
-    text: "some app",
     componentProps: props,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 54
+      lineNumber: 49
     },
     __self: this
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_components_WithAuth__WEBPACK_IMPORTED_MODULE_3__["default"])(ex));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_components_WithAuth__WEBPACK_IMPORTED_MODULE_2__["default"])(ex));
 
 /***/ }),
 

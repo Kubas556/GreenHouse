@@ -645,7 +645,7 @@ module.exports = _typeof;
 
 /***/ "./node_modules/@babel/runtime-corejs2/regenerator/index.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/regenerator/index.tsx ***!
+  !*** ./node_modules/@babel/runtime-corejs2/regenerator/index.js ***!
   \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -858,7 +858,7 @@ module.exports = __webpack_require__(/*! ../../modules/_core */ "./node_modules/
 
 /***/ "./node_modules/core-js/library/fn/symbol/index.js":
 /*!*********************************************************!*\
-  !*** ./node_modules/core-js/library/fn/symbol/index.tsx ***!
+  !*** ./node_modules/core-js/library/fn/symbol/index.js ***!
   \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -2991,7 +2991,7 @@ module.exports = {
 
 /***/ "./node_modules/core-js/library/modules/_to-absolute-index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_to-absolute-index.tsx ***!
+  !*** ./node_modules/core-js/library/modules/_to-absolute-index.js ***!
   \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -4313,7 +4313,7 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 /***/ "./node_modules/next/dist/build/polyfills/fetch/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/next/dist/build/polyfills/fetch/index.tsx ***!
+  !*** ./node_modules/next/dist/build/polyfills/fetch/index.js ***!
   \***************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -4797,7 +4797,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      (0, _sourceMapSupport.rewriteStacktrace)(error, "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP\\.next");
+      (0, _sourceMapSupport.rewriteStacktrace)(error, "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\.next");
       return error;
     }
   };
@@ -6577,7 +6577,7 @@ function reactElementToDOM(_ref) {
 
 /***/ "./node_modules/next/dist/client/index.js":
 /*!************************************************!*\
-  !*** ./node_modules/next/dist/client/index.tsx ***!
+  !*** ./node_modules/next/dist/client/index.js ***!
   \************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -7472,7 +7472,7 @@ function () {
     key: "loadRoute",
     value: function loadRoute(route) {
       route = normalizeRoute(route);
-      var scriptRoute = route === '/' ? '/index.tsx' : route + ".js";
+      var scriptRoute = route === '/' ? '/index.js' : route + ".js";
       var url = this.assetPrefix + "/_next/static/" + encodeURIComponent(this.buildId) + "/pages" + encodeURI(scriptRoute);
       this.loadScript(url, route, true);
     }
@@ -10035,7 +10035,7 @@ var objectKeys = Object.keys || function (obj) {
 
 /***/ "./node_modules/querystring-es3/index.js":
 /*!***********************************************!*\
-  !*** ./node_modules/querystring-es3/index.tsx ***!
+  !*** ./node_modules/querystring-es3/index.js ***!
   \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10051,7 +10051,7 @@ exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ "./node
 
 /***/ "./node_modules/react-dom/index.js":
 /*!***********************************************************************************************!*\
-  !*** delegated ./node_modules/react-dom/index.tsx from dll-reference dll_ef0ff7c60362f24a921f ***!
+  !*** delegated ./node_modules/react-dom/index.js from dll-reference dll_ef0ff7c60362f24a921f ***!
   \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10062,7 +10062,7 @@ module.exports = (__webpack_require__(/*! dll-reference dll_ef0ff7c60362f24a921f
 
 /***/ "./node_modules/react-error-overlay/lib/index.js":
 /*!*******************************************************!*\
-  !*** ./node_modules/react-error-overlay/lib/index.tsx ***!
+  !*** ./node_modules/react-error-overlay/lib/index.js ***!
   \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10313,7 +10313,7 @@ exports.isSuspense = isSuspense;
 
 /***/ "./node_modules/react-is/index.js":
 /*!****************************************!*\
-  !*** ./node_modules/react-is/index.tsx ***!
+  !*** ./node_modules/react-is/index.js ***!
   \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10330,7 +10330,7 @@ if (false) {} else {
 
 /***/ "./node_modules/react/index.js":
 /*!*******************************************************************************************!*\
-  !*** delegated ./node_modules/react/index.tsx from dll-reference dll_ef0ff7c60362f24a921f ***!
+  !*** delegated ./node_modules/react/index.js from dll-reference dll_ef0ff7c60362f24a921f ***!
   \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -11078,7 +11078,7 @@ try {
 
 /***/ "./node_modules/strip-ansi/index.js":
 /*!******************************************!*\
-  !*** ./node_modules/strip-ansi/index.tsx ***!
+  !*** ./node_modules/strip-ansi/index.js ***!
   \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -11099,7 +11099,7 @@ module.exports["default"] = stripAnsi;
 
 /***/ "./node_modules/strip-ansi/node_modules/ansi-regex/index.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/strip-ansi/node_modules/ansi-regex/index.tsx ***!
+  !*** ./node_modules/strip-ansi/node_modules/ansi-regex/index.js ***!
   \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {

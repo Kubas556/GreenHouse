@@ -31,7 +31,7 @@ import Link from "next/link";
 export default function MyApp (props) {
 
         const [theme,setTheme] = useState(false);
-        const [showBtn,setShowBtn] = useState(true);
+        //const [showBtn,setShowBtn] = useState(true);
 
         const themeReg = /theme=(\w+)/;
         const classes = useTheme();
@@ -55,9 +55,9 @@ export default function MyApp (props) {
         setTheme(!theme);
     };
 
-    function toggleThemeSwitch(value) {
+    /*function toggleThemeSwitch(value) {
         setShowBtn(value);
-    };
+    };*/
 
     const { Component, pageProps } = props;
 
@@ -75,12 +75,12 @@ export default function MyApp (props) {
                         height: "100vh"}
                     }>*/}
                     <CssBaseline />
-                    <Component theme={theme} setThemeBtn={toggleThemeSwitch.bind(this)} />
+                    <Component theme={theme} {...pageProps} /*setThemeBtn={toggleThemeSwitch.bind(this)}*/ switchTheme={switchTheme.bind(this)} />
                     {/*showBtn?<CustomAppBar component={Component} theme={theme} componentProps={pageProps} text={"Some name"}/>:null*/}
 
-                    {showBtn?
+                    {/*showBtn?
                         <FormControlLabel labelPlacement={"start"} label={"Dark mode"} control={<Switch checked={theme} onChange={switchTheme.bind(this)}/>}/>
-                        :null}
+                        :null*/}
                     {/*</div>*/}
 
                 </ThemeProvider>

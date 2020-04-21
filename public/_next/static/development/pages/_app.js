@@ -1,184 +1,8 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\_app.js"],{
 
-/***/ "./components/CustomAppBar.js":
-/*!************************************!*\
-  !*** ./components/WithAppBar.js ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CustomAppBar; });
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/slicedToArray */ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var _material_ui_icons_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/icons/menu */ "./node_modules/@material-ui/icons/menu.js");
-/* harmony import */ var _material_ui_icons_menu__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_menu__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/icons/VpnKey */ "./node_modules/@material-ui/icons/VpnKey.js");
-/* harmony import */ var _material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _material_ui_icons_Phone__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @material-ui/icons/Phone */ "./node_modules/@material-ui/icons/Phone.js");
-/* harmony import */ var _material_ui_icons_Phone__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Phone__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _material_ui_icons_Apartment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/icons/Apartment */ "./node_modules/@material-ui/icons/Apartment.js");
-/* harmony import */ var _material_ui_icons_Apartment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Apartment__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _material_ui_icons_Person__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/icons/Person */ "./node_modules/@material-ui/icons/Person.js");
-/* harmony import */ var _material_ui_icons_Person__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Person__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
-/* harmony import */ var _firebase_index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../firebase/index */ "./firebase/index.js");
-
-var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP\\components\\WithAppBar.js";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
-
-
-
-
-
-
-
-
-
-
-var useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_9__["makeStyles"])(function (theme) {
-  return {
-    root: {
-      background: theme.palette.background.paper,
-      color: theme.palette.text.primary
-    },
-    menuButton: {
-      marginRight: theme.spacing(2)
-    },
-    title: {
-      flexGrow: 0
-    },
-    tabs: {
-      flexGrow: 1,
-      marginRight: theme.spacing(2),
-      marginLeft: theme.spacing(2)
-    }
-  };
-});
-function CustomAppBar(props) {
-  var classes = useStyles();
-
-  var _React$useState = react__WEBPACK_IMPORTED_MODULE_8___default.a.useState(0),
-      _React$useState2 = Object(_babel_runtime_corejs2_helpers_esm_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_React$useState, 2),
-      value = _React$useState2[0],
-      setValue = _React$useState2[1];
-
-  var handleLogout = function handleLogout() {
-    _firebase_index__WEBPACK_IMPORTED_MODULE_10__["auth"].signOut().then(function () {
-      alert('Logout successful');
-    })["catch"](function (error) {
-      alert('OOps something went wrong check your console');
-      console.log(err);
-    });
-  };
-
-  var handleChange = function handleChange(event, newValue) {
-    setValue(newValue);
-  };
-
-  return __jsx("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 49
-    },
-    __self: this
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["AppBar"], {
-    position: "static",
-    className: classes.root,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 50
-    },
-    __self: this
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Toolbar"], {
-    variant: "dense",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 51
-    },
-    __self: this
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["IconButton"], {
-    edge: "start",
-    className: classes.menuButton,
-    color: "inherit",
-    "aria-label": "open drawer",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 52
-    },
-    __self: this
-  }, __jsx(_material_ui_icons_menu__WEBPACK_IMPORTED_MODULE_2___default.a, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 58
-    },
-    __self: this
-  })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["Typography"], {
-    className: classes.title,
-    variant: "h5",
-    noWrap: true,
-    component: "div",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 60
-    },
-    __self: this
-  }, props.text), __jsx(next_link__WEBPACK_IMPORTED_MODULE_7___default.a, {
-    href: {
-      pathname: "/login",
-      query: {
-        refresh: 'false'
-      }
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 63
-    },
-    __self: this
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["IconButton"], {
-    "aria-label": "display more actions",
-    edge: "end",
-    color: "inherit",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 64
-    },
-    __self: this
-  }, __jsx(_material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_3___default.a, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 65
-    },
-    __self: this
-  }))), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_1__["IconButton"], {
-    onClick: handleLogout,
-    "aria-label": "display more actions",
-    edge: "end",
-    color: "inherit",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 68
-    },
-    __self: this
-  }, __jsx(_material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_3___default.a, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 69
-    },
-    __self: this
-  })))));
-}
-
-/***/ }),
-
 /***/ "./components/Theme.js":
 /*!*****************************!*\
-  !*** ./components/Theme.js ***!
+  !*** ./components/Theme.ts ***!
   \*****************************/
 /*! exports provided: lightTheme, darkTheme */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -229,7 +53,7 @@ var darkTheme = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["createMui
 
 /***/ "./firebase/index.js":
 /*!***************************!*\
-  !*** ./firebase/index.tsx ***!
+  !*** ./firebase/index.js ***!
   \***************************/
 /*! exports provided: auth, firebase */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -612,25 +436,6 @@ module.exports = _createClass;
 
 /***/ }),
 
-/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/arrayWithHoles.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/arrayWithHoles.js ***!
-  \***************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _arrayWithHoles; });
-/* harmony import */ var _core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/array/is-array */ "./node_modules/@babel/runtime-corejs2/core-js/array/is-array.js");
-/* harmony import */ var _core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0__);
-
-function _arrayWithHoles(arr) {
-  if (_core_js_array_is_array__WEBPACK_IMPORTED_MODULE_0___default()(arr)) return arr;
-}
-
-/***/ }),
-
 /***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js":
 /*!********************************************************************!*\
   !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/extends.js ***!
@@ -660,92 +465,6 @@ function _extends() {
   };
 
   return _extends.apply(this, arguments);
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/iterableToArrayLimit.js":
-/*!*********************************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/iterableToArrayLimit.js ***!
-  \*********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _iterableToArrayLimit; });
-/* harmony import */ var _core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core-js/get-iterator */ "./node_modules/@babel/runtime-corejs2/core-js/get-iterator.js");
-/* harmony import */ var _core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _core_js_is_iterable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core-js/is-iterable */ "./node_modules/@babel/runtime-corejs2/core-js/is-iterable.js");
-/* harmony import */ var _core_js_is_iterable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_core_js_is_iterable__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function _iterableToArrayLimit(arr, i) {
-  if (!(_core_js_is_iterable__WEBPACK_IMPORTED_MODULE_1___default()(Object(arr)) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
-    return;
-  }
-
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = _core_js_get_iterator__WEBPACK_IMPORTED_MODULE_0___default()(arr), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/nonIterableRest.js":
-/*!****************************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/nonIterableRest.js ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _nonIterableRest; });
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
-}
-
-/***/ }),
-
-/***/ "./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/helpers/esm/slicedToArray.js ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _slicedToArray; });
-/* harmony import */ var _arrayWithHoles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayWithHoles */ "./node_modules/@babel/runtime-corejs2/helpers/esm/arrayWithHoles.js");
-/* harmony import */ var _iterableToArrayLimit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./iterableToArrayLimit */ "./node_modules/@babel/runtime-corejs2/helpers/esm/iterableToArrayLimit.js");
-/* harmony import */ var _nonIterableRest__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./nonIterableRest */ "./node_modules/@babel/runtime-corejs2/helpers/esm/nonIterableRest.js");
-
-
-
-function _slicedToArray(arr, i) {
-  return Object(_arrayWithHoles__WEBPACK_IMPORTED_MODULE_0__["default"])(arr) || Object(_iterableToArrayLimit__WEBPACK_IMPORTED_MODULE_1__["default"])(arr, i) || Object(_nonIterableRest__WEBPACK_IMPORTED_MODULE_2__["default"])();
 }
 
 /***/ }),
@@ -1104,13 +823,39 @@ module.exports = _typeof;
 
 /***/ "./node_modules/@babel/runtime-corejs2/regenerator/index.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/@babel/runtime-corejs2/regenerator/index.tsx ***!
+  !*** ./node_modules/@babel/runtime-corejs2/regenerator/index.js ***!
   \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
 
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
 
 /***/ }),
 
@@ -1673,6 +1418,64 @@ function _interopRequireDefault(obj) {
 }
 
 module.exports = _interopRequireDefault;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/objectWithoutProperties.js ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var objectWithoutPropertiesLoose = __webpack_require__(/*! ./objectWithoutPropertiesLoose */ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js");
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutProperties;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/objectWithoutPropertiesLoose.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutPropertiesLoose;
 
 /***/ }),
 
@@ -21400,6 +21203,467 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
 
 /***/ }),
 
+/***/ "./node_modules/@material-ui/core/SvgIcon/SvgIcon.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@material-ui/core/SvgIcon/SvgIcon.js ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.styles = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _propTypes = _interopRequireDefault(__webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js"));
+
+var _clsx = _interopRequireDefault(__webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js"));
+
+var _withStyles = _interopRequireDefault(__webpack_require__(/*! ../styles/withStyles */ "./node_modules/@material-ui/core/styles/withStyles.js"));
+
+var _capitalize = _interopRequireDefault(__webpack_require__(/*! ../utils/capitalize */ "./node_modules/@material-ui/core/utils/capitalize.js"));
+
+var styles = function styles(theme) {
+  return {
+    /* Styles applied to the root element. */
+    root: {
+      userSelect: 'none',
+      width: '1em',
+      height: '1em',
+      display: 'inline-block',
+      fill: 'currentColor',
+      flexShrink: 0,
+      fontSize: theme.typography.pxToRem(24),
+      transition: theme.transitions.create('fill', {
+        duration: theme.transitions.duration.shorter
+      })
+    },
+
+    /* Styles applied to the root element if `color="primary"`. */
+    colorPrimary: {
+      color: theme.palette.primary.main
+    },
+
+    /* Styles applied to the root element if `color="secondary"`. */
+    colorSecondary: {
+      color: theme.palette.secondary.main
+    },
+
+    /* Styles applied to the root element if `color="action"`. */
+    colorAction: {
+      color: theme.palette.action.active
+    },
+
+    /* Styles applied to the root element if `color="error"`. */
+    colorError: {
+      color: theme.palette.error.main
+    },
+
+    /* Styles applied to the root element if `color="disabled"`. */
+    colorDisabled: {
+      color: theme.palette.action.disabled
+    },
+
+    /* Styles applied to the root element if `fontSize="inherit"`. */
+    fontSizeInherit: {
+      fontSize: 'inherit'
+    },
+
+    /* Styles applied to the root element if `fontSize="small"`. */
+    fontSizeSmall: {
+      fontSize: theme.typography.pxToRem(20)
+    },
+
+    /* Styles applied to the root element if `fontSize="large"`. */
+    fontSizeLarge: {
+      fontSize: theme.typography.pxToRem(35)
+    }
+  };
+};
+
+exports.styles = styles;
+
+var SvgIcon = _react.default.forwardRef(function SvgIcon(props, ref) {
+  var children = props.children,
+      classes = props.classes,
+      className = props.className,
+      _props$color = props.color,
+      color = _props$color === void 0 ? 'inherit' : _props$color,
+      _props$component = props.component,
+      Component = _props$component === void 0 ? 'svg' : _props$component,
+      _props$fontSize = props.fontSize,
+      fontSize = _props$fontSize === void 0 ? 'default' : _props$fontSize,
+      htmlColor = props.htmlColor,
+      titleAccess = props.titleAccess,
+      _props$viewBox = props.viewBox,
+      viewBox = _props$viewBox === void 0 ? '0 0 24 24' : _props$viewBox,
+      other = (0, _objectWithoutProperties2.default)(props, ["children", "classes", "className", "color", "component", "fontSize", "htmlColor", "titleAccess", "viewBox"]);
+  return _react.default.createElement(Component, (0, _extends2.default)({
+    className: (0, _clsx.default)(classes.root, className, color !== 'inherit' && classes["color".concat((0, _capitalize.default)(color))], fontSize !== 'default' && classes["fontSize".concat((0, _capitalize.default)(fontSize))]),
+    focusable: "false",
+    viewBox: viewBox,
+    color: htmlColor,
+    "aria-hidden": titleAccess ? undefined : 'true',
+    role: titleAccess ? 'img' : 'presentation',
+    ref: ref
+  }, other), children, titleAccess ? _react.default.createElement("title", null, titleAccess) : null);
+});
+
+ true ? SvgIcon.propTypes = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+
+  /**
+   * Node passed into the SVG element.
+   */
+  children: _propTypes.default.node,
+
+  /**
+   * Override or extend the styles applied to the component.
+   * See [CSS API](#css) below for more details.
+   */
+  classes: _propTypes.default.object,
+
+  /**
+   * @ignore
+   */
+  className: _propTypes.default.string,
+
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
+   */
+  color: _propTypes.default.oneOf(['action', 'disabled', 'error', 'inherit', 'primary', 'secondary']),
+
+  /**
+   * The component used for the root node.
+   * Either a string to use a DOM element or a component.
+   */
+  component: _propTypes.default.elementType,
+
+  /**
+   * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
+   */
+  fontSize: _propTypes.default.oneOf(['default', 'inherit', 'large', 'small']),
+
+  /**
+   * Applies a color attribute to the SVG element.
+   */
+  htmlColor: _propTypes.default.string,
+
+  /**
+   * The shape-rendering attribute. The behavior of the different options is described on the
+   * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
+   * If you are having issues with blurry icons you should investigate this property.
+   */
+  shapeRendering: _propTypes.default.string,
+
+  /**
+   * Provides a human-readable title for the element that contains it.
+   * https://www.w3.org/TR/SVG-access/#Equivalent
+   */
+  titleAccess: _propTypes.default.string,
+
+  /**
+   * Allows you to redefine what the coordinates without units mean inside an SVG element.
+   * For example, if the SVG element is 500 (width) by 200 (height),
+   * and you pass viewBox="0 0 50 20",
+   * this means that the coordinates inside the SVG will go from the top left corner (0,0)
+   * to bottom right (50,20) and each unit will be worth 10px.
+   */
+  viewBox: _propTypes.default.string
+} : undefined;
+SvgIcon.muiName = 'SvgIcon';
+
+var _default = (0, _withStyles.default)(styles, {
+  name: 'MuiSvgIcon'
+})(SvgIcon);
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/colors/blue.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@material-ui/core/colors/blue.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var blue = {
+  50: '#e3f2fd',
+  100: '#bbdefb',
+  200: '#90caf9',
+  300: '#64b5f6',
+  400: '#42a5f5',
+  500: '#2196f3',
+  600: '#1e88e5',
+  700: '#1976d2',
+  800: '#1565c0',
+  900: '#0d47a1',
+  A100: '#82b1ff',
+  A200: '#448aff',
+  A400: '#2979ff',
+  A700: '#2962ff'
+};
+var _default = blue;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/colors/common.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material-ui/core/colors/common.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var common = {
+  black: '#000',
+  white: '#fff'
+};
+var _default = common;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/colors/green.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material-ui/core/colors/green.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var green = {
+  50: '#e8f5e9',
+  100: '#c8e6c9',
+  200: '#a5d6a7',
+  300: '#81c784',
+  400: '#66bb6a',
+  500: '#4caf50',
+  600: '#43a047',
+  700: '#388e3c',
+  800: '#2e7d32',
+  900: '#1b5e20',
+  A100: '#b9f6ca',
+  A200: '#69f0ae',
+  A400: '#00e676',
+  A700: '#00c853'
+};
+var _default = green;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/colors/grey.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@material-ui/core/colors/grey.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var grey = {
+  50: '#fafafa',
+  100: '#f5f5f5',
+  200: '#eeeeee',
+  300: '#e0e0e0',
+  400: '#bdbdbd',
+  500: '#9e9e9e',
+  600: '#757575',
+  700: '#616161',
+  800: '#424242',
+  900: '#212121',
+  A100: '#d5d5d5',
+  A200: '#aaaaaa',
+  A400: '#303030',
+  A700: '#616161'
+};
+var _default = grey;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/colors/indigo.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material-ui/core/colors/indigo.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var indigo = {
+  50: '#e8eaf6',
+  100: '#c5cae9',
+  200: '#9fa8da',
+  300: '#7986cb',
+  400: '#5c6bc0',
+  500: '#3f51b5',
+  600: '#3949ab',
+  700: '#303f9f',
+  800: '#283593',
+  900: '#1a237e',
+  A100: '#8c9eff',
+  A200: '#536dfe',
+  A400: '#3d5afe',
+  A700: '#304ffe'
+};
+var _default = indigo;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/colors/orange.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material-ui/core/colors/orange.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var orange = {
+  50: '#fff3e0',
+  100: '#ffe0b2',
+  200: '#ffcc80',
+  300: '#ffb74d',
+  400: '#ffa726',
+  500: '#ff9800',
+  600: '#fb8c00',
+  700: '#f57c00',
+  800: '#ef6c00',
+  900: '#e65100',
+  A100: '#ffd180',
+  A200: '#ffab40',
+  A400: '#ff9100',
+  A700: '#ff6d00'
+};
+var _default = orange;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/colors/pink.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@material-ui/core/colors/pink.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var pink = {
+  50: '#fce4ec',
+  100: '#f8bbd0',
+  200: '#f48fb1',
+  300: '#f06292',
+  400: '#ec407a',
+  500: '#e91e63',
+  600: '#d81b60',
+  700: '#c2185b',
+  800: '#ad1457',
+  900: '#880e4f',
+  A100: '#ff80ab',
+  A200: '#ff4081',
+  A400: '#f50057',
+  A700: '#c51162'
+};
+var _default = pink;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/colors/red.js":
+/*!******************************************************!*\
+  !*** ./node_modules/@material-ui/core/colors/red.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var red = {
+  50: '#ffebee',
+  100: '#ffcdd2',
+  200: '#ef9a9a',
+  300: '#e57373',
+  400: '#ef5350',
+  500: '#f44336',
+  600: '#e53935',
+  700: '#d32f2f',
+  800: '#c62828',
+  900: '#b71c1c',
+  A100: '#ff8a80',
+  A200: '#ff5252',
+  A400: '#ff1744',
+  A700: '#d50000'
+};
+var _default = red;
+exports.default = _default;
+
+/***/ }),
+
 /***/ "./node_modules/@material-ui/core/esm/AppBar/AppBar.js":
 /*!*************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/AppBar/AppBar.js ***!
@@ -21572,7 +21836,7 @@ var AppBar = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Ap
 
 /***/ "./node_modules/@material-ui/core/esm/AppBar/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/AppBar/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/AppBar/index.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -21825,7 +22089,7 @@ var Avatar = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Av
 
 /***/ "./node_modules/@material-ui/core/esm/Avatar/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Avatar/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Avatar/index.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -21957,7 +22221,7 @@ var Backdrop = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function 
 
 /***/ "./node_modules/@material-ui/core/esm/Backdrop/index.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Backdrop/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Backdrop/index.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -22282,7 +22546,7 @@ var Badge = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Bad
 
 /***/ "./node_modules/@material-ui/core/esm/Badge/index.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Badge/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Badge/index.js ***!
   \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -22424,7 +22688,7 @@ var BottomNavigation = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(f
 
 /***/ "./node_modules/@material-ui/core/esm/BottomNavigation/index.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/BottomNavigation/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/BottomNavigation/index.js ***!
   \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -22615,7 +22879,7 @@ var BottomNavigationAction = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwar
 
 /***/ "./node_modules/@material-ui/core/esm/BottomNavigationAction/index.js":
 /*!****************************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/BottomNavigationAction/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/BottomNavigationAction/index.js ***!
   \****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -22657,7 +22921,7 @@ var Box = Object(_styles_styled__WEBPACK_IMPORTED_MODULE_1__["default"])('div')(
 
 /***/ "./node_modules/@material-ui/core/esm/Box/index.js":
 /*!*********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Box/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Box/index.js ***!
   \*********************************************************/
 /*! exports provided: default, styleFunction */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -22958,7 +23222,7 @@ var Breadcrumbs = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(functi
 
 /***/ "./node_modules/@material-ui/core/esm/Breadcrumbs/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Breadcrumbs/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Breadcrumbs/index.js ***!
   \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -23429,7 +23693,7 @@ var Button = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Bu
 
 /***/ "./node_modules/@material-ui/core/esm/Button/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Button/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Button/index.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -24398,7 +24662,7 @@ var TouchRipple = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(functi
 
 /***/ "./node_modules/@material-ui/core/esm/ButtonBase/index.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ButtonBase/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ButtonBase/index.js ***!
   \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -24736,7 +25000,7 @@ var ButtonGroup = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(functi
 
 /***/ "./node_modules/@material-ui/core/esm/ButtonGroup/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ButtonGroup/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ButtonGroup/index.js ***!
   \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -24825,7 +25089,7 @@ var Card = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Card
 
 /***/ "./node_modules/@material-ui/core/esm/Card/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Card/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Card/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -24946,7 +25210,7 @@ var CardActionArea = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(fun
 
 /***/ "./node_modules/@material-ui/core/esm/CardActionArea/index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/CardActionArea/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/CardActionArea/index.js ***!
   \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -25041,7 +25305,7 @@ var CardActions = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(functi
 
 /***/ "./node_modules/@material-ui/core/esm/CardActions/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/CardActions/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/CardActions/index.js ***!
   \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -25131,7 +25395,7 @@ var CardContent = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(functi
 
 /***/ "./node_modules/@material-ui/core/esm/CardContent/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/CardContent/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/CardContent/index.js ***!
   \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -25319,7 +25583,7 @@ var CardHeader = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(functio
 
 /***/ "./node_modules/@material-ui/core/esm/CardHeader/index.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/CardHeader/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/CardHeader/index.js ***!
   \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -25458,7 +25722,7 @@ var CardMedia = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function
 
 /***/ "./node_modules/@material-ui/core/esm/CardMedia/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/CardMedia/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/CardMedia/index.js ***!
   \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -25703,7 +25967,7 @@ var Checkbox = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function 
 
 /***/ "./node_modules/@material-ui/core/esm/Checkbox/index.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Checkbox/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Checkbox/index.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -26245,7 +26509,7 @@ var Chip = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Chip
 
 /***/ "./node_modules/@material-ui/core/esm/Chip/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Chip/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Chip/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -26521,7 +26785,7 @@ var CircularProgress = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(f
 
 /***/ "./node_modules/@material-ui/core/esm/CircularProgress/index.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/CircularProgress/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/CircularProgress/index.js ***!
   \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -26692,7 +26956,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/core/esm/ClickAwayListener/index.js":
 /*!***********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ClickAwayListener/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ClickAwayListener/index.js ***!
   \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -26999,7 +27263,7 @@ Collapse.muiSupportAuto = true;
 
 /***/ "./node_modules/@material-ui/core/esm/Collapse/index.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Collapse/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Collapse/index.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -27167,7 +27431,7 @@ var Container = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(function
 
 /***/ "./node_modules/@material-ui/core/esm/Container/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Container/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Container/index.js ***!
   \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -27287,7 +27551,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/core/esm/CssBaseline/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/CssBaseline/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/CssBaseline/index.js ***!
   \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -27746,7 +28010,7 @@ var Dialog = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(function Di
 
 /***/ "./node_modules/@material-ui/core/esm/Dialog/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Dialog/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Dialog/index.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -27843,7 +28107,7 @@ var DialogActions = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(func
 
 /***/ "./node_modules/@material-ui/core/esm/DialogActions/index.js":
 /*!*******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/DialogActions/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/DialogActions/index.js ***!
   \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -27946,7 +28210,7 @@ var DialogContent = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(func
 
 /***/ "./node_modules/@material-ui/core/esm/DialogContent/index.js":
 /*!*******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/DialogContent/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/DialogContent/index.js ***!
   \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -28016,7 +28280,7 @@ var DialogContentText = react__WEBPACK_IMPORTED_MODULE_1___default.a.forwardRef(
 
 /***/ "./node_modules/@material-ui/core/esm/DialogContentText/index.js":
 /*!***********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/DialogContentText/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/DialogContentText/index.js ***!
   \***********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -28111,7 +28375,7 @@ var DialogTitle = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(functi
 
 /***/ "./node_modules/@material-ui/core/esm/DialogTitle/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/DialogTitle/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/DialogTitle/index.js ***!
   \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -28282,7 +28546,7 @@ var Divider = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function D
 
 /***/ "./node_modules/@material-ui/core/esm/Divider/index.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Divider/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Divider/index.js ***!
   \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -28599,7 +28863,7 @@ var Drawer = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Dr
 
 /***/ "./node_modules/@material-ui/core/esm/Drawer/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Drawer/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Drawer/index.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -28891,7 +29155,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/core/esm/ExpansionPanel/index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ExpansionPanel/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ExpansionPanel/index.js ***!
   \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -28987,7 +29251,7 @@ var ExpansionPanelActions = react__WEBPACK_IMPORTED_MODULE_2___default.a.forward
 
 /***/ "./node_modules/@material-ui/core/esm/ExpansionPanelActions/index.js":
 /*!***************************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ExpansionPanelActions/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ExpansionPanelActions/index.js ***!
   \***************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -29067,7 +29331,7 @@ var ExpansionPanelDetails = react__WEBPACK_IMPORTED_MODULE_2___default.a.forward
 
 /***/ "./node_modules/@material-ui/core/esm/ExpansionPanelDetails/index.js":
 /*!***************************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ExpansionPanelDetails/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ExpansionPanelDetails/index.js ***!
   \***************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -29293,7 +29557,7 @@ var ExpansionPanelSummary = react__WEBPACK_IMPORTED_MODULE_2___default.a.forward
 
 /***/ "./node_modules/@material-ui/core/esm/ExpansionPanelSummary/index.js":
 /*!***************************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ExpansionPanelSummary/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ExpansionPanelSummary/index.js ***!
   \***************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -29572,7 +29836,7 @@ var Fab = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Fab(p
 
 /***/ "./node_modules/@material-ui/core/esm/Fab/index.js":
 /*!*********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Fab/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Fab/index.js ***!
   \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -29734,7 +29998,7 @@ var Fade = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Fade
 
 /***/ "./node_modules/@material-ui/core/esm/Fade/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Fade/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Fade/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -30115,7 +30379,7 @@ FilledInput.muiName = 'Input';
 
 /***/ "./node_modules/@material-ui/core/esm/FilledInput/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/FilledInput/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/FilledInput/index.js ***!
   \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -30489,7 +30753,7 @@ function formControlState(_ref) {
 
 /***/ "./node_modules/@material-ui/core/esm/FormControl/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/FormControl/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/FormControl/index.js ***!
   \*****************************************************************/
 /*! exports provided: default, useFormControl */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -30724,7 +30988,7 @@ var FormControlLabel = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(f
 
 /***/ "./node_modules/@material-ui/core/esm/FormControlLabel/index.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/FormControlLabel/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/FormControlLabel/index.js ***!
   \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -30823,7 +31087,7 @@ var FormGroup = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function
 
 /***/ "./node_modules/@material-ui/core/esm/FormGroup/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/FormGroup/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/FormGroup/index.js ***!
   \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -31009,7 +31273,7 @@ var FormHelperText = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(fun
 
 /***/ "./node_modules/@material-ui/core/esm/FormHelperText/index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/FormHelperText/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/FormHelperText/index.js ***!
   \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -31190,7 +31454,7 @@ var FormLabel = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function
 
 /***/ "./node_modules/@material-ui/core/esm/FormLabel/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/FormLabel/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/FormLabel/index.js ***!
   \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -31617,7 +31881,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/core/esm/Grid/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Grid/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Grid/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -31765,7 +32029,7 @@ var GridList = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function 
 
 /***/ "./node_modules/@material-ui/core/esm/GridList/index.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/GridList/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/GridList/index.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -31965,7 +32229,7 @@ var GridListTile = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(funct
 
 /***/ "./node_modules/@material-ui/core/esm/GridListTile/index.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/GridListTile/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/GridListTile/index.js ***!
   \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -32153,7 +32417,7 @@ var GridListTileBar = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(fu
 
 /***/ "./node_modules/@material-ui/core/esm/GridListTileBar/index.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/GridListTileBar/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/GridListTileBar/index.js ***!
   \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -32371,7 +32635,7 @@ Grow.muiSupportAuto = true;
 
 /***/ "./node_modules/@material-ui/core/esm/Grow/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Grow/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Grow/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -32903,7 +33167,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/core/esm/Hidden/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Hidden/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Hidden/index.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -33057,7 +33321,7 @@ Icon.muiName = 'Icon';
 
 /***/ "./node_modules/@material-ui/core/esm/Icon/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Icon/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Icon/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -33298,7 +33562,7 @@ var IconButton = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(functio
 
 /***/ "./node_modules/@material-ui/core/esm/IconButton/index.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/IconButton/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/IconButton/index.js ***!
   \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -33626,7 +33890,7 @@ Input.muiName = 'Input';
 
 /***/ "./node_modules/@material-ui/core/esm/Input/index.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Input/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Input/index.js ***!
   \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -33807,7 +34071,7 @@ var InputAdornment = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(fun
 
 /***/ "./node_modules/@material-ui/core/esm/InputAdornment/index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/InputAdornment/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/InputAdornment/index.js ***!
   \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -34499,7 +34763,7 @@ var InputBase = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function
 
 /***/ "./node_modules/@material-ui/core/esm/InputBase/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/InputBase/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/InputBase/index.js ***!
   \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -34783,7 +35047,7 @@ var InputLabel = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(functio
 
 /***/ "./node_modules/@material-ui/core/esm/InputLabel/index.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/InputLabel/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/InputLabel/index.js ***!
   \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -35114,7 +35378,7 @@ var LinearProgress = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(fun
 
 /***/ "./node_modules/@material-ui/core/esm/LinearProgress/index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/LinearProgress/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/LinearProgress/index.js ***!
   \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -35338,7 +35602,7 @@ var Link = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Link
 
 /***/ "./node_modules/@material-ui/core/esm/Link/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Link/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Link/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -35500,7 +35764,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/core/esm/List/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/List/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/List/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -35844,7 +36108,7 @@ var ListItem = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function 
 
 /***/ "./node_modules/@material-ui/core/esm/ListItem/index.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ListItem/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ListItem/index.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -35936,7 +36200,7 @@ var ListItemAvatar = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(fun
 
 /***/ "./node_modules/@material-ui/core/esm/ListItemAvatar/index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ListItemAvatar/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ListItemAvatar/index.js ***!
   \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -36033,7 +36297,7 @@ var ListItemIcon = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(funct
 
 /***/ "./node_modules/@material-ui/core/esm/ListItemIcon/index.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ListItemIcon/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ListItemIcon/index.js ***!
   \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -36120,7 +36384,7 @@ ListItemSecondaryAction.muiName = 'ListItemSecondaryAction';
 
 /***/ "./node_modules/@material-ui/core/esm/ListItemSecondaryAction/index.js":
 /*!*****************************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ListItemSecondaryAction/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ListItemSecondaryAction/index.js ***!
   \*****************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -36294,7 +36558,7 @@ var ListItemText = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(funct
 
 /***/ "./node_modules/@material-ui/core/esm/ListItemText/index.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ListItemText/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ListItemText/index.js ***!
   \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -36448,7 +36712,7 @@ var ListSubheader = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(func
 
 /***/ "./node_modules/@material-ui/core/esm/ListSubheader/index.js":
 /*!*******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/ListSubheader/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/ListSubheader/index.js ***!
   \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -36755,7 +37019,7 @@ var Menu = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Menu
 
 /***/ "./node_modules/@material-ui/core/esm/Menu/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Menu/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Menu/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -36919,7 +37183,7 @@ var MenuItem = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(function 
 
 /***/ "./node_modules/@material-ui/core/esm/MenuItem/index.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/MenuItem/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/MenuItem/index.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -37264,7 +37528,7 @@ var MenuList = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function 
 
 /***/ "./node_modules/@material-ui/core/esm/MenuList/index.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/MenuList/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/MenuList/index.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -37458,7 +37722,7 @@ var MobileStepper = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(func
 
 /***/ "./node_modules/@material-ui/core/esm/MobileStepper/index.js":
 /*!*******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/MobileStepper/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/MobileStepper/index.js ***!
   \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -38475,7 +38739,7 @@ function TrapFocus(props) {
 
 /***/ "./node_modules/@material-ui/core/esm/Modal/index.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Modal/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Modal/index.js ***!
   \***********************************************************/
 /*! exports provided: default, ModalManager */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -38829,7 +39093,7 @@ var NativeSelectInput = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(
 
 /***/ "./node_modules/@material-ui/core/esm/NativeSelect/index.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/NativeSelect/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/NativeSelect/index.js ***!
   \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -38925,7 +39189,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/core/esm/NoSsr/index.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/NoSsr/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/NoSsr/index.js ***!
   \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -39462,7 +39726,7 @@ OutlinedInput.muiName = 'Input';
 
 /***/ "./node_modules/@material-ui/core/esm/OutlinedInput/index.js":
 /*!*******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/OutlinedInput/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/OutlinedInput/index.js ***!
   \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -39597,7 +39861,7 @@ var Paper = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Pap
 
 /***/ "./node_modules/@material-ui/core/esm/Paper/index.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Paper/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Paper/index.js ***!
   \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -40188,7 +40452,7 @@ var Popover = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function P
 
 /***/ "./node_modules/@material-ui/core/esm/Popover/index.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Popover/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Popover/index.js ***!
   \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -40536,7 +40800,7 @@ var Popper = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Po
 
 /***/ "./node_modules/@material-ui/core/esm/Popper/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Popper/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Popper/index.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -40676,7 +40940,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/core/esm/Portal/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Portal/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Portal/index.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -41012,7 +41276,7 @@ function RadioButtonIcon(props) {
 
 /***/ "./node_modules/@material-ui/core/esm/Radio/index.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Radio/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Radio/index.js ***!
   \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -41188,7 +41452,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/core/esm/RadioGroup/index.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/RadioGroup/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/RadioGroup/index.js ***!
   \****************************************************************/
 /*! exports provided: default, useRadioGroup */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -41361,7 +41625,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/core/esm/RootRef/index.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/RootRef/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/RootRef/index.js ***!
   \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -42220,7 +42484,7 @@ var SelectInput = react__WEBPACK_IMPORTED_MODULE_5___default.a.forwardRef(functi
 
 /***/ "./node_modules/@material-ui/core/esm/Select/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Select/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Select/index.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -42520,7 +42784,7 @@ var Slide = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Sli
 
 /***/ "./node_modules/@material-ui/core/esm/Slide/index.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Slide/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Slide/index.js ***!
   \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -43734,7 +43998,7 @@ function ValueLabel(props) {
 
 /***/ "./node_modules/@material-ui/core/esm/Slider/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Slider/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Slider/index.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -44172,7 +44436,7 @@ var Snackbar = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(function 
 
 /***/ "./node_modules/@material-ui/core/esm/Snackbar/index.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Snackbar/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Snackbar/index.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -44306,7 +44570,7 @@ var SnackbarContent = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(fu
 
 /***/ "./node_modules/@material-ui/core/esm/SnackbarContent/index.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/SnackbarContent/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/SnackbarContent/index.js ***!
   \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -44495,7 +44759,7 @@ var Step = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Step
 
 /***/ "./node_modules/@material-ui/core/esm/Step/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Step/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Step/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -44672,7 +44936,7 @@ var StepButton = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(functio
 
 /***/ "./node_modules/@material-ui/core/esm/StepButton/index.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/StepButton/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/StepButton/index.js ***!
   \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -44835,7 +45099,7 @@ var StepConnector = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(func
 
 /***/ "./node_modules/@material-ui/core/esm/StepConnector/index.js":
 /*!*******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/StepConnector/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/StepConnector/index.js ***!
   \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -45022,7 +45286,7 @@ var StepContent = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(functi
 
 /***/ "./node_modules/@material-ui/core/esm/StepContent/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/StepContent/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/StepContent/index.js ***!
   \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -45178,7 +45442,7 @@ var StepIcon = react__WEBPACK_IMPORTED_MODULE_0___default.a.forwardRef(function 
 
 /***/ "./node_modules/@material-ui/core/esm/StepIcon/index.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/StepIcon/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/StepIcon/index.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -45428,7 +45692,7 @@ StepLabel.muiName = 'StepLabel';
 
 /***/ "./node_modules/@material-ui/core/esm/StepLabel/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/StepLabel/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/StepLabel/index.js ***!
   \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -45599,7 +45863,7 @@ var Stepper = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function S
 
 /***/ "./node_modules/@material-ui/core/esm/Stepper/index.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Stepper/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Stepper/index.js ***!
   \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -45797,7 +46061,7 @@ SvgIcon.muiName = 'SvgIcon';
 
 /***/ "./node_modules/@material-ui/core/esm/SvgIcon/index.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/SvgIcon/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/SvgIcon/index.js ***!
   \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -46551,7 +46815,7 @@ var SwipeableDrawer = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(fu
 
 /***/ "./node_modules/@material-ui/core/esm/SwipeableDrawer/index.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/SwipeableDrawer/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/SwipeableDrawer/index.js ***!
   \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -46888,7 +47152,7 @@ var Switch = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Sw
 
 /***/ "./node_modules/@material-ui/core/esm/Switch/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Switch/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Switch/index.js ***!
   \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -47164,7 +47428,7 @@ var Tab = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(function Tab(p
 
 /***/ "./node_modules/@material-ui/core/esm/Tab/index.js":
 /*!*********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Tab/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Tab/index.js ***!
   \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -47353,7 +47617,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/core/esm/Table/index.js":
 /*!***********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Table/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Table/index.js ***!
   \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -47447,7 +47711,7 @@ var TableBody = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function
 
 /***/ "./node_modules/@material-ui/core/esm/TableBody/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/TableBody/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/TableBody/index.js ***!
   \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -47712,7 +47976,7 @@ var TableCell = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function
 
 /***/ "./node_modules/@material-ui/core/esm/TableCell/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/TableCell/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/TableCell/index.js ***!
   \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -47800,7 +48064,7 @@ var TableContainer = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(fun
 
 /***/ "./node_modules/@material-ui/core/esm/TableContainer/index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/TableContainer/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/TableContainer/index.js ***!
   \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -47894,7 +48158,7 @@ var TableFooter = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(functi
 
 /***/ "./node_modules/@material-ui/core/esm/TableFooter/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/TableFooter/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/TableFooter/index.js ***!
   \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -47988,7 +48252,7 @@ var TableHead = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function
 
 /***/ "./node_modules/@material-ui/core/esm/TableHead/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/TableHead/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/TableHead/index.js ***!
   \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -48448,7 +48712,7 @@ var TablePaginationActions = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwar
 
 /***/ "./node_modules/@material-ui/core/esm/TablePagination/index.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/TablePagination/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/TablePagination/index.js ***!
   \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -48586,7 +48850,7 @@ var TableRow = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function 
 
 /***/ "./node_modules/@material-ui/core/esm/TableRow/index.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/TableRow/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/TableRow/index.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -48756,7 +49020,7 @@ var TableSortLabel = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(fun
 
 /***/ "./node_modules/@material-ui/core/esm/TableSortLabel/index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/TableSortLabel/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/TableSortLabel/index.js ***!
   \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -49613,7 +49877,7 @@ var Tabs = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(function Tabs
 
 /***/ "./node_modules/@material-ui/core/esm/Tabs/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Tabs/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Tabs/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -50020,7 +50284,7 @@ var TextField = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function
 
 /***/ "./node_modules/@material-ui/core/esm/TextField/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/TextField/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/TextField/index.js ***!
   \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -50252,7 +50516,7 @@ var TextareaAutosize = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(f
 
 /***/ "./node_modules/@material-ui/core/esm/TextareaAutosize/index.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/TextareaAutosize/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/TextareaAutosize/index.js ***!
   \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -50376,7 +50640,7 @@ var Toolbar = react__WEBPACK_IMPORTED_MODULE_3___default.a.forwardRef(function T
 
 /***/ "./node_modules/@material-ui/core/esm/Toolbar/index.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Toolbar/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Toolbar/index.js ***!
   \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -51073,7 +51337,7 @@ var Tooltip = react__WEBPACK_IMPORTED_MODULE_4___default.a.forwardRef(function T
 
 /***/ "./node_modules/@material-ui/core/esm/Tooltip/index.js":
 /*!*************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Tooltip/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Tooltip/index.js ***!
   \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -51363,7 +51627,7 @@ var Typography = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(functio
 
 /***/ "./node_modules/@material-ui/core/esm/Typography/index.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Typography/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Typography/index.js ***!
   \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -51526,7 +51790,7 @@ var Zoom = react__WEBPACK_IMPORTED_MODULE_2___default.a.forwardRef(function Zoom
 
 /***/ "./node_modules/@material-ui/core/esm/Zoom/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/Zoom/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/Zoom/index.js ***!
   \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -51820,7 +52084,7 @@ var grey = {
 
 /***/ "./node_modules/@material-ui/core/esm/colors/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/colors/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/colors/index.js ***!
   \************************************************************/
 /*! exports provided: common, red, pink, purple, deepPurple, indigo, blue, lightBlue, cyan, teal, green, lightGreen, lime, yellow, amber, orange, deepOrange, brown, grey, blueGrey */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -52202,7 +52466,7 @@ var yellow = {
 
 /***/ "./node_modules/@material-ui/core/esm/index.js":
 /*!*****************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/index.js ***!
   \*****************************************************/
 /*! exports provided: colors, hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, easing, duration, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider, AppBar, Avatar, Backdrop, Badge, BottomNavigation, BottomNavigationAction, Box, styleFunction, Breadcrumbs, Button, ButtonBase, ButtonGroup, Card, CardActionArea, CardActions, CardContent, CardHeader, CardMedia, Checkbox, Chip, CircularProgress, ClickAwayListener, Collapse, Container, CssBaseline, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Drawer, ExpansionPanel, ExpansionPanelActions, ExpansionPanelDetails, ExpansionPanelSummary, Fab, Fade, FilledInput, FormControl, useFormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, Grid, GridList, GridListTile, GridListTileBar, Grow, Hidden, Icon, IconButton, Input, InputAdornment, InputBase, InputLabel, LinearProgress, Link, List, ListItem, ListItemAvatar, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader, Menu, MenuItem, MenuList, MobileStepper, Modal, ModalManager, NativeSelect, NoSsr, OutlinedInput, Paper, Popover, Popper, Portal, Radio, RadioGroup, useRadioGroup, RootRef, Select, Slide, Slider, Snackbar, SnackbarContent, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper, SvgIcon, SwipeableDrawer, Switch, Tab, Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, Tabs, TextField, TextareaAutosize, Toolbar, Tooltip, Typography, useMediaQuery, useScrollTrigger, withMobileDialog, withWidth, Zoom, isWidthUp, isWidthDown */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -54767,7 +55031,7 @@ var defaultTheme = Object(_createMuiTheme__WEBPACK_IMPORTED_MODULE_0__["default"
 
 /***/ "./node_modules/@material-ui/core/esm/styles/index.js":
 /*!************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/styles/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/styles/index.js ***!
   \************************************************************/
 /*! exports provided: hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, easing, duration, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -55268,7 +55532,7 @@ function getTransitionProps(props, options) {
 
 /***/ "./node_modules/@material-ui/core/esm/useMediaQuery/index.js":
 /*!*******************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/useMediaQuery/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/useMediaQuery/index.js ***!
   \*******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -55380,7 +55644,7 @@ function useMediaQuery(queryInput) {
 
 /***/ "./node_modules/@material-ui/core/esm/useScrollTrigger/index.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/useScrollTrigger/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/useScrollTrigger/index.js ***!
   \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -56109,7 +56373,7 @@ function useForkRef(refA, refB) {
 
 /***/ "./node_modules/@material-ui/core/esm/withMobileDialog/index.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/withMobileDialog/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/withMobileDialog/index.js ***!
   \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -56173,7 +56437,7 @@ var withMobileDialog = function withMobileDialog() {
 
 /***/ "./node_modules/@material-ui/core/esm/withWidth/index.js":
 /*!***************************************************************!*\
-  !*** ./node_modules/@material-ui/core/esm/withWidth/index.tsx ***!
+  !*** ./node_modules/@material-ui/core/esm/withWidth/index.js ***!
   \***************************************************************/
 /*! exports provided: default, isWidthUp, isWidthDown */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -56348,10 +56612,1368 @@ var withWidth = function withWidth() {
 
 /***/ }),
 
-/***/ "./node_modules/@material-ui/icons/Apartment.js":
-/*!******************************************************!*\
-  !*** ./node_modules/@material-ui/icons/Apartment.js ***!
-  \******************************************************/
+/***/ "./node_modules/@material-ui/core/styles/colorManipulator.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/colorManipulator.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.hexToRgb = hexToRgb;
+exports.rgbToHex = rgbToHex;
+exports.hslToRgb = hslToRgb;
+exports.decomposeColor = decomposeColor;
+exports.recomposeColor = recomposeColor;
+exports.getContrastRatio = getContrastRatio;
+exports.getLuminance = getLuminance;
+exports.emphasize = emphasize;
+exports.fade = fade;
+exports.darken = darken;
+exports.lighten = lighten;
+
+/* eslint-disable no-use-before-define */
+
+/**
+ * Returns a number whose value is limited to the given range.
+ *
+ * @param {number} value The value to be clamped
+ * @param {number} min The lower boundary of the output range
+ * @param {number} max The upper boundary of the output range
+ * @returns {number} A number in the range [min, max]
+ */
+function clamp(value) {
+  var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+  var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+
+  if (true) {
+    if (value < min || value > max) {
+      console.error("Material-UI: the value provided ".concat(value, " is out of range [").concat(min, ", ").concat(max, "]."));
+    }
+  }
+
+  return Math.min(Math.max(min, value), max);
+}
+/**
+ * Converts a color from CSS hex format to CSS rgb format.
+ *
+ * @param {string} color - Hex color, i.e. #nnn or #nnnnnn
+ * @returns {string} A CSS rgb color string
+ */
+
+
+function hexToRgb(color) {
+  color = color.substr(1);
+  var re = new RegExp(".{1,".concat(color.length / 3, "}"), 'g');
+  var colors = color.match(re);
+
+  if (colors && colors[0].length === 1) {
+    colors = colors.map(function (n) {
+      return n + n;
+    });
+  }
+
+  return colors ? "rgb(".concat(colors.map(function (n) {
+    return parseInt(n, 16);
+  }).join(', '), ")") : '';
+}
+
+function intToHex(int) {
+  var hex = int.toString(16);
+  return hex.length === 1 ? "0".concat(hex) : hex;
+}
+/**
+ * Converts a color from CSS rgb format to CSS hex format.
+ *
+ * @param {string} color - RGB color, i.e. rgb(n, n, n)
+ * @returns {string} A CSS rgb color string, i.e. #nnnnnn
+ */
+
+
+function rgbToHex(color) {
+  // Idempotent
+  if (color.indexOf('#') === 0) {
+    return color;
+  }
+
+  var _decomposeColor = decomposeColor(color),
+      values = _decomposeColor.values;
+
+  return "#".concat(values.map(function (n) {
+    return intToHex(n);
+  }).join(''));
+}
+/**
+ * Converts a color from hsl format to rgb format.
+ *
+ * @param {string} color - HSL color values
+ * @returns {string} rgb color values
+ */
+
+
+function hslToRgb(color) {
+  color = decomposeColor(color);
+  var _color = color,
+      values = _color.values;
+  var h = values[0];
+  var s = values[1] / 100;
+  var l = values[2] / 100;
+  var a = s * Math.min(l, 1 - l);
+
+  var f = function f(n) {
+    var k = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : (n + h / 30) % 12;
+    return l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+  };
+
+  var type = 'rgb';
+  var rgb = [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)];
+
+  if (color.type === 'hsla') {
+    type += 'a';
+    rgb.push(values[3]);
+  }
+
+  return recomposeColor({
+    type: type,
+    values: rgb
+  });
+}
+/**
+ * Returns an object with the type and values of a color.
+ *
+ * Note: Does not support rgb % values.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @returns {object} - A MUI color object: {type: string, values: number[]}
+ */
+
+
+function decomposeColor(color) {
+  // Idempotent
+  if (color.type) {
+    return color;
+  }
+
+  if (color.charAt(0) === '#') {
+    return decomposeColor(hexToRgb(color));
+  }
+
+  var marker = color.indexOf('(');
+  var type = color.substring(0, marker);
+
+  if (['rgb', 'rgba', 'hsl', 'hsla'].indexOf(type) === -1) {
+    throw new Error(["Material-UI: unsupported `".concat(color, "` color."), 'We support the following formats: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla().'].join('\n'));
+  }
+
+  var values = color.substring(marker + 1, color.length - 1).split(',');
+  values = values.map(function (value) {
+    return parseFloat(value);
+  });
+  return {
+    type: type,
+    values: values
+  };
+}
+/**
+ * Converts a color object with type and values to a string.
+ *
+ * @param {object} color - Decomposed color
+ * @param {string} color.type - One of: 'rgb', 'rgba', 'hsl', 'hsla'
+ * @param {array} color.values - [n,n,n] or [n,n,n,n]
+ * @returns {string} A CSS color string
+ */
+
+
+function recomposeColor(color) {
+  var type = color.type;
+  var values = color.values;
+
+  if (type.indexOf('rgb') !== -1) {
+    // Only convert the first 3 values to int (i.e. not alpha)
+    values = values.map(function (n, i) {
+      return i < 3 ? parseInt(n, 10) : n;
+    });
+  } else if (type.indexOf('hsl') !== -1) {
+    values[1] = "".concat(values[1], "%");
+    values[2] = "".concat(values[2], "%");
+  }
+
+  return "".concat(type, "(").concat(values.join(', '), ")");
+}
+/**
+ * Calculates the contrast ratio between two colors.
+ *
+ * Formula: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ *
+ * @param {string} foreground - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {string} background - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @returns {number} A contrast ratio value in the range 0 - 21.
+ */
+
+
+function getContrastRatio(foreground, background) {
+  var lumA = getLuminance(foreground);
+  var lumB = getLuminance(background);
+  return (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
+}
+/**
+ * The relative brightness of any point in a color space,
+ * normalized to 0 for darkest black and 1 for lightest white.
+ *
+ * Formula: https://www.w3.org/TR/WCAG20-TECHS/G17.html#G17-tests
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @returns {number} The relative brightness of the color in the range 0 - 1
+ */
+
+
+function getLuminance(color) {
+  color = decomposeColor(color);
+  var rgb = color.type === 'hsl' ? decomposeColor(hslToRgb(color)).values : color.values;
+  rgb = rgb.map(function (val) {
+    val /= 255; // normalized
+
+    return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
+  }); // Truncate at 3 digits
+
+  return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3));
+}
+/**
+ * Darken or lighten a color, depending on its luminance.
+ * Light colors are darkened, dark colors are lightened.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {number} coefficient=0.15 - multiplier in the range 0 - 1
+ * @returns {string} A CSS color string. Hex input values are returned as rgb
+ */
+
+
+function emphasize(color) {
+  var coefficient = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.15;
+  return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
+}
+/**
+ * Set the absolute transparency of a color.
+ * Any existing alpha values are overwritten.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {number} value - value to set the alpha channel to in the range 0 -1
+ * @returns {string} A CSS color string. Hex input values are returned as rgb
+ */
+
+
+function fade(color, value) {
+  color = decomposeColor(color);
+  value = clamp(value);
+
+  if (color.type === 'rgb' || color.type === 'hsl') {
+    color.type += 'a';
+  }
+
+  color.values[3] = value;
+  return recomposeColor(color);
+}
+/**
+ * Darkens a color.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {number} coefficient - multiplier in the range 0 - 1
+ * @returns {string} A CSS color string. Hex input values are returned as rgb
+ */
+
+
+function darken(color, coefficient) {
+  color = decomposeColor(color);
+  coefficient = clamp(coefficient);
+
+  if (color.type.indexOf('hsl') !== -1) {
+    color.values[2] *= 1 - coefficient;
+  } else if (color.type.indexOf('rgb') !== -1) {
+    for (var i = 0; i < 3; i += 1) {
+      color.values[i] *= 1 - coefficient;
+    }
+  }
+
+  return recomposeColor(color);
+}
+/**
+ * Lightens a color.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {number} coefficient - multiplier in the range 0 - 1
+ * @returns {string} A CSS color string. Hex input values are returned as rgb
+ */
+
+
+function lighten(color, coefficient) {
+  color = decomposeColor(color);
+  coefficient = clamp(coefficient);
+
+  if (color.type.indexOf('hsl') !== -1) {
+    color.values[2] += (100 - color.values[2]) * coefficient;
+  } else if (color.type.indexOf('rgb') !== -1) {
+    for (var i = 0; i < 3; i += 1) {
+      color.values[i] += (255 - color.values[i]) * coefficient;
+    }
+  }
+
+  return recomposeColor(color);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/createBreakpoints.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/createBreakpoints.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createBreakpoints;
+exports.keys = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+
+// Sorted ASC by size. That's important.
+// It can't be configured as it's used statically for propTypes.
+var keys = ['xs', 'sm', 'md', 'lg', 'xl']; // Keep in mind that @media is inclusive by the CSS specification.
+
+exports.keys = keys;
+
+function createBreakpoints(breakpoints) {
+  var _breakpoints$values = breakpoints.values,
+      values = _breakpoints$values === void 0 ? {
+    xs: 0,
+    sm: 600,
+    md: 960,
+    lg: 1280,
+    xl: 1920
+  } : _breakpoints$values,
+      _breakpoints$unit = breakpoints.unit,
+      unit = _breakpoints$unit === void 0 ? 'px' : _breakpoints$unit,
+      _breakpoints$step = breakpoints.step,
+      step = _breakpoints$step === void 0 ? 5 : _breakpoints$step,
+      other = (0, _objectWithoutProperties2.default)(breakpoints, ["values", "unit", "step"]);
+
+  function up(key) {
+    var value = typeof values[key] === 'number' ? values[key] : key;
+    return "@media (min-width:".concat(value).concat(unit, ")");
+  }
+
+  function down(key) {
+    var endIndex = keys.indexOf(key) + 1;
+    var upperbound = values[keys[endIndex]];
+
+    if (endIndex === keys.length) {
+      // xl down applies to all sizes
+      return up('xs');
+    }
+
+    var value = typeof upperbound === 'number' && endIndex > 0 ? upperbound : key;
+    return "@media (max-width:".concat(value - step / 100).concat(unit, ")");
+  }
+
+  function between(start, end) {
+    var endIndex = keys.indexOf(end);
+
+    if (endIndex === keys.length - 1) {
+      return up(start);
+    }
+
+    return "@media (min-width:".concat(typeof values[start] === 'number' ? values[start] : start).concat(unit, ") and ") + "(max-width:".concat((endIndex !== -1 && typeof values[keys[endIndex + 1]] === 'number' ? values[keys[endIndex + 1]] : end) - step / 100).concat(unit, ")");
+  }
+
+  function only(key) {
+    return between(key, key);
+  }
+
+  function width(key) {
+    return values[key];
+  }
+
+  return (0, _extends2.default)({
+    keys: keys,
+    values: values,
+    up: up,
+    down: down,
+    between: between,
+    only: only,
+    width: width
+  }, other);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/createMixins.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/createMixins.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createMixins;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _extends3 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+function createMixins(breakpoints, spacing, mixins) {
+  var _toolbar;
+
+  return (0, _extends3.default)({
+    gutters: function gutters() {
+      var styles = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      // To deprecate in v4.1
+      //       warning(
+      //         false,
+      //         [
+      //           'Material-UI: theme.mixins.gutters() is deprecated.',
+      //           'You can use the source of the mixin directly:',
+      //           `
+      // paddingLeft: theme.spacing(2),
+      // paddingRight: theme.spacing(2),
+      // [theme.breakpoints.up('sm')]: {
+      //   paddingLeft: theme.spacing(3),
+      //   paddingRight: theme.spacing(3),
+      // },
+      // `,
+      //         ].join('\n'),
+      //       );
+      return (0, _extends3.default)({
+        paddingLeft: spacing(2),
+        paddingRight: spacing(2)
+      }, styles, (0, _defineProperty2.default)({}, breakpoints.up('sm'), (0, _extends3.default)({
+        paddingLeft: spacing(3),
+        paddingRight: spacing(3)
+      }, styles[breakpoints.up('sm')])));
+    },
+    toolbar: (_toolbar = {
+      minHeight: 56
+    }, (0, _defineProperty2.default)(_toolbar, "".concat(breakpoints.up('xs'), " and (orientation: landscape)"), {
+      minHeight: 48
+    }), (0, _defineProperty2.default)(_toolbar, breakpoints.up('sm'), {
+      minHeight: 64
+    }), _toolbar)
+  }, mixins);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/createMuiTheme.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/createMuiTheme.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+
+var _utils = __webpack_require__(/*! @material-ui/utils */ "./node_modules/@material-ui/utils/esm/index.js");
+
+var _createBreakpoints = _interopRequireDefault(__webpack_require__(/*! ./createBreakpoints */ "./node_modules/@material-ui/core/styles/createBreakpoints.js"));
+
+var _createMixins = _interopRequireDefault(__webpack_require__(/*! ./createMixins */ "./node_modules/@material-ui/core/styles/createMixins.js"));
+
+var _createPalette = _interopRequireDefault(__webpack_require__(/*! ./createPalette */ "./node_modules/@material-ui/core/styles/createPalette.js"));
+
+var _createTypography = _interopRequireDefault(__webpack_require__(/*! ./createTypography */ "./node_modules/@material-ui/core/styles/createTypography.js"));
+
+var _shadows = _interopRequireDefault(__webpack_require__(/*! ./shadows */ "./node_modules/@material-ui/core/styles/shadows.js"));
+
+var _shape = _interopRequireDefault(__webpack_require__(/*! ./shape */ "./node_modules/@material-ui/core/styles/shape.js"));
+
+var _createSpacing = _interopRequireDefault(__webpack_require__(/*! ./createSpacing */ "./node_modules/@material-ui/core/styles/createSpacing.js"));
+
+var _transitions = _interopRequireDefault(__webpack_require__(/*! ./transitions */ "./node_modules/@material-ui/core/styles/transitions.js"));
+
+var _zIndex = _interopRequireDefault(__webpack_require__(/*! ./zIndex */ "./node_modules/@material-ui/core/styles/zIndex.js"));
+
+function createMuiTheme() {
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var _options$breakpoints = options.breakpoints,
+      breakpointsInput = _options$breakpoints === void 0 ? {} : _options$breakpoints,
+      _options$mixins = options.mixins,
+      mixinsInput = _options$mixins === void 0 ? {} : _options$mixins,
+      _options$palette = options.palette,
+      paletteInput = _options$palette === void 0 ? {} : _options$palette,
+      spacingInput = options.spacing,
+      _options$typography = options.typography,
+      typographyInput = _options$typography === void 0 ? {} : _options$typography,
+      other = (0, _objectWithoutProperties2.default)(options, ["breakpoints", "mixins", "palette", "spacing", "typography"]);
+  var palette = (0, _createPalette.default)(paletteInput);
+  var breakpoints = (0, _createBreakpoints.default)(breakpointsInput);
+  var spacing = (0, _createSpacing.default)(spacingInput);
+  var muiTheme = (0, _utils.deepmerge)({
+    breakpoints: breakpoints,
+    direction: 'ltr',
+    mixins: (0, _createMixins.default)(breakpoints, spacing, mixinsInput),
+    overrides: {},
+    // Inject custom styles
+    palette: palette,
+    props: {},
+    // Provide default props
+    shadows: _shadows.default,
+    typography: (0, _createTypography.default)(palette, typographyInput),
+    spacing: spacing,
+    shape: _shape.default,
+    transitions: _transitions.default,
+    zIndex: _zIndex.default
+  }, other);
+
+  for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    args[_key - 1] = arguments[_key];
+  }
+
+  muiTheme = args.reduce(function (acc, argument) {
+    return (0, _utils.deepmerge)(acc, argument);
+  }, muiTheme);
+
+  if (true) {
+    var pseudoClasses = ['checked', 'disabled', 'error', 'focused', 'focusVisible', 'required', 'expanded', 'selected'];
+
+    var traverse = function traverse(node, parentKey) {
+      var depth = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+      var key; // eslint-disable-next-line guard-for-in, no-restricted-syntax
+
+      for (key in node) {
+        var child = node[key];
+
+        if (depth === 1) {
+          if (key.indexOf('Mui') === 0 && child) {
+            traverse(child, key, depth + 1);
+          }
+        } else if (pseudoClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
+          if (true) {
+            console.error(["Material-UI: the `".concat(parentKey, "` component increases ") + "the CSS specificity of the `".concat(key, "` internal state."), 'You can not override it like this: ', JSON.stringify(node, null, 2), '', 'Instead, you need to use the $ruleName syntax:', JSON.stringify({
+              root: (0, _defineProperty2.default)({}, "&$".concat(key), child)
+            }, null, 2), '', 'https://material-ui.com/r/pseudo-classes-guide'].join('\n'));
+          } // Remove the style to prevent global conflicts.
+
+
+          node[key] = {};
+        }
+      }
+    };
+
+    traverse(muiTheme.overrides);
+  }
+
+  return muiTheme;
+}
+
+var _default = createMuiTheme;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/createPalette.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/createPalette.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createPalette;
+exports.dark = exports.light = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+
+var _utils = __webpack_require__(/*! @material-ui/utils */ "./node_modules/@material-ui/utils/esm/index.js");
+
+var _common = _interopRequireDefault(__webpack_require__(/*! ../colors/common */ "./node_modules/@material-ui/core/colors/common.js"));
+
+var _grey = _interopRequireDefault(__webpack_require__(/*! ../colors/grey */ "./node_modules/@material-ui/core/colors/grey.js"));
+
+var _indigo = _interopRequireDefault(__webpack_require__(/*! ../colors/indigo */ "./node_modules/@material-ui/core/colors/indigo.js"));
+
+var _pink = _interopRequireDefault(__webpack_require__(/*! ../colors/pink */ "./node_modules/@material-ui/core/colors/pink.js"));
+
+var _red = _interopRequireDefault(__webpack_require__(/*! ../colors/red */ "./node_modules/@material-ui/core/colors/red.js"));
+
+var _orange = _interopRequireDefault(__webpack_require__(/*! ../colors/orange */ "./node_modules/@material-ui/core/colors/orange.js"));
+
+var _blue = _interopRequireDefault(__webpack_require__(/*! ../colors/blue */ "./node_modules/@material-ui/core/colors/blue.js"));
+
+var _green = _interopRequireDefault(__webpack_require__(/*! ../colors/green */ "./node_modules/@material-ui/core/colors/green.js"));
+
+var _colorManipulator = __webpack_require__(/*! ./colorManipulator */ "./node_modules/@material-ui/core/styles/colorManipulator.js");
+
+var light = {
+  // The colors used to style the text.
+  text: {
+    // The most important text.
+    primary: 'rgba(0, 0, 0, 0.87)',
+    // Secondary text.
+    secondary: 'rgba(0, 0, 0, 0.54)',
+    // Disabled text have even lower visual prominence.
+    disabled: 'rgba(0, 0, 0, 0.38)',
+    // Text hints.
+    hint: 'rgba(0, 0, 0, 0.38)'
+  },
+  // The color used to divide different elements.
+  divider: 'rgba(0, 0, 0, 0.12)',
+  // The background colors used to style the surfaces.
+  // Consistency between these values is important.
+  background: {
+    paper: _common.default.white,
+    default: _grey.default[50]
+  },
+  // The colors used to style the action elements.
+  action: {
+    // The color of an active action like an icon button.
+    active: 'rgba(0, 0, 0, 0.54)',
+    // The color of an hovered action.
+    hover: 'rgba(0, 0, 0, 0.04)',
+    hoverOpacity: 0.04,
+    // The color of a selected action.
+    selected: 'rgba(0, 0, 0, 0.08)',
+    selectedOpacity: 0.08,
+    // The color of a disabled action.
+    disabled: 'rgba(0, 0, 0, 0.26)',
+    // The background color of a disabled action.
+    disabledBackground: 'rgba(0, 0, 0, 0.12)',
+    disabledOpacity: 0.38,
+    focus: 'rgba(0, 0, 0, 0.12)',
+    focusOpacity: 0.12,
+    activatedOpacity: 0.12
+  }
+};
+exports.light = light;
+var dark = {
+  text: {
+    primary: _common.default.white,
+    secondary: 'rgba(255, 255, 255, 0.7)',
+    disabled: 'rgba(255, 255, 255, 0.5)',
+    hint: 'rgba(255, 255, 255, 0.5)',
+    icon: 'rgba(255, 255, 255, 0.5)'
+  },
+  divider: 'rgba(255, 255, 255, 0.12)',
+  background: {
+    paper: _grey.default[800],
+    default: '#303030'
+  },
+  action: {
+    active: _common.default.white,
+    hover: 'rgba(255, 255, 255, 0.08)',
+    hoverOpacity: 0.08,
+    selected: 'rgba(255, 255, 255, 0.16)',
+    selectedOpacity: 0.16,
+    disabled: 'rgba(255, 255, 255, 0.3)',
+    disabledBackground: 'rgba(255, 255, 255, 0.12)',
+    disabledOpacity: 0.38,
+    focus: 'rgba(255, 255, 255, 0.12)',
+    focusOpacity: 0.12,
+    activatedOpacity: 0.24
+  }
+};
+exports.dark = dark;
+
+function addLightOrDark(intent, direction, shade, tonalOffset) {
+  if (!intent[direction]) {
+    if (intent.hasOwnProperty(shade)) {
+      intent[direction] = intent[shade];
+    } else if (direction === 'light') {
+      intent.light = (0, _colorManipulator.lighten)(intent.main, tonalOffset);
+    } else if (direction === 'dark') {
+      intent.dark = (0, _colorManipulator.darken)(intent.main, tonalOffset * 1.5);
+    }
+  }
+}
+
+function createPalette(palette) {
+  var _palette$primary = palette.primary,
+      primary = _palette$primary === void 0 ? {
+    light: _indigo.default[300],
+    main: _indigo.default[500],
+    dark: _indigo.default[700]
+  } : _palette$primary,
+      _palette$secondary = palette.secondary,
+      secondary = _palette$secondary === void 0 ? {
+    light: _pink.default.A200,
+    main: _pink.default.A400,
+    dark: _pink.default.A700
+  } : _palette$secondary,
+      _palette$error = palette.error,
+      error = _palette$error === void 0 ? {
+    light: _red.default[300],
+    main: _red.default[500],
+    dark: _red.default[700]
+  } : _palette$error,
+      _palette$warning = palette.warning,
+      warning = _palette$warning === void 0 ? {
+    light: _orange.default[300],
+    main: _orange.default[500],
+    dark: _orange.default[700]
+  } : _palette$warning,
+      _palette$info = palette.info,
+      info = _palette$info === void 0 ? {
+    light: _blue.default[300],
+    main: _blue.default[500],
+    dark: _blue.default[700]
+  } : _palette$info,
+      _palette$success = palette.success,
+      success = _palette$success === void 0 ? {
+    light: _green.default[300],
+    main: _green.default[500],
+    dark: _green.default[700]
+  } : _palette$success,
+      _palette$type = palette.type,
+      type = _palette$type === void 0 ? 'light' : _palette$type,
+      _palette$contrastThre = palette.contrastThreshold,
+      contrastThreshold = _palette$contrastThre === void 0 ? 3 : _palette$contrastThre,
+      _palette$tonalOffset = palette.tonalOffset,
+      tonalOffset = _palette$tonalOffset === void 0 ? 0.2 : _palette$tonalOffset,
+      other = (0, _objectWithoutProperties2.default)(palette, ["primary", "secondary", "error", "warning", "info", "success", "type", "contrastThreshold", "tonalOffset"]); // Use the same logic as
+  // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59
+  // and material-components-web https://github.com/material-components/material-components-web/blob/ac46b8863c4dab9fc22c4c662dc6bd1b65dd652f/packages/mdc-theme/_functions.scss#L54
+
+  function getContrastText(background) {
+    if (!background) {
+      throw new TypeError("Material-UI: missing background argument in getContrastText(".concat(background, ")."));
+    }
+
+    var contrastText = (0, _colorManipulator.getContrastRatio)(background, dark.text.primary) >= contrastThreshold ? dark.text.primary : light.text.primary;
+
+    if (true) {
+      var contrast = (0, _colorManipulator.getContrastRatio)(background, contrastText);
+
+      if (contrast < 3) {
+        console.error(["Material-UI: the contrast ratio of ".concat(contrast, ":1 for ").concat(contrastText, " on ").concat(background), 'falls below the WCAG recommended absolute minimum contrast ratio of 3:1.', 'https://www.w3.org/TR/2008/REC-WCAG20-20081211/#visual-audio-contrast-contrast'].join('\n'));
+      }
+    }
+
+    return contrastText;
+  }
+
+  function augmentColor(color) {
+    var mainShade = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 500;
+    var lightShade = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 300;
+    var darkShade = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 700;
+    color = (0, _extends2.default)({}, color);
+
+    if (!color.main && color[mainShade]) {
+      color.main = color[mainShade];
+    }
+
+    if (true) {
+      if (!color.main) {
+        throw new Error(['Material-UI: the color provided to augmentColor(color) is invalid.', "The color object needs to have a `main` property or a `".concat(mainShade, "` property.")].join('\n'));
+      }
+    }
+
+    addLightOrDark(color, 'light', lightShade, tonalOffset);
+    addLightOrDark(color, 'dark', darkShade, tonalOffset);
+
+    if (!color.contrastText) {
+      color.contrastText = getContrastText(color.main);
+    }
+
+    return color;
+  }
+
+  var types = {
+    dark: dark,
+    light: light
+  };
+
+  if (true) {
+    if (!types[type]) {
+      console.error("Material-UI: the palette type `".concat(type, "` is not supported."));
+    }
+  }
+
+  var paletteOutput = (0, _utils.deepmerge)((0, _extends2.default)({
+    // A collection of common colors.
+    common: _common.default,
+    // The palette type, can be light or dark.
+    type: type,
+    // The colors used to represent primary interface elements for a user.
+    primary: augmentColor(primary),
+    // The colors used to represent secondary interface elements for a user.
+    secondary: augmentColor(secondary, 'A400', 'A200', 'A700'),
+    // The colors used to represent interface elements that the user should be made aware of.
+    error: augmentColor(error),
+    // The colors used to represent potentially dangerous actions or important messages.
+    warning: augmentColor(warning),
+    // The colors used to present information to the user that is neutral and not necessarily important.
+    info: augmentColor(info),
+    // The colors used to indicate the successful completion of an action that user triggered.
+    success: augmentColor(success),
+    // The grey colors.
+    grey: _grey.default,
+    // Used by `getContrastText()` to maximize the contrast between
+    // the background and the text.
+    contrastThreshold: contrastThreshold,
+    // Takes a background color and returns the text color that maximizes the contrast.
+    getContrastText: getContrastText,
+    // Generate a rich color object.
+    augmentColor: augmentColor,
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
+    // E.g., shift from Red 500 to Red 300 or Red 700.
+    tonalOffset: tonalOffset
+  }, types[type]), other);
+  return paletteOutput;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/createSpacing.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/createSpacing.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createSpacing;
+var warnOnce;
+
+function createSpacing() {
+  var spacingInput = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 8;
+
+  // Already transformed.
+  if (spacingInput.mui) {
+    return spacingInput;
+  } // All components align to an 8dp square baseline grid for mobile, tablet, and desktop.
+  // https://material.io/design/layout/understanding-layout.html#pixel-density
+
+
+  var transform;
+
+  if (typeof spacingInput === 'function') {
+    transform = spacingInput;
+  } else {
+    if (true) {
+      if (typeof spacingInput !== 'number') {
+        console.error(["Material-UI: the `theme.spacing` value (".concat(spacingInput, ") is invalid."), 'It should be a number or a function.'].join('\n'));
+      }
+    }
+
+    transform = function transform(factor) {
+      if (true) {
+        if (typeof factor !== 'number') {
+          console.error("Expected spacing argument to be a number, got ".concat(factor));
+        }
+      }
+
+      return spacingInput * factor;
+    };
+  }
+
+  var spacing = function spacing() {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    if (true) {
+      if (!(args.length <= 4)) {
+        console.error("Material-UI: Too many arguments provided, expected between 0 and 4, got ".concat(args.length));
+      }
+    }
+
+    if (args.length === 0) {
+      return transform(1);
+    }
+
+    if (args.length === 1) {
+      return transform(args[0]);
+    }
+
+    return args.map(function (factor) {
+      var output = transform(factor);
+      return typeof output === 'number' ? "".concat(output, "px") : output;
+    }).join(' ');
+  }; // Backward compatibility, to remove in v5.
+
+
+  Object.defineProperty(spacing, 'unit', {
+    get: function get() {
+      if (true) {
+        if (!warnOnce || "development" === 'test') {
+          console.error(['Material-UI: theme.spacing.unit usage has been deprecated.', 'It will be removed in v5.', 'You can replace `theme.spacing.unit * y` with `theme.spacing(y)`.', '', 'You can use the `https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod/README.md#theme-spacing-api` migration helper to make the process smoother.'].join('\n'));
+        }
+
+        warnOnce = true;
+      }
+
+      return spacingInput;
+    }
+  });
+  spacing.mui = true;
+  return spacing;
+}
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/createTypography.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/createTypography.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = createTypography;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+
+var _utils = __webpack_require__(/*! @material-ui/utils */ "./node_modules/@material-ui/utils/esm/index.js");
+
+function round(value) {
+  return Math.round(value * 1e5) / 1e5;
+}
+
+var caseAllCaps = {
+  textTransform: 'uppercase'
+};
+var defaultFontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
+/**
+ * @see @link{https://material.io/design/typography/the-type-system.html}
+ * @see @link{https://material.io/design/typography/understanding-typography.html}
+ */
+
+function createTypography(palette, typography) {
+  var _ref = typeof typography === 'function' ? typography(palette) : typography,
+      _ref$fontFamily = _ref.fontFamily,
+      fontFamily = _ref$fontFamily === void 0 ? defaultFontFamily : _ref$fontFamily,
+      _ref$fontSize = _ref.fontSize,
+      fontSize = _ref$fontSize === void 0 ? 14 : _ref$fontSize,
+      _ref$fontWeightLight = _ref.fontWeightLight,
+      fontWeightLight = _ref$fontWeightLight === void 0 ? 300 : _ref$fontWeightLight,
+      _ref$fontWeightRegula = _ref.fontWeightRegular,
+      fontWeightRegular = _ref$fontWeightRegula === void 0 ? 400 : _ref$fontWeightRegula,
+      _ref$fontWeightMedium = _ref.fontWeightMedium,
+      fontWeightMedium = _ref$fontWeightMedium === void 0 ? 500 : _ref$fontWeightMedium,
+      _ref$fontWeightBold = _ref.fontWeightBold,
+      fontWeightBold = _ref$fontWeightBold === void 0 ? 700 : _ref$fontWeightBold,
+      _ref$htmlFontSize = _ref.htmlFontSize,
+      htmlFontSize = _ref$htmlFontSize === void 0 ? 16 : _ref$htmlFontSize,
+      allVariants = _ref.allVariants,
+      pxToRem2 = _ref.pxToRem,
+      other = (0, _objectWithoutProperties2.default)(_ref, ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"]);
+
+  if (true) {
+    if (typeof fontSize !== 'number') {
+      console.error('Material-UI: `fontSize` is required to be a number.');
+    }
+
+    if (typeof htmlFontSize !== 'number') {
+      console.error('Material-UI: `htmlFontSize` is required to be a number.');
+    }
+  }
+
+  var coef = fontSize / 14;
+
+  var pxToRem = pxToRem2 || function (size) {
+    return "".concat(size / htmlFontSize * coef, "rem");
+  };
+
+  var buildVariant = function buildVariant(fontWeight, size, lineHeight, letterSpacing, casing) {
+    return (0, _extends2.default)({
+      fontFamily: fontFamily,
+      fontWeight: fontWeight,
+      fontSize: pxToRem(size),
+      // Unitless following https://meyerweb.com/eric/thoughts/2006/02/08/unitless-line-heights/
+      lineHeight: lineHeight
+    }, fontFamily === defaultFontFamily ? {
+      letterSpacing: "".concat(round(letterSpacing / size), "em")
+    } : {}, {}, casing, {}, allVariants);
+  };
+
+  var variants = {
+    h1: buildVariant(fontWeightLight, 96, 1.167, -1.5),
+    h2: buildVariant(fontWeightLight, 60, 1.2, -0.5),
+    h3: buildVariant(fontWeightRegular, 48, 1.167, 0),
+    h4: buildVariant(fontWeightRegular, 34, 1.235, 0.25),
+    h5: buildVariant(fontWeightRegular, 24, 1.334, 0),
+    h6: buildVariant(fontWeightMedium, 20, 1.6, 0.15),
+    subtitle1: buildVariant(fontWeightRegular, 16, 1.75, 0.15),
+    subtitle2: buildVariant(fontWeightMedium, 14, 1.57, 0.1),
+    body1: buildVariant(fontWeightRegular, 16, 1.5, 0.15),
+    body2: buildVariant(fontWeightRegular, 14, 1.43, 0.15),
+    button: buildVariant(fontWeightMedium, 14, 1.75, 0.4, caseAllCaps),
+    caption: buildVariant(fontWeightRegular, 12, 1.66, 0.4),
+    overline: buildVariant(fontWeightRegular, 12, 2.66, 1, caseAllCaps)
+  };
+  return (0, _utils.deepmerge)((0, _extends2.default)({
+    htmlFontSize: htmlFontSize,
+    pxToRem: pxToRem,
+    round: round,
+    // TODO v5: remove
+    fontFamily: fontFamily,
+    fontSize: fontSize,
+    fontWeightLight: fontWeightLight,
+    fontWeightRegular: fontWeightRegular,
+    fontWeightMedium: fontWeightMedium,
+    fontWeightBold: fontWeightBold
+  }, variants), other, {
+    clone: false // No need to clone deep
+
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/defaultTheme.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/defaultTheme.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _createMuiTheme = _interopRequireDefault(__webpack_require__(/*! ./createMuiTheme */ "./node_modules/@material-ui/core/styles/createMuiTheme.js"));
+
+var defaultTheme = (0, _createMuiTheme.default)();
+var _default = defaultTheme;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/shadows.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/shadows.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var shadowKeyUmbraOpacity = 0.2;
+var shadowKeyPenumbraOpacity = 0.14;
+var shadowAmbientShadowOpacity = 0.12;
+
+function createShadow() {
+  return ["".concat(arguments.length <= 0 ? undefined : arguments[0], "px ").concat(arguments.length <= 1 ? undefined : arguments[1], "px ").concat(arguments.length <= 2 ? undefined : arguments[2], "px ").concat(arguments.length <= 3 ? undefined : arguments[3], "px rgba(0,0,0,").concat(shadowKeyUmbraOpacity, ")"), "".concat(arguments.length <= 4 ? undefined : arguments[4], "px ").concat(arguments.length <= 5 ? undefined : arguments[5], "px ").concat(arguments.length <= 6 ? undefined : arguments[6], "px ").concat(arguments.length <= 7 ? undefined : arguments[7], "px rgba(0,0,0,").concat(shadowKeyPenumbraOpacity, ")"), "".concat(arguments.length <= 8 ? undefined : arguments[8], "px ").concat(arguments.length <= 9 ? undefined : arguments[9], "px ").concat(arguments.length <= 10 ? undefined : arguments[10], "px ").concat(arguments.length <= 11 ? undefined : arguments[11], "px rgba(0,0,0,").concat(shadowAmbientShadowOpacity, ")")].join(',');
+} // Values from https://github.com/material-components/material-components-web/blob/be8747f94574669cb5e7add1a7c54fa41a89cec7/packages/mdc-elevation/_variables.scss
+
+
+var shadows = ['none', createShadow(0, 2, 1, -1, 0, 1, 1, 0, 0, 1, 3, 0), createShadow(0, 3, 1, -2, 0, 2, 2, 0, 0, 1, 5, 0), createShadow(0, 3, 3, -2, 0, 3, 4, 0, 0, 1, 8, 0), createShadow(0, 2, 4, -1, 0, 4, 5, 0, 0, 1, 10, 0), createShadow(0, 3, 5, -1, 0, 5, 8, 0, 0, 1, 14, 0), createShadow(0, 3, 5, -1, 0, 6, 10, 0, 0, 1, 18, 0), createShadow(0, 4, 5, -2, 0, 7, 10, 1, 0, 2, 16, 1), createShadow(0, 5, 5, -3, 0, 8, 10, 1, 0, 3, 14, 2), createShadow(0, 5, 6, -3, 0, 9, 12, 1, 0, 3, 16, 2), createShadow(0, 6, 6, -3, 0, 10, 14, 1, 0, 4, 18, 3), createShadow(0, 6, 7, -4, 0, 11, 15, 1, 0, 4, 20, 3), createShadow(0, 7, 8, -4, 0, 12, 17, 2, 0, 5, 22, 4), createShadow(0, 7, 8, -4, 0, 13, 19, 2, 0, 5, 24, 4), createShadow(0, 7, 9, -4, 0, 14, 21, 2, 0, 5, 26, 4), createShadow(0, 8, 9, -5, 0, 15, 22, 2, 0, 6, 28, 5), createShadow(0, 8, 10, -5, 0, 16, 24, 2, 0, 6, 30, 5), createShadow(0, 8, 11, -5, 0, 17, 26, 2, 0, 6, 32, 5), createShadow(0, 9, 11, -5, 0, 18, 28, 2, 0, 7, 34, 6), createShadow(0, 9, 12, -6, 0, 19, 29, 2, 0, 7, 36, 6), createShadow(0, 10, 13, -6, 0, 20, 31, 3, 0, 8, 38, 7), createShadow(0, 10, 13, -6, 0, 21, 33, 3, 0, 8, 40, 7), createShadow(0, 10, 14, -6, 0, 22, 35, 3, 0, 8, 42, 7), createShadow(0, 11, 14, -7, 0, 23, 36, 3, 0, 9, 44, 8), createShadow(0, 11, 15, -7, 0, 24, 38, 3, 0, 9, 46, 8)];
+var _default = shadows;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/shape.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/shape.js ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var shape = {
+  borderRadius: 4
+};
+var _default = shape;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/transitions.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/transitions.js ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.duration = exports.easing = void 0;
+
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectWithoutProperties */ "./node_modules/@babel/runtime/helpers/objectWithoutProperties.js"));
+
+// Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
+// to learn the context in which each easing should be used.
+var easing = {
+  // This is the most common easing curve.
+  easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
+  // Objects enter the screen at full velocity from off-screen and
+  // slowly decelerate to a resting point.
+  easeOut: 'cubic-bezier(0.0, 0, 0.2, 1)',
+  // Objects leave the screen at full velocity. They do not decelerate when off-screen.
+  easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
+  // The sharp curve is used by objects that may return to the screen at any time.
+  sharp: 'cubic-bezier(0.4, 0, 0.6, 1)'
+}; // Follow https://material.io/guidelines/motion/duration-easing.html#duration-easing-common-durations
+// to learn when use what timing
+
+exports.easing = easing;
+var duration = {
+  shortest: 150,
+  shorter: 200,
+  short: 250,
+  // most basic recommended timing
+  standard: 300,
+  // this is to be used in complex animations
+  complex: 375,
+  // recommended when something is entering screen
+  enteringScreen: 225,
+  // recommended when something is leaving screen
+  leavingScreen: 195
+};
+exports.duration = duration;
+
+function formatMs(milliseconds) {
+  return "".concat(Math.round(milliseconds), "ms");
+}
+/**
+ * @param {string|Array} props
+ * @param {object} param
+ * @param {string} param.prop
+ * @param {number} param.duration
+ * @param {string} param.easing
+ * @param {number} param.delay
+ */
+
+
+var _default = {
+  easing: easing,
+  duration: duration,
+  create: function create() {
+    var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : ['all'];
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var _options$duration = options.duration,
+        durationOption = _options$duration === void 0 ? duration.standard : _options$duration,
+        _options$easing = options.easing,
+        easingOption = _options$easing === void 0 ? easing.easeInOut : _options$easing,
+        _options$delay = options.delay,
+        delay = _options$delay === void 0 ? 0 : _options$delay,
+        other = (0, _objectWithoutProperties2.default)(options, ["duration", "easing", "delay"]);
+
+    if (true) {
+      var isString = function isString(value) {
+        return typeof value === 'string';
+      };
+
+      var isNumber = function isNumber(value) {
+        return !isNaN(parseFloat(value));
+      };
+
+      if (!isString(props) && !Array.isArray(props)) {
+        console.error('Material-UI: argument "props" must be a string or Array.');
+      }
+
+      if (!isNumber(durationOption) && !isString(durationOption)) {
+        console.error("Material-UI: argument \"duration\" must be a number or a string but found ".concat(durationOption, "."));
+      }
+
+      if (!isString(easingOption)) {
+        console.error('Material-UI: argument "easing" must be a string.');
+      }
+
+      if (!isNumber(delay) && !isString(delay)) {
+        console.error('Material-UI: argument "delay" must be a number or a string.');
+      }
+
+      if (Object.keys(other).length !== 0) {
+        console.error("Material-UI: unrecognized argument(s) [".concat(Object.keys(other).join(','), "]"));
+      }
+    }
+
+    return (Array.isArray(props) ? props : [props]).map(function (animatedProp) {
+      return "".concat(animatedProp, " ").concat(typeof durationOption === 'string' ? durationOption : formatMs(durationOption), " ").concat(easingOption, " ").concat(typeof delay === 'string' ? delay : formatMs(delay));
+    }).join(',');
+  },
+  getAutoHeightDuration: function getAutoHeightDuration(height) {
+    if (!height) {
+      return 0;
+    }
+
+    var constant = height / 36; // https://www.wolframalpha.com/input/?i=(4+%2B+15+*+(x+%2F+36+)+**+0.25+%2B+(x+%2F+36)+%2F+5)+*+10
+
+    return Math.round((4 + 15 * Math.pow(constant, 0.25) + constant / 5) * 10);
+  }
+};
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/withStyles.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/withStyles.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _extends2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/extends */ "./node_modules/@babel/runtime/helpers/extends.js"));
+
+var _styles = __webpack_require__(/*! @material-ui/styles */ "./node_modules/@material-ui/styles/esm/index.js");
+
+var _defaultTheme = _interopRequireDefault(__webpack_require__(/*! ./defaultTheme */ "./node_modules/@material-ui/core/styles/defaultTheme.js"));
+
+function withStyles(stylesOrCreator, options) {
+  return (0, _styles.withStyles)(stylesOrCreator, (0, _extends2.default)({
+    defaultTheme: _defaultTheme.default
+  }, options));
+}
+
+var _default = withStyles;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/styles/zIndex.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material-ui/core/styles/zIndex.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+// We need to centralize the zIndex definitions as they work
+// like global values in the browser.
+var zIndex = {
+  mobileStepper: 1000,
+  speedDial: 1050,
+  appBar: 1100,
+  drawer: 1200,
+  modal: 1300,
+  snackbar: 1400,
+  tooltip: 1500
+};
+var _default = zIndex;
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/core/utils/capitalize.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@material-ui/core/utils/capitalize.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = capitalize;
+
+// It should to be noted that this function isn't equivalent to `text-transform: capitalize`.
+//
+// A strict capitalization should uppercase the first letter of each word a the sentence.
+// We only handle the first word.
+function capitalize(string) {
+  if (true) {
+    if (typeof string !== 'string') {
+      throw new Error('Material-UI: capitalize(string) expects a string argument.');
+    }
+  }
+
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/ChevronLeft.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@material-ui/icons/ChevronLeft.js ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56370,17 +57992,17 @@ var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_mod
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
 
 var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
-  d: "M17 11V3H7v4H3v14h8v-4h2v4h8V11h-4zM7 19H5v-2h2v2zm0-4H5v-2h2v2zm0-4H5V9h2v2zm4 4H9v-2h2v2zm0-4H9V9h2v2zm0-4H9V5h2v2zm4 8h-2v-2h2v2zm0-4h-2V9h2v2zm0-4h-2V5h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2z"
-}), 'Apartment');
+  d: "M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+}), 'ChevronLeft');
 
 exports.default = _default;
 
 /***/ }),
 
-/***/ "./node_modules/@material-ui/icons/Person.js":
-/*!***************************************************!*\
-  !*** ./node_modules/@material-ui/icons/Person.js ***!
-  \***************************************************/
+/***/ "./node_modules/@material-ui/icons/ChevronRight.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@material-ui/icons/ChevronRight.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -56399,16 +58021,16 @@ var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_mod
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
 
 var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
-  d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-}), 'Person');
+  d: "M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"
+}), 'ChevronRight');
 
 exports.default = _default;
 
 /***/ }),
 
-/***/ "./node_modules/@material-ui/icons/Phone.js":
+/***/ "./node_modules/@material-ui/icons/Inbox.js":
 /*!**************************************************!*\
-  !*** ./node_modules/@material-ui/icons/Phone.js ***!
+  !*** ./node_modules/@material-ui/icons/Inbox.js ***!
   \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -56428,8 +58050,37 @@ var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_mod
 var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
 
 var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
-  d: "M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
-}), 'Phone');
+  d: "M19 3H4.99c-1.11 0-1.98.89-1.98 2L3 19c0 1.1.88 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2zm0 12h-4c0 1.66-1.35 3-3 3s-3-1.34-3-3H4.99V5H19v10z"
+}), 'Inbox');
+
+exports.default = _default;
+
+/***/ }),
+
+/***/ "./node_modules/@material-ui/icons/Mail.js":
+/*!*************************************************!*\
+  !*** ./node_modules/@material-ui/icons/Mail.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+
+var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
+
+var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
+  d: "M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+}), 'Mail');
 
 exports.default = _default;
 
@@ -56459,35 +58110,6 @@ var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/crea
 var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
   d: "M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
 }), 'VpnKey');
-
-exports.default = _default;
-
-/***/ }),
-
-/***/ "./node_modules/@material-ui/icons/menu.js":
-/*!*************************************************!*\
-  !*** ./node_modules/@material-ui/icons/menu.js ***!
-  \*************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-
-var _createSvgIcon = _interopRequireDefault(__webpack_require__(/*! ./utils/createSvgIcon */ "./node_modules/@material-ui/icons/utils/createSvgIcon.js"));
-
-var _default = (0, _createSvgIcon.default)(_react.default.createElement("path", {
-  d: "M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
-}), 'Menu');
 
 exports.default = _default;
 
@@ -56611,7 +58233,7 @@ function () {
 
 /***/ "./node_modules/@material-ui/styles/esm/ServerStyleSheets/index.js":
 /*!*************************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/ServerStyleSheets/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/ServerStyleSheets/index.js ***!
   \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -56802,7 +58424,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/styles/esm/StylesProvider/index.js":
 /*!**********************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/StylesProvider/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/StylesProvider/index.js ***!
   \**********************************************************************/
 /*! exports provided: default, sheetsManager, StylesContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -56916,7 +58538,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/styles/esm/ThemeProvider/index.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/ThemeProvider/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/ThemeProvider/index.js ***!
   \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -57025,7 +58647,7 @@ function createGenerateClassName() {
 
 /***/ "./node_modules/@material-ui/styles/esm/createGenerateClassName/index.js":
 /*!*******************************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/createGenerateClassName/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/createGenerateClassName/index.js ***!
   \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -57057,7 +58679,7 @@ function createStyles(styles) {
 
 /***/ "./node_modules/@material-ui/styles/esm/createStyles/index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/createStyles/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/createStyles/index.js ***!
   \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -57144,7 +58766,7 @@ function getStylesCreator(stylesOrCreator) {
 
 /***/ "./node_modules/@material-ui/styles/esm/getStylesCreator/index.js":
 /*!************************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/getStylesCreator/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/getStylesCreator/index.js ***!
   \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -57212,7 +58834,7 @@ function getThemeProps(params) {
 
 /***/ "./node_modules/@material-ui/styles/esm/getThemeProps/index.js":
 /*!*********************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/getThemeProps/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/getThemeProps/index.js ***!
   \*********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -57228,7 +58850,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ "./node_modules/@material-ui/styles/esm/index.js":
 /*!*******************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/index.js ***!
   \*******************************************************/
 /*! exports provided: createGenerateClassName, createStyles, getThemeProps, jssPreset, makeStyles, mergeClasses, ServerStyleSheets, styled, StylesProvider, ThemeProvider, useTheme, withStyles, withTheme, sheetsManager, StylesContext, withThemeCreator */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -57331,7 +58953,7 @@ if ( true && typeof window !== 'undefined') {
 
 /***/ "./node_modules/@material-ui/styles/esm/jssPreset/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/jssPreset/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/jssPreset/index.js ***!
   \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -57384,7 +59006,7 @@ function jssPreset() {
 
 /***/ "./node_modules/@material-ui/styles/esm/makeStyles/index.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/makeStyles/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/makeStyles/index.js ***!
   \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -57745,7 +59367,7 @@ var multiKeyStore = {
 
 /***/ "./node_modules/@material-ui/styles/esm/mergeClasses/index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/mergeClasses/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/mergeClasses/index.js ***!
   \********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -57816,7 +59438,7 @@ function mergeClasses() {
 
 /***/ "./node_modules/@material-ui/styles/esm/styled/index.js":
 /*!**************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/styled/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/styled/index.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -58032,7 +59654,7 @@ if (true) {
 
 /***/ "./node_modules/@material-ui/styles/esm/useTheme/index.js":
 /*!****************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/useTheme/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/useTheme/index.js ***!
   \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -58069,7 +59691,7 @@ function useTheme() {
 
 /***/ "./node_modules/@material-ui/styles/esm/withStyles/index.js":
 /*!******************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/withStyles/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/withStyles/index.js ***!
   \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -58233,7 +59855,7 @@ var withStyles = function withStyles(stylesOrCreator) {
 
 /***/ "./node_modules/@material-ui/styles/esm/withTheme/index.js":
 /*!*****************************************************************!*\
-  !*** ./node_modules/@material-ui/styles/esm/withTheme/index.tsx ***!
+  !*** ./node_modules/@material-ui/styles/esm/withTheme/index.js ***!
   \*****************************************************************/
 /*! exports provided: default, withThemeCreator */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -58800,7 +60422,7 @@ var grid = Object(_compose__WEBPACK_IMPORTED_MODULE_1__["default"])(gridGap, gri
 
 /***/ "./node_modules/@material-ui/system/esm/index.js":
 /*!*******************************************************!*\
-  !*** ./node_modules/@material-ui/system/esm/index.tsx ***!
+  !*** ./node_modules/@material-ui/system/esm/index.js ***!
   \*******************************************************/
 /*! exports provided: borders, border, borderTop, borderRight, borderBottom, borderLeft, borderColor, borderRadius, breakpoints, compose, css, display, flexbox, flexBasis, flexDirection, flexWrap, justifyContent, alignItems, alignContent, order, flex, flexGrow, flexShrink, alignSelf, justifyItems, justifySelf, grid, gridGap, gridColumnGap, gridRowGap, gridColumn, gridRow, gridAutoFlow, gridAutoColumns, gridAutoRows, gridTemplateColumns, gridTemplateRows, gridTemplateAreas, gridArea, palette, color, bgcolor, positions, position, zIndex, top, right, bottom, left, shadows, sizing, width, maxWidth, minWidth, height, maxHeight, minHeight, sizeWidth, sizeHeight, boxSizing, spacing, style, typography, fontFamily, fontSize, fontStyle, fontWeight, letterSpacing, lineHeight, textAlign */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -59791,7 +61413,7 @@ function getDisplayName(Component) {
 
 /***/ "./node_modules/@material-ui/utils/esm/index.js":
 /*!******************************************************!*\
-  !*** ./node_modules/@material-ui/utils/esm/index.tsx ***!
+  !*** ./node_modules/@material-ui/utils/esm/index.js ***!
   \******************************************************/
 /*! exports provided: chainPropTypes, deepmerge, elementAcceptingRef, elementTypeAcceptingRef, exactProp, getDisplayName, ponyfillGlobal, refType */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -60146,7 +61768,7 @@ module.exports = __webpack_require__(/*! ../modules/_core */ "./node_modules/cor
 
 /***/ "./node_modules/core-js/library/fn/symbol/index.js":
 /*!*********************************************************!*\
-  !*** ./node_modules/core-js/library/fn/symbol/index.tsx ***!
+  !*** ./node_modules/core-js/library/fn/symbol/index.js ***!
   \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -62419,7 +64041,7 @@ module.exports = {
 
 /***/ "./node_modules/core-js/library/modules/_to-absolute-index.js":
 /*!********************************************************************!*\
-  !*** ./node_modules/core-js/library/modules/_to-absolute-index.tsx ***!
+  !*** ./node_modules/core-js/library/modules/_to-absolute-index.js ***!
   \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -64706,7 +66328,7 @@ module.exports = function bind(that) {
 
 /***/ "./node_modules/function-bind/index.js":
 /*!*********************************************!*\
-  !*** ./node_modules/function-bind/index.tsx ***!
+  !*** ./node_modules/function-bind/index.js ***!
   \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -64723,7 +66345,7 @@ module.exports = Function.prototype.bind || implementation;
 
 /***/ "./node_modules/has/src/index.js":
 /*!***************************************!*\
-  !*** ./node_modules/has/src/index.tsx ***!
+  !*** ./node_modules/has/src/index.js ***!
   \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -64855,7 +66477,7 @@ module.exports = hoistNonReactStatics;
 
 /***/ "./node_modules/hyphenate-style-name/index.js":
 /*!****************************************************!*\
-  !*** ./node_modules/hyphenate-style-name/index.tsx ***!
+  !*** ./node_modules/hyphenate-style-name/index.js ***!
   \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -67996,7 +69618,7 @@ module.exports = (__webpack_require__(/*! dll-reference dll_ef0ff7c60362f24a921f
 
 /***/ "./node_modules/next/dist/build/polyfills/object.assign/index.js":
 /*!***********************************************************************!*\
-  !*** ./node_modules/next/dist/build/polyfills/object.assign/index.tsx ***!
+  !*** ./node_modules/next/dist/build/polyfills/object.assign/index.js ***!
   \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -73813,7 +75435,7 @@ module.exports = exports['default'];
 
 /***/ "./node_modules/prop-types-exact/build/index.js":
 /*!******************************************************!*\
-  !*** ./node_modules/prop-types-exact/build/index.tsx ***!
+  !*** ./node_modules/prop-types-exact/build/index.js ***!
   \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -73874,7 +75496,7 @@ function forbidExtraProps(propTypes) {
   }())));
 }
 module.exports = exports['default'];
-//# sourceMappingURL=index.tsx.map
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -74494,7 +76116,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 /***/ "./node_modules/prop-types/index.js":
 /*!******************************************!*\
-  !*** ./node_modules/prop-types/index.tsx ***!
+  !*** ./node_modules/prop-types/index.js ***!
   \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -74724,7 +76346,7 @@ var objectKeys = Object.keys || function (obj) {
 
 /***/ "./node_modules/querystring-es3/index.js":
 /*!***********************************************!*\
-  !*** ./node_modules/querystring-es3/index.tsx ***!
+  !*** ./node_modules/querystring-es3/index.js ***!
   \***********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -74740,7 +76362,7 @@ exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ "./node
 
 /***/ "./node_modules/react-dom/index.js":
 /*!***********************************************************************************************!*\
-  !*** delegated ./node_modules/react-dom/index.tsx from dll-reference dll_ef0ff7c60362f24a921f ***!
+  !*** delegated ./node_modules/react-dom/index.js from dll-reference dll_ef0ff7c60362f24a921f ***!
   \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -74990,7 +76612,7 @@ exports.isSuspense = isSuspense;
 
 /***/ "./node_modules/react-is/index.js":
 /*!****************************************!*\
-  !*** ./node_modules/react-is/index.tsx ***!
+  !*** ./node_modules/react-is/index.js ***!
   \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -76651,7 +78273,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ "./node_modules/react-transition-group/esm/index.js":
 /*!**********************************************************!*\
-  !*** ./node_modules/react-transition-group/esm/index.tsx ***!
+  !*** ./node_modules/react-transition-group/esm/index.js ***!
   \**********************************************************/
 /*! exports provided: CSSTransition, ReplaceTransition, SwitchTransition, TransitionGroup, Transition, config */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -76879,7 +78501,7 @@ var classNamesShape =  true ? prop_types__WEBPACK_IMPORTED_MODULE_0___default.a.
 
 /***/ "./node_modules/react/index.js":
 /*!*******************************************************************************************!*\
-  !*** delegated ./node_modules/react/index.tsx from dll-reference dll_ef0ff7c60362f24a921f ***!
+  !*** delegated ./node_modules/react/index.js from dll-reference dll_ef0ff7c60362f24a921f ***!
   \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
@@ -78516,12 +80138,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/styles */ "./node_modules/@material-ui/core/esm/styles/index.js");
 /* harmony import */ var _material_ui_core_CssBaseline__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @material-ui/core/CssBaseline */ "./node_modules/@material-ui/core/esm/CssBaseline/index.js");
 /* harmony import */ var _components_Theme__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/Theme */ "./components/Theme.js");
-/* harmony import */ var _components_CustomAppBar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../components/CustomAppBar */ "./components/CustomAppBar.js");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
-/* harmony import */ var _firebase_index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../firebase/index */ "./firebase/index.js");
+/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/core */ "./node_modules/@material-ui/core/esm/index.js");
+/* harmony import */ var _material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @material-ui/icons/VpnKey */ "./node_modules/@material-ui/icons/VpnKey.js");
+/* harmony import */ var _material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var clsx__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! clsx */ "./node_modules/clsx/dist/clsx.m.js");
+/* harmony import */ var _material_ui_icons_ChevronRight__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @material-ui/icons/ChevronRight */ "./node_modules/@material-ui/icons/ChevronRight.js");
+/* harmony import */ var _material_ui_icons_ChevronRight__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_ChevronRight__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _material_ui_icons_ChevronLeft__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @material-ui/icons/ChevronLeft */ "./node_modules/@material-ui/icons/ChevronLeft.js");
+/* harmony import */ var _material_ui_icons_ChevronLeft__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_ChevronLeft__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var _material_ui_icons_Inbox__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/icons/Inbox */ "./node_modules/@material-ui/icons/Inbox.js");
+/* harmony import */ var _material_ui_icons_Inbox__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Inbox__WEBPACK_IMPORTED_MODULE_13__);
+/* harmony import */ var _material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @material-ui/icons/Mail */ "./node_modules/@material-ui/icons/Mail.js");
+/* harmony import */ var _material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_14__);
+/* harmony import */ var _firebase_index__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../firebase/index */ "./firebase/index.js");
+/* harmony import */ var _material_ui_core_SvgIcon_SvgIcon__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @material-ui/core/SvgIcon/SvgIcon */ "./node_modules/@material-ui/core/SvgIcon/SvgIcon.js");
+/* harmony import */ var _material_ui_core_SvgIcon_SvgIcon__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_SvgIcon_SvgIcon__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_17__);
 
-var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP\\pages\\_app.js";
+var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\pages\\_app.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
+
+
+
+
+
+
+
 
 
 
@@ -78535,13 +80178,11 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 function MyApp(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       theme = _useState[0],
-      setTheme = _useState[1];
+      setTheme = _useState[1]; //const [showBtn,setShowBtn] = useState(true);
 
-  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(true),
-      showBtn = _useState2[0],
-      setShowBtn = _useState2[1];
 
   var themeReg = /theme=(\w+)/;
+  var classes = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["useTheme"])();
   var router = Object(next_router__WEBPACK_IMPORTED_MODULE_4__["useRouter"])();
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var themeCookie = document.cookie.match(themeReg);
@@ -78558,30 +80199,29 @@ function MyApp(props) {
     document.cookie = 'theme=' + !theme;
     setTheme(!theme);
   };
+  /*function toggleThemeSwitch(value) {
+      setShowBtn(value);
+  };*/
 
-  function toggleThemeSwitch(value) {
-    setShowBtn(value);
-  }
 
-  ;
   var Component = props.Component,
       pageProps = props.pageProps;
   return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 44
+      lineNumber: 65
     },
     __self: this
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 45
+      lineNumber: 66
     },
     __self: this
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 46
+      lineNumber: 67
     },
     __self: this
   }, "My page"), __jsx("meta", {
@@ -78589,62 +80229,33 @@ function MyApp(props) {
     content: "minimum-scale=1, initial-scale=1, width=device-width",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 47
+      lineNumber: 68
     },
     __self: this
   })), __jsx(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["ThemeProvider"], {
     theme: theme ? _components_Theme__WEBPACK_IMPORTED_MODULE_7__["darkTheme"] : _components_Theme__WEBPACK_IMPORTED_MODULE_7__["lightTheme"],
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 70
     },
     __self: this
   }, __jsx(_material_ui_core_CssBaseline__WEBPACK_IMPORTED_MODULE_6__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 56
+      lineNumber: 77
     },
     __self: this
-  }), showBtn ? __jsx(_components_CustomAppBar__WEBPACK_IMPORTED_MODULE_8__["default"], {
-    text: "Some name",
+  }), __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
+    theme: theme
+  }, pageProps, {
+    /*setThemeBtn={toggleThemeSwitch.bind(this)}*/
+    switchTheme: switchTheme.bind(this),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 57
+      lineNumber: 78
     },
     __self: this
-  }) : null, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["Box"], {
-    height: "100%",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 58
-    },
-    __self: this
-  }, __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pageProps, {
-    theme: theme,
-    setThemeBtn: toggleThemeSwitch,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 59
-    },
-    __self: this
-  }))), showBtn ? __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["FormControlLabel"], {
-    labelPlacement: "start",
-    label: "Dark mode",
-    control: __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_9__["Switch"], {
-      checked: theme,
-      onChange: switchTheme.bind(this),
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 62
-      },
-      __self: this
-    }),
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 62
-    },
-    __self: this
-  }) : null));
+  }))));
 }
 
 /***/ }),
@@ -78657,7 +80268,7 @@ function MyApp(props) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! next-client-pages-loader?page=%2F_app&absolutePagePath=private-next-pages%2F_app.js! */"./node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F_app&absolutePagePath=private-next-pages%2F_app.js!./");
-module.exports = __webpack_require__(/*! C:\Users\Jakub Sedlak\WebstormProjects\projekt_CP\node_modules\next\dist\client\router.js */"./node_modules/next/dist/client/router.js");
+module.exports = __webpack_require__(/*! C:\Users\Jakub Sedlak\WebstormProjects\projekt_CP - typescript\node_modules\next\dist\client\router.js */"./node_modules/next/dist/client/router.js");
 
 
 /***/ }),

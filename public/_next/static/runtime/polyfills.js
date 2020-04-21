@@ -20,7 +20,7 @@ Object.assign = __webpack_require__(/*! __next_polyfill__object_assign */ "./nod
 
 /***/ "./node_modules/object-assign/index.js":
 /*!*********************************************!*\
-  !*** ./node_modules/object-assign/index.tsx ***!
+  !*** ./node_modules/object-assign/index.js ***!
   \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {

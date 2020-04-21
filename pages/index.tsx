@@ -12,6 +12,7 @@ import WithAppBar from "../components/WithAppBar";
 import Tempmeter from "../components/Tempmeter";
 import Termostat from "../components/Termostat";
 import {firebase} from "../firebase/index.js";
+import IPageProps from "../interfaces/IPageProps";
 
 const useStyle = makeStyles(theme=>({
     center:{
@@ -22,15 +23,10 @@ const useStyle = makeStyles(theme=>({
     }
 }));
 
-interface IIndex {
-    session:string,
-    theme:number
-}
-
-function Index(props:IIndex) {
+function Index(props:IPageProps) {
     const classes = useStyle();
     const [temp,setTemp] = useState(-50);
-    let tempData = firebase.database().ref("/greenhouse/temp");
+    let tempData = firebase.database().ref("/users/"+props.user+"/greenhouse/temp");
 
     useEffect(()=>{
         tempData.on('value',data=>{
@@ -40,7 +36,6 @@ function Index(props:IIndex) {
 
  return(
      <div className={classes.center}>
-         {props.session!==null?<Typography variant="h4">{props.session }</Typography>:null}
          <div className={classes.tempmeter}>
             <Tempmeter theme={props.theme} temp={temp} />
             <Termostat theme={props.theme} defaultValue={40}/>
@@ -49,9 +44,9 @@ function Index(props:IIndex) {
  )
 }
 
-function ex(props:IIndex) {
+function ex(props:IPageProps) {
     return(
-        <WithAppBar component={Index} text={"some app"} componentProps={props}/>
+        <WithAppBar component={Index} componentProps={props}/>
     )
 }
 

@@ -1,4 +1,18 @@
-import {AppBar, Tabs,Tab, IconButton, Toolbar, Typography, Divider,Drawer,List,ListItem,ListItemIcon,ListItemText} from "@material-ui/core";
+import {
+    AppBar,
+    Tabs,
+    Tab,
+    IconButton,
+    Toolbar,
+    Typography,
+    Divider,
+    Drawer,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    SvgIcon
+} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/menu';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight'
@@ -14,6 +28,8 @@ import React from "react";
 import clsx from 'clsx';
 import {makeStyles,useTheme} from "@material-ui/core/styles";
 import {auth} from "../firebase/index";
+import TempIcon from "../assets/tempIcon";
+import IHighOrderComponent from "../interfaces/IHighOrderComponent"
 
 const useStyles = makeStyles(theme => ({
     root:{
@@ -96,7 +112,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function WithAppBar(props) {
+export default function WithAppBar(props:IHighOrderComponent) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -109,19 +125,14 @@ export default function WithAppBar(props) {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    const [value, setValue] = React.useState(0);
 
     const handleLogout = () => {
         auth.signOut().then(function() {
             alert('Logout successful');
         }).catch(function(error) {
             alert('OOps something went wrong check your console');
-            console.log(err);
+            console.log(error);
         });
-    };
-
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
     };
 
     return (
@@ -142,7 +153,7 @@ export default function WithAppBar(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography className={classes.title} variant="h5" noWrap component={"div"}>
-                        {props.text}
+                        {"props.text"}
                     </Typography>
                     <div className={classes.grow}/>
                     <IconButton onClick={compProps.switchTheme} aria-label="display more actions" edge="end" color="inherit">
@@ -178,18 +189,17 @@ export default function WithAppBar(props) {
                 </div>
                 <Divider />
                 <List>
-
-                        <ListItem button>
-                            <ListItemIcon>{<InboxIcon />}</ListItemIcon>
-                            <ListItemText primary={"mail"} />
-                        </ListItem>
+                    <ListItem button>
+                        <ListItemIcon>{<TempIcon/>}</ListItemIcon>
+                        <ListItemText primary={"mail"} />
+                    </ListItem>
 
                 </List>
                 <Divider />
                 <List>
                     {['All mail', 'Trash', 'Spam'].map((text, index) => (
                         <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : null}</ListItemIcon>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <div />}</ListItemIcon>
                             <ListItemText primary={text} />
                         </ListItem>
                     ))}

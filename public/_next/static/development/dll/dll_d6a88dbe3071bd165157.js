@@ -1183,7 +1183,7 @@ var describeComponentFrame = function (name, source, ownerName) {
 
     {
       // In DEV, include code for a common special case:
-      // prefer "folder/index.tsx" instead of just "index.tsx".
+      // prefer "folder/index.js" instead of just "index.js".
       if (/^index\./.test(fileName)) {
         var match = path.match(BEFORE_SLASH_RE);
 
@@ -28050,7 +28050,7 @@ module.exports = reactDom;
 
 /***/ "./node_modules/react-dom/index.js":
 /*!*****************************************!*\
-  !*** ./node_modules/react-dom/index.tsx ***!
+  !*** ./node_modules/react-dom/index.js ***!
   \*****************************************/
 /*! no static exports found */
 /*! all exports used */
@@ -28555,7 +28555,7 @@ var describeComponentFrame = function (name, source, ownerName) {
 
     {
       // In DEV, include code for a common special case:
-      // prefer "folder/index.tsx" instead of just "index.tsx".
+      // prefer "folder/index.js" instead of just "index.js".
       if (/^index\./.test(fileName)) {
         var match = path.match(BEFORE_SLASH_RE);
 
@@ -30429,7 +30429,7 @@ module.exports = react;
 
 /***/ "./node_modules/react/index.js":
 /*!*************************************!*\
-  !*** ./node_modules/react/index.tsx ***!
+  !*** ./node_modules/react/index.js ***!
   \*************************************/
 /*! no static exports found */
 /*! all exports used */
@@ -31800,7 +31800,7 @@ exports.unstable_Profiling = unstable_Profiling;
 
 /***/ "./node_modules/scheduler/index.js":
 /*!*****************************************!*\
-  !*** ./node_modules/scheduler/index.tsx ***!
+  !*** ./node_modules/scheduler/index.js ***!
   \*****************************************/
 /*! no static exports found */
 /*! all exports used */

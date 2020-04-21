@@ -93,9 +93,9 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "./components/Theme.js":
+/***/ "./components/Theme.ts":
 /*!*****************************!*\
-  !*** ./components/Theme.js ***!
+  !*** ./components/Theme.ts ***!
   \*****************************/
 /*! exports provided: lightTheme, darkTheme */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -104,13 +104,16 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "lightTheme", function() { return lightTheme; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "darkTheme", function() { return darkTheme; });
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material-ui/core */ "@material-ui/core");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material-ui/core/styles */ "@material-ui/core/styles");
+/* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/core/colors */ "@material-ui/core/colors");
 /* harmony import */ var _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_colors__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_core_styles_createMuiTheme__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/core/styles/createMuiTheme */ "@material-ui/core/styles/createMuiTheme");
+/* harmony import */ var _material_ui_core_styles_createMuiTheme__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles_createMuiTheme__WEBPACK_IMPORTED_MODULE_2__);
 
 
-const lightTheme = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["createMuiTheme"])({
+
+const lightTheme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0__["createMuiTheme"])({
   palette: {
     type: "light",
     primary: {
@@ -124,7 +127,7 @@ const lightTheme = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["create
     danger: _material_ui_core_colors__WEBPACK_IMPORTED_MODULE_1__["red"][500]
   }
 });
-const darkTheme = Object(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["createMuiTheme"])({
+const darkTheme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0__["createMuiTheme"])({
   palette: {
     type: "dark",
     primary: {
@@ -2102,7 +2105,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _material_ui_core_CssBaseline__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @material-ui/core/CssBaseline */ "@material-ui/core/CssBaseline");
 /* harmony import */ var _material_ui_core_CssBaseline__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_CssBaseline__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_Theme__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Theme */ "./components/Theme.js");
+/* harmony import */ var _components_Theme__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Theme */ "./components/Theme.ts");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @material-ui/core */ "@material-ui/core");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @material-ui/icons/VpnKey */ "@material-ui/icons/VpnKey");
@@ -2125,6 +2128,9 @@ __webpack_require__.r(__webpack_exports__);
 var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\pages\\_app.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
 
 
 
@@ -2145,11 +2151,8 @@ function MyApp(props) {
   const {
     0: theme,
     1: setTheme
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
-  const {
-    0: showBtn,
-    1: setShowBtn
-  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true);
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false); //const [showBtn,setShowBtn] = useState(true);
+
   const themeReg = /theme=(\w+)/;
   const classes = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__["useTheme"])();
   const router = Object(next_router__WEBPACK_IMPORTED_MODULE_3__["useRouter"])();
@@ -2168,12 +2171,11 @@ function MyApp(props) {
     document.cookie = 'theme=' + !theme;
     setTheme(!theme);
   };
+  /*function toggleThemeSwitch(value) {
+      setShowBtn(value);
+  };*/
 
-  function toggleThemeSwitch(value) {
-    setShowBtn(value);
-  }
 
-  ;
   const {
     Component,
     pageProps
@@ -2217,32 +2219,17 @@ function MyApp(props) {
       lineNumber: 77
     },
     __self: this
-  }), __jsx(Component, {
-    theme: theme,
-    setThemeBtn: toggleThemeSwitch.bind(this),
+  }), __jsx(Component, _extends({
+    theme: theme
+  }, pageProps, {
+    /*setThemeBtn={toggleThemeSwitch.bind(this)}*/
+    switchTheme: switchTheme.bind(this),
     __source: {
       fileName: _jsxFileName,
       lineNumber: 78
     },
     __self: this
-  }), showBtn ? __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["FormControlLabel"], {
-    labelPlacement: "start",
-    label: "Dark mode",
-    control: __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_7__["Switch"], {
-      checked: theme,
-      onChange: switchTheme.bind(this),
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 82
-      },
-      __self: this
-    }),
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 82
-    },
-    __self: this
-  }) : null));
+  }))));
 }
 
 /***/ }),
@@ -2311,6 +2298,17 @@ module.exports = require("@material-ui/core/colors");
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/core/styles");
+
+/***/ }),
+
+/***/ "@material-ui/core/styles/createMuiTheme":
+/*!**********************************************************!*\
+  !*** external "@material-ui/core/styles/createMuiTheme" ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/core/styles/createMuiTheme");
 
 /***/ }),
 
