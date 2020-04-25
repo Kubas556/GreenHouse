@@ -28,7 +28,8 @@ import React from "react";
 import clsx from 'clsx';
 import {makeStyles,useTheme} from "@material-ui/core/styles";
 import {auth} from "../firebase/index";
-import TempIcon from "../assets/tempIcon";
+import TempIcon from "../icons/tempIcon";
+import WaterCanIcon from "../icons/waterCanIcon";
 import IHighOrderComponent from "../interfaces/IHighOrderComponent"
 
 const useStyles = makeStyles(theme => ({
@@ -189,20 +190,29 @@ export default function WithAppBar(props:IHighOrderComponent) {
                 </div>
                 <Divider />
                 <List>
+                    <Link href={{pathname:"/temperature"}}>
                     <ListItem button>
                         <ListItemIcon>{<TempIcon/>}</ListItemIcon>
-                        <ListItemText primary={"mail"} />
+                        <ListItemText primary={"Teplota"} />
                     </ListItem>
-
+                    </Link>
+                    <Link href={{pathname:"/irrigation"}}>
+                    <ListItem button>
+                        <ListItemIcon>{<WaterCanIcon/>}</ListItemIcon>
+                        <ListItemText primary={"Zavlažování"} />
+                    </ListItem>
+                    </Link>
+                    <ListItem button>
+                        <ListItemIcon>{<TempIcon/>}</ListItemIcon>
+                        <ListItemText primary={"Hnojení"} />
+                    </ListItem>
                 </List>
                 <Divider />
                 <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <div />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    <ListItem button>
+                        <ListItemIcon>{<TempIcon/>}</ListItemIcon>
+                        <ListItemText primary={"Statistiky"} />
+                    </ListItem>
                 </List>
             </Drawer>
             <main className={classes.content}>

@@ -70661,11 +70661,11 @@ var assign=Object.assign.bind(Object);function g(){return assign;}Object.defineP
 
 
     (window.__NEXT_P=window.__NEXT_P||[]).push(["/", function() {
-      var mod = __webpack_require__(/*! ./pages/index.tsx */ "./pages/index.tsx")
+      var mod = __webpack_require__(/*! ./pages/temperature.tsx */ "./pages/index.tsx")
       if(true) {
-        module.hot.accept(/*! ./pages/index.tsx */ "./pages/index.tsx", function() {
+        module.hot.accept(/*! ./pages/temperature.tsx */ "./pages/index.tsx", function() {
           if(!next.router.components["/"]) return
-          var updatedPage = __webpack_require__(/*! ./pages/index.tsx */ "./pages/index.tsx")
+          var updatedPage = __webpack_require__(/*! ./pages/temperature.tsx */ "./pages/index.tsx")
           next.router.update("/", updatedPage)
         })
       }
@@ -81259,7 +81259,7 @@ module.exports = function(module) {
 
 /***/ "./pages/index.tsx":
 /*!*************************!*\
-  !*** ./pages/index.tsx ***!
+  !*** ./pages/temperature.tsx ***!
   \*************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -81274,7 +81274,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Tempmeter__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Tempmeter */ "./components/Tempmeter.js");
 /* harmony import */ var _components_Termostat__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Termostat */ "./components/Termostat.js");
 /* harmony import */ var _firebase_index_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../firebase/index.js */ "./firebase/index.js");
-var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\pages\\index.tsx";
+var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\pages\\temperature.tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
