@@ -1,0 +1,1 @@
+self.__BUILD_MANIFEST = (function(a){return {"/login":[a],"/temperature":[a]}}("static\u002Fchunks\u002Fddbe93d076bc20cd938f8bda3e9690bee3552b7a.bf810e64b6e0007bc512.js"));self.__BUILD_MANIFEST_CB && self.__BUILD_MANIFEST_CB()

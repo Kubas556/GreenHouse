@@ -30,7 +30,7 @@ import {makeStyles,useTheme} from "@material-ui/core/styles";
 import {auth} from "../firebase/index";
 import TempIcon from "../icons/tempIcon";
 import WaterCanIcon from "../icons/waterCanIcon";
-import IHighOrderComponent from "../interfaces/IHighOrderComponent"
+import IAppBar from "../interfaces/IAppBar"
 
 const useStyles = makeStyles(theme => ({
     root:{
@@ -113,7 +113,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function WithAppBar(props:IHighOrderComponent) {
+export default function WithAppBar(props:IAppBar) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -154,7 +154,7 @@ export default function WithAppBar(props:IHighOrderComponent) {
                         <MenuIcon />
                     </IconButton>
                     <Typography className={classes.title} variant="h5" noWrap component={"div"}>
-                        {"props.text"}
+                        {props.title}
                     </Typography>
                     <div className={classes.grow}/>
                     <IconButton onClick={compProps.switchTheme} aria-label="display more actions" edge="end" color="inherit">

@@ -1,7 +1,8 @@
 import React, {useEffect, useRef, useState} from "react";
 import anime from "animejs";
 import {firebase} from "../firebase/index";
-function Tempmeter(props){
+import ITempmeter from "../interfaces/ITempmeter";
+function Tempmeter(props:ITempmeter){
     const maxHeight = 8;
     const minHeight = 215;
     const height = (minHeight-maxHeight);
@@ -12,9 +13,9 @@ function Tempmeter(props){
     let rangeVal = temp>=0?((50/maxTemp)*temp)+50:50-((50/Math.abs(minTemp))*Math.abs(temp));
     let y = height-(((height/100)*rangeVal)-8);
 
-    const text = useRef();
-    const tempValue = useRef();
-    const textLine = useRef();
+    const text = useRef<SVGTextElement>(null);
+    const tempValue = useRef<SVGLineElement>(null);
+    const textLine = useRef<SVGLineElement>(null);
     const water = useRef();
 
     const duration = 5000;
@@ -33,7 +34,7 @@ function Tempmeter(props){
             easing:easing,
             round:1,
             update:function(){
-                if(text)
+                if(text.current)
                 text.current.innerHTML = textAnim.text+"°C";
             },
             complete:function (anim) {

@@ -1,19 +1,22 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState,MouseEvent,SyntheticEvent} from "react";
 import anime from "animejs";
 import {firebase} from "../firebase/index";
-function Termostat(props){
+import ITermostat from "../interfaces/ITermostat";
+function Termostat(props:ITermostat){
     const min = 0;
     const max = 50;
     const minAngle = 0;
     const maxAngle = 180;
     const segCount = 22//11;
     const initValue = props.defaultValue;
-    const lines = useRef();
-    const valueInput = useRef();
-    const hand = useRef();
-    const handle = useRef();
-    let [containers,setContainers] = useState();
-    let [lastNode,setLastNode] = useState();
+
+    const lines = useRef<HTMLDivElement>(null);
+    const valueInput = useRef<HTMLInputElement>(null);
+    const hand = useRef<HTMLDivElement>(null);
+    const handle = useRef<SVGSVGElement>(null);
+
+    let [containers,setContainers] = useState<HTMLCollectionOf<Element>>();
+    let [lastNode,setLastNode] = useState<ChildNode>();
     let [lastNodeAngle,setLastNodeAngle] = useState(0);
     let [angleTrans,setAngleTrans] = useState(0);
     let [currentAngle,setCurrentAngle] = useState(0);
@@ -21,13 +24,13 @@ function Termostat(props){
     let [currentValue,setCurrentValue] = useState(0);
     let [drag,setDrag] = useState(false);
 
-    function inputUpdated(e){
+    function inputUpdated(e:any){
         let val = e.target.value;
         setCurrentValue(val);
         setCurrentAngle((maxAngle/max)*val);
     }
 
-    function onMove(e){
+    function onMove(e:MouseEvent){
         if(drag){
             let angle = Math.atan2(e.nativeEvent.offsetY-250, e.nativeEvent.offsetX-250);
             let angle2 = angle * (180/Math.PI);
@@ -50,16 +53,18 @@ function Termostat(props){
         }
     }
 
-    function onDrag(e){
+    function onDrag(e:MouseEvent){
         if(!drag) {
             setDrag(true);
+            if(handle.current)
             handle.current.style.pointerEvents= "none";
         }
     }
 
-    function onDragEnd(e){
+    function onDragEnd(e:MouseEvent){
         if(drag){
             setDrag(false);
+            if(handle.current)
             handle.current.style.pointerEvents="all";
         }
     }
@@ -70,7 +75,7 @@ function Termostat(props){
             if (angle <= maxAngle && angle >= minAngle) {
                 for (let i = 0; i < containers.length; i++) {
 
-                    let containerAngle = parseInt(containers[i].getAttribute('rotate'));
+                    let containerAngle = parseInt(containers[i].getAttribute('rotate') as string);
                     if ((containerAngle > lastNodeAngle && containerAngle <= angle) || (containerAngle < lastNodeAngle && angle <= containerAngle)) {
                         anime({
                             targets: lastNode,
@@ -93,6 +98,7 @@ function Termostat(props){
 
                 }
                 ;
+                if(hand.current)
                 hand.current.style.transform = "rotate(" + (angle) + "deg)";
             }
         }
@@ -119,7 +125,8 @@ function Termostat(props){
     },[currentAngle]);
 
     useEffect(()=>{
-        valueInput.current.value = currentValue;
+        if(valueInput.current)
+        valueInput.current.value = currentValue.toString();
     },[currentValue]);
 
     useEffect(()=>{
@@ -127,6 +134,7 @@ function Termostat(props){
         for(let i = 0; i < segCount; i++){
             let handAngle = Math.round((maxAngle/max)*j);
             let line = '<div rotate='+handAngle+' style="transform:rotate('+handAngle+'deg)!important;" class="lineContainer"><div class="line"></div></div>';
+            if(lines.current)
             lines.current.innerHTML += line;
             j+=max/(segCount-1);
         }
@@ -153,17 +161,17 @@ function Termostat(props){
             var green = first[1] + percent * (second[1] - first[1]);
             var blue = first[2] + percent * (second[2] - first[2]);
 
-            lineSegs[i].style.background = "rgb("+red+","+green+","+blue+")";
+            lineSegs[i].setAttribute("style","background:"+"rgb("+red+","+green+","+blue+");");
         };
 
         setContainers(contData);
-        const updateHandAngle = (angle) => {
+        const updateHandAngle = (angle:number) => {
             angle = Math.round(angle);
 
             if(angle <= maxAngle && angle >= minAngle){
                 for(let i = 0; i < contData.length; i++){
 
-                    let containerAngle = parseInt(contData[i].getAttribute('rotate'));
+                    let containerAngle = parseInt(contData[i].getAttribute('rotate') as string);
                     if((containerAngle > initLastNodeAngle && containerAngle <= angle) || (containerAngle < initLastNodeAngle && angle <= containerAngle)) {
                         anime({
                             targets: initlastNode,

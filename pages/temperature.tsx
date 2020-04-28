@@ -46,7 +46,7 @@ function Temperature(props:IPageProps) {
 
 function ex(props:IPageProps) {
     return(
-        <WithAppBar component={Temperature} componentProps={props}/>
+        <WithAppBar component={Temperature} title={"Teplota"} componentProps={props}/>
     )
 }
 
