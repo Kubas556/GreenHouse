@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState,MouseEvent,SyntheticEvent} from "react";
 import anime from "animejs";
-import {firebase} from "../firebase/index";
+import {firebase} from "../firebase";
 import ITermostat from "../interfaces/ITermostat";
 function Termostat(props:ITermostat){
     const min = 0;

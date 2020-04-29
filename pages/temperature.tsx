@@ -11,7 +11,7 @@ import withAuth from "../components/WithAuth";
 import WithAppBar from "../components/WithAppBar";
 import Tempmeter from "../components/Tempmeter";
 import Termostat from "../components/Termostat";
-import {firebase} from "../firebase/index.js";
+import {firebase} from "../firebase/index";
 import IPageProps from "../interfaces/IPageProps";
 
 const useStyle = makeStyles(theme=>({

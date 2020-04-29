@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import anime from "animejs";
-import {firebase} from "../firebase/index";
+import {firebase} from "../firebase";
 import ITempmeter from "../interfaces/ITempmeter";
 function Tempmeter(props:ITempmeter){
     const maxHeight = 8;

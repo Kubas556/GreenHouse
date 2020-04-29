@@ -149,41 +149,14 @@ const darkTheme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0__["
 
 /***/ }),
 
-/***/ "./firebase/index.js":
-/*!***************************!*\
-  !*** ./firebase/index.js ***!
-  \***************************/
-/*! exports provided: auth, firebase */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ "./firebase.json":
+/*!***********************!*\
+  !*** ./firebase.json ***!
+  \***********************/
+/*! exports provided: hosting, default */
+/***/ (function(module) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "auth", function() { return auth; });
-/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ "firebase/app");
-/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (default from non-harmony) */ __webpack_require__.d(__webpack_exports__, "firebase", function() { return firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a; });
-/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/auth */ "firebase/auth");
-/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(firebase_auth__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/database */ "firebase/database");
-/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase_database__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-const config = {
-  apiKey: "AIzaSyBjjKTJrHGT6IYaLRTtiuRfRIUt5QWMWYc",
-  authDomain: "my-website-c179c.firebaseapp.com",
-  databaseURL: "https://my-website-c179c.firebaseio.com",
-  projectId: "my-website-c179c",
-  storageBucket: "my-website-c179c.appspot.com",
-  messagingSenderId: "141034843850"
-};
-
-if (!firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a.apps.length) {
-  firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializeApp(config);
-}
-
-const auth = firebase_app__WEBPACK_IMPORTED_MODULE_0___default.a.auth();
-
+module.exports = JSON.parse("{\"hosting\":{\"public\":\"public\",\"ignore\":[\"firebase.json\",\"**/.*\",\"**/node_modules/**\"]}}");
 
 /***/ }),
 
@@ -2120,7 +2093,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _material_ui_icons_Inbox__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Inbox__WEBPACK_IMPORTED_MODULE_12__);
 /* harmony import */ var _material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @material-ui/icons/Mail */ "@material-ui/icons/Mail");
 /* harmony import */ var _material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Mail__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var _firebase_index__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../firebase/index */ "./firebase/index.js");
+/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../firebase */ "./firebase.json");
+var _firebase__WEBPACK_IMPORTED_MODULE_14___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../firebase */ "./firebase.json", 1);
 /* harmony import */ var _material_ui_core_SvgIcon_SvgIcon__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @material-ui/core/SvgIcon/SvgIcon */ "@material-ui/core/SvgIcon/SvgIcon");
 /* harmony import */ var _material_ui_core_SvgIcon_SvgIcon__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core_SvgIcon_SvgIcon__WEBPACK_IMPORTED_MODULE_15__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
@@ -2430,39 +2404,6 @@ module.exports = require("core-js/library/fn/symbol/iterator");
 /***/ (function(module, exports) {
 
 module.exports = require("core-js/library/fn/weak-map");
-
-/***/ }),
-
-/***/ "firebase/app":
-/*!*******************************!*\
-  !*** external "firebase/app" ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("firebase/app");
-
-/***/ }),
-
-/***/ "firebase/auth":
-/*!********************************!*\
-  !*** external "firebase/auth" ***!
-  \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("firebase/auth");
-
-/***/ }),
-
-/***/ "firebase/database":
-/*!************************************!*\
-  !*** external "firebase/database" ***!
-  \************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("firebase/database");
 
 /***/ }),
 

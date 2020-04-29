@@ -24,7 +24,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import InboxIcon from '@material-ui/icons/Inbox'
 import MailIcon from '@material-ui/icons/Mail'
-import {auth} from '../firebase/index';
+import {auth} from '../firebase';
 import MenuIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Link from "next/link";
 
