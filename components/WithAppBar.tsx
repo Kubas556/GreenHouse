@@ -29,7 +29,9 @@ import clsx from 'clsx';
 import {makeStyles,useTheme} from "@material-ui/core/styles";
 import {auth} from "../firebase/index";
 import TempIcon from "../icons/tempIcon";
-import WaterCanIcon from "../icons/waterCanIcon";
+import WaterCanIconFilled from "../icons/waterCanIconFilled";
+import FertilizerIcon from "../icons/fertilizerIcon";
+import ShowChartIcon from '@material-ui/icons/ShowChart';
 import IAppBar from "../interfaces/IAppBar"
 
 const useStyles = makeStyles(theme => ({
@@ -198,19 +200,21 @@ export default function WithAppBar(props:IAppBar) {
                     </Link>
                     <Link href={{pathname:"/irrigation"}}>
                     <ListItem button>
-                        <ListItemIcon>{<WaterCanIcon/>}</ListItemIcon>
+                        <ListItemIcon>{<WaterCanIconFilled/>}</ListItemIcon>
                         <ListItemText primary={"Zavlažování"} />
                     </ListItem>
                     </Link>
+                    <Link href={{pathname:"/fertilization"}}>
                     <ListItem button>
-                        <ListItemIcon>{<TempIcon/>}</ListItemIcon>
+                        <ListItemIcon>{<FertilizerIcon/>}</ListItemIcon>
                         <ListItemText primary={"Hnojení"} />
                     </ListItem>
+                    </Link>
                 </List>
                 <Divider />
                 <List>
                     <ListItem button>
-                        <ListItemIcon>{<TempIcon/>}</ListItemIcon>
+                        <ListItemIcon>{<ShowChartIcon/>}</ListItemIcon>
                         <ListItemText primary={"Statistiky"} />
                     </ListItem>
                 </List>

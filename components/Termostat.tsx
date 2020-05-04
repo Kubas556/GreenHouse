@@ -228,7 +228,7 @@ function Termostat(props:ITermostat){
                     <title>Datový zdroj 22</title>
                     <g id="Vrstva_2" data-name="Vrstva 2">
                         <g id="Vrstva_2-2" data-name="Vrstva 2">
-                            <circle className="pathcircle" cx="80.73" cy="80.73" r="80.6" stroke-dasharray="253" stroke-dashoffset="253"/>
+                            <circle className="pathcircle" cx="80.73" cy="80.73" r="80.6" strokeDasharray="253" strokeDashoffset="253"/>
                         </g>
                     </g>
                 </svg>

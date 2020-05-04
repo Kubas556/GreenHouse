@@ -1,6 +1,7 @@
 import React, {ReactComponentElement, ReactElement} from 'react';
 import router from 'next/router';
 import { auth } from '../firebase/index';
+import Loading from "./Loading";
 import {namedTypes} from "ast-types";
 
 const withAuth = (Component:React.ComponentType<any>) => {
@@ -26,7 +27,7 @@ const withAuth = (Component:React.ComponentType<any>) => {
             // @ts-ignore
             const { status } = this.state;
             if(status == 'LOADING') {
-                return <h1>Loading ......</h1>;
+                return <Loading/>;
             }else if(status == 'SIGNED_IN') {
                 // @ts-ignore
                 return <Component user={auth.currentUser.uid} { ...this.props } />
