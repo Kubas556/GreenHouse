@@ -6,7 +6,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import React, {useEffect, useState} from "react";
 import {orange} from "@material-ui/core/colors";
 import {useRouter} from "next/router";
-import {Typography} from "@material-ui/core";
+import {Typography,Paper} from "@material-ui/core";
 import withAuth from "../components/WithAuth";
 import WithAppBar from "../components/WithAppBar";
 import Tempmeter from "../components/Tempmeter";
@@ -19,7 +19,8 @@ const useStyle = makeStyles(theme=>({
         display:'flex'
     },
     tempmeter:{
-        margin:'50px'
+        margin:'50px',
+        padding:'1rem'
     }
 }));
 
@@ -37,9 +38,13 @@ function Temperature(props:IPageProps) {
  return(
      <div className={classes.center}>
          <div className={classes.tempmeter}>
+             <Paper elevation={3}  style={{padding:'1rem'}}>
             <Tempmeter theme={props.theme} temp={temp} />
-            <Termostat theme={props.theme} defaultValue={40}/>
+             </Paper>
          </div>
+         <Paper elevation={3} >
+             <Termostat theme={props.theme} defaultValue={40}/>
+         </Paper>
      </div>
  )
 }

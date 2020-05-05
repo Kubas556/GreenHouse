@@ -18,9 +18,9 @@ return (
     <div>
         <div className="wrap">
             <div>Loading</div>
-            <div className="loadingDot"></div>
-            <div className="loadingDot"></div>
-            <div className="loadingDot"></div>
+            <div className="loadingDot">.</div>
+            <div className="loadingDot">.</div>
+            <div className="loadingDot">.</div>
         </div>
         <style jsx global>{`
             .wrap{
@@ -33,14 +33,12 @@ return (
             }
             
             .wrap > div{
-              color:white;
               font-size:5rem;
             }
             
             .wrap > .loadingDot{
               width:2rem;
               height:2rem;
-              background:white;
               position:relative;
               margin:1rem;
               border-radius:100%;

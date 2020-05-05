@@ -1,6 +1,8 @@
 import {Typography} from "@material-ui/core";
 import React from "react";
 import withAuth from "../components/WithAuth";
+import WithAppBar from "../components/WithAppBar";
+import IPageProps from "../interfaces/IPageProps";
 
 function index(){
     return(
@@ -12,4 +14,6 @@ function index(){
     );
 }
 
-export default withAuth(index);
+export default withAuth((props:IPageProps)=>{return(
+    <WithAppBar component={index} title={"Index"} componentProps={props}/>
+)});

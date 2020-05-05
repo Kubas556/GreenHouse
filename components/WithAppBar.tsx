@@ -192,19 +192,19 @@ export default function WithAppBar(props:IAppBar) {
                 </div>
                 <Divider />
                 <List>
-                    <Link href={{pathname:"/temperature"}}>
+                    <Link href={"/temperature"}>
                     <ListItem button>
                         <ListItemIcon>{<TempIcon/>}</ListItemIcon>
                         <ListItemText primary={"Teplota"} />
                     </ListItem>
                     </Link>
-                    <Link href={{pathname:"/irrigation"}}>
+                    <Link href={"/irrigation"}>
                     <ListItem button>
                         <ListItemIcon>{<WaterCanIconFilled/>}</ListItemIcon>
                         <ListItemText primary={"Zavlažování"} />
                     </ListItem>
                     </Link>
-                    <Link href={{pathname:"/fertilization"}}>
+                    <Link href={"/fertilization"}>
                     <ListItem button>
                         <ListItemIcon>{<FertilizerIcon/>}</ListItemIcon>
                         <ListItemText primary={"Hnojení"} />
