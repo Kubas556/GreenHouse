@@ -27,7 +27,7 @@ const useStyle = makeStyles(theme=>({
 function Temperature(props:IPageProps) {
     const classes = useStyle();
     const [temp,setTemp] = useState(-50);
-    let tempData = firebase.database().ref("/users/"+props.user+"/greenhouse/temp");
+    let tempData = firebase.database().ref("/users/"+props.user+"/devices/greenhouse/temp");
 
     useEffect(()=>{
         tempData.on('value',data=>{
@@ -39,7 +39,7 @@ function Temperature(props:IPageProps) {
      <div className={classes.center}>
          <div className={classes.tempmeter}>
              <Paper elevation={3}  style={{padding:'1rem'}}>
-            <Tempmeter theme={props.theme} temp={temp} />
+                <Tempmeter theme={props.theme} temp={temp} />
              </Paper>
          </div>
          <Paper elevation={3} >

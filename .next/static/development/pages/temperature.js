@@ -81791,7 +81791,7 @@ function Temperature(props) {
       temp = _useState[0],
       setTemp = _useState[1];
 
-  var tempData = _firebase_index__WEBPACK_IMPORTED_MODULE_7__["firebase"].database().ref("/users/" + props.user + "/greenhouse/temp");
+  var tempData = _firebase_index__WEBPACK_IMPORTED_MODULE_7__["firebase"].database().ref("/users/" + props.user + "/devices/greenhouse/temp");
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     tempData.on('value', function (data) {
       setTemp(data.val());
