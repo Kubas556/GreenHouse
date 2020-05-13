@@ -6,6 +6,7 @@ import WithAppBar from "../components/WithAppBar";
 import IPageProps from "../interfaces/IPageProps";
 import {firebase} from "../firebase/index";
 import DeviceInfoCard from "../components/DeviceInfoCard";
+import Loading from "../components/Loading";
 
 function index(props:IPageProps){
     let devicesData = firebase.database().ref("/users/"+props.user+"/devices");
@@ -26,15 +27,17 @@ function index(props:IPageProps){
                 </Typography>
                 <div style={{display:"flex"}}>
                     {
-                        devices.map((id:string,index:number)=>
+                        devices.length!=0?
+                        devices.map(
+                            (id:string,index:number) =>
                             <div>
-                                <Link href={{ pathname: '/temperature', query: { name: 'test' } }}>
+                                <Link href={'/temperature/[id]'} as={`/temperature/${id}`}>
                                     <Box component={"a"}>
                                         <DeviceInfoCard key={index} id={id} userId={props.user}/>
                                     </Box>
                                 </Link>
                             </div>
-                            )
+                        ):<Loading/>
                     }
                 </div>
             </div>

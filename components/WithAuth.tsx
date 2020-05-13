@@ -27,7 +27,7 @@ const withAuth = (Component:React.ComponentType<any>) => {
             // @ts-ignore
             const { status } = this.state;
             if(status == 'LOADING') {
-                return <Loading/>;
+                return <div style={{position:"absolute",width:"100%",height:"100%"}}><Loading/></div>;
             }else if(status == 'SIGNED_IN') {
                 // @ts-ignore
                 return <Component user={auth.currentUser.uid} { ...this.props } />

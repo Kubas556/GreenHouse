@@ -33,6 +33,7 @@ import WaterCanIconFilled from "../icons/waterCanIconFilled";
 import FertilizerIcon from "../icons/fertilizerIcon";
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import IAppBar from "../interfaces/IAppBar"
+import Router from "next/router";
 
 const useStyles = makeStyles(theme => ({
     root:{
@@ -45,8 +46,8 @@ const useStyles = makeStyles(theme => ({
         display: 'none',
     },
     appBar: {
-        background: theme.palette.background.paper,
-        color: theme.palette.text.primary,
+        background: theme.palette.type=="dark"?theme.palette.background.paper:theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,// theme.palette.text.primary
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
@@ -115,7 +116,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function WithAppBar(props:IAppBar) {
+export default function WithDrawerAppBar(props:IAppBar) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -140,21 +141,10 @@ export default function WithAppBar(props:IAppBar) {
 
     return (
         <div className={classes.root}>
-            <AppBar position="fixed"  className={clsx(classes.appBar, {
+            <AppBar position="fixed" className={clsx(classes.appBar, {
                 [classes.appBarShift]: open,
             })}>
-                <Toolbar variant="dense" >
-                    <IconButton
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, {
-                            [classes.hide]: open,
-                        })}
-                        color="inherit"
-                        aria-label="open drawer"
-                    >
-                        <MenuIcon />
-                    </IconButton>
+                <Toolbar variant="dense">
                     <Typography className={classes.title} variant="h5" noWrap component={"div"}>
                         {props.title}
                     </Typography>
@@ -162,63 +152,14 @@ export default function WithAppBar(props:IAppBar) {
                     <IconButton onClick={compProps.switchTheme} aria-label="display more actions" edge="end" color="inherit">
                         {compProps.theme===true?<Brightness7Icon />:<Brightness4Icon />}
                     </IconButton>
-                    <Link href={{pathname:"/login", query:{refresh:'false'}}}>
-                        <IconButton aria-label="display more actions" edge="end" color="inherit">
-                            <VpnKeyIcon />
-                        </IconButton>
-                    </Link>
+                    <IconButton onClick={()=>Router.push("/login")} aria-label="display more actions" edge="end" color="inherit">
+                        <VpnKeyIcon />
+                    </IconButton>
                     <IconButton onClick={handleLogout} aria-label="display more actions" edge="end" color="inherit">
                         <VpnKeyIcon />
                     </IconButton>
                 </Toolbar>
             </AppBar>
-            <Drawer
-                variant="permanent"
-                className={clsx(classes.drawer, {
-                    [classes.drawerOpen]: open,
-                    [classes.drawerClose]: !open,
-                })}
-                classes={{
-                    paper: clsx({
-                        [classes.drawerOpen]: open,
-                        [classes.drawerClose]: !open,
-                    }),
-                }}
-            >
-                <div className={classes.toolbar}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    <Link href={"/temperature"}>
-                    <ListItem button>
-                        <ListItemIcon>{<TempIcon/>}</ListItemIcon>
-                        <ListItemText primary={"Teplota"} />
-                    </ListItem>
-                    </Link>
-                    <Link href={"/irrigation"}>
-                    <ListItem button>
-                        <ListItemIcon>{<WaterCanIconFilled/>}</ListItemIcon>
-                        <ListItemText primary={"Zavlažování"} />
-                    </ListItem>
-                    </Link>
-                    <Link href={"/fertilization"}>
-                    <ListItem button>
-                        <ListItemIcon>{<FertilizerIcon/>}</ListItemIcon>
-                        <ListItemText primary={"Hnojení"} />
-                    </ListItem>
-                    </Link>
-                </List>
-                <Divider />
-                <List>
-                    <ListItem button>
-                        <ListItemIcon>{<ShowChartIcon/>}</ListItemIcon>
-                        <ListItemText primary={"Statistiky"} />
-                    </ListItem>
-                </List>
-            </Drawer>
             <main className={classes.content}>
                 <div className={classes.toolbarOffset}/>
                 <Component {...compProps}/>

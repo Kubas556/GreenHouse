@@ -8,21 +8,21 @@ function Termostat(props:ITermostat){
     const minAngle = 0;
     const maxAngle = 180;
     const segCount = 22//11;
-    const initValue = props.defaultValue;
 
     const lines = useRef<HTMLDivElement>(null);
     const valueInput = useRef<HTMLInputElement>(null);
     const hand = useRef<HTMLDivElement>(null);
     const handle = useRef<SVGSVGElement>(null);
 
-    let [containers,setContainers] = useState<HTMLCollectionOf<Element>>();
-    let [lastNode,setLastNode] = useState<ChildNode>();
-    let [lastNodeAngle,setLastNodeAngle] = useState(0);
-    let [angleTrans,setAngleTrans] = useState(0);
-    let [currentAngle,setCurrentAngle] = useState(0);
-    let [handAngle,setHandAngle] = useState(0);
-    let [currentValue,setCurrentValue] = useState(0);
-    let [drag,setDrag] = useState(false);
+    const [containers,setContainers] = useState<HTMLCollectionOf<Element>>();
+    const [lastNode,setLastNode] = useState<ChildNode>();
+    const [lastNodeAngle,setLastNodeAngle] = useState(0);
+    const [angleTrans,setAngleTrans] = useState(0);
+    const [currentAngle,setCurrentAngle] = useState(0);
+    const [handAngle,setHandAngle] = useState(0);
+    const [currentValue,setCurrentValue] = useState(0);
+    const [drag,setDrag] = useState(false);
+    const [initialize,setInitialize] = useState(true);
 
     function inputUpdated(e:any){
         let val = e.target.value;
@@ -127,96 +127,108 @@ function Termostat(props:ITermostat){
     useEffect(()=>{
         if(valueInput.current)
         valueInput.current.value = currentValue.toString();
+        if(!initialize)
+        props.onValueChanged(currentValue.toString());
     },[currentValue]);
 
     useEffect(()=>{
-        let j = 0;
-        for(let i = 0; i < segCount; i++){
-            let handAngle = Math.round((maxAngle/max)*j);
-            let line = '<div rotate='+handAngle+' style="transform:rotate('+handAngle+'deg)!important;" class="lineContainer"><div class="line"></div></div>';
-            if(lines.current)
-            lines.current.innerHTML += line;
-            j+=max/(segCount-1);
-        }
+        let initValue = props.defaultValue;
+        if(initValue!=undefined) {
+            let j = 0;
+            for (let i = 0; i < segCount; i++) {
+                let handAngle = Math.round((maxAngle / max) * j);
+                let line = '<div rotate=' + handAngle + ' style="transform:rotate(' + handAngle + 'deg)!important;" class="lineContainer"><div class="line"></div></div>';
+                if (lines.current)
+                    lines.current.innerHTML += line;
+                j += max / (segCount - 1);
+            }
 
-        let contData = document.getElementsByClassName('lineContainer');
-        let initlastNode = contData[0].childNodes[0];
-        let initLastNodeAngle = 0;
-        anime({
-            targets: contData[0].childNodes[0],
-            scale: [
-                {value: 1.5, easing: 'easeOutSine', duration: 500}
-            ],
-            delay: 0,
-        });
+            let contData = document.getElementsByClassName('lineContainer');
+            let initlastNode = contData[0].childNodes[0];
+            let initLastNodeAngle = 0;
+            anime({
+                targets: contData[0].childNodes[0],
+                scale: [
+                    {value: 1.5, easing: 'easeOutSine', duration: 500}
+                ],
+                delay: 0,
+            });
 
-        let lineSegs = document.getElementsByClassName("line");
-        const first = [73, 80, 245];
-        const second = [244, 67, 54];
+            let lineSegs = document.getElementsByClassName("line");
+            const first = [73, 80, 245];
+            const second = [244, 67, 54];
 
-        for(let i = 0; i < lineSegs.length;i++){
-            var percent = ((i)/(lineSegs.length-1));
+            for (let i = 0; i < lineSegs.length; i++) {
+                var percent = ((i) / (lineSegs.length - 1));
 
-            var red = first[0] + percent * (second[0] - first[0]);
-            var green = first[1] + percent * (second[1] - first[1]);
-            var blue = first[2] + percent * (second[2] - first[2]);
+                var red = first[0] + percent * (second[0] - first[0]);
+                var green = first[1] + percent * (second[1] - first[1]);
+                var blue = first[2] + percent * (second[2] - first[2]);
 
-            lineSegs[i].setAttribute("style","background:"+"rgb("+red+","+green+","+blue+");");
-        };
+                lineSegs[i].setAttribute("style", "background:" + "rgb(" + red + "," + green + "," + blue + ");");
+            }
+            ;
 
-        setContainers(contData);
-        const updateHandAngle = (angle:number) => {
-            angle = Math.round(angle);
+            setContainers(contData);
+            const updateHandAngle = (angle: number) => {
+                angle = Math.round(angle);
 
-            if(angle <= maxAngle && angle >= minAngle){
-                for(let i = 0; i < contData.length; i++){
+                if (angle <= maxAngle && angle >= minAngle) {
+                    for (let i = 0; i < contData.length; i++) {
 
-                    let containerAngle = parseInt(contData[i].getAttribute('rotate') as string);
-                    if((containerAngle > initLastNodeAngle && containerAngle <= angle) || (containerAngle < initLastNodeAngle && angle <= containerAngle)) {
-                        anime({
-                            targets: initlastNode,
-                            scale: [
-                                {value: 1, easing: 'easeInOutQuad', duration: 500}
-                            ],
-                            delay: 0,
-                        });
-                        anime({
-                            targets: contData[i].childNodes,
-                            scale: [
-                                {value: 1.5, easing: 'easeOutSine', duration: 500}
-                            ],
-                            delay: 0,
-                        });
-                        initlastNode = contData[i].childNodes[0];
-                        initLastNodeAngle = containerAngle;
-                        break;
+                        let containerAngle = parseInt(contData[i].getAttribute('rotate') as string);
+                        if ((containerAngle > initLastNodeAngle && containerAngle <= angle) || (containerAngle < initLastNodeAngle && angle <= containerAngle)) {
+                            anime({
+                                targets: initlastNode,
+                                scale: [
+                                    {value: 1, easing: 'easeInOutQuad', duration: 500}
+                                ],
+                                delay: 0,
+                            });
+                            anime({
+                                targets: contData[i].childNodes,
+                                scale: [
+                                    {value: 1.5, easing: 'easeOutSine', duration: 500}
+                                ],
+                                delay: 0,
+                            });
+                            initlastNode = contData[i].childNodes[0];
+                            initLastNodeAngle = containerAngle;
+                            break;
+                        }
+
+                    }
+                    ;
+                    //document.getElementById("hand").style.transform="rotate("+(angle)+"deg)";
+                }
+            };
+
+            let initAngleTrans = {
+                value: 0
+            }
+
+            anime({
+                targets: initAngleTrans,
+                value: ((maxAngle / max) * initValue),
+                easing: "linear",
+                duration: 500,
+                update: function () {
+                    updateHandAngle(initAngleTrans.value);
+                },
+                complete: function () {
+                    setLastNode(initlastNode);
+                    setLastNodeAngle(initLastNodeAngle);
+
+                    if(initValue!=undefined) {
+                        setCurrentValue(initValue);
+                        setCurrentAngle((maxAngle / max) * initValue);
                     }
 
-                };
-                //document.getElementById("hand").style.transform="rotate("+(angle)+"deg)";
-            }
-        };
-
-        let initAngleTrans = {
-            value:0
+                    setInitialize(false);
+                }
+            });
         }
-
-        anime({
-            targets:initAngleTrans,
-            value:((maxAngle/max)*initValue),
-            easing:"linear",
-            duration:500,
-            update:function(){
-                updateHandAngle(initAngleTrans.value);
-            },
-            complete:function () {
-                setLastNode(initlastNode);
-                setLastNodeAngle(initLastNodeAngle);
-                setCurrentValue(initValue);
-                setCurrentAngle((maxAngle/max)*initValue);
-            }
-        });
-    },[]);
+    },[props.defaultValue]);
 
     return(
         <div>

@@ -1,6 +1,7 @@
 import {Button, Card, CardActions, CardContent, Typography} from "@material-ui/core";
 import React, {useEffect, useState} from "react";
 import {firebase} from "../firebase/index";
+import LaunchIcon from '@material-ui/icons/Launch';
 import IDeviceCard from "../interfaces/IDeviceCard";
 
 function DeviceInfoCard(props:IDeviceCard) {
@@ -34,7 +35,7 @@ function DeviceInfoCard(props:IDeviceCard) {
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small">Otevřít</Button>
+                    <Button size="small" endIcon={<LaunchIcon/>}>Otevřít</Button>
                 </CardActions>
             </Card>
     );

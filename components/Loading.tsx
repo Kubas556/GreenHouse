@@ -15,7 +15,7 @@ function Loading(){
         })
     },[]);
 return (
-    <div>
+    <div className={"wrap"}>
         <div className="wrap">
             <div>Loading</div>
             <div className="loadingDot">.</div>
@@ -26,7 +26,7 @@ return (
             .wrap{
               width:100%;
               height:100%;
-              position:absolute;
+              position:relative;
               display:flex;
               align-items: center;
               justify-content: center;

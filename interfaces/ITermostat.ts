@@ -1,4 +1,5 @@
 export default interface IPageProps {
-    defaultValue:number,
+    defaultValue:number|undefined,
     theme:number
+    onValueChanged(value: string): void;
 }
