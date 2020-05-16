@@ -2,9 +2,12 @@ import React, {useEffect, useRef, useState,MouseEvent,SyntheticEvent} from "reac
 import anime from "animejs";
 import {firebase} from "../firebase";
 import ITermostat from "../interfaces/ITermostat";
+import {number} from "prop-types";
 function Termostat(props:ITermostat){
     const min = 0;
     const max = 50;
+    const componentWidth = 500;
+    const componentHeight = 500;
     const minAngle = 0;
     const maxAngle = 180;
     const segCount = 22//11;
@@ -15,14 +18,37 @@ function Termostat(props:ITermostat){
     const handle = useRef<SVGSVGElement>(null);
 
     const [containers,setContainers] = useState<HTMLCollectionOf<Element>>();
+
     const [lastNode,setLastNode] = useState<ChildNode>();
-    const [lastNodeAngle,setLastNodeAngle] = useState(0);
-    const [angleTrans,setAngleTrans] = useState(0);
-    const [currentAngle,setCurrentAngle] = useState(0);
-    const [handAngle,setHandAngle] = useState(0);
-    const [currentValue,setCurrentValue] = useState(0);
-    const [drag,setDrag] = useState(false);
-    const [initialize,setInitialize] = useState(true);
+    const [lastNodeAngle,setLastNodeAngle] = useState<number>(0);
+    const [angleTrans,setAngleTrans] = useState<number>(0);
+    const [currentAngle,setCurrentAngle] = useState<number>(0);
+    const [handAngle,setHandAngle] = useState<number>(0);
+    const [currentValue,setCurrentValue] = useState<number>(0);
+    const [drag,setDrag] = useState<boolean>(false);
+    const [initialize,setInitialize] = useState<boolean>(true);
+
+    const workspaceSize = {
+        height:componentHeight+"px",
+        width:componentWidth+"px"
+    };
+
+    const linesSize = {
+        width:componentWidth+"px"
+    };
+
+    const lineContainerSizes = {
+        width: componentWidth/2+"px"
+    };
+
+    const handPathSize = {
+        width: componentWidth/2+"px",
+        height: componentHeight/2+"px"
+    };
+
+    const handSize = {
+        width: componentWidth/2+"px"
+    };
 
     function inputUpdated(e:any){
         let val = e.target.value;
@@ -137,7 +163,7 @@ function Termostat(props:ITermostat){
             let j = 0;
             for (let i = 0; i < segCount; i++) {
                 let handAngle = Math.round((maxAngle / max) * j);
-                let line = '<div rotate=' + handAngle + ' style="transform:rotate(' + handAngle + 'deg)!important;" class="lineContainer"><div class="line"></div></div>';
+                let line = '<div rotate=' + handAngle + ' style="transform:rotate(' + handAngle + 'deg)!important;width:'+(lineContainerSizes.width)+';" class="lineContainer"><div class="line"></div></div>';
                 if (lines.current)
                     lines.current.innerHTML += line;
                 j += max / (segCount - 1);
@@ -232,8 +258,8 @@ function Termostat(props:ITermostat){
 
     return(
         <div>
-            <div id="work" onMouseMove={onMove} onMouseUp={onDragEnd} className="workspace">
-                <svg id="handPath" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.45 161.45">
+            <div id="work" onMouseMove={onMove} onMouseUp={onDragEnd} style={workspaceSize} className="workspace">
+                <svg id="handPath" style={handPathSize} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.45 161.45">
                     <defs>
                         <style>{".pathcircle{fill:none;stroke:"+(props.theme==1?"white":"black")+";stroke-miterlimit:10;stroke-opacity:0.08;stroke-width:2px;}"}</style>
                     </defs>
@@ -244,9 +270,9 @@ function Termostat(props:ITermostat){
                         </g>
                     </g>
                 </svg>
-                <div ref={lines} id="lines">
+                <div ref={lines} id="lines" style={linesSize}>
                 </div>
-                <div ref={hand} id="hand">
+                <div ref={hand} id="hand" style={handSize}>
                     <svg ref={handle} onMouseDown={onDrag} id="handle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.04 26.04">
                         <defs>
                             <style>{".handle{fill:#2196f3;}"}</style>
@@ -264,8 +290,8 @@ function Termostat(props:ITermostat){
             <style jsx global>{`
                 .workspace{
                   background:/*#212121*/none;
-                  height:500px;
-                  width:500px;
+                  //height:500px;
+                  //width:500px;
                   margin:auto;
                   position:relative;
                   border-radius:100%;
@@ -281,11 +307,11 @@ function Termostat(props:ITermostat){
                 #lines{
                   position:absolute;
                   height:0px;
-                  width:500px;
+                  //width:500px;
                   margin-top:50%;
                 }
                 .lineContainer{
-                  width: 250px;
+                  //width: 250px;
                   position:absolute;
                   transform-origin: right center;
                 }
@@ -295,18 +321,18 @@ function Termostat(props:ITermostat){
                   margin-left:1.5rem;
                 }
                 #handPath{
-                  width: 250px;
-                    height: 250px;
-                    margin: 50%;
-                    transform: translate(-50%, -50%);
-                    position: absolute;
+                  //width: 250px;
+                  //height: 250px;
+                  margin: 50%;
+                  transform: translate(-50%, -50%);
+                  position: absolute;
                 }
                 #hand{
                   margin-top:50%;
                   background:red;
                   transform-origin: right center;
                   position:absolute;
-                  width:250px;
+                  //width:250px;
                   height:0;
                 }
                 #handle{

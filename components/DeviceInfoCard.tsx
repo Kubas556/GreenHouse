@@ -7,18 +7,23 @@ import IDeviceCard from "../interfaces/IDeviceCard";
 function DeviceInfoCard(props:IDeviceCard) {
     const [temp,setTemp] = useState("waiting");
     const [name,setName] = useState("waiting");
+    const [type,setType] = useState("waiting");
     let tempData = firebase.database().ref("/users/"+props.userId+"/devices/"+props.id+"/temp");
     let nameData = firebase.database().ref("/users/"+props.userId+"/devices/"+props.id+"/name");
+    let typeData = firebase.database().ref("/users/"+props.userId+"/devices/"+props.id+"/type");
 
 
 
     useEffect(()=>{
-        tempData.on('value',data=>{
+        tempData.once('value',data => {
             setTemp(data.val());
         });
-        nameData.on('value',data=>{
+        nameData.once('value',data => {
             setName(data.val());
             //console.log(Object.keys(data.val()));
+        });
+        typeData.once('value',data => {
+           setType(data.val());
         });
     },[]);
     return(
@@ -28,7 +33,7 @@ function DeviceInfoCard(props:IDeviceCard) {
                         {name}
                     </Typography>
                     <Typography color="textSecondary" gutterBottom>
-                        Typ: Skleník
+                        Typ: {type}
                     </Typography>
                     <Typography color="textSecondary" gutterBottom>
                         Aktuální teplota: {temp}

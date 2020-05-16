@@ -125,33 +125,41 @@ function DeviceInfoCard(props) {
     0: name,
     1: setName
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])("waiting");
+  const {
+    0: type,
+    1: setType
+  } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])("waiting");
   let tempData = _firebase_index__WEBPACK_IMPORTED_MODULE_2__["firebase"].database().ref("/users/" + props.userId + "/devices/" + props.id + "/temp");
   let nameData = _firebase_index__WEBPACK_IMPORTED_MODULE_2__["firebase"].database().ref("/users/" + props.userId + "/devices/" + props.id + "/name");
+  let typeData = _firebase_index__WEBPACK_IMPORTED_MODULE_2__["firebase"].database().ref("/users/" + props.userId + "/devices/" + props.id + "/type");
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
-    tempData.on('value', data => {
+    tempData.once('value', data => {
       setTemp(data.val());
     });
-    nameData.on('value', data => {
+    nameData.once('value', data => {
       setName(data.val()); //console.log(Object.keys(data.val()));
+    });
+    typeData.once('value', data => {
+      setType(data.val());
     });
   }, []);
   return __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Card"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 30
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["CardContent"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 31
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Typography"], {
     variant: "body1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 32
     },
     __self: this
   }, name), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Typography"], {
@@ -159,21 +167,21 @@ function DeviceInfoCard(props) {
     gutterBottom: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 35
     },
     __self: this
-  }, "Typ: Sklen\xEDk"), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Typography"], {
+  }, "Typ: ", type), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Typography"], {
     color: "textSecondary",
     gutterBottom: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33
+      lineNumber: 38
     },
     __self: this
   }, "Aktu\xE1ln\xED teplota: ", temp)), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["CardActions"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 37
+      lineNumber: 42
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Button"], {
@@ -181,13 +189,13 @@ function DeviceInfoCard(props) {
     endIcon: __jsx(_material_ui_icons_Launch__WEBPACK_IMPORTED_MODULE_3___default.a, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 38
+        lineNumber: 43
       },
       __self: this
     }),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 38
+      lineNumber: 43
     },
     __self: this
   }, "Otev\u0159\xEDt")));
@@ -342,6 +350,9 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["
   root: {
     display: 'flex'
   },
+  avatarIcon: {
+    cursor: "pointer"
+  },
   grow: {
     flexGrow: 1
   },
@@ -420,7 +431,15 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["
 function WithDrawerAppBar(props) {
   const classes = useStyles();
   const theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["useTheme"])();
-  const [open, setOpen] = react__WEBPACK_IMPORTED_MODULE_4___default.a.useState(false);
+  const {
+    0: open,
+    1: setOpen
+  } = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(false);
+  const {
+    0: avatarOpen,
+    1: setAvatarOpen
+  } = Object(react__WEBPACK_IMPORTED_MODULE_4__["useState"])(false);
+  const avatarAnchor = Object(react__WEBPACK_IMPORTED_MODULE_4__["useRef"])(null);
   const Component = props.component;
   const compProps = props.componentProps;
 
@@ -445,7 +464,7 @@ function WithDrawerAppBar(props) {
     className: classes.root,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 143
+      lineNumber: 151
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["AppBar"], {
@@ -455,14 +474,14 @@ function WithDrawerAppBar(props) {
     }),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 144
+      lineNumber: 152
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Toolbar"], {
     variant: "dense",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 147
+      lineNumber: 155
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Typography"], {
@@ -472,88 +491,107 @@ function WithDrawerAppBar(props) {
     component: "div",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 148
+      lineNumber: 156
     },
     __self: this
   }, props.title), __jsx("div", {
     className: classes.grow,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 151
+      lineNumber: 159
     },
     __self: this
   }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["IconButton"], {
     onClick: compProps.switchTheme,
     "aria-label": "display more actions",
-    edge: "end",
     color: "inherit",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 152
+      lineNumber: 160
     },
     __self: this
   }, compProps.theme === true ? __jsx(_material_ui_icons_Brightness7__WEBPACK_IMPORTED_MODULE_2___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 153
+      lineNumber: 161
     },
     __self: this
   }) : __jsx(_material_ui_icons_Brightness4__WEBPACK_IMPORTED_MODULE_3___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 153
+      lineNumber: 161
     },
     __self: this
-  })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["IconButton"], {
+  })), _firebase_index__WEBPACK_IMPORTED_MODULE_7__["auth"].currentUser ? __jsx("div", {
+    ref: avatarAnchor,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 165
+    },
+    __self: this
+  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Avatar"], {
+    onClick: () => setAvatarOpen(true),
+    className: classes.avatarIcon,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 166
+    },
+    __self: this
+  }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Menu"], {
+    open: avatarOpen,
+    onClick: () => setAvatarOpen(false),
+    anchorEl: avatarAnchor.current,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 168
+    },
+    __self: this
+  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["MenuItem"], {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 169
+    },
+    __self: this
+  }, "Profile"), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["MenuItem"], {
+    onClick: handleLogout,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 170
+    },
+    __self: this
+  }, "Log Out"))) : __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["IconButton"], {
     onClick: () => next_router__WEBPACK_IMPORTED_MODULE_8___default.a.push("/login"),
     "aria-label": "display more actions",
-    edge: "end",
     color: "inherit",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 155
+      lineNumber: 173
     },
     __self: this
   }, __jsx(_material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_1___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 156
-    },
-    __self: this
-  })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["IconButton"], {
-    onClick: handleLogout,
-    "aria-label": "display more actions",
-    edge: "end",
-    color: "inherit",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 158
-    },
-    __self: this
-  }, __jsx(_material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 159
+      lineNumber: 174
     },
     __self: this
   })))), __jsx("main", {
     className: classes.content,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 163
+      lineNumber: 179
     },
     __self: this
   }, __jsx("div", {
     className: classes.toolbarOffset,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 164
+      lineNumber: 180
     },
     __self: this
   }), __jsx(Component, _extends({}, compProps, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 165
+      lineNumber: 181
     },
     __self: this
   }))));
@@ -2495,16 +2533,17 @@ function index(props) {
       setDevices(Object.keys(data.val()));
     });
   }, []);
+  const test = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])(null);
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 24
     },
     __self: this
   }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 25
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Typography"], {
@@ -2512,7 +2551,7 @@ function index(props) {
     component: "h2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 26
     },
     __self: this
   }, "Seznam chytr\xFDch za\u0159\xEDzen\xED"), __jsx("div", {
@@ -2521,13 +2560,13 @@ function index(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 29
     },
     __self: this
   }, devices.length != 0 ? devices.map((id, index) => __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 33
+      lineNumber: 34
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
@@ -2535,14 +2574,14 @@ function index(props) {
     as: `/temperature/${id}`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 35
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Box"], {
     component: "a",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35
+      lineNumber: 36
     },
     __self: this
   }, __jsx(_components_DeviceInfoCard__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -2551,13 +2590,13 @@ function index(props) {
     userId: props.user,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 37
     },
     __self: this
   }))))) : __jsx(_components_Loading__WEBPACK_IMPORTED_MODULE_7__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 40
+      lineNumber: 41
     },
     __self: this
   }))));
@@ -2570,7 +2609,7 @@ function index(props) {
     componentProps: props,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 49
+      lineNumber: 50
     },
     __self: undefined
   });

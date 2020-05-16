@@ -11,7 +11,7 @@ import withAuth from "../../components/WithAuth";
 import WithDrawerAppBar from "../../components/WithDrawerAppBar";
 import Tempmeter from "../../components/Tempmeter";
 import Termostat from "../../components/Termostat";
-import {firebase} from "../../firebase/index";
+import {auth, firebase} from "../../firebase/index";
 import IPageProps from "../../interfaces/IPageProps";
 import Loading from "../../components/Loading";
 

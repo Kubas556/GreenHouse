@@ -25,7 +25,7 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/temperature/[id]": [
+    "/login": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

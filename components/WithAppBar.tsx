@@ -1,5 +1,8 @@
 import {
     AppBar,
+    Avatar,
+    Menu,
+    MenuItem,
     Tabs,
     Tab,
     IconButton,
@@ -24,7 +27,7 @@ import PhoneIcon from '@material-ui/icons/Phone'
 import ApartmentIcon from '@material-ui/icons/Apartment';
 import PersonPinIcon from '@material-ui/icons/Person'
 import Link from 'next/link'
-import React from "react";
+import React, {createRef, useRef, useState} from "react";
 import clsx from 'clsx';
 import {makeStyles,useTheme} from "@material-ui/core/styles";
 import {auth} from "../firebase/index";
@@ -38,6 +41,9 @@ import Router from "next/router";
 const useStyles = makeStyles(theme => ({
     root:{
       display:'flex'
+    },
+    avatarIcon:{
+        cursor: "pointer"
     },
     grow: {
         flexGrow: 1,
@@ -119,7 +125,9 @@ const useStyles = makeStyles(theme => ({
 export default function WithDrawerAppBar(props:IAppBar) {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [avatarOpen,setAvatarOpen] = useState(false);
+    const avatarAnchor = useRef(null);
     const Component = props.component;
     const compProps = props.componentProps;
     const handleDrawerOpen = () => {
@@ -149,16 +157,24 @@ export default function WithDrawerAppBar(props:IAppBar) {
                         {props.title}
                     </Typography>
                     <div className={classes.grow}/>
-                    <IconButton onClick={compProps.switchTheme} aria-label="display more actions" edge="end" color="inherit">
+                    <IconButton onClick={compProps.switchTheme} aria-label="display more actions" color="inherit">
                         {compProps.theme===true?<Brightness7Icon />:<Brightness4Icon />}
                     </IconButton>
-                    <IconButton onClick={()=>Router.push("/login")} aria-label="display more actions" edge="end" color="inherit">
-                        <VpnKeyIcon />
-                    </IconButton>
-                    <IconButton onClick={handleLogout} aria-label="display more actions" edge="end" color="inherit">
-                        <VpnKeyIcon />
-                    </IconButton>
-                </Toolbar>
+                    {
+                        auth.currentUser?
+                            <div ref={avatarAnchor}>
+                                <Avatar onClick={()=>setAvatarOpen(true)} className={classes.avatarIcon}>
+                                </Avatar>
+                                <Menu open={avatarOpen} onClick={()=>setAvatarOpen(false)} anchorEl={avatarAnchor.current}>
+                                    <MenuItem>Profile</MenuItem>
+                                    <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+                                </Menu>
+                            </div>:
+                            <IconButton onClick={()=>Router.push("/login")} aria-label="display more actions" color="inherit">
+                                <VpnKeyIcon />
+                            </IconButton>
+                    }
+                    </Toolbar>
             </AppBar>
             <main className={classes.content}>
                 <div className={classes.toolbarOffset}/>
