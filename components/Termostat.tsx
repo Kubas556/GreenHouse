@@ -58,7 +58,7 @@ function Termostat(props:ITermostat){
 
     function onMove(e:MouseEvent){
         if(drag){
-            let angle = Math.atan2(e.nativeEvent.offsetY-250, e.nativeEvent.offsetX-250);
+            let angle = Math.atan2(e.nativeEvent.offsetY-(componentHeight/2), e.nativeEvent.offsetX-(componentWidth/2));
             let angle2 = angle * (180/Math.PI);
             //to 360 range
             if(angle2 < 0)
@@ -340,7 +340,7 @@ function Termostat(props:ITermostat){
                   width:2rem;
                   height:2rem;
                   transform:translate(50%,-50%);
-                  right:125px;
+                  right: 50%;
                   position:absolute;
                 }
             `}</style>

@@ -39,10 +39,10 @@ import IAppBar from "../interfaces/IAppBar"
 import Router from "next/router";
 
 const useStyles = makeStyles(theme => ({
-    root:{
+    root: {
       display:'flex'
     },
-    avatarIcon:{
+    avatarIcon: {
         cursor: "pointer"
     },
     grow: {
@@ -124,10 +124,10 @@ const useStyles = makeStyles(theme => ({
 
 export default function WithDrawerAppBar(props:IAppBar) {
     const classes = useStyles();
-    const theme = useTheme();
-    const [open, setOpen] = useState(false);
-    const [avatarOpen,setAvatarOpen] = useState(false);
-    const avatarAnchor = useRef(null);
+    const [open, setOpen] = useState<boolean>(false);
+    const [avatarOpen,setAvatarOpen] = useState<boolean>(false);
+    const avatarAnchor = useRef<HTMLDivElement>(null);
+
     const Component = props.component;
     const compProps = props.componentProps;
     const handleDrawerOpen = () => {

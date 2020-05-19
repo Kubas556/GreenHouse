@@ -5,9 +5,9 @@ import LaunchIcon from '@material-ui/icons/Launch';
 import IDeviceCard from "../interfaces/IDeviceCard";
 
 function DeviceInfoCard(props:IDeviceCard) {
-    const [temp,setTemp] = useState("waiting");
-    const [name,setName] = useState("waiting");
-    const [type,setType] = useState("waiting");
+    const [temp,setTemp] = useState<string>("waiting");
+    const [name,setName] = useState<string>("waiting");
+    const [type,setType] = useState<string>("waiting");
     let tempData = firebase.database().ref("/users/"+props.userId+"/devices/"+props.id+"/temp");
     let nameData = firebase.database().ref("/users/"+props.userId+"/devices/"+props.id+"/name");
     let typeData = firebase.database().ref("/users/"+props.userId+"/devices/"+props.id+"/type");

@@ -13,7 +13,7 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
-    SvgIcon, Box
+    SvgIcon, Box, Avatar, Menu, MenuItem
 } from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/menu';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
@@ -27,7 +27,7 @@ import PhoneIcon from '@material-ui/icons/Phone'
 import ApartmentIcon from '@material-ui/icons/Apartment';
 import PersonPinIcon from '@material-ui/icons/Person'
 import Link from 'next/link'
-import React from "react";
+import React, {useRef, useState} from "react";
 import clsx from 'clsx';
 import {makeStyles,useTheme} from "@material-ui/core/styles";
 import {auth} from "../firebase/index";
@@ -37,10 +37,14 @@ import FertilizerIcon from "../icons/fertilizerIcon";
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import IAppBar from "../interfaces/IAppBar"
 import Router from "next/router";
+import IWithDrawerAppBar from "../interfaces/IWithDrawerAppBar";
 
 const useStyles = makeStyles(theme => ({
-    root:{
+    root: {
       display:'flex'
+    },
+    avatarIcon: {
+        cursor: "pointer"
     },
     grow: {
         flexGrow: 1,
@@ -121,10 +125,14 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function WithDrawerAppBar(props:IAppBar) {
+export default function WithDrawerAppBar(props:IWithDrawerAppBar) {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState<boolean>(false);
+    const [avatarOpen,setAvatarOpen] = useState<boolean>(false);
+    const avatarAnchor = useRef<HTMLDivElement>(null);
+    const devId = props.deviceId;
+
     const Component = props.component;
     const compProps = props.componentProps;
     const handleDrawerOpen = () => {
@@ -165,15 +173,23 @@ export default function WithDrawerAppBar(props:IAppBar) {
                         {props.title}
                     </Typography>
                     <div className={classes.grow}/>
-                    <IconButton onClick={compProps.switchTheme} aria-label="display more actions" edge="end" color="inherit">
+                    <IconButton onClick={compProps.switchTheme} aria-label="display more actions" color="inherit">
                         {compProps.theme===true?<Brightness7Icon />:<Brightness4Icon />}
                     </IconButton>
-                    <IconButton onClick={()=>Router.push("/login")} aria-label="display more actions" edge="end" color="inherit">
-                        <VpnKeyIcon />
-                    </IconButton>
-                    <IconButton onClick={handleLogout} aria-label="display more actions" edge="end" color="inherit">
-                        <VpnKeyIcon />
-                    </IconButton>
+                    {
+                        auth.currentUser?
+                            <div ref={avatarAnchor}>
+                                <Avatar onClick={()=>setAvatarOpen(true)} className={classes.avatarIcon}>
+                                </Avatar>
+                                <Menu open={avatarOpen} onClick={()=>setAvatarOpen(false)} anchorEl={avatarAnchor.current}>
+                                    <MenuItem>Profile</MenuItem>
+                                    <MenuItem onClick={handleLogout}>Log Out</MenuItem>
+                                </Menu>
+                            </div>:
+                            <IconButton onClick={()=>Router.push("/login")} aria-label="display more actions" color="inherit">
+                                <VpnKeyIcon />
+                            </IconButton>
+                    }
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -196,7 +212,7 @@ export default function WithDrawerAppBar(props:IAppBar) {
                 </div>
                 <Divider />
                 <List>
-                    <Link href={"/temperature"}>
+                    <Link href={"/temperature/"+devId}>
                         <ListItem button>
                             <ListItemIcon>{<TempIcon/>}</ListItemIcon>
                             <ListItemText primary={"Teplota"} />

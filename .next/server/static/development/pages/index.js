@@ -430,7 +430,6 @@ const useStyles = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["
 }));
 function WithDrawerAppBar(props) {
   const classes = useStyles();
-  const theme = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_6__["useTheme"])();
   const {
     0: open,
     1: setOpen
@@ -2531,19 +2530,24 @@ function index(props) {
     devicesData.on('value', data => {
       //console.log(Object.keys(data.val()));
       setDevices(Object.keys(data.val()));
+      /*console.log(Object.keys(data.val()).map(value => {
+          let out = "";
+          firebase.database().ref("/users/"+props.user+"/devices/"+value+"/name").once('value',data=>{ out = data.val()});
+          return out;
+      }));*/
     });
   }, []);
   const test = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])(null);
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 24
+      lineNumber: 29
     },
     __self: this
   }, __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 30
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Typography"], {
@@ -2551,7 +2555,7 @@ function index(props) {
     component: "h2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 31
     },
     __self: this
   }, "Seznam chytr\xFDch za\u0159\xEDzen\xED"), __jsx("div", {
@@ -2560,13 +2564,13 @@ function index(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 34
     },
     __self: this
   }, devices.length != 0 ? devices.map((id, index) => __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 34
+      lineNumber: 39
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
@@ -2574,14 +2578,14 @@ function index(props) {
     as: `/temperature/${id}`,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 35
+      lineNumber: 40
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Box"], {
     component: "a",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 36
+      lineNumber: 41
     },
     __self: this
   }, __jsx(_components_DeviceInfoCard__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -2590,13 +2594,13 @@ function index(props) {
     userId: props.user,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 37
+      lineNumber: 42
     },
     __self: this
   }))))) : __jsx(_components_Loading__WEBPACK_IMPORTED_MODULE_7__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 41
+      lineNumber: 46
     },
     __self: this
   }))));
@@ -2609,7 +2613,7 @@ function index(props) {
     componentProps: props,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 50
+      lineNumber: 55
     },
     __self: undefined
   });

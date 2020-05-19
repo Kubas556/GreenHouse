@@ -22,11 +22,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Login(props:IPageProps) {
-    const [username,setUsername] = useState("");
-    const [password,setPassword] = useState("");
+    const [username,setUsername] = useState<string>("");
+    const [password,setPassword] = useState<string>("");
 
-    const [missingError,setMissingError] = useState(false);
-    const [loginError,setLoginError] = useState(false);
+    const [missingError,setMissingError] = useState<boolean>(false);
+    const [loginError,setLoginError] = useState<boolean>(false);
 
     const classes = useStyles();
     const router = useRouter();

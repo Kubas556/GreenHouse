@@ -16,6 +16,11 @@ function index(props:IPageProps){
         devicesData.on('value',data=>{
             //console.log(Object.keys(data.val()));
             setDevices(Object.keys(data.val()));
+            /*console.log(Object.keys(data.val()).map(value => {
+                let out = "";
+                firebase.database().ref("/users/"+props.user+"/devices/"+value+"/name").once('value',data=>{ out = data.val()});
+                return out;
+            }));*/
         });
     },[]);
 

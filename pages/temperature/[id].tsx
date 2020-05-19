@@ -14,6 +14,7 @@ import Termostat from "../../components/Termostat";
 import {auth, firebase} from "../../firebase/index";
 import IPageProps from "../../interfaces/IPageProps";
 import Loading from "../../components/Loading";
+import {string} from "prop-types";
 
 const useStyle = makeStyles(theme=>({
     center:{
@@ -27,7 +28,7 @@ const useStyle = makeStyles(theme=>({
 
 function Id(props:IPageProps) {
     const classes = useStyle();
-    const [temp,setTemp] = useState(-50);
+    const [temp,setTemp] = useState<number>(-50);
     const [defTemp,setDefTemp] = useState<number>();
     const router = useRouter();
     const { id } = router.query;
@@ -82,7 +83,7 @@ function ex(props:IPageProps) {
         });
     },[]);
     return(
-        <WithDrawerAppBar component={Id} title={name} componentProps={props}/>
+        <WithDrawerAppBar component={Id} title={name} deviceId={id.toString()} componentProps={props}/>
     )
 }
 
