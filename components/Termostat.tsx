@@ -3,6 +3,8 @@ import anime from "animejs";
 import {firebase} from "../firebase";
 import ITermostat from "../interfaces/ITermostat";
 import {number} from "prop-types";
+import {useTheme} from "@material-ui/styles";
+
 function Termostat(props:ITermostat){
     const min = 0;
     const max = 50;
@@ -11,6 +13,9 @@ function Termostat(props:ITermostat){
     const minAngle = 0;
     const maxAngle = 180;
     const segCount = 22//11;
+    const theme = useTheme();
+    // @ts-ignore
+    const handleColor = theme.palette.primary.main;
 
     const lines = useRef<HTMLDivElement>(null);
     const valueInput = useRef<HTMLInputElement>(null);
@@ -111,7 +116,7 @@ function Termostat(props:ITermostat){
                             delay: 0,
                         });
                         anime({
-                            targets: containers[i].childNodes,
+                            targets: containers[i].childNodes[0],
                             scale: [
                                 {value: 1.5, easing: 'easeOutSine', duration: 500}
                             ],
@@ -163,7 +168,13 @@ function Termostat(props:ITermostat){
             let j = 0;
             for (let i = 0; i < segCount; i++) {
                 let handAngle = Math.round((maxAngle / max) * j);
-                let line = '<div rotate=' + handAngle + ' style="transform:rotate(' + handAngle + 'deg)!important;width:'+(lineContainerSizes.width)+';" class="lineContainer"><div class="line"></div></div>';
+                let line = '<div rotate=' + handAngle + ' style="transform:rotate(' + handAngle + 'deg)!important;width:'+(lineContainerSizes.width)+';" class="lineContainer">' +
+                                '<div class="line"></div>' +
+                                '<div class="valueGroup">' +
+                                    '<div class="valueLine"></div>' +
+                                    '<div class="value" style="transform:rotate(' + -handAngle + 'deg)">'+Math.round(j)+'</div>' +
+                                '</div>'+
+                           '</div>';
                 if (lines.current)
                     lines.current.innerHTML += line;
                 j += max / (segCount - 1);
@@ -212,7 +223,7 @@ function Termostat(props:ITermostat){
                                 delay: 0,
                             });
                             anime({
-                                targets: contData[i].childNodes,
+                                targets: contData[i].childNodes[0],
                                 scale: [
                                     {value: 1.5, easing: 'easeOutSine', duration: 500}
                                 ],
@@ -275,7 +286,7 @@ function Termostat(props:ITermostat){
                 <div ref={hand} id="hand" style={handSize}>
                     <svg ref={handle} onMouseDown={onDrag} id="handle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.04 26.04">
                         <defs>
-                            <style>{".handle{fill:#2196f3;}"}</style>
+                            <style>{".handle{fill:"+handleColor+"}"}</style>
                         </defs>
                         <title>Datový zdroj 25</title>
                         <g id="Vrstva_2" data-name="Vrstva 2">
@@ -287,6 +298,7 @@ function Termostat(props:ITermostat){
                 </div>
             </div>
             <input ref={valueInput} onBlur={inputUpdated} type = "number"></input>
+            <style>{".valueLine{background:"+(props.theme==1?"white":"black")+"}"}</style>
             <style jsx global>{`
                 .workspace{
                   background:/*#212121*/none;
@@ -312,13 +324,31 @@ function Termostat(props:ITermostat){
                 }
                 .lineContainer{
                   //width: 250px;
+                  height:0;
                   position:absolute;
+                  display:flex;
+                  align-items:center;
+                  flex-direction:row;
                   transform-origin: right center;
                 }
                 .line{
                   height:5px;
                   width:3rem;
                   margin-left:1.5rem;
+                }
+                .valueLine{
+                  height: 2px;
+                  width: 1rem;
+                  margin-left: 1rem;
+                  opacity:0.2;
+                }
+                .valueGroup{
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                }
+                .value{
+                    margin-left:0.5rem;
                 }
                 #handPath{
                   //width: 250px;
