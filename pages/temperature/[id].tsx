@@ -63,7 +63,7 @@ function Id(props:IPageProps) {
                  </Paper>
              </div>
              <div className={classes.controllComponent}>
-                 <Paper elevation={3}>
+                 <Paper elevation={3} style={{padding: '1rem'}}>
                      <Termostat theme={props.theme} onValueChanged={termostatChange} defaultValue={defTemp}/>
                  </Paper>
              </div>

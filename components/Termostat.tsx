@@ -8,11 +8,14 @@ import {useTheme} from "@material-ui/styles";
 function Termostat(props:ITermostat){
     const min = 0;
     const max = 50;
-    const componentWidth = 500;
-    const componentHeight = 500;
+    const componentWidth = 337;
+    const componentHeight = 337;
     const minAngle = 0;
-    const maxAngle = 180;
-    const segCount = 22//11;
+    const maxAngle = 270;
+    const angleOverlap = -(maxAngle-180)/2;
+    const lineSegCount = 25//11;
+    const valueLineSegCount = (16*2)+1;
+    const valueLineSegBigEach = 8;
     const theme = useTheme();
     // @ts-ignore
     const handleColor = theme.palette.primary.main;
@@ -47,18 +50,28 @@ function Termostat(props:ITermostat){
     };
 
     const handPathSize = {
-        width: componentWidth/2+"px",
-        height: componentHeight/2+"px"
+        width: componentWidth/3+"px",
+        height: componentHeight/3+"px"
     };
 
     const handSize = {
         width: componentWidth/2+"px"
     };
 
+    const handleSize = {
+        right: (componentWidth/2)/3+"px"
+    };
+
+    const handPathCircle = {
+        circleRadius:2*Math.PI*80.6,
+        transform:"rotate("+angleOverlap+"deg)",
+        maxRadius:(2*Math.PI*80.6)-(((2*Math.PI*80.6)/360)*maxAngle)
+    };
+
     function inputUpdated(e:any){
-        let val = e.target.value;
+        let val = Number.parseInt(e.target.innerHTML);
         setCurrentValue(val);
-        setCurrentAngle((maxAngle/max)*val);
+        setCurrentAngle((((maxAngle)/max)*val)+(angleOverlap));
     }
 
     function onMove(e:MouseEvent){
@@ -76,10 +89,16 @@ function Termostat(props:ITermostat){
             if(angle2 > 360)
                 angle2-=360
 
-            if(angle2 >= 0 && angle2 <= maxAngle) {
-                setCurrentValue(Math.round((max / maxAngle) * angle2));
-                setAngleTrans(angle2);
-                setHandAngle(angle2);
+            angle2=(270-angle2);
+            if(angle2 < 0)
+                angle2=-(angle2-angleOverlap);
+            else
+                angle2=-(angle2-270-45);
+
+            if(angle2 >= (minAngle) && angle2 <= (maxAngle)) {
+                setCurrentValue(Math.round(((max / maxAngle) * angle2)));
+                setAngleTrans(angle2+angleOverlap);
+                setHandAngle(angle2+angleOverlap);
             }
         }
     }
@@ -103,7 +122,7 @@ function Termostat(props:ITermostat){
     useEffect(()=>{
         if(containers) {
             let angle = Math.round(handAngle);
-            if (angle <= maxAngle && angle >= minAngle) {
+            if (angle <= (maxAngle) && angle >= (minAngle+angleOverlap)) {
                 for (let i = 0; i < containers.length; i++) {
 
                     let containerAngle = parseInt(containers[i].getAttribute('rotate') as string);
@@ -130,7 +149,7 @@ function Termostat(props:ITermostat){
                 }
                 ;
                 if(hand.current)
-                hand.current.style.transform = "rotate(" + (angle) + "deg)";
+                hand.current.style.transform = "rotate(" + angle + "deg)";
             }
         }
     },[handAngle]);
@@ -157,7 +176,7 @@ function Termostat(props:ITermostat){
 
     useEffect(()=>{
         if(valueInput.current)
-        valueInput.current.value = currentValue.toString();
+        valueInput.current.innerHTML = currentValue.toString();
         if(!initialize)
         props.onValueChanged(currentValue.toString());
     },[currentValue]);
@@ -165,19 +184,29 @@ function Termostat(props:ITermostat){
     useEffect(()=>{
         let initValue = props.defaultValue;
         if(initValue!=undefined) {
-            let j = 0;
-            for (let i = 0; i < segCount; i++) {
-                let handAngle = Math.round((maxAngle / max) * j);
-                let line = '<div rotate=' + handAngle + ' style="transform:rotate(' + handAngle + 'deg)!important;width:'+(lineContainerSizes.width)+';" class="lineContainer">' +
-                                '<div class="line"></div>' +
-                                '<div class="valueGroup">' +
-                                    '<div class="valueLine"></div>' +
-                                    '<div class="value" style="transform:rotate(' + -handAngle + 'deg)">'+Math.round(j)+'</div>' +
-                                '</div>'+
-                           '</div>';
+            let k = 0;
+            for (let i = 0; i < valueLineSegCount; i++) {
+                let handAngle = Math.round((maxAngle / max) * k)+angleOverlap;
+                let line = '<div style="transform:rotate(' + handAngle + 'deg)!important;width:'+(lineContainerSizes.width)+';" class="valueLineContainer">' +
+                    '<div class="valueLineGroup">' +
+                    '<div class='+((i%valueLineSegBigEach==0)?"bigValueLine":"smallValueLine")+'></div>' +
+                    '<div class="value" style="transform:rotate(' + -handAngle + 'deg)">'+((i%valueLineSegBigEach==0)?Math.round(k):"")+'</div>' +
+                    '</div>'+
+                    '</div>';
                 if (lines.current)
                     lines.current.innerHTML += line;
-                j += max / (segCount - 1);
+                k += max / (valueLineSegCount - 1);
+            }
+
+            let j = 0;
+            for (let i = 0; i < lineSegCount; i++) {
+                let handAngle = Math.round((maxAngle / max) * j)+angleOverlap;
+                let line = '<div rotate=' + handAngle + ' style="transform:rotate(' + handAngle + 'deg)!important;width:'+(lineContainerSizes.width)+';" class="lineContainer">' +
+                    '<div class="line"></div>' +
+                    '</div>';
+                if (lines.current)
+                    lines.current.innerHTML += line;
+                j += max / (lineSegCount - 1);
             }
 
             let contData = document.getElementsByClassName('lineContainer');
@@ -258,7 +287,7 @@ function Termostat(props:ITermostat){
 
                     if(initValue!=undefined) {
                         setCurrentValue(initValue);
-                        setCurrentAngle((maxAngle / max) * initValue);
+                        setCurrentAngle(((maxAngle / max) * initValue)+angleOverlap);
                     }
 
                     setInitialize(false);
@@ -272,19 +301,19 @@ function Termostat(props:ITermostat){
             <div id="work" onMouseMove={onMove} onMouseUp={onDragEnd} style={workspaceSize} className="workspace">
                 <svg id="handPath" style={handPathSize} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.45 161.45">
                     <defs>
-                        <style>{".pathcircle{fill:none;stroke:"+(props.theme==1?"white":"black")+";stroke-miterlimit:10;stroke-opacity:0.08;stroke-width:2px;}"}</style>
+                        <style>{".pathcircle{fill:none;stroke:"+(props.theme==1?"white":"black")+";stroke-miterlimit:10;stroke-opacity:0.08;stroke-width:3px;}"}</style>
                     </defs>
                     <title>Datový zdroj 22</title>
                     <g id="Vrstva_2" data-name="Vrstva 2">
                         <g id="Vrstva_2-2" data-name="Vrstva 2">
-                            <circle className="pathcircle" cx="80.73" cy="80.73" r="80.6" strokeDasharray="253" strokeDashoffset="253"/>
+                            <circle className="pathcircle" cx="80.73" cy="80.73" r="80.6" style={{transform:handPathCircle.transform,transformOrigin:"center"}} strokeDasharray={handPathCircle.circleRadius} strokeDashoffset={handPathCircle.maxRadius}/>
                         </g>
                     </g>
                 </svg>
                 <div ref={lines} id="lines" style={linesSize}>
                 </div>
                 <div ref={hand} id="hand" style={handSize}>
-                    <svg ref={handle} onMouseDown={onDrag} id="handle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.04 26.04">
+                    <svg ref={handle} onMouseDown={onDrag} id="handle" style={handleSize} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.04 26.04">
                         <defs>
                             <style>{".handle{fill:"+handleColor+"}"}</style>
                         </defs>
@@ -296,9 +325,11 @@ function Termostat(props:ITermostat){
                         </g>
                     </svg>
                 </div>
+                <div className={"valueGroup"}>
+                    <p><span ref={valueInput} style={{pointerEvents:"all"}} onBlur={inputUpdated} contentEditable/><span>°C</span></p>
+                </div>
             </div>
-            <input ref={valueInput} onBlur={inputUpdated} type = "number"></input>
-            <style>{".valueLine{background:"+(props.theme==1?"white":"black")+"}"}</style>
+            <style>{".smallValueLine,.bigValueLine{background:"+(props.theme==1?"white":"black")+"}"}</style>
             <style jsx global>{`
                 .workspace{
                   background:/*#212121*/none;
@@ -308,7 +339,15 @@ function Termostat(props:ITermostat){
                   position:relative;
                   border-radius:100%;
                 }
-                #lines,#handPath,.lineContainer{
+                .workspace .valueGroup{
+                  position: absolute;
+                  margin: 0px;
+                  margin-top: 50%;
+                  margin-left: 50%;
+                  transform: translate(-50%, -50%);
+                  font-size: 2rem;
+                }
+                #lines,#handPath,.lineContainer,.valueLineContainer,.valueGroup{
                   pointer-events: none;
                   overflow:visible;
                 }
@@ -322,7 +361,7 @@ function Termostat(props:ITermostat){
                   //width:500px;
                   margin-top:50%;
                 }
-                .lineContainer{
+                .lineContainer,.valueLineContainer{
                   //width: 250px;
                   height:0;
                   position:absolute;
@@ -333,16 +372,23 @@ function Termostat(props:ITermostat){
                 }
                 .line{
                   height:5px;
-                  width:3rem;
-                  margin-left:1.5rem;
+                  width:2rem;
+                  margin-left:0.5rem;
+                  transform-origin: right center;
                 }
-                .valueLine{
+                .smallValueLine{
                   height: 2px;
-                  width: 1rem;
-                  margin-left: 1rem;
+                  width: 0.5rem;
+                  margin-left: 3.5rem;
                   opacity:0.2;
                 }
-                .valueGroup{
+                .bigValueLine{
+                  height: 2px;
+                  width: 1rem;
+                  margin-left: 3.5rem;
+                  opacity:0.2;
+                }
+                .valueLineGroup{
                   display: flex;
                   flex-direction: row;
                   align-items: center;
@@ -354,7 +400,7 @@ function Termostat(props:ITermostat){
                   //width: 250px;
                   //height: 250px;
                   margin: 50%;
-                  transform: translate(-50%, -50%);
+                  transform: translate(-50%,-50%)rotate(180deg);
                   position: absolute;
                 }
                 #hand{
