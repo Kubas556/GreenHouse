@@ -12,7 +12,7 @@ function Termostat(props:ITermostat){
     const componentHeight = 337;
     const minAngle = 0;
     const maxAngle = 270;
-    const angleOverlap = -(maxAngle-180)/2;
+    const angleOverlap = (maxAngle-180)/2;
     const lineSegCount = 25//11;
     const valueLineSegCount = (16*2)+1;
     const valueLineSegBigEach = 8;
@@ -64,14 +64,14 @@ function Termostat(props:ITermostat){
 
     const handPathCircle = {
         circleRadius:2*Math.PI*80.6,
-        transform:"rotate("+angleOverlap+"deg)",
+        transform:"rotate("+-angleOverlap+"deg)",
         maxRadius:(2*Math.PI*80.6)-(((2*Math.PI*80.6)/360)*maxAngle)
     };
 
     function inputUpdated(e:any){
         let val = Number.parseInt(e.target.innerHTML);
         setCurrentValue(val);
-        setCurrentAngle((((maxAngle)/max)*val)+(angleOverlap));
+        setCurrentAngle((((maxAngle)/max)*val)-(angleOverlap));
     }
 
     function onMove(e:MouseEvent){
@@ -89,16 +89,18 @@ function Termostat(props:ITermostat){
             if(angle2 > 360)
                 angle2-=360
 
-            angle2=(270-angle2);
+            angle2=(maxAngle-angle2);
             if(angle2 < 0)
-                angle2=-(angle2-angleOverlap);
+                angle2 = (angleOverlap-((360-maxAngle) + angle2));
             else
-                angle2=-(angle2-270-45);
+                angle2=-(angle2-maxAngle-angleOverlap);
+
+            console.log(angle2);
 
             if(angle2 >= (minAngle) && angle2 <= (maxAngle)) {
                 setCurrentValue(Math.round(((max / maxAngle) * angle2)));
-                setAngleTrans(angle2+angleOverlap);
-                setHandAngle(angle2+angleOverlap);
+                setAngleTrans(angle2-angleOverlap);
+                setHandAngle(angle2-angleOverlap);
             }
         }
     }
@@ -122,7 +124,7 @@ function Termostat(props:ITermostat){
     useEffect(()=>{
         if(containers) {
             let angle = Math.round(handAngle);
-            if (angle <= (maxAngle) && angle >= (minAngle+angleOverlap)) {
+            if (angle <= (maxAngle) && angle >= (minAngle-angleOverlap)) {
                 for (let i = 0; i < containers.length; i++) {
 
                     let containerAngle = parseInt(containers[i].getAttribute('rotate') as string);
@@ -186,7 +188,7 @@ function Termostat(props:ITermostat){
         if(initValue!=undefined) {
             let k = 0;
             for (let i = 0; i < valueLineSegCount; i++) {
-                let handAngle = Math.round((maxAngle / max) * k)+angleOverlap;
+                let handAngle = Math.round((maxAngle / max) * k)-angleOverlap;
                 let line = '<div style="transform:rotate(' + handAngle + 'deg)!important;width:'+(lineContainerSizes.width)+';" class="valueLineContainer">' +
                     '<div class="valueLineGroup">' +
                     '<div class='+((i%valueLineSegBigEach==0)?"bigValueLine":"smallValueLine")+'></div>' +
@@ -200,7 +202,7 @@ function Termostat(props:ITermostat){
 
             let j = 0;
             for (let i = 0; i < lineSegCount; i++) {
-                let handAngle = Math.round((maxAngle / max) * j)+angleOverlap;
+                let handAngle = Math.round((maxAngle / max) * j)-angleOverlap;
                 let line = '<div rotate=' + handAngle + ' style="transform:rotate(' + handAngle + 'deg)!important;width:'+(lineContainerSizes.width)+';" class="lineContainer">' +
                     '<div class="line"></div>' +
                     '</div>';
@@ -287,7 +289,7 @@ function Termostat(props:ITermostat){
 
                     if(initValue!=undefined) {
                         setCurrentValue(initValue);
-                        setCurrentAngle(((maxAngle / max) * initValue)+angleOverlap);
+                        setCurrentAngle(((maxAngle / max) * initValue)-angleOverlap);
                     }
 
                     setInitialize(false);
