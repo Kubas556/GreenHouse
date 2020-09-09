@@ -32,14 +32,15 @@ export default function MyApp (props) {
 
         const [theme,setTheme] = useState(false);
         //const [showBtn,setShowBtn] = useState(true);
-
         const themeReg = /theme=(\w+)/;
         const classes = useTheme();
         const router = useRouter();
+        const [touchDisplay,setTouchDisplay] = useState(false);
+        const [content,setContent] = useState(<div></div>);
 
     useEffect(()=> {
         const themeCookie = document.cookie.match(themeReg);
-
+        setTouchDisplay(navigator.maxTouchPoints);
         if(themeCookie)
             setTheme(JSON.parse(themeCookie[1]));
 
@@ -61,30 +62,30 @@ export default function MyApp (props) {
 
     const { Component, pageProps } = props;
 
-        return (
-            <React.Fragment>
-                <Head>
-                    <title>My page</title>
-                    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-                </Head>
-                <ThemeProvider theme={theme?darkTheme:lightTheme}>
-                    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-                    {/*<div style={
-                        {display: "flex",
-                        flexFlow: "column",
-                        height: "100vh"}
-                    }>*/}
-                    <CssBaseline />
-                    <Component theme={theme} {...pageProps} /*setThemeBtn={toggleThemeSwitch.bind(this)}*/ switchTheme={switchTheme.bind(this)} />
-                    {/*showBtn?<CustomAppBar component={Component} theme={theme} componentProps={pageProps} text={"Some name"}/>:null*/}
+    return (
+        <React.Fragment>
+            <Head>
+                <title>My page</title>
+                <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+            </Head>
+            <ThemeProvider theme={theme?darkTheme:lightTheme}>
+                {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+                {/*<div style={
+                            {display: "flex",
+                            flexFlow: "column",
+                            height: "100vh"}
+                        }>*/}
+                <CssBaseline />
+                <Component theme={theme} touchDisplay={touchDisplay} {...pageProps} /*setThemeBtn={toggleThemeSwitch.bind(this)}*/ switchTheme={switchTheme.bind(this)} />
+                {/*showBtn?<CustomAppBar component={Component} theme={theme} componentProps={pageProps} text={"Some name"}/>:null*/}
 
-                    {/*showBtn?
-                        <FormControlLabel labelPlacement={"start"} label={"Dark mode"} control={<Switch checked={theme} onChange={switchTheme.bind(this)}/>}/>
-                        :null*/}
-                    {/*</div>*/}
+                {/*showBtn?
+                            <FormControlLabel labelPlacement={"start"} label={"Dark mode"} control={<Switch checked={theme} onChange={switchTheme.bind(this)}/>}/>
+                            :null*/}
+                {/*</div>*/}
 
-                </ThemeProvider>
-            </React.Fragment>
-        );
+            </ThemeProvider>
+        </React.Fragment>
+    )
 
 }

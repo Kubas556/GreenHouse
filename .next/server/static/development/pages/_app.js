@@ -2130,8 +2130,23 @@ function MyApp(props) {
   const themeReg = /theme=(\w+)/;
   const classes = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__["useTheme"])();
   const router = Object(next_router__WEBPACK_IMPORTED_MODULE_3__["useRouter"])();
+  const {
+    0: touchDisplay,
+    1: setTouchDisplay
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false);
+  const {
+    0: content,
+    1: setContent
+  } = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(__jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: this
+  }));
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
     const themeCookie = document.cookie.match(themeReg);
+    setTouchDisplay(navigator.maxTouchPoints);
     if (themeCookie) setTheme(JSON.parse(themeCookie[1])); // Remove the server-side injected CSS.
 
     const jssStyles = document.querySelector('#jss-server-side');
@@ -2157,19 +2172,19 @@ function MyApp(props) {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 66
     },
     __self: this
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_2___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 67
     },
     __self: this
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 68
     },
     __self: this
   }, "My page"), __jsx("meta", {
@@ -2177,30 +2192,31 @@ function MyApp(props) {
     content: "minimum-scale=1, initial-scale=1, width=device-width",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 69
     },
     __self: this
   })), __jsx(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_4__["ThemeProvider"], {
     theme: theme ? _components_Theme__WEBPACK_IMPORTED_MODULE_6__["darkTheme"] : _components_Theme__WEBPACK_IMPORTED_MODULE_6__["lightTheme"],
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70
+      lineNumber: 71
     },
     __self: this
   }, __jsx(_material_ui_core_CssBaseline__WEBPACK_IMPORTED_MODULE_5___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 78
     },
     __self: this
   }), __jsx(Component, _extends({
-    theme: theme
+    theme: theme,
+    touchDisplay: touchDisplay
   }, pageProps, {
     /*setThemeBtn={toggleThemeSwitch.bind(this)}*/
     switchTheme: switchTheme.bind(this),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 79
     },
     __self: this
   }))));

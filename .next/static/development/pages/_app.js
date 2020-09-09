@@ -60170,8 +60170,24 @@ function MyApp(props) {
   var themeReg = /theme=(\w+)/;
   var classes = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["useTheme"])();
   var router = Object(next_router__WEBPACK_IMPORTED_MODULE_4__["useRouter"])();
+
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      touchDisplay = _useState2[0],
+      setTouchDisplay = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(__jsx("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 39
+    },
+    __self: this
+  })),
+      content = _useState3[0],
+      setContent = _useState3[1];
+
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var themeCookie = document.cookie.match(themeReg);
+    setTouchDisplay(navigator.maxTouchPoints);
     if (themeCookie) setTheme(JSON.parse(themeCookie[1])); // Remove the server-side injected CSS.
 
     var jssStyles = document.querySelector('#jss-server-side');
@@ -60195,19 +60211,19 @@ function MyApp(props) {
   return __jsx(react__WEBPACK_IMPORTED_MODULE_1___default.a.Fragment, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 65
+      lineNumber: 66
     },
     __self: this
   }, __jsx(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 66
+      lineNumber: 67
     },
     __self: this
   }, __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 67
+      lineNumber: 68
     },
     __self: this
   }, "My page"), __jsx("meta", {
@@ -60215,30 +60231,31 @@ function MyApp(props) {
     content: "minimum-scale=1, initial-scale=1, width=device-width",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 68
+      lineNumber: 69
     },
     __self: this
   })), __jsx(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_5__["ThemeProvider"], {
     theme: theme ? _components_Theme__WEBPACK_IMPORTED_MODULE_7__["darkTheme"] : _components_Theme__WEBPACK_IMPORTED_MODULE_7__["lightTheme"],
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 70
+      lineNumber: 71
     },
     __self: this
   }, __jsx(_material_ui_core_CssBaseline__WEBPACK_IMPORTED_MODULE_6__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 78
     },
     __self: this
   }), __jsx(Component, Object(_babel_runtime_corejs2_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({
-    theme: theme
+    theme: theme,
+    touchDisplay: touchDisplay
   }, pageProps, {
     /*setThemeBtn={toggleThemeSwitch.bind(this)}*/
     switchTheme: switchTheme.bind(this),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 79
     },
     __self: this
   }))));

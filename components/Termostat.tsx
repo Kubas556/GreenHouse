@@ -180,7 +180,7 @@ function Termostat(props:ITermostat){
         if(valueInput.current)
         valueInput.current.innerHTML = currentValue.toString();
         if(!initialize)
-        props.onValueChanged(currentValue.toString());
+        props.onValueChanged(Number.parseInt(currentValue.toString()));
     },[currentValue]);
 
     useEffect(()=>{
