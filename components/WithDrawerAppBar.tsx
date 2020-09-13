@@ -218,7 +218,7 @@ export default function WithDrawerAppBar(props:IWithDrawerAppBar) {
                             <ListItemText primary={"Teplota"} />
                         </ListItem>
                     </Link>
-                    <Link href={"/irrigation"}>
+                    <Link href={"/irrigation/"+devId}>
                         <ListItem button>
                             <ListItemIcon>{<WaterCanIconFilled/>}</ListItemIcon>
                             <ListItemText primary={"Zavlažování"} />

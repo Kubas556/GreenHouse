@@ -17,7 +17,9 @@ import Loading from "../../components/Loading";
 import {object, string} from "prop-types";
 import {Line} from "react-chartjs-2";
 import onlyDesktop from "../../components/OnlyDesktop";
+import FireBackground from "../../components/FireBackground";
 import {width} from "@material-ui/system";
+import {url} from "inspector";
 
 const useStyle = makeStyles(theme=>({
     center:{

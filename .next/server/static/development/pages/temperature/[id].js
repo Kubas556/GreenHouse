@@ -1597,7 +1597,7 @@ function WithDrawerAppBar(props) {
     },
     __self: this
   }))), __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
-    href: "/irrigation",
+    href: "/irrigation/" + devId,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 221
@@ -3988,7 +3988,7 @@ function Id(props) {
   return __jsx("div", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 76
+      lineNumber: 78
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Typography"], {
@@ -3996,21 +3996,21 @@ function Id(props) {
     variant: "h2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 77
+      lineNumber: 79
     },
     __self: this
   }, "Teplota"), __jsx("div", {
     className: classes.center,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 80
+      lineNumber: 82
     },
     __self: this
   }, __jsx("div", {
     className: classes.controllComponent,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 81
+      lineNumber: 83
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Paper"], {
@@ -4020,7 +4020,7 @@ function Id(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 82
+      lineNumber: 84
     },
     __self: this
   }, __jsx(_components_Tempmeter__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -4028,14 +4028,14 @@ function Id(props) {
     temp: temp,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 83
+      lineNumber: 85
     },
     __self: this
   }))), __jsx("div", {
     className: classes.controllComponent,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 88
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Paper"], {
@@ -4045,7 +4045,7 @@ function Id(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87
+      lineNumber: 89
     },
     __self: this
   }, __jsx(_components_Termostat__WEBPACK_IMPORTED_MODULE_7__["default"], {
@@ -4054,14 +4054,14 @@ function Id(props) {
     defaultValue: defTemp,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 88
+      lineNumber: 90
     },
     __self: this
   })))), __jsx("div", {
     className: classes.center,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 92
+      lineNumber: 94
     },
     __self: this
   }, __jsx("div", {
@@ -4071,13 +4071,13 @@ function Id(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 93
+      lineNumber: 95
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Paper"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 94
+      lineNumber: 96
     },
     __self: this
   }, __jsx(react_chartjs_2__WEBPACK_IMPORTED_MODULE_9__["Line"], {
@@ -4118,7 +4118,7 @@ function Id(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 95
+      lineNumber: 97
     },
     __self: this
   })))));
@@ -4146,7 +4146,7 @@ function ex(props) {
     componentProps: props,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 147
+      lineNumber: 149
     },
     __self: this
   });
