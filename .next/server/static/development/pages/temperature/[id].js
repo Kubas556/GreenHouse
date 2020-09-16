@@ -187,94 +187,6 @@ function Loading() {
 
 /***/ }),
 
-/***/ "./components/OnlyDesktop.tsx":
-/*!************************************!*\
-  !*** ./components/OnlyDesktop.tsx ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\components\\OnlyDesktop.tsx";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-
-
-const onlyDesktop = Component => {
-  return class extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        touchDisplay: false
-      };
-    }
-
-    componentDidMount() {
-      let maxpoints = navigator.maxTouchPoints;
-      this.setState({
-        touchDisplay: maxpoints
-      });
-    }
-
-    renderContent() {
-      // @ts-ignore
-      const {
-        touchDisplay
-      } = this.state;
-
-      if (touchDisplay) {
-        return __jsx("div", {
-          style: {
-            position: "absolute",
-            width: "100%",
-            height: "100%"
-          },
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 21
-          },
-          __self: this
-        }, __jsx("h1", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 21
-          },
-          __self: this
-        }, "Mobile devices are currently unsuported"));
-      } else {
-        // @ts-ignore
-        return __jsx(Component, _extends({}, this.props, {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 24
-          },
-          __self: this
-        }));
-      }
-    }
-
-    render() {
-      return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 29
-        },
-        __self: this
-      }, this.renderContent());
-    }
-
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (onlyDesktop);
-
-/***/ }),
-
 /***/ "./components/Tempmeter.tsx":
 /*!**********************************!*\
   !*** ./components/Tempmeter.tsx ***!
@@ -347,7 +259,7 @@ function Tempmeter(props) {
     });
     animejs__WEBPACK_IMPORTED_MODULE_1___default()({
       targets: text.current,
-      transform: "translate(55.59 " + (y - 2.77) + ")",
+      transform: "translate(50.59 " + (y - 2.77) + ")",
       duration: duration,
       easing: easing,
       update: function () {}
@@ -369,7 +281,7 @@ function Tempmeter(props) {
     __self: this
   }, __jsx("svg", {
     xmlns: "http://www.w3.org/2000/svg",
-    width: "100",
+    width: "110",
     viewBox: "0 0 83.45 252.84",
     __source: {
       fileName: _jsxFileName,
@@ -388,7 +300,7 @@ function Tempmeter(props) {
       lineNumber: 91
     },
     __self: this
-  }, ".cls-1,.cls-3,.cls-5{fill:none;stroke-miterlimit:10;}.cls-1{stroke:#4950f5;stroke-linecap:round;stroke-width:7px;}.cls-2{fill:#4950f5;}.cls-3,.cls-5{stroke:" + (props.theme == 1 ? "white" : "black") + ";stroke-width:0.25px;}.cls-4{font - size:12px;fill:" + (props.theme == 1 ? "white" : "black") + ";font-family:CenturyGothic, Century Gothic;}.cls-5{stroke - dasharray:0.99 0.99;}")), __jsx("title", {
+  }, ".cls-1,.cls-3,.cls-5{fill:none;stroke-miterlimit:10;}.cls-1{stroke:#4950f5;stroke-linecap:round;stroke-width:7px;}.cls-2{fill:#4950f5;}.cls-3,.cls-5{stroke:" + (props.theme == 1 ? "white" : "black") + ";stroke-width:0.25px;}.cls-4{font-size:12px;fill:" + (props.theme == 1 ? "white" : "black") + ";font-family:CenturyGothic, Century Gothic;}.cls-5{stroke - dasharray:0.99 0.99;}")), __jsx("title", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 93
@@ -490,7 +402,7 @@ function Tempmeter(props) {
   }), __jsx("text", {
     ref: text,
     className: "cls-4",
-    transform: "translate(55.59 " + (minHeight - 2.77) + ")",
+    transform: "translate(50.59 " + (minHeight - 2.77) + ")",
     __source: {
       fileName: _jsxFileName,
       lineNumber: 104
@@ -3911,7 +3823,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _firebase_index__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../firebase/index */ "./firebase/index.tsx");
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-chartjs-2 */ "react-chartjs-2");
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _components_OnlyDesktop__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/OnlyDesktop */ "./components/OnlyDesktop.tsx");
 var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\pages\\temperature\\[id].tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
@@ -3924,10 +3835,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
-
 const useStyle = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0__["makeStyles"])(theme => ({
   center: {
-    display: 'flex'
+    display: 'flex',
+    width: 'calc(100% - 1px)'
+  },
+  page: {
+    width: '100%',
+    position: 'relative'
   },
   controllComponent: {
     margin: '50px',
@@ -3960,7 +3875,7 @@ function Id(props) {
   } = router.query;
   const timeFormat = 'MM/DD/YYYY HH:mm';
   let tempData = _firebase_index__WEBPACK_IMPORTED_MODULE_8__["firebase"].database().ref("/users/" + props.user + "/devices/" + id + "/temp");
-  let tempHistoryData = _firebase_index__WEBPACK_IMPORTED_MODULE_8__["firebase"].database().ref("/users/" + props.user + "/devices/" + id + "/temps");
+  let tempHistoryData = _firebase_index__WEBPACK_IMPORTED_MODULE_8__["firebase"].database().ref("/users/" + props.user + "/devices/" + id + "/history/temps");
   let targetTempData = _firebase_index__WEBPACK_IMPORTED_MODULE_8__["firebase"].database().ref("/users/" + props.user + "/devices/" + id + "/targetTemp");
 
   const termostatChange = value => {
@@ -3986,9 +3901,10 @@ function Id(props) {
     });
   }, []);
   return __jsx("div", {
+    className: classes.page,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 78
+      lineNumber: 83
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Typography"], {
@@ -3996,42 +3912,17 @@ function Id(props) {
     variant: "h2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 79
+      lineNumber: 84
     },
     __self: this
   }, "Teplota"), __jsx("div", {
     className: classes.center,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 82
+      lineNumber: 87
     },
     __self: this
   }, __jsx("div", {
-    className: classes.controllComponent,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 83
-    },
-    __self: this
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Paper"], {
-    elevation: 3,
-    style: {
-      padding: '1rem'
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 84
-    },
-    __self: this
-  }, __jsx(_components_Tempmeter__WEBPACK_IMPORTED_MODULE_6__["default"], {
-    theme: props.theme,
-    temp: temp,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 85
-    },
-    __self: this
-  }))), __jsx("div", {
     className: classes.controllComponent,
     __source: {
       fileName: _jsxFileName,
@@ -4048,62 +3939,92 @@ function Id(props) {
       lineNumber: 89
     },
     __self: this
+  }, __jsx(_components_Tempmeter__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    theme: props.theme,
+    temp: temp,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 90
+    },
+    __self: this
+  }))), __jsx("div", {
+    className: classes.controllComponent,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 93
+    },
+    __self: this
+  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Paper"], {
+    elevation: 3,
+    style: {
+      padding: '1rem'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 94
+    },
+    __self: this
   }, __jsx(_components_Termostat__WEBPACK_IMPORTED_MODULE_7__["default"], {
     theme: props.theme,
     onValueChanged: termostatChange,
     defaultValue: defTemp,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 90
+      lineNumber: 95
     },
     __self: this
   })))), __jsx("div", {
     className: classes.center,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 94
+      lineNumber: 99
     },
     __self: this
   }, __jsx("div", {
     className: classes.controllComponent,
     style: {
-      width: 'calc(100% - 100px)'
+      width: 'calc(100% - 100px)',
+      maxWidth: ' calc(100% - 100px)'
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 95
-    },
-    __self: this
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Paper"], {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 96
+      lineNumber: 100
     },
     __self: this
   }, __jsx(react_chartjs_2__WEBPACK_IMPORTED_MODULE_9__["Line"], {
+    height: 200,
     data: {
       labels: tempHistoryCharLabels,
       datasets: [{
         label: 'temp',
         data: tempHistoryCharData,
-        backgroundColor: 'rgba(0,0,0,0)',
+        backgroundColor: function (context) {
+          let gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 200);
+          gradient.addColorStop(0, 'rgba(244,67,54,0.5)');
+          gradient.addColorStop(1, 'rgba(244,67,54,0)');
+          return gradient;
+        },
         pointBackgroundColor: 'red',
         borderColor: 'red',
-        borderWidth: 0
+        borderWidth: 0,
+        fill: true
       }]
     },
     options: {
       scales: {
         xAxes: [{
+          display: false,
           gridLines: {
             display: false
           }
         }],
         yAxes: [{
+          display: true,
           gridLines: {
             color: props.theme == 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
             zeroLineColor: props.theme == 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-            drawTicks: false
+            drawTicks: false,
+            display: false
           },
           ticks: {
             stepSize: 10,
@@ -4111,17 +4032,21 @@ function Id(props) {
           }
         }]
       },
-      maintainAspectRatio: false
+      legend: {
+        display: true
+      },
+      maintainAspectRatio: false,
+      responsive: true
       /*xAxes:[{
         }]*/
 
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 97
+      lineNumber: 101
     },
     __self: this
-  })))));
+  }))));
 }
 
 function ex(props) {
@@ -4146,13 +4071,13 @@ function ex(props) {
     componentProps: props,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 165
     },
     __self: this
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_components_OnlyDesktop__WEBPACK_IMPORTED_MODULE_10__["default"])(Object(_components_WithAuth__WEBPACK_IMPORTED_MODULE_4__["default"])(ex)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_components_WithAuth__WEBPACK_IMPORTED_MODULE_4__["default"])(ex));
 
 /***/ }),
 

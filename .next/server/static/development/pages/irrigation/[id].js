@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -212,6 +212,10 @@ const AirHumidity = props => {
     });
   }, [props.value]);
   return __jsx("div", {
+    style: {
+      width: componentWidth,
+      height: componentHeight
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 109
@@ -239,7 +243,7 @@ const AirHumidity = props => {
       lineNumber: 112
     },
     __self: undefined
-  }, ".cls-1-vlh-vz,.cls-7-vlh-vz,.cls-8-vlh-vz{fill:none;}.cls-2-vlh-vz{font-size:12px;fill:#fff;font-family:CenturyGothic, Century Gothic;}.cls-3-vlh-vz{clip-path:url(#clip-path-vlh-vz);}.cls-4-vlh-vz,.cls-5-vlh-vz,.cls-6-vlh-vz{fill:#18b8d4;}.cls-5-vlh-vz{opacity:0.2;}.cls-6-vlh-vz{opacity:0.4;}.cls-7-vlh-vz,.cls-8-vlh-vz{stroke:#fff;stroke-miterlimit:10;}.cls-7-vlh-vz{stroke-width:0.25px;}.cls-8-vlh-vz{stroke-opacity:0.49;}"), __jsx("clipPath", {
+  }, ".cls-1-vlh-vz,.cls-7-vlh-vz,.cls-8-vlh-vz{fill:none;}.cls-2-vlh-vz{font-size:12px;fill:" + (props.theme == 1 ? "white" : "black") + ";font-family:CenturyGothic, Century Gothic;}.cls-3-vlh-vz{clip-path:url(#clip-path-vlh-vz);}.cls-4-vlh-vz,.cls-5-vlh-vz,.cls-6-vlh-vz{fill:#18b8d4;}.cls-5-vlh-vz{opacity:0.2;}.cls-6-vlh-vz{opacity:0.4;}.cls-7-vlh-vz,.cls-8-vlh-vz{stroke:" + (props.theme == 1 ? "white" : "black") + ";stroke-miterlimit:10;}.cls-7-vlh-vz{stroke-width:0.25px;}.cls-8-vlh-vz{stroke-opacity:0.49;}"), __jsx("clipPath", {
     id: "clip-path-vlh-vz",
     transform: "translate(60.15)",
     __source: {
@@ -458,94 +462,6 @@ function Loading() {
 
 /***/ }),
 
-/***/ "./components/OnlyDesktop.tsx":
-/*!************************************!*\
-  !*** ./components/OnlyDesktop.tsx ***!
-  \************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\components\\OnlyDesktop.tsx";
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-
-
-const onlyDesktop = Component => {
-  return class extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        touchDisplay: false
-      };
-    }
-
-    componentDidMount() {
-      let maxpoints = navigator.maxTouchPoints;
-      this.setState({
-        touchDisplay: maxpoints
-      });
-    }
-
-    renderContent() {
-      // @ts-ignore
-      const {
-        touchDisplay
-      } = this.state;
-
-      if (touchDisplay) {
-        return __jsx("div", {
-          style: {
-            position: "absolute",
-            width: "100%",
-            height: "100%"
-          },
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 21
-          },
-          __self: this
-        }, __jsx("h1", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 21
-          },
-          __self: this
-        }, "Mobile devices are currently unsuported"));
-      } else {
-        // @ts-ignore
-        return __jsx(Component, _extends({}, this.props, {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 24
-          },
-          __self: this
-        }));
-      }
-    }
-
-    render() {
-      return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 29
-        },
-        __self: this
-      }, this.renderContent());
-    }
-
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (onlyDesktop);
-
-/***/ }),
-
 /***/ "./components/SoilHumidity.tsx":
 /*!*************************************!*\
   !*** ./components/SoilHumidity.tsx ***!
@@ -669,7 +585,6 @@ const SoilHumidity = props => {
     const animParam = {
       value: currentValue
     };
-    console.log(props.value);
     animejs__WEBPACK_IMPORTED_MODULE_1___default()({
       targets: animParam,
       value: props.value ? props.value : 0,
@@ -687,13 +602,13 @@ const SoilHumidity = props => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 114
+      lineNumber: 112
     },
     __self: undefined
   }, __jsx("style", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 115
+      lineNumber: 113
     },
     __self: undefined
   }, ".vlh-pud-svg{" + "position:absolute;" + "pointer-events:none;" + "left:0" + "}"), __jsx("svg", {
@@ -703,20 +618,20 @@ const SoilHumidity = props => {
     className: "vlh-pud-svg",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 124
+      lineNumber: 122
     },
     __self: undefined
   }, __jsx("defs", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 125
+      lineNumber: 123
     },
     __self: undefined
   }, __jsx("filter", {
     id: "filter",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 126
+      lineNumber: 124
     },
     __self: undefined
   }, __jsx("feGaussianBlur", {
@@ -724,7 +639,7 @@ const SoilHumidity = props => {
     result: "blur",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 127
+      lineNumber: 125
     },
     __self: undefined
   }), __jsx("feColorMatrix", {
@@ -734,7 +649,7 @@ const SoilHumidity = props => {
     result: "colormatrix",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 128
+      lineNumber: 126
     },
     __self: undefined
   }), __jsx("feComposite", {
@@ -744,7 +659,7 @@ const SoilHumidity = props => {
     result: "composite",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 129
+      lineNumber: 127
     },
     __self: undefined
   })))), __jsx("svg", {
@@ -757,19 +672,19 @@ const SoilHumidity = props => {
     viewBox: "0 0 277.6 273.27",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 134
+      lineNumber: 132
     },
     __self: undefined
   }, __jsx("defs", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 135
+      lineNumber: 133
     },
     __self: undefined
   }, __jsx("style", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 136
+      lineNumber: 134
     },
     __self: undefined
   }, ".cls-1-vlh-pud,.cls-3-vlh-pud,.cls-4-vlh-pud,.cls-5-vlh-pud{fill:none;}.cls-2-vlh-pud{fill:#fff;}.cls-3-vlh-pud,.cls-4-vlh-pud{stroke:" + (props.theme == 1 ? "white" : "black") + ";}.cls-3-vlh-pud,.cls-4-vlh-pud,.cls-5-vlh-pud{stroke-miterlimit:10;}.cls-3-vlh-pud{stroke-opacity:0.49;}.cls-4-vlh-pud{stroke-width:0.25px;}.cls-5-vlh-pud{stroke:#925f36;stroke-width:3px;}.cls-6-vlh-pud{fill:#80bb50;}.cls-7-vlh-pud{clip-path:url(#clip-path-vlh-pud);}.cls-8-vlh-pud{fill:#18b8d4;}"), __jsx("clipPath", {
@@ -777,7 +692,7 @@ const SoilHumidity = props => {
     transform: "translate(37.49)",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 137
+      lineNumber: 135
     },
     __self: undefined
   }, __jsx("path", {
@@ -785,13 +700,13 @@ const SoilHumidity = props => {
     d: "M191.25,112.08Q171,181.44,150.83,250.78H55.26Q35,181.44,14.84,112.08Z",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 138
+      lineNumber: 136
     },
     __self: undefined
   }))), __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 141
+      lineNumber: 139
     },
     __self: undefined
   }, "Datov\xFD zdroj 39"), __jsx("g", {
@@ -799,7 +714,7 @@ const SoilHumidity = props => {
     "data-name": "Vrstva 2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 142
+      lineNumber: 140
     },
     __self: undefined
   }, __jsx("g", {
@@ -807,7 +722,7 @@ const SoilHumidity = props => {
     "data-name": "Vrstva 4",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 143
+      lineNumber: 141
     },
     __self: undefined
   }, __jsx("text", {
@@ -820,7 +735,7 @@ const SoilHumidity = props => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 144
+      lineNumber: 142
     },
     __self: undefined
   }, "50%"), __jsx("polygon", {
@@ -828,7 +743,7 @@ const SoilHumidity = props => {
     points: "38.16 100.94 242.91 100.94 196 261.92 85.08 261.92 38.16 100.94",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 149
+      lineNumber: 147
     },
     __self: undefined
   }), __jsx("line", {
@@ -841,7 +756,7 @@ const SoilHumidity = props => {
     y2: "171.72",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 150
+      lineNumber: 148
     },
     __self: undefined
   }), __jsx("line", {
@@ -852,7 +767,7 @@ const SoilHumidity = props => {
     y2: "121.49",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 151
+      lineNumber: 149
     },
     __self: undefined
   }), __jsx("path", {
@@ -861,7 +776,7 @@ const SoilHumidity = props => {
     transform: "translate(37.49)",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 152
+      lineNumber: 150
     },
     __self: undefined
   }), __jsx("path", {
@@ -870,7 +785,7 @@ const SoilHumidity = props => {
     transform: "translate(37.49)",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 153
+      lineNumber: 151
     },
     __self: undefined
   }), __jsx("path", {
@@ -879,7 +794,7 @@ const SoilHumidity = props => {
     transform: "translate(37.49)",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 154
+      lineNumber: 152
     },
     __self: undefined
   }), __jsx("path", {
@@ -888,7 +803,7 @@ const SoilHumidity = props => {
     transform: "translate(37.49)",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 155
+      lineNumber: 153
     },
     __self: undefined
   }), __jsx("polyline", {
@@ -896,7 +811,7 @@ const SoilHumidity = props => {
     points: "175.47 136.72 140.54 100.94 130.06 142.65",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 156
+      lineNumber: 154
     },
     __self: undefined
   }), __jsx("line", {
@@ -907,7 +822,7 @@ const SoilHumidity = props => {
     y2: "127.94",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 157
+      lineNumber: 155
     },
     __self: undefined
   }), __jsx("line", {
@@ -918,7 +833,7 @@ const SoilHumidity = props => {
     y2: "107.74",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 158
+      lineNumber: 156
     },
     __self: undefined
   }), __jsx("line", {
@@ -929,14 +844,14 @@ const SoilHumidity = props => {
     y2: "129.75",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 159
+      lineNumber: 157
     },
     __self: undefined
   }), __jsx("g", {
     className: "cls-7-vlh-pud",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 160
+      lineNumber: 158
     },
     __self: undefined
   }, __jsx("line", {
@@ -952,7 +867,7 @@ const SoilHumidity = props => {
     y2: "171.72",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 161
+      lineNumber: 159
     },
     __self: undefined
   }))))), __jsx("svg", {
@@ -966,19 +881,19 @@ const SoilHumidity = props => {
     viewBox: "0 0 277.6 273.27",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 164
+      lineNumber: 162
     },
     __self: undefined
   }, __jsx("defs", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 165
+      lineNumber: 163
     },
     __self: undefined
   }, __jsx("style", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 166
+      lineNumber: 164
     },
     __self: undefined
   }, ".cls-1-vlh-pud,.cls-3-vlh-pud,.cls-4-vlh-pud,.cls-5-vlh-pud{fill:none;}.cls-2-vlh-pud{fill:#fff;}.cls-3-vlh-pud,.cls-4-vlh-pud{stroke:" + (props.theme == 1 ? "white" : "black") + ";}.cls-3-vlh-pud,.cls-4-vlh-pud,.cls-5-vlh-pud{stroke-miterlimit:10;}.cls-3-vlh-pud{stroke-opacity:0.49;}.cls-4-vlh-pud{stroke-width:0.25px;}.cls-5-vlh-pud{stroke:#925f36;stroke-width:3px;}.cls-6-vlh-pud{fill:#80bb50;}.cls-7-vlh-pud{clip-path:url(#clip-path);}.cls-8-vlh-pud{fill:#18b8d4;}"), __jsx("clipPath", {
@@ -986,7 +901,7 @@ const SoilHumidity = props => {
     transform: "translate(37.49)",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 167
+      lineNumber: 165
     },
     __self: undefined
   }, __jsx("path", {
@@ -994,13 +909,13 @@ const SoilHumidity = props => {
     d: "M191.25,112.08Q171,181.44,150.83,250.78H55.26Q35,181.44,14.84,112.08Z",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 168
+      lineNumber: 166
     },
     __self: undefined
   }))), __jsx("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 171
+      lineNumber: 169
     },
     __self: undefined
   }, "Datov\xFD zdroj 39"), __jsx("g", {
@@ -1008,7 +923,7 @@ const SoilHumidity = props => {
     "data-name": "Vrstva 2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 172
+      lineNumber: 170
     },
     __self: undefined
   }, __jsx("g", {
@@ -1016,14 +931,14 @@ const SoilHumidity = props => {
     "data-name": "Vrstva 4",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 173
+      lineNumber: 171
     },
     __self: undefined
   }, __jsx("g", {
     className: "cls-7-vlh-pud",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 174
+      lineNumber: 172
     },
     __self: undefined
   }, __jsx("path", {
@@ -1034,7 +949,7 @@ const SoilHumidity = props => {
     transform: "translate(37.49)",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 175
+      lineNumber: 173
     },
     __self: undefined
   }), __jsx("circle", {
@@ -1044,7 +959,7 @@ const SoilHumidity = props => {
     r: bubbleBaseSize + 1,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 176
+      lineNumber: 174
     },
     __self: undefined
   }), __jsx("circle", {
@@ -1054,7 +969,7 @@ const SoilHumidity = props => {
     r: bubbleBaseSize + 2.63,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 177
+      lineNumber: 175
     },
     __self: undefined
   }), __jsx("circle", {
@@ -1064,7 +979,7 @@ const SoilHumidity = props => {
     r: bubbleBaseSize + 1.63,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 178
+      lineNumber: 176
     },
     __self: undefined
   }), __jsx("rect", {
@@ -1077,7 +992,7 @@ const SoilHumidity = props => {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 179
+      lineNumber: 177
     },
     __self: undefined
   }))))));
@@ -3907,9 +3822,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _firebase_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../firebase/index */ "./firebase/index.tsx");
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-chartjs-2 */ "react-chartjs-2");
 /* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_chartjs_2__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _components_OnlyDesktop__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/OnlyDesktop */ "./components/OnlyDesktop.tsx");
-/* harmony import */ var _components_SoilHumidity__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/SoilHumidity */ "./components/SoilHumidity.tsx");
-/* harmony import */ var _components_AirHumidity__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../components/AirHumidity */ "./components/AirHumidity.tsx");
+/* harmony import */ var _components_SoilHumidity__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../components/SoilHumidity */ "./components/SoilHumidity.tsx");
+/* harmony import */ var _components_AirHumidity__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../components/AirHumidity */ "./components/AirHumidity.tsx");
 var _jsxFileName = "C:\\Users\\Jakub Sedlak\\WebstormProjects\\projekt_CP - typescript\\pages\\irrigation\\[id].tsx";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
@@ -3922,10 +3836,14 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 
-
 const useStyle = Object(_material_ui_core_styles__WEBPACK_IMPORTED_MODULE_0__["makeStyles"])(theme => ({
   center: {
-    display: 'flex'
+    display: 'flex',
+    width: 'calc(100% - 1px)'
+  },
+  page: {
+    width: '100%',
+    position: 'relative'
   },
   controllComponent: {
     margin: '50px',
@@ -3945,12 +3863,12 @@ function Id(props) {
     1: setAirHumidity
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0);
   const {
-    0: tempHistoryCharData,
-    1: setTempHistoryCharData
+    0: airHumidityHistoryCharData,
+    1: setAirHumidityHistoryCharData
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])();
   const {
-    0: tempHistoryCharLabels,
-    1: setTempHistoryCharLabels
+    0: aitHumidityHistoryCharLabels,
+    1: setAirHumidityHistoryCharLabels
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])();
   const {
     0: defTemp,
@@ -3963,7 +3881,7 @@ function Id(props) {
   const timeFormat = 'MM/DD/YYYY HH:mm';
   let soilHumidityData = _firebase_index__WEBPACK_IMPORTED_MODULE_6__["firebase"].database().ref("/users/" + props.user + "/devices/" + id + "/soilHumidity");
   let airHumidityData = _firebase_index__WEBPACK_IMPORTED_MODULE_6__["firebase"].database().ref("/users/" + props.user + "/devices/" + id + "/airHumidity");
-  let humidityHistoryData = _firebase_index__WEBPACK_IMPORTED_MODULE_6__["firebase"].database().ref("/users/" + props.user + "/devices/" + id + "/humiditys"); //let targetTempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp");
+  let humidityHistoryData = _firebase_index__WEBPACK_IMPORTED_MODULE_6__["firebase"].database().ref("/users/" + props.user + "/devices/" + id + "/history/airHumidity"); //let targetTempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp");
 
   const termostatChange = value => {
     _firebase_index__WEBPACK_IMPORTED_MODULE_6__["firebase"].database().ref("/users/" + props.user + "/devices/" + id + "/targetTemp").set(value);
@@ -3976,25 +3894,25 @@ function Id(props) {
     airHumidityData.on('value', data => {
       setAirHumidity(data.val());
     });
-    /*humidityHistoryData.on('value',data=>{
-        let charData:any[] = [];
-        let charLabels:any[] = [];
-        Object.keys(data.val()).forEach(key => {
-            charData.push(data.val()[key].temp);
-            charLabels.push(data.val()[key].time[1]+'/'+data.val()[key].time[2]+'/'+data.val()[key].time[0]+' '+data.val()[key].time[3]+':'+data.val()[key].time[4])
-        });
-          setTempHistoryCharData(charData);
-        setTempHistoryCharLabels(charLabels);
-    });*/
-
+    humidityHistoryData.on('value', data => {
+      let charData = [];
+      let charLabels = [];
+      Object.keys(data.val()).forEach(key => {
+        charData.push(data.val()[key].value);
+        charLabels.push(data.val()[key].time[1] + '/' + data.val()[key].time[2] + '/' + data.val()[key].time[0] + ' ' + data.val()[key].time[3] + ':' + data.val()[key].time[4]);
+      });
+      setAirHumidityHistoryCharData(charData);
+      setAirHumidityHistoryCharLabels(charLabels);
+    });
     /*targetTempData.once('value',data=>{
         setDefTemp(data.val());
     });*/
   }, []);
   return __jsx("div", {
+    className: classes.page,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 86
+      lineNumber: 91
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Typography"], {
@@ -4002,42 +3920,17 @@ function Id(props) {
     variant: "h2",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 87
+      lineNumber: 92
     },
     __self: this
   }, "Zavla\u017Eov\xE1n\xED"), __jsx("div", {
     className: classes.center,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 90
+      lineNumber: 95
     },
     __self: this
   }, __jsx("div", {
-    className: classes.controllComponent,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 91
-    },
-    __self: this
-  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Paper"], {
-    elevation: 3,
-    style: {
-      padding: '1rem'
-    },
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 92
-    },
-    __self: this
-  }, __jsx(_components_SoilHumidity__WEBPACK_IMPORTED_MODULE_9__["default"], {
-    theme: props.theme,
-    value: soilHumidity,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 93
-    },
-    __self: this
-  }))), __jsx("div", {
     className: classes.controllComponent,
     __source: {
       fileName: _jsxFileName,
@@ -4054,19 +3947,44 @@ function Id(props) {
       lineNumber: 97
     },
     __self: this
-  }, __jsx(_components_AirHumidity__WEBPACK_IMPORTED_MODULE_10__["default"], {
+  }, __jsx(_components_SoilHumidity__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    theme: props.theme,
+    value: soilHumidity,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 98
+    },
+    __self: this
+  }))), __jsx("div", {
+    className: classes.controllComponent,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 101
+    },
+    __self: this
+  }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Paper"], {
+    elevation: 3,
+    style: {
+      padding: '1rem'
+    },
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 102
+    },
+    __self: this
+  }, __jsx(_components_AirHumidity__WEBPACK_IMPORTED_MODULE_9__["default"], {
     theme: props.theme,
     value: airHumidity,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 98
+      lineNumber: 103
     },
     __self: this
   })))), __jsx("div", {
     className: classes.center,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 102
+      lineNumber: 107
     },
     __self: this
   }, __jsx("div", {
@@ -4076,39 +3994,49 @@ function Id(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 103
+      lineNumber: 108
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_3__["Paper"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 104
+      lineNumber: 109
     },
     __self: this
   }, __jsx(react_chartjs_2__WEBPACK_IMPORTED_MODULE_7__["Line"], {
+    height: 200,
     data: {
-      labels: tempHistoryCharLabels,
+      labels: aitHumidityHistoryCharLabels,
       datasets: [{
-        label: 'temp',
-        data: tempHistoryCharData,
-        backgroundColor: 'rgba(0,0,0,0)',
-        pointBackgroundColor: 'red',
-        borderColor: 'red',
-        borderWidth: 0
+        label: 'value',
+        data: airHumidityHistoryCharData,
+        backgroundColor: function (context) {
+          let gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 200);
+          gradient.addColorStop(0, 'rgba(24,184,212,0.5)');
+          gradient.addColorStop(1, 'rgba(24,184,212,0)');
+          return gradient;
+        },
+        pointBackgroundColor: 'rgb(24,184,212)',
+        borderColor: 'rgb(24,184,212)',
+        borderWidth: 0,
+        fill: true
       }]
     },
     options: {
       scales: {
         xAxes: [{
+          display: false,
           gridLines: {
             display: false
           }
         }],
         yAxes: [{
+          display: true,
           gridLines: {
             color: props.theme == 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
             zeroLineColor: props.theme == 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-            drawTicks: false
+            drawTicks: false,
+            display: false
           },
           ticks: {
             stepSize: 10,
@@ -4116,20 +4044,20 @@ function Id(props) {
           }
         }]
       },
+      legend: {
+        display: true
+      },
       maintainAspectRatio: false
-      /*xAxes:[{
-        }]*/
-
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 105
+      lineNumber: 110
     },
     __self: this
   })))));
 }
 
-function ex(props) {
+function ex2(props) {
   const router = Object(next_router__WEBPACK_IMPORTED_MODULE_2__["useRouter"])();
   const {
     id
@@ -4151,17 +4079,17 @@ function ex(props) {
     componentProps: props,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 157
+      lineNumber: 171
     },
     __self: this
   });
 }
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_components_OnlyDesktop__WEBPACK_IMPORTED_MODULE_8__["default"])(Object(_components_WithAuth__WEBPACK_IMPORTED_MODULE_4__["default"])(ex)));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_components_WithAuth__WEBPACK_IMPORTED_MODULE_4__["default"])(ex2));
 
 /***/ }),
 
-/***/ 5:
+/***/ 3:
 /*!*****************************************!*\
   !*** multi ./pages/irrigation/[id].tsx ***!
   \*****************************************/

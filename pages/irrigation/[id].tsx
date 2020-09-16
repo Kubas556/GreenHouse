@@ -25,7 +25,12 @@ import AirHumidity from "../../components/AirHumidity";
 
 const useStyle = makeStyles(theme=>({
     center:{
-        display:'flex'
+        display:'flex',
+        width: 'calc(100% - 1px)'
+    },
+    page:{
+        width: '100%',
+        position: 'relative'
     },
     controllComponent:{
         margin:'50px',
@@ -38,8 +43,8 @@ function Id(props:IPageProps) {
     const classes = useStyle();
     const [soilHumidity,setSoilHumidity] = useState<number>(0);
     const [airHumidity,setAirHumidity] = useState<number>(0);
-    const [tempHistoryCharData,setTempHistoryCharData] = useState<any>();
-    const [tempHistoryCharLabels,setTempHistoryCharLabels] = useState<any>();
+    const [airHumidityHistoryCharData,setAirHumidityHistoryCharData] = useState<any>();
+    const [aitHumidityHistoryCharLabels,setAirHumidityHistoryCharLabels] = useState<any>();
     const [defTemp,setDefTemp] = useState<number>();
     const router = useRouter();
     const { id } = router.query;
@@ -48,7 +53,7 @@ function Id(props:IPageProps) {
 
     let soilHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/soilHumidity");
     let airHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/airHumidity");
-    let humidityHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/humiditys");
+    let humidityHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/history/airHumidity");
     //let targetTempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp");
 
     const termostatChange = (value:number) => {
@@ -64,17 +69,17 @@ function Id(props:IPageProps) {
             setAirHumidity(data.val());
         });
 
-        /*humidityHistoryData.on('value',data=>{
+        humidityHistoryData.on('value',data=>{
             let charData:any[] = [];
             let charLabels:any[] = [];
             Object.keys(data.val()).forEach(key => {
-                charData.push(data.val()[key].temp);
+                charData.push(data.val()[key].value);
                 charLabels.push(data.val()[key].time[1]+'/'+data.val()[key].time[2]+'/'+data.val()[key].time[0]+' '+data.val()[key].time[3]+':'+data.val()[key].time[4])
             });
 
-            setTempHistoryCharData(charData);
-            setTempHistoryCharLabels(charLabels);
-        });*/
+            setAirHumidityHistoryCharData(charData);
+            setAirHumidityHistoryCharLabels(charLabels);
+        });
 
         /*targetTempData.once('value',data=>{
             setDefTemp(data.val());
@@ -83,7 +88,7 @@ function Id(props:IPageProps) {
     },[]);
 
  return(
-     <div>
+     <div className={classes.page}>
          <Typography component={"h1"} variant={"h2"}>
              Zavlažování
          </Typography>
@@ -102,28 +107,37 @@ function Id(props:IPageProps) {
          <div className={classes.center}>
             <div className={classes.controllComponent} style={{width:'calc(100% - 100px)'}}>
                 <Paper>
-                    <Line data={{
-                        labels:tempHistoryCharLabels,
+                    <Line height={200} data={{
+                        labels:aitHumidityHistoryCharLabels,
                         datasets: [{
-                            label: 'temp',
-                            data: tempHistoryCharData,
-                            backgroundColor: 'rgba(0,0,0,0)',
-                            pointBackgroundColor: 'red',
-                            borderColor: 'red',
-                            borderWidth: 0
+                            label: 'value',
+                            data: airHumidityHistoryCharData,
+                            backgroundColor: function(context:any) {
+                                let gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 200);
+                                gradient.addColorStop(0, 'rgba(24,184,212,0.5)');
+                                gradient.addColorStop(1, 'rgba(24,184,212,0)');
+                                return gradient;
+                            },
+                            pointBackgroundColor: 'rgb(24,184,212)',
+                            borderColor: 'rgb(24,184,212)',
+                            borderWidth: 0,
+                            fill:true
                         }]
                     }} options={{
                         scales:{
                             xAxes: [{
+                                display:false,
                                 gridLines: {
                                     display: false,
                                 },
                             }],
                             yAxes: [{
+                                display:true,
                                 gridLines: {
                                     color:props.theme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
                                     zeroLineColor:props.theme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
                                     drawTicks:false,
+                                    display:false
                                 },
                                 ticks: {
                                     stepSize: 10,
@@ -131,10 +145,10 @@ function Id(props:IPageProps) {
                                 }
                             }],
                         },
-                        maintainAspectRatio: false,
-                        /*xAxes:[{
-
-                        }]*/
+                        legend: {
+                            display: true,
+                        },
+                        maintainAspectRatio: false
                     }}/>
                 </Paper>
             </div>
@@ -143,7 +157,7 @@ function Id(props:IPageProps) {
  )
 }
 
-function ex(props:IPageProps) {
+function ex2(props:IPageProps) {
     const router = useRouter();
     const { id } = router.query;
     const [name,setName] = useState("");
@@ -158,4 +172,4 @@ function ex(props:IPageProps) {
     )
 }
 
-export default onlyDesktop(withAuth(ex));
+export default withAuth(ex2);

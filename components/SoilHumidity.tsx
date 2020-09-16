@@ -98,8 +98,6 @@ const SoilHumidity = (props:ISoilHumudity) => {
             value:currentValue
         };
 
-        console.log(props.value);
-
         anime({
             targets: animParam,
             value:props.value?props.value:0,

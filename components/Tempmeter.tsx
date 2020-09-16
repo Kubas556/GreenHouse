@@ -65,7 +65,7 @@ function Tempmeter(props:ITempmeter){
 
         anime({
             targets:text.current,
-            transform:"translate(55.59 "+(y-2.77)+")",
+            transform:"translate(50.59 "+(y-2.77)+")",
             duration:duration,
             easing:easing,
             update:function(){
@@ -86,9 +86,9 @@ function Tempmeter(props:ITempmeter){
 
     return(
         <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width={"100"} viewBox="0 0 83.45 252.84">
+        <svg xmlns="http://www.w3.org/2000/svg" width={"110"} viewBox="0 0 83.45 252.84">
             <defs>
-                <style>{".cls-1,.cls-3,.cls-5{fill:none;stroke-miterlimit:10;}.cls-1{stroke:#4950f5;stroke-linecap:round;stroke-width:7px;}.cls-2{fill:#4950f5;}.cls-3,.cls-5{stroke:"+(props.theme==1?"white":"black")+";stroke-width:0.25px;}.cls-4{font - size:12px;fill:"+(props.theme==1?"white":"black")+";font-family:CenturyGothic, Century Gothic;}.cls-5{stroke - dasharray:0.99 0.99;}"}</style>
+                <style>{".cls-1,.cls-3,.cls-5{fill:none;stroke-miterlimit:10;}.cls-1{stroke:#4950f5;stroke-linecap:round;stroke-width:7px;}.cls-2{fill:#4950f5;}.cls-3,.cls-5{stroke:"+(props.theme==1?"white":"black")+";stroke-width:0.25px;}.cls-4{font-size:12px;fill:"+(props.theme==1?"white":"black")+";font-family:CenturyGothic, Century Gothic;}.cls-5{stroke - dasharray:0.99 0.99;}"}</style>
             </defs>
             <title>Datový zdroj 27</title>
             <g id="Vrstva_2" data-name="Vrstva 2">
@@ -101,7 +101,7 @@ function Tempmeter(props:ITempmeter){
                     <path className="cls-3" d="M31.85,221.33a16.53,16.53,0,1,0,14.45,0v-7.07"/>
                     <path className="cls-3" d="M0,13.31H29.77a2.08,2.08,0,0,1,2.08,2.08V221.33"/>
                     <line ref={textLine} className="cls-3" x1="82.82" y1={minHeight} x2="39.07" y2={minHeight}/>
-                    <text ref={text} className="cls-4" transform={"translate(55.59 "+(minHeight-2.77)+")"}>20°C</text>
+                    <text ref={text} className="cls-4" transform={"translate(50.59 "+(minHeight-2.77)+")"}>20°C</text>
                     <text className="cls-4" transform="translate(6.3 110.81)">0</text>
                     <line className="cls-3" x1="6.31" y1="113.81" x2="31.85" y2="113.81"/>
                     <line className="cls-3" x1="45.66" y1="113.81" x2="45.16" y2="113.81"/>

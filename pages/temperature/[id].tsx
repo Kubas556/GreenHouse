@@ -23,7 +23,12 @@ import {url} from "inspector";
 
 const useStyle = makeStyles(theme=>({
     center:{
-        display:'flex'
+        display:'flex',
+        width: 'calc(100% - 1px)'
+    },
+    page:{
+        width: '100%',
+        position: 'relative'
     },
     controllComponent:{
         margin:'50px',
@@ -44,7 +49,7 @@ function Id(props:IPageProps) {
 
 
     let tempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/temp");
-    let tempHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/temps");
+    let tempHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/history/temps");
     let targetTempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp");
 
     const termostatChange = (value:number) => {
@@ -75,7 +80,7 @@ function Id(props:IPageProps) {
     },[]);
 
  return(
-     <div>
+     <div className={classes.page}>
          <Typography component={"h1"} variant={"h2"}>
              Teplota
          </Typography>
@@ -92,30 +97,38 @@ function Id(props:IPageProps) {
              </div>
          </div>
          <div className={classes.center}>
-            <div className={classes.controllComponent} style={{width:'calc(100% - 100px)'}}>
-                <Paper>
-                    <Line data={{
+            <div className={classes.controllComponent} style={{width:'calc(100% - 100px)',maxWidth:' calc(100% - 100px)'}}>
+                    <Line height={200} data={{
                         labels:tempHistoryCharLabels,
                         datasets: [{
                             label: 'temp',
                             data: tempHistoryCharData,
-                            backgroundColor: 'rgba(0,0,0,0)',
+                            backgroundColor: function(context:any) {
+                                let gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 200);
+                                gradient.addColorStop(0, 'rgba(244,67,54,0.5)');
+                                gradient.addColorStop(1, 'rgba(244,67,54,0)');
+                                return gradient;
+                            },
                             pointBackgroundColor: 'red',
                             borderColor: 'red',
-                            borderWidth: 0
+                            borderWidth: 0,
+                            fill:true
                         }]
                     }} options={{
                         scales:{
                             xAxes: [{
+                                display:false,
                                 gridLines: {
                                     display: false,
                                 },
                             }],
                             yAxes: [{
+                                display:true,
                                 gridLines: {
                                     color:props.theme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
                                     zeroLineColor:props.theme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
                                     drawTicks:false,
+                                    display:false
                                 },
                                 ticks: {
                                     stepSize: 10,
@@ -123,12 +136,15 @@ function Id(props:IPageProps) {
                                 }
                             }],
                         },
+                        legend: {
+                            display: true,
+                        },
                         maintainAspectRatio: false,
+                        responsive:true
                         /*xAxes:[{
 
                         }]*/
                     }}/>
-                </Paper>
             </div>
          </div>
      </div>
@@ -150,4 +166,4 @@ function ex(props:IPageProps) {
     )
 }
 
-export default onlyDesktop(withAuth(ex));
+export default withAuth(ex);

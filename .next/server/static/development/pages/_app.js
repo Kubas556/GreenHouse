@@ -2157,7 +2157,7 @@ function MyApp(props) {
   }, []);
 
   const switchTheme = () => {
-    document.cookie = 'theme=' + !theme;
+    document.cookie = 'theme=' + !theme + ";path=/";
     setTheme(!theme);
   };
   /*function toggleThemeSwitch(value) {

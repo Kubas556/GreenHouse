@@ -60198,7 +60198,7 @@ function MyApp(props) {
   }, []);
 
   var switchTheme = function switchTheme() {
-    document.cookie = 'theme=' + !theme;
+    document.cookie = 'theme=' + !theme + ";path=/";
     setTheme(!theme);
   };
   /*function toggleThemeSwitch(value) {
