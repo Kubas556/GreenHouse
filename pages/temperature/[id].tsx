@@ -98,6 +98,7 @@ function Id(props:IPageProps) {
          </div>
          <div className={classes.center}>
             <div className={classes.controllComponent} style={{width:'calc(100% - 100px)',maxWidth:' calc(100% - 100px)'}}>
+                <Paper>
                     <Line height={200} data={{
                         labels:tempHistoryCharLabels,
                         datasets: [{
@@ -145,6 +146,7 @@ function Id(props:IPageProps) {
 
                         }]*/
                     }}/>
+                </Paper>
             </div>
          </div>
      </div>

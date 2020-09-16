@@ -95,8 +95,6 @@ function Termostat(props:ITermostat){
             else
                 angle2=-(angle2-maxAngle-angleOverlap);
 
-            console.log(angle2);
-
             if(angle2 >= (minAngle) && angle2 <= (maxAngle)) {
                 setCurrentValue(Math.round(((max / maxAngle) * angle2)));
                 setAngleTrans(angle2-angleOverlap);
