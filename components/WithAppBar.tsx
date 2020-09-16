@@ -16,25 +16,16 @@ import {
     ListItemText,
     SvgIcon
 } from "@material-ui/core";
-import MenuIcon from '@material-ui/icons/menu';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight'
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
-import InboxIcon from '@material-ui/icons/Inbox'
+
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
-import PhoneIcon from '@material-ui/icons/Phone'
-import ApartmentIcon from '@material-ui/icons/Apartment';
-import PersonPinIcon from '@material-ui/icons/Person'
-import Link from 'next/link'
+
 import React, {createRef, useRef, useState} from "react";
 import clsx from 'clsx';
 import {makeStyles,useTheme} from "@material-ui/core/styles";
 import {auth} from "../firebase/index";
-import TempIcon from "../icons/tempIcon";
-import WaterCanIconFilled from "../icons/waterCanIconFilled";
-import FertilizerIcon from "../icons/fertilizerIcon";
-import ShowChartIcon from '@material-ui/icons/ShowChart';
+
 import IAppBar from "../interfaces/IAppBar"
 import Router from "next/router";
 
