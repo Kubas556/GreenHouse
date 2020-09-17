@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1116,8 +1116,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return WithDrawerAppBar; });
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @material-ui/core */ "@material-ui/core");
 /* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _material_ui_icons_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/icons/menu */ "@material-ui/icons/menu");
-/* harmony import */ var _material_ui_icons_menu__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_menu__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @material-ui/icons/Menu */ "@material-ui/icons/Menu");
+/* harmony import */ var _material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @material-ui/icons/VpnKey */ "@material-ui/icons/VpnKey");
 /* harmony import */ var _material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _material_ui_icons_ChevronRight__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @material-ui/icons/ChevronRight */ "@material-ui/icons/ChevronRight");
@@ -1292,7 +1292,7 @@ function WithDrawerAppBar(props) {
     className: classes.root,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 156
+      lineNumber: 151
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["AppBar"], {
@@ -1302,14 +1302,14 @@ function WithDrawerAppBar(props) {
     }),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 157
+      lineNumber: 152
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Toolbar"], {
     variant: "dense",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 160
+      lineNumber: 155
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["IconButton"], {
@@ -1322,13 +1322,13 @@ function WithDrawerAppBar(props) {
     "aria-label": "open drawer",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 161
+      lineNumber: 156
     },
     __self: this
-  }, __jsx(_material_ui_icons_menu__WEBPACK_IMPORTED_MODULE_1___default.a, {
+  }, __jsx(_material_ui_icons_Menu__WEBPACK_IMPORTED_MODULE_1___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 170
+      lineNumber: 165
     },
     __self: this
   })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Typography"], {
@@ -1338,14 +1338,14 @@ function WithDrawerAppBar(props) {
     component: "div",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 172
+      lineNumber: 167
     },
     __self: this
   }, props.title), __jsx("div", {
     className: classes.grow,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 175
+      lineNumber: 170
     },
     __self: this
   }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["IconButton"], {
@@ -1354,26 +1354,26 @@ function WithDrawerAppBar(props) {
     color: "inherit",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 176
+      lineNumber: 171
     },
     __self: this
   }, compProps.theme === true ? __jsx(_material_ui_icons_Brightness7__WEBPACK_IMPORTED_MODULE_6___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 177
+      lineNumber: 172
     },
     __self: this
   }) : __jsx(_material_ui_icons_Brightness4__WEBPACK_IMPORTED_MODULE_7___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 177
+      lineNumber: 172
     },
     __self: this
   })), _firebase_index__WEBPACK_IMPORTED_MODULE_12__["auth"].currentUser ? __jsx("div", {
     ref: avatarAnchor,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 181
+      lineNumber: 176
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Avatar"], {
@@ -1381,7 +1381,7 @@ function WithDrawerAppBar(props) {
     className: classes.avatarIcon,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 182
+      lineNumber: 177
     },
     __self: this
   }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Menu"], {
@@ -1390,20 +1390,20 @@ function WithDrawerAppBar(props) {
     anchorEl: avatarAnchor.current,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 184
+      lineNumber: 179
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["MenuItem"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 185
+      lineNumber: 180
     },
     __self: this
   }, "Profile"), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["MenuItem"], {
     onClick: handleLogout,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 186
+      lineNumber: 181
     },
     __self: this
   }, "Log Out"))) : __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["IconButton"], {
@@ -1412,13 +1412,13 @@ function WithDrawerAppBar(props) {
     color: "inherit",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 189
+      lineNumber: 184
     },
     __self: this
   }, __jsx(_material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_2___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 190
+      lineNumber: 185
     },
     __self: this
   })))), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Drawer"], {
@@ -1435,150 +1435,150 @@ function WithDrawerAppBar(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 195
+      lineNumber: 190
     },
     __self: this
   }, __jsx("div", {
     className: classes.toolbar,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 208
+      lineNumber: 203
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["IconButton"], {
     onClick: handleDrawerClose,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 209
+      lineNumber: 204
     },
     __self: this
   }, theme.direction === 'rtl' ? __jsx(_material_ui_icons_ChevronRight__WEBPACK_IMPORTED_MODULE_3___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 210
+      lineNumber: 205
     },
     __self: this
   }) : __jsx(_material_ui_icons_ChevronLeft__WEBPACK_IMPORTED_MODULE_4___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 210
+      lineNumber: 205
     },
     __self: this
   }))), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Divider"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 213
+      lineNumber: 208
     },
     __self: this
   }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["List"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 214
+      lineNumber: 209
     },
     __self: this
   }, __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
     href: "/temperature/" + devId,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 215
+      lineNumber: 210
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItem"], {
     button: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 216
+      lineNumber: 211
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItemIcon"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 217
+      lineNumber: 212
     },
     __self: this
   }, __jsx(_icons_tempIcon__WEBPACK_IMPORTED_MODULE_13__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 217
+      lineNumber: 212
     },
     __self: this
   })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItemText"], {
     primary: "Teplota",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 218
+      lineNumber: 213
     },
     __self: this
   }))), __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
     href: "/irrigation/" + devId,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 221
+      lineNumber: 216
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItem"], {
     button: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 222
+      lineNumber: 217
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItemIcon"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 223
+      lineNumber: 218
     },
     __self: this
   }, __jsx(_icons_waterCanIconFilled__WEBPACK_IMPORTED_MODULE_14__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 223
+      lineNumber: 218
     },
     __self: this
   })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItemText"], {
     primary: "Zavlažování",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 224
+      lineNumber: 219
     },
     __self: this
   }))), __jsx(next_link__WEBPACK_IMPORTED_MODULE_8___default.a, {
     href: "/fertilization",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 227
+      lineNumber: 222
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItem"], {
     button: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 228
+      lineNumber: 223
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItemIcon"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 229
+      lineNumber: 224
     },
     __self: this
   }, __jsx(_icons_fertilizerIcon__WEBPACK_IMPORTED_MODULE_15__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 229
+      lineNumber: 224
     },
     __self: this
   })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItemText"], {
     primary: "Hnojení",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 230
+      lineNumber: 225
     },
     __self: this
   })))), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Divider"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 234
+      lineNumber: 229
     },
     __self: this
   }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["List"], {
@@ -1589,40 +1589,40 @@ function WithDrawerAppBar(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 235
+      lineNumber: 230
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItem"], {
     button: true,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 236
+      lineNumber: 231
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItemIcon"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 237
+      lineNumber: 232
     },
     __self: this
   }, __jsx(_material_ui_icons_ShowChart__WEBPACK_IMPORTED_MODULE_16___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 237
+      lineNumber: 232
     },
     __self: this
   })), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItemText"], {
     primary: "Statistiky",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 238
+      lineNumber: 233
     },
     __self: this
   })), __jsx("div", {
     className: classes.grow,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 240
+      lineNumber: 235
     },
     __self: this
   }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["ListItem"], {
@@ -1631,7 +1631,7 @@ function WithDrawerAppBar(props) {
     },
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 241
+      lineNumber: 236
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Tooltip"], {
@@ -1639,7 +1639,7 @@ function WithDrawerAppBar(props) {
     "aria-label": "add",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 242
+      lineNumber: 237
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Button"], {
@@ -1648,34 +1648,34 @@ function WithDrawerAppBar(props) {
     startIcon: __jsx(_material_ui_icons_ArrowBack__WEBPACK_IMPORTED_MODULE_5___default.a, {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 243
+        lineNumber: 238
       },
       __self: this
     }),
     color: "secondary",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 243
+      lineNumber: 238
     },
     __self: this
   }))))), __jsx("main", {
     className: classes.content,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 248
+      lineNumber: 243
     },
     __self: this
   }, __jsx("div", {
     className: classes.toolbarOffset,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 249
+      lineNumber: 244
     },
     __self: this
   }), __jsx(Component, _extends({}, compProps, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 250
+      lineNumber: 245
     },
     __self: this
   }))));
@@ -4089,7 +4089,7 @@ function ex2(props) {
 
 /***/ }),
 
-/***/ 5:
+/***/ 6:
 /*!*****************************************!*\
   !*** multi ./pages/irrigation/[id].tsx ***!
   \*****************************************/
@@ -4178,6 +4178,17 @@ module.exports = require("@material-ui/icons/ChevronRight");
 
 /***/ }),
 
+/***/ "@material-ui/icons/Menu":
+/*!******************************************!*\
+  !*** external "@material-ui/icons/Menu" ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@material-ui/icons/Menu");
+
+/***/ }),
+
 /***/ "@material-ui/icons/ShowChart":
 /*!***********************************************!*\
   !*** external "@material-ui/icons/ShowChart" ***!
@@ -4197,17 +4208,6 @@ module.exports = require("@material-ui/icons/ShowChart");
 /***/ (function(module, exports) {
 
 module.exports = require("@material-ui/icons/VpnKey");
-
-/***/ }),
-
-/***/ "@material-ui/icons/menu":
-/*!******************************************!*\
-  !*** external "@material-ui/icons/menu" ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("@material-ui/icons/menu");
 
 /***/ }),
 

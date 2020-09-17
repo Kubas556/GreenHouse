@@ -463,7 +463,7 @@ function WithDrawerAppBar(props) {
     className: classes.root,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 151
+      lineNumber: 142
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["AppBar"], {
@@ -473,14 +473,14 @@ function WithDrawerAppBar(props) {
     }),
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 152
+      lineNumber: 143
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Toolbar"], {
     variant: "dense",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 155
+      lineNumber: 146
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Typography"], {
@@ -490,14 +490,14 @@ function WithDrawerAppBar(props) {
     component: "div",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 156
+      lineNumber: 147
     },
     __self: this
   }, props.title), __jsx("div", {
     className: classes.grow,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 159
+      lineNumber: 150
     },
     __self: this
   }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["IconButton"], {
@@ -506,26 +506,26 @@ function WithDrawerAppBar(props) {
     color: "inherit",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 160
+      lineNumber: 151
     },
     __self: this
   }, compProps.theme === true ? __jsx(_material_ui_icons_Brightness7__WEBPACK_IMPORTED_MODULE_2___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 161
+      lineNumber: 152
     },
     __self: this
   }) : __jsx(_material_ui_icons_Brightness4__WEBPACK_IMPORTED_MODULE_3___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 161
+      lineNumber: 152
     },
     __self: this
   })), _firebase_index__WEBPACK_IMPORTED_MODULE_7__["auth"].currentUser ? __jsx("div", {
     ref: avatarAnchor,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 165
+      lineNumber: 156
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Avatar"], {
@@ -533,7 +533,7 @@ function WithDrawerAppBar(props) {
     className: classes.avatarIcon,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 166
+      lineNumber: 157
     },
     __self: this
   }), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["Menu"], {
@@ -542,20 +542,20 @@ function WithDrawerAppBar(props) {
     anchorEl: avatarAnchor.current,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 168
+      lineNumber: 159
     },
     __self: this
   }, __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["MenuItem"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 169
+      lineNumber: 160
     },
     __self: this
   }, "Profile"), __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["MenuItem"], {
     onClick: handleLogout,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 170
+      lineNumber: 161
     },
     __self: this
   }, "Log Out"))) : __jsx(_material_ui_core__WEBPACK_IMPORTED_MODULE_0__["IconButton"], {
@@ -564,33 +564,33 @@ function WithDrawerAppBar(props) {
     color: "inherit",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 173
+      lineNumber: 164
     },
     __self: this
   }, __jsx(_material_ui_icons_VpnKey__WEBPACK_IMPORTED_MODULE_1___default.a, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 174
+      lineNumber: 165
     },
     __self: this
   })))), __jsx("main", {
     className: classes.content,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 179
+      lineNumber: 170
     },
     __self: this
   }, __jsx("div", {
     className: classes.toolbarOffset,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 180
+      lineNumber: 171
     },
     __self: this
   }), __jsx(Component, _extends({}, compProps, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 181
+      lineNumber: 172
     },
     __self: this
   }))));
