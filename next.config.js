@@ -4,6 +4,7 @@ module.exports = withTypescript()
 require('dotenv').config();
 
 module.exports = {
+    target: 'serverless',
     exportTrailingSlash: true,
     exportPathMap: function() {
         return {
