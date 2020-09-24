@@ -338,6 +338,7 @@ function Termostat(props:ITermostat){
                   margin:auto;
                   position:relative;
                   border-radius:100%;
+                  user-select: none;
                 }
                 .workspace .valueGroup{
                   position: absolute;
