@@ -116,6 +116,26 @@ function createWebApp(projectId, options) {
     });
 }
 exports.createWebApp = createWebApp;
+function getListAppsResourceString(projectId, platform) {
+    let resourceSuffix;
+    switch (platform) {
+        case AppPlatform.IOS:
+            resourceSuffix = "/iosApps";
+            break;
+        case AppPlatform.ANDROID:
+            resourceSuffix = "/androidApps";
+            break;
+        case AppPlatform.WEB:
+            resourceSuffix = "/webApps";
+            break;
+        case AppPlatform.ANY:
+            resourceSuffix = ":searchApps";
+            break;
+        default:
+            throw new error_1.FirebaseError("Unexpected platform. Only support iOS, Android and Web apps");
+    }
+    return `/v1beta1/projects/${projectId}${resourceSuffix}`;
+}
 function listFirebaseApps(projectId, platform, pageSize = APP_LIST_PAGE_SIZE) {
     return __awaiter(this, void 0, void 0, function* () {
         const apps = [];
@@ -148,47 +168,6 @@ function listFirebaseApps(projectId, platform, pageSize = APP_LIST_PAGE_SIZE) {
     });
 }
 exports.listFirebaseApps = listFirebaseApps;
-function getListAppsResourceString(projectId, platform) {
-    let resourceSuffix;
-    switch (platform) {
-        case AppPlatform.IOS:
-            resourceSuffix = "/iosApps";
-            break;
-        case AppPlatform.ANDROID:
-            resourceSuffix = "/androidApps";
-            break;
-        case AppPlatform.WEB:
-            resourceSuffix = "/webApps";
-            break;
-        case AppPlatform.ANY:
-            resourceSuffix = ":searchApps";
-            break;
-        default:
-            throw new error_1.FirebaseError("Unexpected platform. Only support iOS, Android and Web apps");
-    }
-    return `/v1beta1/projects/${projectId}${resourceSuffix}`;
-}
-function getAppConfig(appId, platform) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let response;
-        try {
-            response = yield api.request("GET", getAppConfigResourceString(appId, platform), {
-                auth: true,
-                origin: api.firebaseApiOrigin,
-                timeout: TIMEOUT_MILLIS,
-            });
-        }
-        catch (err) {
-            logger.debug(err.message);
-            throw new error_1.FirebaseError(`Failed to get ${platform} app configuration. See firebase-debug.log for more info.`, {
-                exit: 2,
-                original: err,
-            });
-        }
-        return parseConfigFromResponse(response.body, platform);
-    });
-}
-exports.getAppConfig = getAppConfig;
 function getAppConfigResourceString(appId, platform) {
     let platformResource;
     switch (platform) {
@@ -222,3 +201,28 @@ function parseConfigFromResponse(responseBody, platform) {
     }
     throw new error_1.FirebaseError("Unexpected app platform");
 }
+function getAppConfigFile(config, platform) {
+    return parseConfigFromResponse(config, platform);
+}
+exports.getAppConfigFile = getAppConfigFile;
+function getAppConfig(appId, platform) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let response;
+        try {
+            response = yield api.request("GET", getAppConfigResourceString(appId, platform), {
+                auth: true,
+                origin: api.firebaseApiOrigin,
+                timeout: TIMEOUT_MILLIS,
+            });
+        }
+        catch (err) {
+            logger.debug(err.message);
+            throw new error_1.FirebaseError(`Failed to get ${platform} app configuration. See firebase-debug.log for more info.`, {
+                exit: 2,
+                original: err,
+            });
+        }
+        return response.body;
+    });
+}
+exports.getAppConfig = getAppConfig;

@@ -32,8 +32,8 @@ export class FilterStack implements Filter {
     return result;
   }
 
-  receiveMetadata(metadata: Promise<Metadata>) {
-    let result: Promise<Metadata> = metadata;
+  receiveMetadata(metadata: Metadata) {
+    let result: Metadata = metadata;
 
     for (let i = this.filters.length - 1; i >= 0; i--) {
       result = this.filters[i].receiveMetadata(result);
@@ -62,8 +62,8 @@ export class FilterStack implements Filter {
     return result;
   }
 
-  receiveTrailers(status: Promise<StatusObject>): Promise<StatusObject> {
-    let result: Promise<StatusObject> = status;
+  receiveTrailers(status: StatusObject): StatusObject {
+    let result: StatusObject = status;
 
     for (let i = this.filters.length - 1; i >= 0; i--) {
       result = this.filters[i].receiveTrailers(result);
@@ -78,7 +78,7 @@ export class FilterStackFactory implements FilterFactory<FilterStack> {
 
   createFilter(callStream: Call): FilterStack {
     return new FilterStack(
-      this.factories.map(factory => factory.createFilter(callStream))
+      this.factories.map((factory) => factory.createFilter(callStream))
     );
   }
 }

@@ -40,3 +40,21 @@ export enum LogVerbosity {
   INFO,
   ERROR,
 }
+
+/**
+ * NOTE: This enum is not currently used in any implemented API in this
+ * library. It is included only for type parity with the other implementation.
+ */
+export enum Propagate {
+  DEADLINE = 1,
+  CENSUS_STATS_CONTEXT = 2,
+  CENSUS_TRACING_CONTEXT = 4,
+  CANCELLATION = 8,
+  DEFAULTS = 65536,
+}
+
+// -1 means unlimited
+export const DEFAULT_MAX_SEND_MESSAGE_LENGTH = -1;
+
+// 4 MB default
+export const DEFAULT_MAX_RECEIVE_MESSAGE_LENGTH = 4 * 1024 * 1024;

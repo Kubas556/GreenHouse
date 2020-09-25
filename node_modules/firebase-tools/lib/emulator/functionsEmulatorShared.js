@@ -28,6 +28,10 @@ const memoryLookup = {
     "1GB": 1024,
     "2GB": 2048,
 };
+class HttpConstants {
+}
+exports.HttpConstants = HttpConstants;
+HttpConstants.CALLABLE_AUTH_HEADER = "x-callable-context-auth";
 class EmulatedTrigger {
     constructor(definition, module) {
         this.definition = definition;
@@ -122,7 +126,7 @@ function findModuleRoot(moduleName, filepath) {
                 chunks = hierarchy;
             }
             const packagePath = path.join(chunks.join(path.sep), "package.json");
-            const serializedPackage = fs.readFileSync(packagePath).toString();
+            const serializedPackage = fs.readFileSync(packagePath, "utf8").toString();
             if (JSON.parse(serializedPackage).name === moduleName) {
                 return chunks.join("/");
             }

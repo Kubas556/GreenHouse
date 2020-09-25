@@ -15,7 +15,7 @@ const error_1 = require("./error");
 const utils_1 = require("./utils");
 const rc_1 = require("./rc");
 const config_1 = require("./config");
-const configstore = require("./configstore");
+const configstore_1 = require("./configstore");
 const detectProjectRoot_1 = require("./detectProjectRoot");
 const logger = require("./logger");
 const track = require("./track");
@@ -130,7 +130,7 @@ class Command {
         const rc = rc_1.load(options.cwd);
         options.rc = rc;
         options.project =
-            options.project || (configstore.get("activeProjects") || {})[options.projectRoot];
+            options.project || (configstore_1.configstore.get("activeProjects") || {})[options.projectRoot];
         if (options.config && !options.project) {
             options.project = options.config.defaults.project;
         }

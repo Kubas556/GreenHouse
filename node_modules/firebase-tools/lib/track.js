@@ -1,7 +1,7 @@
 "use strict";
 var ua = require("universal-analytics");
 var _ = require("lodash");
-var configstore = require("./configstore");
+var { configstore } = require("./configstore");
 var pkg = require("../package.json");
 var uuid = require("uuid");
 var logger = require("./logger");

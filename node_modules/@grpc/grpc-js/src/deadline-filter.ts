@@ -15,8 +15,8 @@
  *
  */
 
-import { Call } from './call-stream';
-import { ConnectivityState, Channel } from './channel';
+import { Call, StatusObject } from './call-stream';
+import { Channel } from './channel';
 import { Status } from './constants';
 import { BaseFilter, Filter, FilterFactory } from './filter';
 import { Metadata } from './metadata';
@@ -66,7 +66,7 @@ export class DeadlineFilter extends BaseFilter implements Filter {
           'Deadline exceeded'
         );
       }, timeout);
-      callStream.on('status', () => clearTimeout(this.timer as NodeJS.Timer));
+      this.timer.unref?.();
     }
   }
 
@@ -81,6 +81,13 @@ export class DeadlineFilter extends BaseFilter implements Filter {
     const timeoutString = getDeadline(this.deadline);
     finalMetadata.set('grpc-timeout', timeoutString);
     return finalMetadata;
+  }
+
+  receiveTrailers(status: StatusObject) {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
+    return status;
   }
 }
 

@@ -2,7 +2,7 @@
 var fs = require("fs-extra");
 var path = require("path");
 var api = require("./api");
-var configstore = require("./configstore");
+var { configstore } = require("./configstore");
 var logger = require("./logger");
 var configDir = function () {
     if (process.platform === "win32") {

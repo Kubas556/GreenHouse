@@ -26,28 +26,67 @@ import {
   ClientWritableStreamImpl,
   ServiceError,
   callErrorFromStatus,
+  SurfaceCall,
 } from './call';
 import { CallCredentials } from './call-credentials';
-import { Call, Deadline, StatusObject, WriteObject } from './call-stream';
+import { Deadline, StatusObject } from './call-stream';
 import { Channel, ConnectivityState, ChannelImplementation } from './channel';
 import { ChannelCredentials } from './channel-credentials';
 import { ChannelOptions } from './channel-options';
 import { Status } from './constants';
 import { Metadata } from './metadata';
+import { ClientMethodDefinition } from './make-client';
+import {
+  getInterceptingCall,
+  Interceptor,
+  InterceptorProvider,
+  InterceptorArguments,
+  InterceptingCallInterface,
+} from './client-interceptors';
+import {
+  ServerUnaryCall,
+  ServerReadableStream,
+  ServerWritableStream,
+  ServerDuplexStream,
+} from './server-call';
 
 const CHANNEL_SYMBOL = Symbol();
+const INTERCEPTOR_SYMBOL = Symbol();
+const INTERCEPTOR_PROVIDER_SYMBOL = Symbol();
+const CALL_INVOCATION_TRANSFORMER_SYMBOL = Symbol();
 
 export interface UnaryCallback<ResponseType> {
   (err: ServiceError | null, value?: ResponseType): void;
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface CallOptions {
   deadline?: Deadline;
   host?: string;
-  /* There should be a parent option here that will accept a server call,
-   * but the server is not yet implemented so it makes no sense to have it */
+  parent?:
+    | ServerUnaryCall<any, any>
+    | ServerReadableStream<any, any>
+    | ServerWritableStream<any, any>
+    | ServerDuplexStream<any, any>;
   propagate_flags?: number;
   credentials?: CallCredentials;
+  interceptors?: Interceptor[];
+  interceptor_providers?: InterceptorProvider[];
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
+
+export interface CallProperties<RequestType, ResponseType> {
+  argument?: RequestType;
+  metadata: Metadata;
+  call: SurfaceCall;
+  channel: Channel;
+  methodDefinition: ClientMethodDefinition<RequestType, ResponseType>;
+  callOptions: CallOptions;
+  callback?: UnaryCallback<ResponseType>;
+}
+
+export interface CallInvocationTransformer {
+  (callProperties: CallProperties<any, any>): CallProperties<any, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 export type ClientOptions = Partial<ChannelOptions> & {
@@ -57,6 +96,9 @@ export type ClientOptions = Partial<ChannelOptions> & {
     credentials: ChannelCredentials,
     options: ClientOptions
   ) => Channel;
+  interceptors?: Interceptor[];
+  interceptor_providers?: InterceptorProvider[];
+  callInvocationTransformer?: CallInvocationTransformer;
 };
 
 /**
@@ -65,15 +107,37 @@ export type ClientOptions = Partial<ChannelOptions> & {
  */
 export class Client {
   private readonly [CHANNEL_SYMBOL]: Channel;
+  private readonly [INTERCEPTOR_SYMBOL]: Interceptor[];
+  private readonly [INTERCEPTOR_PROVIDER_SYMBOL]: InterceptorProvider[];
+  private readonly [CALL_INVOCATION_TRANSFORMER_SYMBOL]?: CallInvocationTransformer;
   constructor(
     address: string,
     credentials: ChannelCredentials,
     options: ClientOptions = {}
   ) {
+    options = Object.assign({}, options);
+    this[INTERCEPTOR_SYMBOL] = options.interceptors ?? [];
+    delete options.interceptors;
+    this[INTERCEPTOR_PROVIDER_SYMBOL] = options.interceptor_providers ?? [];
+    delete options.interceptor_providers;
+    if (
+      this[INTERCEPTOR_SYMBOL].length > 0 &&
+      this[INTERCEPTOR_PROVIDER_SYMBOL].length > 0
+    ) {
+      throw new Error(
+        'Both interceptors and interceptor_providers were passed as options ' +
+          'to the client constructor. Only one of these is allowed.'
+      );
+    }
+    this[CALL_INVOCATION_TRANSFORMER_SYMBOL] =
+      options.callInvocationTransformer;
+    delete options.callInvocationTransformer;
     if (options.channelOverride) {
       this[CHANNEL_SYMBOL] = options.channelOverride;
     } else if (options.channelFactoryOverride) {
-      this[CHANNEL_SYMBOL] = options.channelFactoryOverride(
+      const channelFactoryOverride = options.channelFactoryOverride;
+      delete options.channelFactoryOverride;
+      this[CHANNEL_SYMBOL] = channelFactoryOverride(
         address,
         credentials,
         options
@@ -123,38 +187,6 @@ export class Client {
       }
     };
     setImmediate(checkState);
-  }
-
-  private handleUnaryResponse<ResponseType>(
-    call: Call,
-    deserialize: (value: Buffer) => ResponseType,
-    callback: UnaryCallback<ResponseType>
-  ): void {
-    let responseMessage: ResponseType | null = null;
-    call.on('data', (data: Buffer) => {
-      if (responseMessage != null) {
-        call.cancelWithStatus(Status.INTERNAL, 'Too many responses received');
-      }
-      try {
-        responseMessage = deserialize(data);
-      } catch (e) {
-        call.cancelWithStatus(
-          Status.INTERNAL,
-          'Failed to parse server response'
-        );
-      }
-    });
-    call.on('status', (status: StatusObject) => {
-      /* We assume that call emits status after it emits end, and that it
-       * accounts for any cancelWithStatus calls up until it emits status.
-       * Therefore, considering the above event handlers, status.code should be
-       * OK if and only if we have a non-null responseMessage */
-      if (status.code === Status.OK) {
-        callback(null, responseMessage as ResponseType);
-      } else {
-        callback(callErrorFromStatus(status));
-      }
-    });
   }
 
   private checkOptionalUnaryResponseArguments<ResponseType>(
@@ -229,26 +261,84 @@ export class Client {
     options?: CallOptions | UnaryCallback<ResponseType>,
     callback?: UnaryCallback<ResponseType>
   ): ClientUnaryCall {
-    ({ metadata, options, callback } = this.checkOptionalUnaryResponseArguments<
+    const checkedArguments = this.checkOptionalUnaryResponseArguments<
       ResponseType
-    >(metadata, options, callback));
-    const call: Call = this[CHANNEL_SYMBOL].createCall(
-      method,
-      options.deadline,
-      options.host,
-      null,
-      options.propagate_flags
-    );
-    if (options.credentials) {
-      call.setCredentials(options.credentials);
+    >(metadata, options, callback);
+    const methodDefinition: ClientMethodDefinition<
+      RequestType,
+      ResponseType
+    > = {
+      path: method,
+      requestStream: false,
+      responseStream: false,
+      requestSerialize: serialize,
+      responseDeserialize: deserialize,
+    };
+    let callProperties: CallProperties<RequestType, ResponseType> = {
+      argument: argument,
+      metadata: checkedArguments.metadata,
+      call: new ClientUnaryCallImpl(),
+      channel: this[CHANNEL_SYMBOL],
+      methodDefinition: methodDefinition,
+      callOptions: checkedArguments.options,
+      callback: checkedArguments.callback,
+    };
+    if (this[CALL_INVOCATION_TRANSFORMER_SYMBOL]) {
+      callProperties = this[CALL_INVOCATION_TRANSFORMER_SYMBOL]!(
+        callProperties
+      ) as CallProperties<RequestType, ResponseType>;
     }
-    const message: Buffer = serialize(argument);
-    const writeObj: WriteObject = { message };
-    call.sendMetadata(metadata);
-    call.write(writeObj);
-    call.end();
-    this.handleUnaryResponse<ResponseType>(call, deserialize, callback);
-    return new ClientUnaryCallImpl(call);
+    const emitter: ClientUnaryCall = callProperties.call;
+    const interceptorArgs: InterceptorArguments = {
+      clientInterceptors: this[INTERCEPTOR_SYMBOL],
+      clientInterceptorProviders: this[INTERCEPTOR_PROVIDER_SYMBOL],
+      callInterceptors: callProperties.callOptions.interceptors ?? [],
+      callInterceptorProviders:
+        callProperties.callOptions.interceptor_providers ?? [],
+    };
+    const call: InterceptingCallInterface = getInterceptingCall(
+      interceptorArgs,
+      callProperties.methodDefinition,
+      callProperties.callOptions,
+      callProperties.channel
+    );
+    /* This needs to happen before the emitter is used. Unfortunately we can't
+     * enforce this with the type system. We need to construct this emitter
+     * before calling the CallInvocationTransformer, and we need to create the
+     * call after that. */
+    emitter.call = call;
+    if (callProperties.callOptions.credentials) {
+      call.setCredentials(callProperties.callOptions.credentials);
+    }
+    let responseMessage: ResponseType | null = null;
+    let receivedStatus = false;
+    call.start(callProperties.metadata, {
+      onReceiveMetadata: (metadata) => {
+        emitter.emit('metadata', metadata);
+      },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onReceiveMessage(message: any) {
+        if (responseMessage !== null) {
+          call.cancelWithStatus(Status.INTERNAL, 'Too many responses received');
+        }
+        responseMessage = message;
+      },
+      onReceiveStatus(status: StatusObject) {
+        if (receivedStatus) {
+          return;
+        }
+        receivedStatus = true;
+        if (status.code === Status.OK) {
+          callProperties.callback!(null, responseMessage!);
+        } else {
+          callProperties.callback!(callErrorFromStatus(status));
+        }
+        emitter.emit('status', status);
+      },
+    });
+    call.sendMessage(argument);
+    call.halfClose();
+    return emitter;
   }
 
   makeClientStreamRequest<RequestType, ResponseType>(
@@ -287,22 +377,83 @@ export class Client {
     options?: CallOptions | UnaryCallback<ResponseType>,
     callback?: UnaryCallback<ResponseType>
   ): ClientWritableStream<RequestType> {
-    ({ metadata, options, callback } = this.checkOptionalUnaryResponseArguments<
+    const checkedArguments = this.checkOptionalUnaryResponseArguments<
       ResponseType
-    >(metadata, options, callback));
-    const call: Call = this[CHANNEL_SYMBOL].createCall(
-      method,
-      options.deadline,
-      options.host,
-      null,
-      options.propagate_flags
-    );
-    if (options.credentials) {
-      call.setCredentials(options.credentials);
+    >(metadata, options, callback);
+    const methodDefinition: ClientMethodDefinition<
+      RequestType,
+      ResponseType
+    > = {
+      path: method,
+      requestStream: true,
+      responseStream: false,
+      requestSerialize: serialize,
+      responseDeserialize: deserialize,
+    };
+    let callProperties: CallProperties<RequestType, ResponseType> = {
+      metadata: checkedArguments.metadata,
+      call: new ClientWritableStreamImpl<RequestType>(serialize),
+      channel: this[CHANNEL_SYMBOL],
+      methodDefinition: methodDefinition,
+      callOptions: checkedArguments.options,
+      callback: checkedArguments.callback,
+    };
+    if (this[CALL_INVOCATION_TRANSFORMER_SYMBOL]) {
+      callProperties = this[CALL_INVOCATION_TRANSFORMER_SYMBOL]!(
+        callProperties
+      ) as CallProperties<RequestType, ResponseType>;
     }
-    call.sendMetadata(metadata);
-    this.handleUnaryResponse<ResponseType>(call, deserialize, callback);
-    return new ClientWritableStreamImpl<RequestType>(call, serialize);
+    const emitter: ClientWritableStream<RequestType> = callProperties.call as ClientWritableStream<
+      RequestType
+    >;
+    const interceptorArgs: InterceptorArguments = {
+      clientInterceptors: this[INTERCEPTOR_SYMBOL],
+      clientInterceptorProviders: this[INTERCEPTOR_PROVIDER_SYMBOL],
+      callInterceptors: callProperties.callOptions.interceptors ?? [],
+      callInterceptorProviders:
+        callProperties.callOptions.interceptor_providers ?? [],
+    };
+    const call: InterceptingCallInterface = getInterceptingCall(
+      interceptorArgs,
+      callProperties.methodDefinition,
+      callProperties.callOptions,
+      callProperties.channel
+    );
+    /* This needs to happen before the emitter is used. Unfortunately we can't
+     * enforce this with the type system. We need to construct this emitter
+     * before calling the CallInvocationTransformer, and we need to create the
+     * call after that. */
+    emitter.call = call;
+    if (callProperties.callOptions.credentials) {
+      call.setCredentials(callProperties.callOptions.credentials);
+    }
+    let responseMessage: ResponseType | null = null;
+    let receivedStatus = false;
+    call.start(callProperties.metadata, {
+      onReceiveMetadata: (metadata) => {
+        emitter.emit('metadata', metadata);
+      },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onReceiveMessage(message: any) {
+        if (responseMessage !== null) {
+          call.cancelWithStatus(Status.INTERNAL, 'Too many responses received');
+        }
+        responseMessage = message;
+      },
+      onReceiveStatus(status: StatusObject) {
+        if (receivedStatus) {
+          return;
+        }
+        receivedStatus = true;
+        if (status.code === Status.OK) {
+          callProperties.callback!(null, responseMessage!);
+        } else {
+          callProperties.callback!(callErrorFromStatus(status));
+        }
+        emitter.emit('status', status);
+      },
+    });
+    return emitter;
   }
 
   private checkMetadataAndOptions(
@@ -352,23 +503,78 @@ export class Client {
     metadata?: Metadata | CallOptions,
     options?: CallOptions
   ): ClientReadableStream<ResponseType> {
-    ({ metadata, options } = this.checkMetadataAndOptions(metadata, options));
-    const call: Call = this[CHANNEL_SYMBOL].createCall(
-      method,
-      options.deadline,
-      options.host,
-      null,
-      options.propagate_flags
-    );
-    if (options.credentials) {
-      call.setCredentials(options.credentials);
+    const checkedArguments = this.checkMetadataAndOptions(metadata, options);
+    const methodDefinition: ClientMethodDefinition<
+      RequestType,
+      ResponseType
+    > = {
+      path: method,
+      requestStream: false,
+      responseStream: true,
+      requestSerialize: serialize,
+      responseDeserialize: deserialize,
+    };
+    let callProperties: CallProperties<RequestType, ResponseType> = {
+      argument: argument,
+      metadata: checkedArguments.metadata,
+      call: new ClientReadableStreamImpl<ResponseType>(deserialize),
+      channel: this[CHANNEL_SYMBOL],
+      methodDefinition: methodDefinition,
+      callOptions: checkedArguments.options,
+    };
+    if (this[CALL_INVOCATION_TRANSFORMER_SYMBOL]) {
+      callProperties = this[CALL_INVOCATION_TRANSFORMER_SYMBOL]!(
+        callProperties
+      ) as CallProperties<RequestType, ResponseType>;
     }
-    const message: Buffer = serialize(argument);
-    const writeObj: WriteObject = { message };
-    call.sendMetadata(metadata);
-    call.write(writeObj);
-    call.end();
-    return new ClientReadableStreamImpl<ResponseType>(call, deserialize);
+    const stream: ClientReadableStream<ResponseType> = callProperties.call as ClientReadableStream<
+      ResponseType
+    >;
+    const interceptorArgs: InterceptorArguments = {
+      clientInterceptors: this[INTERCEPTOR_SYMBOL],
+      clientInterceptorProviders: this[INTERCEPTOR_PROVIDER_SYMBOL],
+      callInterceptors: callProperties.callOptions.interceptors ?? [],
+      callInterceptorProviders:
+        callProperties.callOptions.interceptor_providers ?? [],
+    };
+    const call: InterceptingCallInterface = getInterceptingCall(
+      interceptorArgs,
+      callProperties.methodDefinition,
+      callProperties.callOptions,
+      callProperties.channel
+    );
+    /* This needs to happen before the emitter is used. Unfortunately we can't
+     * enforce this with the type system. We need to construct this emitter
+     * before calling the CallInvocationTransformer, and we need to create the
+     * call after that. */
+    stream.call = call;
+    if (callProperties.callOptions.credentials) {
+      call.setCredentials(callProperties.callOptions.credentials);
+    }
+    let receivedStatus = false;
+    call.start(callProperties.metadata, {
+      onReceiveMetadata(metadata: Metadata) {
+        stream.emit('metadata', metadata);
+      },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onReceiveMessage(message: any) {
+        stream.push(message);
+      },
+      onReceiveStatus(status: StatusObject) {
+        if (receivedStatus) {
+          return;
+        }
+        receivedStatus = true;
+        stream.push(null);
+        if (status.code !== Status.OK) {
+          stream.emit('error', callErrorFromStatus(status));
+        }
+        stream.emit('status', status);
+      },
+    });
+    call.sendMessage(argument);
+    call.halfClose();
+    return stream;
   }
 
   makeBidiStreamRequest<RequestType, ResponseType>(
@@ -391,22 +597,77 @@ export class Client {
     metadata?: Metadata | CallOptions,
     options?: CallOptions
   ): ClientDuplexStream<RequestType, ResponseType> {
-    ({ metadata, options } = this.checkMetadataAndOptions(metadata, options));
-    const call: Call = this[CHANNEL_SYMBOL].createCall(
-      method,
-      options.deadline,
-      options.host,
-      null,
-      options.propagate_flags
-    );
-    if (options.credentials) {
-      call.setCredentials(options.credentials);
+    const checkedArguments = this.checkMetadataAndOptions(metadata, options);
+    const methodDefinition: ClientMethodDefinition<
+      RequestType,
+      ResponseType
+    > = {
+      path: method,
+      requestStream: true,
+      responseStream: true,
+      requestSerialize: serialize,
+      responseDeserialize: deserialize,
+    };
+    let callProperties: CallProperties<RequestType, ResponseType> = {
+      metadata: checkedArguments.metadata,
+      call: new ClientDuplexStreamImpl<RequestType, ResponseType>(
+        serialize,
+        deserialize
+      ),
+      channel: this[CHANNEL_SYMBOL],
+      methodDefinition: methodDefinition,
+      callOptions: checkedArguments.options,
+    };
+    if (this[CALL_INVOCATION_TRANSFORMER_SYMBOL]) {
+      callProperties = this[CALL_INVOCATION_TRANSFORMER_SYMBOL]!(
+        callProperties
+      ) as CallProperties<RequestType, ResponseType>;
     }
-    call.sendMetadata(metadata);
-    return new ClientDuplexStreamImpl<RequestType, ResponseType>(
-      call,
-      serialize,
-      deserialize
+    const stream: ClientDuplexStream<
+      RequestType,
+      ResponseType
+    > = callProperties.call as ClientDuplexStream<RequestType, ResponseType>;
+    const interceptorArgs: InterceptorArguments = {
+      clientInterceptors: this[INTERCEPTOR_SYMBOL],
+      clientInterceptorProviders: this[INTERCEPTOR_PROVIDER_SYMBOL],
+      callInterceptors: callProperties.callOptions.interceptors ?? [],
+      callInterceptorProviders:
+        callProperties.callOptions.interceptor_providers ?? [],
+    };
+    const call: InterceptingCallInterface = getInterceptingCall(
+      interceptorArgs,
+      callProperties.methodDefinition,
+      callProperties.callOptions,
+      callProperties.channel
     );
+    /* This needs to happen before the emitter is used. Unfortunately we can't
+     * enforce this with the type system. We need to construct this emitter
+     * before calling the CallInvocationTransformer, and we need to create the
+     * call after that. */
+    stream.call = call;
+    if (callProperties.callOptions.credentials) {
+      call.setCredentials(callProperties.callOptions.credentials);
+    }
+    let receivedStatus = false;
+    call.start(callProperties.metadata, {
+      onReceiveMetadata(metadata: Metadata) {
+        stream.emit('metadata', metadata);
+      },
+      onReceiveMessage(message: Buffer) {
+        stream.push(message)
+      },
+      onReceiveStatus(status: StatusObject) {
+        if (receivedStatus) {
+          return;
+        }
+        receivedStatus = true;
+        stream.push(null);
+        if (status.code !== Status.OK) {
+          stream.emit('error', callErrorFromStatus(status));
+        }
+        stream.emit('status', status);
+      },
+    });
+    return stream;
   }
 }

@@ -31,8 +31,8 @@ function _functionsOpLogReject(func, type, err) {
     }));
 }
 function _generateUploadUrl(projectId, location) {
-    var parent = "projects/" + projectId + "/locations/" + location;
-    var endpoint = "/" + API_VERSION + "/" + parent + "/functions:generateUploadUrl";
+    const parent = "projects/" + projectId + "/locations/" + location;
+    const endpoint = "/" + API_VERSION + "/" + parent + "/functions:generateUploadUrl";
     return api
         .request("POST", endpoint, {
         auth: true,
@@ -41,7 +41,7 @@ function _generateUploadUrl(projectId, location) {
         retryCodes: [503],
     })
         .then(function (result) {
-        var responseBody = JSON.parse(result.body);
+        const responseBody = JSON.parse(result.body);
         return Promise.resolve(responseBody.uploadUrl);
     }, function (err) {
         logger.info("\n\nThere was an issue deploying your functions. Verify that your project has a Google App Engine instance setup at https://console.cloud.google.com/appengine and try again. If this issue persists, please contact support.");
@@ -49,10 +49,10 @@ function _generateUploadUrl(projectId, location) {
     });
 }
 function _createFunction(options) {
-    var location = "projects/" + options.projectId + "/locations/" + options.region;
-    var func = location + "/functions/" + options.functionName;
-    var endpoint = "/" + API_VERSION + "/" + location + "/functions";
-    var data = {
+    const location = "projects/" + options.projectId + "/locations/" + options.region;
+    const func = location + "/functions/" + options.functionName;
+    const endpoint = "/" + API_VERSION + "/" + location + "/functions";
+    const data = {
         sourceUploadUrl: options.sourceUploadUrl,
         name: func,
         entryPoint: options.entryPoint,
@@ -64,6 +64,9 @@ function _createFunction(options) {
     }
     if (options.timeout) {
         data.timeout = options.timeout;
+    }
+    if (options.maxInstances) {
+        data.maxInstances = Number(options.maxInstances);
     }
     return api
         .request("POST", endpoint, {
@@ -103,15 +106,15 @@ function _setIamPolicy(options) {
     });
 }
 function _updateFunction(options) {
-    var location = "projects/" + options.projectId + "/locations/" + options.region;
-    var func = location + "/functions/" + options.functionName;
-    var endpoint = "/" + API_VERSION + "/" + func;
-    var data = _.assign({
+    const location = "projects/" + options.projectId + "/locations/" + options.region;
+    const func = location + "/functions/" + options.functionName;
+    const endpoint = "/" + API_VERSION + "/" + func;
+    const data = _.assign({
         sourceUploadUrl: options.sourceUploadUrl,
         name: func,
         labels: options.labels,
     }, options.trigger);
-    var masks = ["sourceUploadUrl", "name", "labels"];
+    let masks = ["sourceUploadUrl", "name", "labels"];
     if (options.runtime) {
         data.runtime = options.runtime;
         masks = _.concat(masks, "runtime");
@@ -123,6 +126,10 @@ function _updateFunction(options) {
     if (options.timeout) {
         data.timeout = options.timeout;
         masks.push("timeout");
+    }
+    if (options.maxInstances) {
+        data.maxInstances = Number(options.maxInstances);
+        masks.push("maxInstances");
     }
     if (options.trigger.eventTrigger) {
         masks = _.concat(masks, _.map(_.keys(options.trigger.eventTrigger), function (subkey) {
@@ -153,9 +160,9 @@ function _updateFunction(options) {
     });
 }
 function _deleteFunction(options) {
-    var location = "projects/" + options.projectId + "/locations/" + options.region;
-    var func = location + "/functions/" + options.functionName;
-    var endpoint = "/" + API_VERSION + "/" + func;
+    const location = "projects/" + options.projectId + "/locations/" + options.region;
+    const func = location + "/functions/" + options.functionName;
+    const endpoint = "/" + API_VERSION + "/" + func;
     return api
         .request("DELETE", endpoint, {
         auth: true,
@@ -173,7 +180,7 @@ function _deleteFunction(options) {
     });
 }
 function _listFunctions(projectId, region) {
-    var endpoint = "/" + API_VERSION + "/projects/" + projectId + "/locations/" + region + "/functions";
+    const endpoint = "/" + API_VERSION + "/projects/" + projectId + "/locations/" + region + "/functions";
     return api
         .request("GET", endpoint, {
         auth: true,
@@ -183,7 +190,7 @@ function _listFunctions(projectId, region) {
         if (resp.body.unreachable && resp.body.unreachable.length > 0) {
             return utils.reject("Some Cloud Functions regions were unreachable, please try again later.", { exit: 2 });
         }
-        var functionsList = resp.body.functions || [];
+        const functionsList = resp.body.functions || [];
         _.forEach(functionsList, function (f) {
             f.functionName = f.name.substring(f.name.lastIndexOf("/") + 1);
         });

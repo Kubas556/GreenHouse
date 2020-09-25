@@ -1,4 +1,5 @@
 "use strict";
-var Configstore = require("configstore");
-var pkg = require("../package.json");
-module.exports = new Configstore(pkg.name);
+Object.defineProperty(exports, "__esModule", { value: true });
+const Configstore = require("configstore");
+const pkg = require("../package.json");
+exports.configstore = new Configstore(pkg.name);

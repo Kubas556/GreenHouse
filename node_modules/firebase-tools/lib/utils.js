@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const _ = require("lodash");
 const clc = require("cli-color");
 const stream_1 = require("stream");
-const configstore = require("./configstore");
+const configstore_1 = require("./configstore");
 const error_1 = require("./error");
 const logger = require("./logger");
 const IS_WINDOWS = process.platform === "win32";
@@ -105,14 +105,14 @@ function stringToStream(text) {
 }
 exports.stringToStream = stringToStream;
 function makeActiveProject(projectDir, newActive) {
-    const activeProjects = configstore.get("activeProjects") || {};
+    const activeProjects = configstore_1.configstore.get("activeProjects") || {};
     if (newActive) {
         activeProjects[projectDir] = newActive;
     }
     else {
         _.unset(activeProjects, projectDir);
     }
-    configstore.set("activeProjects", activeProjects);
+    configstore_1.configstore.set("activeProjects", activeProjects);
 }
 exports.makeActiveProject = makeActiveProject;
 function endpoint(parts) {

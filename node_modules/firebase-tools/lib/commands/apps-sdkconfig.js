@@ -70,9 +70,13 @@ module.exports = new command_1.Command("apps:sdkconfig [platform] [appId]")
         throw err;
     }
     spinner.succeed();
+    const fileInfo = apps_1.getAppConfigFile(configData, appPlatform);
+    if (appPlatform == apps_1.AppPlatform.WEB) {
+        fileInfo.sdkConfig = configData;
+    }
     if (options.out === undefined) {
-        logger.info(configData.fileContents);
-        return configData;
+        logger.info(fileInfo.fileContents);
+        return fileInfo;
     }
     const shouldUseDefaultFilename = options.out === true || options.out === "";
     const filename = shouldUseDefaultFilename ? configData.fileName : options.out;

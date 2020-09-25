@@ -1,7 +1,7 @@
 "use strict";
 var { Command } = require("../command");
 var logger = require("../logger");
-var configstore = require("../configstore");
+var { configstore } = require("../configstore");
 var clc = require("cli-color");
 var utils = require("../utils");
 var { prompt } = require("../prompt");
@@ -41,7 +41,7 @@ module.exports = new Command("login")
         configstore.set("user", result.user);
         configstore.set("tokens", result.tokens);
         configstore.set("loginScopes", result.scopes);
-        configstore.del("session");
+        configstore.delete("session");
         logger.info();
         utils.logSuccess("Success! Logged in as " + clc.bold(result.user.email));
         return auth;

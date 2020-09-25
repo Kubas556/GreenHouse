@@ -122,7 +122,9 @@ function selectProjectByPrompting() {
 }
 function selectProjectFromList(projects = []) {
     return __awaiter(this, void 0, void 0, function* () {
-        let choices = projects.filter((p) => !!p).map((p) => {
+        let choices = projects
+            .filter((p) => !!p)
+            .map((p) => {
             return {
                 name: p.projectId + (p.displayName ? ` (${p.displayName})` : ""),
                 value: p.projectId,
@@ -163,7 +165,9 @@ function promptAvailableProjectId() {
             });
         }
         else {
-            let choices = projects.filter((p) => !!p).map((p) => {
+            let choices = projects
+                .filter((p) => !!p)
+                .map((p) => {
                 const projectId = getProjectId(p);
                 return {
                     name: projectId + (p.displayName ? ` (${p.displayName})` : ""),

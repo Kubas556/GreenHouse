@@ -18,11 +18,12 @@
 import { EventEmitter } from 'events';
 import { Duplex, Readable, Writable } from 'stream';
 
-import { Call, StatusObject, WriteObject } from './call-stream';
+import { StatusObject, MessageContext } from './call-stream';
 import { Status } from './constants';
 import { EmitterAugmentation1 } from './events';
 import { Metadata } from './metadata';
-import { ObjectReadable, ObjectWritable } from './object-stream';
+import { ObjectReadable, ObjectWritable, WriteCallback } from './object-stream';
+import { InterceptingCallInterface } from './client-interceptors';
 
 /**
  * A type extending the built-in Error object with additional fields.
@@ -33,6 +34,7 @@ export type ServiceError = StatusObject & Error;
  * A base type for all user-facing values returned by client-side method calls.
  */
 export type SurfaceCall = {
+  call?: InterceptingCallInterface;
   cancel(): void;
   getPeer(): string;
 } & EmitterAugmentation1<'metadata', Metadata> &
@@ -81,176 +83,107 @@ export function callErrorFromStatus(status: StatusObject): ServiceError {
 
 export class ClientUnaryCallImpl extends EventEmitter
   implements ClientUnaryCall {
-  constructor(private readonly call: Call) {
+  public call?: InterceptingCallInterface;
+  constructor() {
     super();
-    call.on('metadata', (metadata: Metadata) => {
-      this.emit('metadata', metadata);
-    });
-    call.on('status', (status: StatusObject) => {
-      this.emit('status', status);
-    });
   }
 
   cancel(): void {
-    this.call.cancelWithStatus(Status.CANCELLED, 'Cancelled on client');
+    this.call?.cancelWithStatus(Status.CANCELLED, 'Cancelled on client');
   }
 
   getPeer(): string {
-    return this.call.getPeer();
+    return this.call?.getPeer() ?? 'unknown';
   }
-}
-
-function setUpReadableStream<ResponseType>(
-  stream: ClientReadableStream<ResponseType>,
-  call: Call,
-  deserialize: (chunk: Buffer) => ResponseType
-): void {
-  let statusEmitted = false;
-  call.on('data', (data: Buffer) => {
-    let deserialized: ResponseType;
-    try {
-      deserialized = deserialize(data);
-    } catch (e) {
-      call.cancelWithStatus(Status.INTERNAL, 'Failed to parse server response');
-      return;
-    }
-    if (!stream.push(deserialized)) {
-      call.pause();
-    }
-  });
-  call.on('end', () => {
-    if (statusEmitted) {
-      stream.push(null);
-    } else {
-      call.once('status', () => {
-        stream.push(null);
-      });
-    }
-  });
-  call.on('status', (status: StatusObject) => {
-    if (status.code !== Status.OK) {
-      stream.emit('error', callErrorFromStatus(status));
-    }
-    stream.emit('status', status);
-    statusEmitted = true;
-  });
-  call.pause();
 }
 
 export class ClientReadableStreamImpl<ResponseType> extends Readable
   implements ClientReadableStream<ResponseType> {
-  constructor(
-    private readonly call: Call,
-    readonly deserialize: (chunk: Buffer) => ResponseType
-  ) {
+  public call?: InterceptingCallInterface;
+  constructor(readonly deserialize: (chunk: Buffer) => ResponseType) {
     super({ objectMode: true });
-    call.on('metadata', (metadata: Metadata) => {
-      this.emit('metadata', metadata);
-    });
-    setUpReadableStream<ResponseType>(this, call, deserialize);
   }
 
   cancel(): void {
-    this.call.cancelWithStatus(Status.CANCELLED, 'Cancelled on client');
+    this.call?.cancelWithStatus(Status.CANCELLED, 'Cancelled on client');
   }
 
   getPeer(): string {
-    return this.call.getPeer();
+    return this.call?.getPeer() ?? 'unknown';
   }
 
   _read(_size: number): void {
-    this.call.resume();
+    this.call?.startRead();
   }
-}
-
-function tryWrite<RequestType>(
-  call: Call,
-  serialize: (value: RequestType) => Buffer,
-  chunk: RequestType,
-  encoding: string,
-  cb: Function
-) {
-  let message: Buffer;
-  const flags: number = Number(encoding);
-  try {
-    message = serialize(chunk);
-  } catch (e) {
-    call.cancelWithStatus(Status.INTERNAL, 'Serialization failure');
-    cb(e);
-    return;
-  }
-  const writeObj: WriteObject = { message };
-  if (!Number.isNaN(flags)) {
-    writeObj.flags = flags;
-  }
-  call.write(writeObj, cb);
 }
 
 export class ClientWritableStreamImpl<RequestType> extends Writable
   implements ClientWritableStream<RequestType> {
-  constructor(
-    private readonly call: Call,
-    readonly serialize: (value: RequestType) => Buffer
-  ) {
+  public call?: InterceptingCallInterface;
+  constructor(readonly serialize: (value: RequestType) => Buffer) {
     super({ objectMode: true });
-    call.on('metadata', (metadata: Metadata) => {
-      this.emit('metadata', metadata);
-    });
-    call.on('status', (status: StatusObject) => {
-      this.emit('status', status);
-    });
   }
 
   cancel(): void {
-    this.call.cancelWithStatus(Status.CANCELLED, 'Cancelled on client');
+    this.call?.cancelWithStatus(Status.CANCELLED, 'Cancelled on client');
   }
 
   getPeer(): string {
-    return this.call.getPeer();
+    return this.call?.getPeer() ?? 'unknown';
   }
 
-  _write(chunk: RequestType, encoding: string, cb: Function) {
-    tryWrite<RequestType>(this.call, this.serialize, chunk, encoding, cb);
+  _write(chunk: RequestType, encoding: string, cb: WriteCallback) {
+    const context: MessageContext = {
+      callback: cb,
+    };
+    const flags = Number(encoding);
+    if (!Number.isNaN(flags)) {
+      context.flags = flags;
+    }
+    this.call?.sendMessageWithContext(context, chunk);
   }
 
   _final(cb: Function) {
-    this.call.end();
+    this.call?.halfClose();
     cb();
   }
 }
 
 export class ClientDuplexStreamImpl<RequestType, ResponseType> extends Duplex
   implements ClientDuplexStream<RequestType, ResponseType> {
+  public call?: InterceptingCallInterface;
   constructor(
-    private readonly call: Call,
     readonly serialize: (value: RequestType) => Buffer,
     readonly deserialize: (chunk: Buffer) => ResponseType
   ) {
     super({ objectMode: true });
-    call.on('metadata', (metadata: Metadata) => {
-      this.emit('metadata', metadata);
-    });
-    setUpReadableStream<ResponseType>(this, call, deserialize);
   }
 
   cancel(): void {
-    this.call.cancelWithStatus(Status.CANCELLED, 'Cancelled on client');
+    this.call?.cancelWithStatus(Status.CANCELLED, 'Cancelled on client');
   }
 
   getPeer(): string {
-    return this.call.getPeer();
+    return this.call?.getPeer() ?? 'unknown';
   }
 
   _read(_size: number): void {
-    this.call.resume();
+    this.call?.startRead();
   }
 
-  _write(chunk: RequestType, encoding: string, cb: Function) {
-    tryWrite<RequestType>(this.call, this.serialize, chunk, encoding, cb);
+  _write(chunk: RequestType, encoding: string, cb: WriteCallback) {
+    const context: MessageContext = {
+      callback: cb,
+    };
+    const flags = Number(encoding);
+    if (!Number.isNaN(flags)) {
+      context.flags = flags;
+    }
+    this.call?.sendMessageWithContext(context, chunk);
   }
 
   _final(cb: Function) {
-    this.call.end();
+    this.call?.halfClose();
     cb();
   }
 }

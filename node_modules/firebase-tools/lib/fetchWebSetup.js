@@ -11,16 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const api = require("./api");
 const getProjectId = require("./getProjectId");
-const configstore = require("./configstore");
+const configstore_1 = require("./configstore");
 const CONFIGSTORE_KEY = "webconfig";
 function setCachedWebSetup(projectId, config) {
-    const allConfigs = configstore.get(CONFIGSTORE_KEY) || {};
+    const allConfigs = configstore_1.configstore.get(CONFIGSTORE_KEY) || {};
     allConfigs[projectId] = config;
-    configstore.set(CONFIGSTORE_KEY, allConfigs);
+    configstore_1.configstore.set(CONFIGSTORE_KEY, allConfigs);
 }
 function getCachedWebSetup(options) {
     const projectId = getProjectId(options, false);
-    const allConfigs = configstore.get(CONFIGSTORE_KEY) || {};
+    const allConfigs = configstore_1.configstore.get(CONFIGSTORE_KEY) || {};
     return allConfigs[projectId];
 }
 exports.getCachedWebSetup = getCachedWebSetup;

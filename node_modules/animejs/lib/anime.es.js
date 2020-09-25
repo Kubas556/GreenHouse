@@ -1,6 +1,6 @@
 /*
- * anime.js v3.1.0
- * (c) 2019 Julian Garnier
+ * anime.js v3.2.0
+ * (c) 2020 Julian Garnier
  * Released under the MIT license
  * animejs.com
  */
@@ -30,7 +30,7 @@ var defaultTweenSettings = {
   round: 0
 };
 
-var validTransforms = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'perspective'];
+var validTransforms = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY', 'perspective', 'matrix', 'matrix3d'];
 
 // Caching
 
@@ -132,7 +132,7 @@ function spring(string, duration) {
 function steps(steps) {
   if ( steps === void 0 ) steps = 10;
 
-  return function (t) { return Math.round(t * steps) * (1 / steps); };
+  return function (t) { return Math.ceil((minMax(t, 0.000001, 1)) * steps) * (1 / steps); };
 }
 
 // BezierEasing https://github.com/gre/bezier-easing
@@ -1133,6 +1133,7 @@ function anime(params) {
 
   instance.reverse = function() {
     toggleInstanceDirection();
+    instance.completed = instance.reversed ? false : true;
     resetTime();
   };
 
@@ -1262,7 +1263,7 @@ function timeline(params) {
   return tl;
 }
 
-anime.version = '3.1.0';
+anime.version = '3.2.0';
 anime.speed = 1;
 anime.running = activeInstances;
 anime.remove = removeTargets;
