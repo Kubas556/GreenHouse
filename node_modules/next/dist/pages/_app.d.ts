@@ -1,8 +1,9 @@
 /// <reference types="node" />
 import React, { ErrorInfo } from 'react';
-import { AppContextType, AppInitialProps, AppPropsType } from '../next-server/lib/utils';
+import { AppContextType, AppInitialProps, AppPropsType, NextWebVitalsMetric } from '../next-server/lib/utils';
 import { Router } from '../client/router';
 export { AppInitialProps };
+export { NextWebVitalsMetric };
 export declare type AppContext = AppContextType<Router>;
 export declare type AppProps<P = {}> = AppPropsType<Router, P>;
 /**

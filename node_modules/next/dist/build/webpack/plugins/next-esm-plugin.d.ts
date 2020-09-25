@@ -28,9 +28,9 @@
  *
  * Original source from which this was built upon - https://github.com/prateekbh/babel-esm-plugin
  */
-import { Compiler, compilation, Plugin, RuleSetRule, RuleSetLoader } from 'webpack';
+import { Compiler, compilation as CompilationType, Plugin, RuleSetRule, RuleSetLoader } from 'webpack';
 declare type BabelConfigItem = string | [string] | [string, any];
-export default class NextEsmPlugin implements Plugin {
+export declare class NextEsmPlugin implements Plugin {
     options: {
         filename: any;
         chunkFilename: any;
@@ -50,7 +50,7 @@ export default class NextEsmPlugin implements Plugin {
         presets?: BabelConfigItem[];
         plugins?: BabelConfigItem[];
     }): void;
-    updateAssets(compilation: compilation.Compilation, childCompilation: compilation.Compilation): void;
-    runBuild(compiler: Compiler, compilation: compilation.Compilation): Promise<void>;
+    updateAssets(compilation: CompilationType.Compilation, childCompilation: CompilationType.Compilation): void;
+    runBuild(compiler: Compiler, compilation: CompilationType.Compilation): Promise<void>;
 }
 export {};

@@ -1,1 +1,2 @@
-"use strict";require("__next_polyfill__fetch");require("url-polyfill");Object.assign=require('__next_polyfill__object_assign');
+"use strict";require("next/dist/build/polyfills/polyfill-nomodule");
+//# sourceMappingURL=polyfills.js.map
