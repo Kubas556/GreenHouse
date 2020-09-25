@@ -1,5 +1,4 @@
 .now
 .next
 .vercel
-node_modules
 public
