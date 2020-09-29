@@ -8,8 +8,8 @@ import {useTheme} from "@material-ui/styles";
 function Termostat(props:ITermostat){
     const min = 0;
     const max = 50;
-    const componentWidth = 337;
-    const componentHeight = 337;
+    const [componentWidth,setComponentWidth] = useState<number>(props.width?props.width:337);
+    const [componentHeight,setComponentHeight] = useState<number>(props.width?props.width:337);
     const minAngle = 0;
     const maxAngle = 270;
     const angleOverlap = (maxAngle-180)/2;
@@ -20,6 +20,7 @@ function Termostat(props:ITermostat){
     // @ts-ignore
     const handleColor = theme.palette.primary.main;
 
+    const workplace = useRef<HTMLDivElement>(null);
     const lines = useRef<HTMLDivElement>(null);
     const valueInput = useRef<HTMLInputElement>(null);
     const hand = useRef<HTMLDivElement>(null);
@@ -49,19 +50,20 @@ function Termostat(props:ITermostat){
         width: componentWidth/2+"px"
     };
 
+    const handSize = {
+        width: componentWidth/2+"px"
+    };
+
+//lze upravovat
     const handPathSize = {
         width: componentWidth/3+"px",
         height: componentHeight/3+"px"
     };
 
-    const handSize = {
-        width: componentWidth/2+"px"
-    };
-
     const handleSize = {
         right: (componentWidth/2)/3+"px"
     };
-
+//-----------------------------------
     const handPathCircle = {
         circleRadius:2*Math.PI*80.6,
         transform:"rotate("+-angleOverlap+"deg)",
@@ -74,32 +76,37 @@ function Termostat(props:ITermostat){
         setCurrentAngle((((maxAngle)/max)*val)-(angleOverlap));
     }
 
+    function calculateAngle(x:number, y:number) {
+        let angle = Math.atan2(y, x);
+        let angle2 = angle * (180/Math.PI);
+        //to 360 range
+        if(angle2 < 0)
+        {
+            angle2 = 360-(-angle2);
+        }
+        //set 0 angle
+        angle2+= 180;
+        //corect angle
+        if(angle2 > 360)
+            angle2-=360;
+
+        angle2=(maxAngle-angle2);
+        if(angle2 < 0)
+            angle2 = (angleOverlap-((360-maxAngle) + angle2));
+        else
+            angle2=-(angle2-maxAngle-angleOverlap);
+
+        if(angle2 >= (minAngle) && angle2 <= (maxAngle)) {
+            setCurrentValue(Math.round(((max / maxAngle) * angle2)));
+            setAngleTrans(angle2-angleOverlap);
+            setHandAngle(angle2-angleOverlap);
+        }
+    }
+
     function onMove(e:MouseEvent){
+        e.nativeEvent.preventDefault();
         if(drag){
-            let angle = Math.atan2(e.nativeEvent.offsetY-(componentHeight/2), e.nativeEvent.offsetX-(componentWidth/2));
-            let angle2 = angle * (180/Math.PI);
-            //to 360 range
-            if(angle2 < 0)
-            {
-                angle2 = 360-(-angle2);
-            }
-            //set 0 angle
-            angle2+= 180;
-            //corect angle
-            if(angle2 > 360)
-                angle2-=360
-
-            angle2=(maxAngle-angle2);
-            if(angle2 < 0)
-                angle2 = (angleOverlap-((360-maxAngle) + angle2));
-            else
-                angle2=-(angle2-maxAngle-angleOverlap);
-
-            if(angle2 >= (minAngle) && angle2 <= (maxAngle)) {
-                setCurrentValue(Math.round(((max / maxAngle) * angle2)));
-                setAngleTrans(angle2-angleOverlap);
-                setHandAngle(angle2-angleOverlap);
-            }
+            calculateAngle(e.nativeEvent.offsetX-(componentWidth/2),e.nativeEvent.offsetY-(componentHeight/2))
         }
     }
 
@@ -116,6 +123,17 @@ function Termostat(props:ITermostat){
             setDrag(false);
             if(handle.current)
             handle.current.style.pointerEvents="all";
+        }
+    }
+
+    // @ts-ignore
+    function onTouchMove(e:TouchEvent<HTMLDivElement>) {
+        e.nativeEvent.preventDefault();
+        if(workplace.current) {
+            let testX = (e.nativeEvent.targetTouches[0].pageX - workplace.current.getBoundingClientRect().left) - (componentWidth / 2);
+            let testY = (e.nativeEvent.targetTouches[0].pageY - workplace.current.getBoundingClientRect().top) - (componentHeight / 2);
+
+            calculateAngle(testX, testY);
         }
     }
 
@@ -185,6 +203,8 @@ function Termostat(props:ITermostat){
         let initValue = props.defaultValue;
         if(initValue!=undefined) {
             let k = 0;
+            if(lines.current)
+                lines.current.innerHTML = "";
             for (let i = 0; i < valueLineSegCount; i++) {
                 let handAngle = Math.round((maxAngle / max) * k)-angleOverlap;
                 let line = '<div style="transform:rotate(' + handAngle + 'deg)!important;width:'+(lineContainerSizes.width)+';" class="valueLineContainer">' +
@@ -298,7 +318,7 @@ function Termostat(props:ITermostat){
 
     return(
         <div>
-            <div id="work" onMouseMove={onMove} onMouseUp={onDragEnd} style={workspaceSize} className="workspace">
+            <div id="work" ref={workplace} onMouseMove={onMove} onMouseUp={onDragEnd} style={workspaceSize} className="workspace">
                 <svg id="handPath" style={handPathSize} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161.45 161.45">
                     <defs>
                         <style>{".pathcircle{fill:none;stroke:"+(props.theme==1?"white":"black")+";stroke-miterlimit:10;stroke-opacity:0.08;stroke-width:3px;}"}</style>
@@ -313,7 +333,7 @@ function Termostat(props:ITermostat){
                 <div ref={lines} id="lines" style={linesSize}>
                 </div>
                 <div ref={hand} id="hand" style={handSize}>
-                    <svg ref={handle} onMouseDown={onDrag} id="handle" style={handleSize} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.04 26.04">
+                    <svg ref={handle} onMouseDown={onDrag} onTouchMove={onTouchMove} id="handle" style={handleSize} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.04 26.04">
                         <defs>
                             <style>{".handle{fill:"+handleColor+"}"}</style>
                         </defs>
@@ -333,12 +353,14 @@ function Termostat(props:ITermostat){
             <style jsx global>{`
                 .workspace{
                   background:/*#212121*/none;
+                  touch-action: none;
                   //height:500px;
                   //width:500px;
                   margin:auto;
                   position:relative;
                   border-radius:100%;
                   user-select: none;
+                  font-family: 'Inter', sans-serif;
                 }
                 .workspace .valueGroup{
                   position: absolute;

@@ -67,6 +67,7 @@ export default function MyApp (props) {
             <Head>
                 <title>My page</title>
                 <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet"/>
             </Head>
             <ThemeProvider theme={theme?darkTheme:lightTheme}>
                 {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

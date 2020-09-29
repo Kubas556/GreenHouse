@@ -86,9 +86,12 @@ function Tempmeter(props:ITempmeter){
 
     return(
         <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width={"110"} viewBox="0 0 83.45 252.84">
+            <style>
+                {"#tempmeter:{font-family: 'Inter', sans-serif;}"}
+            </style>
+        <svg id={"tempmeter"} xmlns="http://www.w3.org/2000/svg" width={"110"} viewBox="0 0 83.45 252.84">
             <defs>
-                <style>{".cls-1,.cls-3,.cls-5{fill:none;stroke-miterlimit:10;}.cls-1{stroke:#4950f5;stroke-linecap:round;stroke-width:7px;}.cls-2{fill:#4950f5;}.cls-3,.cls-5{stroke:"+(props.theme==1?"white":"black")+";stroke-width:0.25px;}.cls-4{font-size:12px;fill:"+(props.theme==1?"white":"black")+";font-family:CenturyGothic, Century Gothic;}.cls-5{stroke - dasharray:0.99 0.99;}"}</style>
+                <style>{".cls-1,.cls-3,.cls-5{fill:none;stroke-miterlimit:10;}.cls-1{stroke:#4950f5;stroke-linecap:round;stroke-width:7px;}.cls-2{fill:#4950f5;}.cls-3,.cls-5{stroke:"+(props.theme==1?"white":"black")+";stroke-width:0.25px;}.cls-4{font-size:12px;fill:"+(props.theme==1?"white":"black")+";}.cls-5{stroke - dasharray:0.99 0.99;}"}</style>
             </defs>
             <title>Datový zdroj 27</title>
             <g id="Vrstva_2" data-name="Vrstva 2">
