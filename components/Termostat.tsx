@@ -130,8 +130,8 @@ function Termostat(props:ITermostat){
     function onTouchMove(e:TouchEvent<HTMLDivElement>) {
         e.nativeEvent.preventDefault();
         if(workplace.current) {
-            let testX = (e.nativeEvent.targetTouches[0].pageX - workplace.current.getBoundingClientRect().left) - (componentWidth / 2);
-            let testY = (e.nativeEvent.targetTouches[0].pageY - workplace.current.getBoundingClientRect().top) - (componentHeight / 2);
+            let testX = (e.nativeEvent.targetTouches[0].pageX - (workplace.current.getBoundingClientRect().left + window.scrollX)) - (componentWidth / 2);
+            let testY = (e.nativeEvent.targetTouches[0].pageY - (workplace.current.getBoundingClientRect().top + window.scrollY)) - (componentHeight / 2);
 
             calculateAngle(testX, testY);
         }
