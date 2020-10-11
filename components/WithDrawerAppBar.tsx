@@ -169,7 +169,7 @@ export default function WithDrawerAppBar(props:IWithDrawerAppBar) {
                     </Typography>
                     <div className={classes.grow}/>
                     <IconButton onClick={compProps.switchTheme} aria-label="display more actions" color="inherit">
-                        {compProps.theme===true?<Brightness7Icon />:<Brightness4Icon />}
+                        {compProps.appTheme===true?<Brightness7Icon />:<Brightness4Icon />}
                     </IconButton>
                     {
                         auth.currentUser?

@@ -6,6 +6,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import React, {useEffect, useState} from "react";
 import {orange} from "@material-ui/core/colors";
 import {useRouter} from "next/router";
+import withWidth,{isWidthDown} from "@material-ui/core/withWidth";
 import {Typography,Paper} from "@material-ui/core";
 import withAuth from "../../components/WithAuth";
 import WithDrawerAppBar from "../../components/WithDrawerAppBar";
@@ -20,21 +21,31 @@ import onlyDesktop from "../../components/OnlyDesktop";
 import FireBackground from "../../components/FireBackground";
 import {width} from "@material-ui/system";
 import {url} from "inspector";
+import {Breakpoint} from "@material-ui/core/styles/createBreakpoints";
+import ITermostatConfig from "../../interfaces/ITermostatConfig";
 
 const useStyle = makeStyles(theme=>({
-    center:{
+    center: {
         display:'flex',
-        width: 'calc(100% - 1px)'
+        width: 'calc(100% - 1px)',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection:'column'
+        }
     },
-    page:{
+    page: {
         width: '100%',
         position: 'relative'
     },
-    controllComponent:{
-        margin:'50px',
+    controllComponent: {
+        [theme.breakpoints.down('sm')]: {
+            margin:'5px',
+        },
+        [theme.breakpoints.up('xl')]: {
+            margin:'50px',
+        },
         width:'min-content',
         padding:'1rem'
-    }
+    },
 }));
 
 function Id(props:IPageProps) {
@@ -43,6 +54,7 @@ function Id(props:IPageProps) {
     const [tempHistoryCharData,setTempHistoryCharData] = useState<any>();
     const [tempHistoryCharLabels,setTempHistoryCharLabels] = useState<any>();
     const [defTemp,setDefTemp] = useState<number>();
+    const [pageSize,setPageSize] = useState<Breakpoint>('xl');
     const router = useRouter();
     const { id } = router.query;
     const timeFormat = 'MM/DD/YYYY HH:mm';
@@ -79,7 +91,18 @@ function Id(props:IPageProps) {
 
     },[]);
 
- return(
+    let thermostatConfig:ITermostatConfig = {
+        width: isWidthDown('xs',props.width)?200:337,
+        height: isWidthDown('xs',props.width)?200:337,
+        centerTextSize:isWidthDown('xs',props.width)?"1rem":"2rem",
+        outerLinesLeftOffset: isWidthDown('xs',props.width)?"0px":"0.5rem",
+        outerLinesHeight: isWidthDown('xs',props.width)?"5px":"5px",
+        outerLinesWidth: isWidthDown('xs',props.width)?"1rem":"2rem",
+        innerLinesLeftOffset: isWidthDown('xs',props.width)?"1.5rem":"3.5rem",
+        innerLinesTextLeftOffset: isWidthDown('xs',props.width)?"3px":"0.5rem",
+    }
+
+    return(
      <div className={classes.page}>
          <Typography component={"h1"} variant={"h2"}>
              Teplota
@@ -87,12 +110,12 @@ function Id(props:IPageProps) {
          <div className={classes.center}>
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
-                     <Tempmeter theme={props.theme} temp={temp}/>
+                     <Tempmeter theme={props.appTheme} temp={temp}/>
                  </Paper>
              </div>
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
-                     <Termostat theme={props.theme} onValueChanged={termostatChange} defaultValue={defTemp} width={337} height={337}/>
+                     <Termostat theme={props.appTheme} onValueChanged={termostatChange} defaultValue={defTemp} config={thermostatConfig}/>
                  </Paper>
              </div>
          </div>
@@ -126,8 +149,8 @@ function Id(props:IPageProps) {
                             yAxes: [{
                                 display:true,
                                 gridLines: {
-                                    color:props.theme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
-                                    zeroLineColor:props.theme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
+                                    color:props.appTheme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
+                                    zeroLineColor:props.appTheme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
                                     drawTicks:false,
                                     display:false
                                 },
@@ -168,4 +191,4 @@ function ex(props:IPageProps) {
     )
 }
 
-export default withAuth(ex);
+export default withWidth()(withAuth(ex));

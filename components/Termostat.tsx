@@ -8,8 +8,8 @@ import {useTheme} from "@material-ui/styles";
 function Termostat(props:ITermostat){
     const min = 0;
     const max = 50;
-    const [componentWidth,setComponentWidth] = useState<number>(props.width?props.width:337);
-    const [componentHeight,setComponentHeight] = useState<number>(props.width?props.width:337);
+    const [componentWidth,setComponentWidth] = useState<number>(props.config.width?props.config.width:337);
+    const [componentHeight,setComponentHeight] = useState<number>(props.config.height?props.config.height:337);
     const minAngle = 0;
     const maxAngle = 270;
     const angleOverlap = (maxAngle-180)/2;
@@ -368,7 +368,7 @@ function Termostat(props:ITermostat){
                   margin-top: 50%;
                   margin-left: 50%;
                   transform: translate(-50%, -50%);
-                  font-size: 2rem;
+                  font-size: ${props.config.centerTextSize?props.config.centerTextSize:"2rem"};
                 }
                 #lines,#handPath,.lineContainer,.valueLineContainer,.valueGroup{
                   pointer-events: none;
@@ -394,21 +394,21 @@ function Termostat(props:ITermostat){
                   transform-origin: right center;
                 }
                 .line{
-                  height:5px;
-                  width:2rem;
-                  margin-left:0.5rem;
+                  height: ${props.config.outerLinesHeight?props.config.outerLinesHeight:"5px"};
+                  width: ${props.config.outerLinesWidth?props.config.outerLinesWidth:"2rem"};
+                  margin-left:${props.config.outerLinesLeftOffset?props.config.outerLinesLeftOffset:"0.5rem"};
                   transform-origin: right center;
                 }
                 .smallValueLine{
                   height: 2px;
                   width: 0.5rem;
-                  margin-left: 3.5rem;
+                  margin-left: ${props.config.innerLinesLeftOffset?props.config.innerLinesLeftOffset:"3.5rem"};
                   opacity:0.2;
                 }
                 .bigValueLine{
                   height: 2px;
                   width: 1rem;
-                  margin-left: 3.5rem;
+                  margin-left: ${props.config.innerLinesLeftOffset?props.config.innerLinesLeftOffset:"3.5rem"};
                   opacity:0.2;
                 }
                 .valueLineGroup{
@@ -417,7 +417,7 @@ function Termostat(props:ITermostat){
                   align-items: center;
                 }
                 .value{
-                    margin-left:0.5rem;
+                    margin-left: ${props.config.innerLinesTextLeftOffset?props.config.innerLinesTextLeftOffset:"0.5rem"};
                 }
                 #handPath{
                   //width: 250px;

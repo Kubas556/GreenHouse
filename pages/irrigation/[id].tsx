@@ -22,6 +22,7 @@ import {width} from "@material-ui/system";
 import {url} from "inspector";
 import SoilHumidity from "../../components/SoilHumidity";
 import AirHumidity from "../../components/AirHumidity";
+import WaterMixer from "../../components/waterMixer";
 
 const useStyle = makeStyles(theme=>({
     center:{
@@ -95,12 +96,17 @@ function Id(props:IPageProps) {
          <div className={classes.center}>
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
-                     <SoilHumidity theme={props.theme} value={soilHumidity}/>
+                     <SoilHumidity theme={props.appTheme} value={soilHumidity}/>
                  </Paper>
              </div>
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
-                    <AirHumidity theme={props.theme} value={airHumidity} />
+                    <AirHumidity theme={props.appTheme} value={airHumidity} />
+                 </Paper>
+             </div>
+             <div className={classes.controllComponent}>
+                 <Paper elevation={3} style={{padding: '1rem'}}>
+                     <WaterMixer theme={props.appTheme}/>
                  </Paper>
              </div>
          </div>
@@ -134,8 +140,8 @@ function Id(props:IPageProps) {
                             yAxes: [{
                                 display:true,
                                 gridLines: {
-                                    color:props.theme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
-                                    zeroLineColor:props.theme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
+                                    color:props.appTheme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
+                                    zeroLineColor:props.appTheme==1?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',
                                     drawTicks:false,
                                     display:false
                                 },

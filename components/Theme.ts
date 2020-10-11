@@ -32,7 +32,7 @@ const lightTheme = createMuiTheme({
         danger: red[500]
     },
     typography: {
-        fontFamily: '"Inter", sans-serif'
+        //fontFamily: '"Inter", sans-serif'
     }
 });
 
@@ -54,7 +54,7 @@ const darkTheme = createMuiTheme({
         danger: red[500]
     },
     typography: {
-        fontFamily: '"Inter", sans-serif'
+        //fontFamily: '"Inter", sans-serif'
     }
 });
 

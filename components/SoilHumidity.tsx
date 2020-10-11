@@ -142,7 +142,7 @@ const SoilHumidity = (props:ISoilHumudity) => {
                         <text id="Percentage-text" ref={percentageText} style={{
                             fontSize: 12+"px",
                             fill: (props.theme==1?"white":"black"),
-                            fontFamily: "CenturyGothic, Century Gothic"
+                            fontFamily: "'Inter', sans-serif"
                         }}>50%</text>
                         <polygon className="cls-3-vlh-pud" points="38.16 100.94 242.91 100.94 196 261.92 85.08 261.92 38.16 100.94"/>
                         <line className="cls-4-vlh-pud" id="Percentage-line" ref={percentageLine2} x1="140.54" y1="171.72" x2="277.03" y2="171.72"/>

@@ -107,9 +107,12 @@ const AirHumidity = (props:IAirHumudity) => {
 
     return (
         <div style={{width:componentWidth,height:componentHeight}}>
+            <style>
+                {".cls-2-vlh-vz{font-size:12px;fill:"+(props.theme==1?"white":"black")+";font-family: 'Inter', sans-serif;"}
+            </style>
             <svg viewBox="0 0 225.68 211.24" style={{width:componentWidth}}>
                 <defs>
-                    <style>{".cls-1-vlh-vz,.cls-7-vlh-vz,.cls-8-vlh-vz{fill:none;}.cls-2-vlh-vz{font-size:12px;fill:"+(props.theme==1?"white":"black")+";font-family:CenturyGothic, Century Gothic;}.cls-3-vlh-vz{clip-path:url(#clip-path-vlh-vz);}.cls-4-vlh-vz,.cls-5-vlh-vz,.cls-6-vlh-vz{fill:#18b8d4;}.cls-5-vlh-vz{opacity:0.2;}.cls-6-vlh-vz{opacity:0.4;}.cls-7-vlh-vz,.cls-8-vlh-vz{stroke:"+(props.theme==1?"white":"black")+";stroke-miterlimit:10;}.cls-7-vlh-vz{stroke-width:0.25px;}.cls-8-vlh-vz{stroke-opacity:0.49;}"}</style>
+                    <style>{".cls-1-vlh-vz,.cls-7-vlh-vz,.cls-8-vlh-vz{fill:none;}.cls-2-vlh-vz{font-size:12px;fill:"+(props.theme==1?"white":"black")+";}.cls-3-vlh-vz{clip-path:url(#clip-path-vlh-vz);}.cls-4-vlh-vz,.cls-5-vlh-vz,.cls-6-vlh-vz{fill:#18b8d4;}.cls-5-vlh-vz{opacity:0.2;}.cls-6-vlh-vz{opacity:0.4;}.cls-7-vlh-vz,.cls-8-vlh-vz{stroke:"+(props.theme==1?"white":"black")+";stroke-miterlimit:10;}.cls-7-vlh-vz{stroke-width:0.25px;}.cls-8-vlh-vz{stroke-opacity:0.49;}"}</style>
                     <clipPath id="clip-path-vlh-vz" transform="translate(60.15)">
                         <path className="cls-1-vlh-vz" d="M97.89,131.23a45.2,45.2,0,0,1-90.4,0c0-25,45.2-112.92,45.2-112.92S97.89,106.27,97.89,131.23Z"/>
                     </clipPath>
