@@ -8,6 +8,7 @@ import {orange} from "@material-ui/core/colors";
 import {useRouter} from "next/router";
 import withWidth,{isWidthDown} from "@material-ui/core/withWidth";
 import {Typography,Paper} from "@material-ui/core";
+import Alert from '@material-ui/lab/Alert'
 import withAuth from "../../components/WithAuth";
 import WithDrawerAppBar from "../../components/WithDrawerAppBar";
 import Tempmeter from "../../components/Tempmeter";
@@ -23,6 +24,7 @@ import {width} from "@material-ui/system";
 import {url} from "inspector";
 import {Breakpoint} from "@material-ui/core/styles/createBreakpoints";
 import ITermostatConfig from "../../interfaces/ITermostatConfig";
+import Snackbar from "@material-ui/core/Snackbar";
 
 const useStyle = makeStyles(theme=>({
     center: {

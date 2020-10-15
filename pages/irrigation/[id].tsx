@@ -46,7 +46,7 @@ function Id(props:IPageProps) {
     const [airHumidity,setAirHumidity] = useState<number>(0);
     const [airHumidityHistoryCharData,setAirHumidityHistoryCharData] = useState<any>();
     const [aitHumidityHistoryCharLabels,setAirHumidityHistoryCharLabels] = useState<any>();
-    const [defTemp,setDefTemp] = useState<number>();
+    const [watering,setWatering] = useState<{fertiliser:number, total:number}>({fertiliser:0,total:500});
     const router = useRouter();
     const { id } = router.query;
     const timeFormat = 'MM/DD/YYYY HH:mm';
@@ -55,10 +55,11 @@ function Id(props:IPageProps) {
     let soilHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/soilHumidity");
     let airHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/airHumidity");
     let humidityHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/history/airHumidity");
+    let wateringData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigation");
     //let targetTempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp");
 
-    const termostatChange = (value:number) => {
-        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp").set(value);
+    const waterMixChanged = (obj:{water:number, fertiliser:number, ratio:string, total:number}) => {
+        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigation").set(obj);
     };
 
     useEffect(()=>{
@@ -80,6 +81,10 @@ function Id(props:IPageProps) {
 
             setAirHumidityHistoryCharData(charData);
             setAirHumidityHistoryCharLabels(charLabels);
+        });
+
+        wateringData.once('value',data => {
+           setWatering(data.val());
         });
 
         /*targetTempData.once('value',data=>{
@@ -106,7 +111,7 @@ function Id(props:IPageProps) {
              </div>
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
-                     <WaterMixer theme={props.appTheme}/>
+                     <WaterMixer defaults={watering} theme={props.appTheme} onChange={waterMixChanged}/>
                  </Paper>
              </div>
          </div>
