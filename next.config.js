@@ -11,5 +11,5 @@ module.exports = {
             '/': { page: '/' },
             '/login': { page: '/login' }
         };
-    },
+    }
 };
