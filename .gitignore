@@ -1,6 +1,5 @@
 .now
 .next
 .vercel
-.env.local
 node_modules
 public
