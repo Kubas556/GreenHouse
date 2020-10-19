@@ -219,12 +219,6 @@ export default function WithDrawerAppBar(props:IWithDrawerAppBar) {
                             <ListItemText primary={"Zavlažování"} />
                         </ListItem>
                     </Link>
-                    <Link href={"/fertilization"}>
-                        <ListItem button>
-                            <ListItemIcon>{<FertilizerIcon/>}</ListItemIcon>
-                            <ListItemText primary={"Hnojení"} />
-                        </ListItem>
-                    </Link>
                 </List>
                 <Divider />
                 <List style={{height:"100%",display:"flex",flexDirection:"column"}}>

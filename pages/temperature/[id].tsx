@@ -16,7 +16,7 @@ import Termostat from "../../components/Termostat";
 import {auth, firebase} from "../../firebase/index";
 import IPageProps from "../../interfaces/IPageProps";
 import Loading from "../../components/Loading";
-import {object, string} from "prop-types";
+import {number, object, string} from "prop-types";
 import {Line} from "react-chartjs-2";
 import onlyDesktop from "../../components/OnlyDesktop";
 import FireBackground from "../../components/FireBackground";
@@ -25,6 +25,7 @@ import {url} from "inspector";
 import {Breakpoint} from "@material-ui/core/styles/createBreakpoints";
 import ITermostatConfig from "../../interfaces/ITermostatConfig";
 import Snackbar from "@material-ui/core/Snackbar";
+import Slider from "@material-ui/core/Slider";
 
 const useStyle = makeStyles(theme=>({
     center: {
@@ -55,8 +56,10 @@ function Id(props:IPageProps) {
     const [temp,setTemp] = useState<number>(-50);
     const [tempHistoryCharData,setTempHistoryCharData] = useState<any>();
     const [tempHistoryCharLabels,setTempHistoryCharLabels] = useState<any>();
-    const [defTemp,setDefTemp] = useState<number>();
-    const [pageSize,setPageSize] = useState<Breakpoint>('xl');
+    const [defTargetTemp,setDefTargetTemp] = useState<number>(0);
+    const [targetTemp,setTargetTemp] = useState<number>(0);
+    const [tempTolerant,setTempTolerant] = useState<{n:number,p:number}>({n:0,p:0});
+    //const [pageSize,setPageSize] = useState<Breakpoint>('xl');
     const router = useRouter();
     const { id } = router.query;
     const timeFormat = 'MM/DD/YYYY HH:mm';
@@ -67,15 +70,23 @@ function Id(props:IPageProps) {
     let targetTempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp");
 
     const termostatChange = (value:number) => {
-        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp").set(value);
+        setTargetTemp(value);
+        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp/temp").set(value);
     };
 
+    const onTermostatTolerantChange = (e:any,numbers:any) => {
+        let values = numbers as number[];
+        setTempTolerant({n:values[0]-targetTemp,p:values[1]-targetTemp});
+        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp/tempTolerantN").set(values[0]-targetTemp);
+        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp/tempTolerantP").set(values[1]-targetTemp);
+    }
+
     useEffect(()=>{
-        tempData.on('value',data=>{
+        tempData.on('value',data => {
             setTemp(data.val());
         });
 
-        tempHistoryData.on('value',data=>{
+        tempHistoryData.on('value',data => {
             let charData:any[] = [];
             let charLabels:any[] = [];
             Object.keys(data.val()).forEach(key => {
@@ -87,8 +98,10 @@ function Id(props:IPageProps) {
             setTempHistoryCharLabels(charLabels);
         });
 
-        targetTempData.once('value',data=>{
-            setDefTemp(data.val());
+        targetTempData.once('value',data => {
+            setDefTargetTemp(data.val().temp);
+            setTempTolerant({n:data.val().tempTolerantN, p:data.val().tempTolerantP});
+            //setTargetTemp(data.val());
         });
 
     },[]);
@@ -117,7 +130,15 @@ function Id(props:IPageProps) {
              </div>
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
-                     <Termostat theme={props.appTheme} onValueChanged={termostatChange} defaultValue={defTemp} config={thermostatConfig}/>
+                     <Termostat theme={props.appTheme} onValueChanged={termostatChange} defaultValue={defTargetTemp} config={thermostatConfig}/>
+                     <Slider
+                         value={[targetTemp+tempTolerant.n, targetTemp+tempTolerant.p]}
+                         min={0}
+                         max={50}
+                         valueLabelDisplay="on"
+                         onChange={ onTermostatTolerantChange }
+                         marks={[{value:0,label:"0°C"},{value:targetTemp,label:targetTemp+"°C"},{value:50,label:"50°C"}]}
+                     />
                  </Paper>
              </div>
          </div>
