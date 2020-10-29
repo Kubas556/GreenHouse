@@ -111,22 +111,26 @@ function WaterMixer(props:IWaterMixer) {
     }
 
     function onTableChange(obj:{fertiliser:number,total:number}) {
-        setTotalValue(obj.total);
-        const trans = {
-          fertiliser:0
-        };
-        anime({
-            targets:trans,
-            fertiliser:[0,obj.fertiliser],
-            easing:'linear',
-            duration:100,
-            update:function() {
-                setFertiliserValue((trans.fertiliser/obj.total)*100);
-                setLineAngle(360*(trans.fertiliser/obj.total));
-            }
-        });
+        if(obj.total <= maxMl) {
+            setTotalValue(obj.total);
+            const trans = {
+                fertiliser: 0
+            };
+            anime({
+                targets: trans,
+                fertiliser: [0, obj.fertiliser],
+                easing: 'linear',
+                duration: 100,
+                update: function () {
+                    setFertiliserValue((trans.fertiliser / obj.total) * 100);
+                    setLineAngle(360 * (trans.fertiliser / obj.total));
+                }
+            });
 
-        callChangeEvent((obj.fertiliser/obj.total)*100,obj.total);
+            callChangeEvent((obj.fertiliser / obj.total) * 100, obj.total);
+        } else {
+            console.log("too much vater to irrigate with!");
+        }
     }
 
     useEffect(() => {

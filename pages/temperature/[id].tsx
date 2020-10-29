@@ -83,7 +83,7 @@ function Id(props:IPageProps) {
 
     useEffect(()=>{
         tempData.on('value',data => {
-            setTemp(data.val());
+            setTemp(Number.parseInt(data.val()));
         });
 
         tempHistoryData.on('value',data => {
@@ -156,7 +156,8 @@ function Id(props:IPageProps) {
                                 gradient.addColorStop(1, 'rgba(244,67,54,0)');
                                 return gradient;
                             },
-                            pointBackgroundColor: 'red',
+                            pointBackgroundColor: 'rgba(0,0,0,0)',//'red',
+                            pointBorderColor:'rgba(0,0,0,0)',
                             borderColor: 'red',
                             borderWidth: 0,
                             fill:true

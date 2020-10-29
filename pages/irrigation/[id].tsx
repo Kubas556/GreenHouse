@@ -43,6 +43,7 @@ const useStyle = makeStyles(theme=>({
 function Id(props:IPageProps) {
     const classes = useStyle();
     const [soilHumidity,setSoilHumidity] = useState<number>(0);
+    const [soilHumidityAnalog,setSoilHumidityAnalog] = useState<{min:number,max:number}>({min:0,max:1});
     const [airHumidity,setAirHumidity] = useState<number>(0);
     const [airHumidityHistoryCharData,setAirHumidityHistoryCharData] = useState<any>();
     const [aitHumidityHistoryCharLabels,setAirHumidityHistoryCharLabels] = useState<any>();
@@ -53,8 +54,9 @@ function Id(props:IPageProps) {
 
 
     let soilHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/soilHumidity");
+    let soilHumidityAnalogData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/soilHumidityAnalog");
     let airHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/airHumidity");
-    let humidityHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/history/airHumidity");
+    let humidityHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/history/soilHumidity");
     let wateringData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigation");
     //let targetTempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp");
 
@@ -63,15 +65,19 @@ function Id(props:IPageProps) {
     };
 
     useEffect(()=>{
-        soilHumidityData.on('value',data=>{
+        soilHumidityData.on('value',data => {
             setSoilHumidity(data.val());
         });
 
-        airHumidityData.on('value',data=>{
+        soilHumidityAnalogData.on('value',data => {
+            setSoilHumidityAnalog(data.val());
+        });
+
+        airHumidityData.on('value',data => {
             setAirHumidity(data.val());
         });
 
-        humidityHistoryData.on('value',data=>{
+        humidityHistoryData.on('value',data => {
             let charData:any[] = [];
             let charLabels:any[] = [];
             Object.keys(data.val()).forEach(key => {
@@ -101,7 +107,7 @@ function Id(props:IPageProps) {
          <div className={classes.center}>
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
-                     <SoilHumidity theme={props.appTheme} value={soilHumidity}/>
+                     <SoilHumidity theme={props.appTheme} value={(100/(soilHumidityAnalog.max-soilHumidityAnalog.min))*(soilHumidity-soilHumidityAnalog.min)}/>
                  </Paper>
              </div>
              <div className={classes.controllComponent}>
@@ -129,7 +135,8 @@ function Id(props:IPageProps) {
                                 gradient.addColorStop(1, 'rgba(24,184,212,0)');
                                 return gradient;
                             },
-                            pointBackgroundColor: 'rgb(24,184,212)',
+                            pointBackgroundColor: 'rgba(0,0,0,0)',//'rgb(24,184,212)'
+                            pointBorderColor:'rgba(0,0,0,0)',
                             borderColor: 'rgb(24,184,212)',
                             borderWidth: 0,
                             fill:true

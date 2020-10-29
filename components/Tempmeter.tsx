@@ -9,79 +9,76 @@ function Tempmeter(props:ITempmeter){
     const maxTemp = 50;
     const minTemp = -50;
     //const range = Math.abs(minTemp)+maxTemp;
-    let temp = props.temp;
-    let rangeVal = temp>=0?((50/maxTemp)*temp)+50:50-((50/Math.abs(minTemp))*Math.abs(temp));
-    let y = height-(((height/100)*rangeVal)-8);
 
     const text = useRef<SVGTextElement>(null);
     const tempValue = useRef<SVGLineElement>(null);
     const textLine = useRef<SVGLineElement>(null);
-    const water = useRef();
+    //const water = useRef();
 
     const duration = 5000;
     const easing = "spring(1, 82, 12, 0)";
-    const [prevText,setPrevtext] = useState(minTemp);
+    const [currentTemp,setCurrentTemp] = useState(minTemp);
+    const [textValue,setTextValue] = useState(minTemp);
 
     useEffect(()=>{
-        var textAnim = {
-            text:prevText
-        };
-
-        anime({
-            targets:textAnim,
-            text:temp,
-            duration:duration,
-            easing:easing,
-            round:1,
-            update:function(){
-                if(text.current)
-                text.current.innerHTML = textAnim.text+"°C";
-            },
-            complete:function (anim) {
-                setPrevtext(temp);
-            }
-        });
+        let rangeVal = textValue>=0?(textValue+50):50-(Math.abs(textValue));
+        let y = height-(((height/100)*rangeVal)-8);
 
         anime({
             targets:tempValue.current,
             y2:y,
-            duration:duration,
-            easing:easing,
-            update:function(){
-
-            }
+            duration:0,
+            //easing:easing,
         });
 
         anime({
             targets:textLine.current,
             y2:y,
             y1:y,
-            duration:duration,
-            easing:easing,
-            update:function(){
-
-            }
+            duration:0,
+            //easing:easing
         });
 
         anime({
             targets:text.current,
             transform:"translate(50.59 "+(y-2.77)+")",
+            duration:0,
+            //easing:easing
+        });
+
+    },[textValue]);
+
+    useEffect(()=>{
+
+        var textAnim = {
+            text:textValue
+        };
+
+        anime({
+            targets:textAnim,
+            text:props.temp,
             duration:duration,
             easing:easing,
+            round:1,
             update:function(){
-
+                console.log(textAnim.text);
+                setTextValue(textAnim.text);
             }
         });
 
-        anime({
+        /*anime({
             targets:water.current,
             d:"M 0.14 16.09 C 0.14 16.09 21.14 20.25 22.49 12.8 C 23.84 5.35 17.37 0.13 9.87 0.13 C 2.37 0.13 0.14 16.09 0.14 16.09 Z",
             duration:1000,
             easing:'linear',
             direction: 'alternate',
             loop:true
-        });
+        });*/
 
+    },[currentTemp]);
+
+    useEffect(()=>{
+        setCurrentTemp(props.temp);
     },[props.temp]);
 
     return(
@@ -108,7 +105,7 @@ function Tempmeter(props:ITempmeter){
                         <path className="cls-3" d="M31.85,221.33a16.53,16.53,0,1,0,14.45,0v-7.07"/>
                         <path className="cls-3" d="M0,13.31H29.77a2.08,2.08,0,0,1,2.08,2.08V221.33"/>
                         <line ref={textLine} className="cls-3" x1="82.82" y1={minHeight} x2="39.07" y2={minHeight}/>
-                        <text ref={text} className="cls-4" transform={"translate(50.59 "+(minHeight-2.77)+")"}>20°C</text>
+                        <text ref={text} className="cls-4" transform={"translate(50.59 "+(minHeight-2.77)+")"}>{textValue}°C</text>
                         <text className="cls-4" transform="translate(6.3 110.81)">0</text>
                         <line className="cls-3" x1="6.31" y1="113.81" x2="31.85" y2="113.81"/>
                         <line className="cls-3" x1="45.66" y1="113.81" x2="45.16" y2="113.81"/>
