@@ -1,12 +1,12 @@
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Html,Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheets } from '@material-ui/core/styles';
 import {lightTheme} from '../components/Theme';
 
 export default class MyDocument extends Document {
     render() {
         return (
-            <html lang="en">
+            <Html>
             <Head>
                 {/* PWA primary color */}
                 <meta name="theme-color" content={lightTheme.palette.primary.main} />
@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
             <Main />
             <NextScript />
             </body>
-            </html>
+            </Html>
         );
     }
 }

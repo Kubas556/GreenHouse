@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 //@ts-ignore
-import anime from 'animejs';
+import anime, {AnimeInstance} from 'animejs';
 import {useState,useEffect} from "react";
 import IAirHumudity from "../interfaces/IAirHumudity";
 
@@ -18,6 +18,7 @@ const AirHumidity = (props:IAirHumudity) => {
     const [currentY,setCurrentY] = useState(minY);
     const [animX1,setAnimX1] = useState({x:60.15});
     const [animX2,setAnimX2] = useState({x:60.15});
+    const [currentAnimation, setCurrentAnimation] = useState<AnimeInstance>();
     const wave1 = useRef<SVGPathElement>(null);
     const wave2 = useRef<SVGPathElement>(null);
     const percentageLine = useRef<SVGLineElement>(null);
@@ -95,14 +96,19 @@ const AirHumidity = (props:IAirHumudity) => {
         const animParam = {
             value:currentValue
         };
-        anime({
+
+        if(currentAnimation)
+            currentAnimation.pause();
+
+
+        setCurrentAnimation(anime({
            targets: animParam,
            value:props.value?props.value:0,
            update: function() {
                setValue(animParam.value);
                setCurrentValue(animParam.value);
            }
-        });
+        }));
     },[props.value]);
 
     return (

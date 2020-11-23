@@ -23,18 +23,24 @@ import {url} from "inspector";
 import SoilHumidity from "../../components/SoilHumidity";
 import AirHumidity from "../../components/AirHumidity";
 import WaterMixer from "../../components/waterMixer";
+import withWidth from "@material-ui/core/withWidth/withWidth";
 
 const useStyle = makeStyles(theme=>({
     center:{
         display:'flex',
-        width: 'calc(100% - 1px)'
+        width: 'calc(100% - 1px)',
+        justifyContent:'center',
+        flexFlow:'wrap',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection:'column'
+        }
     },
     page:{
         width: '100%',
         position: 'relative'
     },
     controllComponent:{
-        margin:'50px',
+        margin:'auto',
         width:'min-content',
         padding:'1rem'
     }
@@ -97,6 +103,13 @@ function Id(props:IPageProps) {
             setDefTemp(data.val());
         });*/
 
+        return () => {
+            soilHumidityData.off('value');
+            soilHumidityAnalogData.off('value');
+            airHumidityData.off('value');
+            humidityHistoryData.off('value');
+        }
+
     },[]);
 
  return(
@@ -107,7 +120,7 @@ function Id(props:IPageProps) {
          <div className={classes.center}>
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
-                     <SoilHumidity theme={props.appTheme} value={(100/(soilHumidityAnalog.max-soilHumidityAnalog.min))*(soilHumidity-soilHumidityAnalog.min)}/>
+                     <SoilHumidity theme={props.appTheme} value={soilHumidity<soilHumidityAnalog.max?100:soilHumidity>soilHumidityAnalog.min?0:(100/(soilHumidityAnalog.max-soilHumidityAnalog.min))*(soilHumidity-soilHumidityAnalog.min)}/>
                  </Paper>
              </div>
              <div className={classes.controllComponent}>
@@ -122,7 +135,7 @@ function Id(props:IPageProps) {
              </div>
          </div>
          <div className={classes.center}>
-            <div className={classes.controllComponent} style={{width:'calc(100% - 100px)'}}>
+            <div className={classes.controllComponent} style={{width:'100%'}}>
                 <Paper>
                     <Line height={200} data={{
                         labels:aitHumidityHistoryCharLabels,
@@ -190,4 +203,4 @@ function ex2(props:IPageProps) {
     )
 }
 
-export default withAuth(ex2);
+export default withWidth()(withAuth(ex2));

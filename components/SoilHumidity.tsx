@@ -1,6 +1,6 @@
 import React, {useRef} from "react";
 //@ts-ignore
-import anime from "animejs";
+import anime, {AnimeInstance} from "animejs";
 import {useState,useEffect} from "react";
 import ISoilHumudity from "../interfaces/ISoilHumudity";
 
@@ -19,6 +19,7 @@ const SoilHumidity = (props:ISoilHumudity) => {
     const [currentValue,setCurrentValue] = useState(props.value?props.value:0);
     const [currentY,setCurrentY] = useState(minY);
     const [animX,setAnimX] = useState({x:37.49});
+    const [currentAnimation,setCurrentAnimation] = useState<AnimeInstance>();
     const waves = useRef<SVGPathElement>(null);
     const percentageLine = useRef<SVGLineElement>(null);
     const percentageLine2 = useRef<SVGLineElement>(null);
@@ -98,14 +99,17 @@ const SoilHumidity = (props:ISoilHumudity) => {
             value:currentValue
         };
 
-        anime({
+        if(currentAnimation)
+            currentAnimation.pause();
+
+        setCurrentAnimation(anime({
             targets: animParam,
             value:props.value?props.value:0,
             update: function() {
                 setValue(animParam.value);
                 setCurrentValue(animParam.value);
             }
-        });
+        }));
     },[props.value]);
 
     return (

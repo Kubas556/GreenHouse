@@ -12,7 +12,7 @@ import Alert from '@material-ui/lab/Alert'
 import withAuth from "../../components/WithAuth";
 import WithDrawerAppBar from "../../components/WithDrawerAppBar";
 import Tempmeter from "../../components/Tempmeter";
-import Termostat from "../../components/Termostat";
+import Termostat from "../../components/TermostatV2";
 import {auth, firebase} from "../../firebase/index";
 import IPageProps from "../../interfaces/IPageProps";
 import Loading from "../../components/Loading";
@@ -31,6 +31,8 @@ const useStyle = makeStyles(theme=>({
     center: {
         display:'flex',
         width: 'calc(100% - 1px)',
+        justifyContent:'center',
+        flexFlow:'wrap',
         [theme.breakpoints.down('sm')]: {
             flexDirection:'column'
         }
@@ -40,12 +42,7 @@ const useStyle = makeStyles(theme=>({
         position: 'relative'
     },
     controllComponent: {
-        [theme.breakpoints.down('sm')]: {
-            margin:'5px',
-        },
-        [theme.breakpoints.up('xl')]: {
-            margin:'50px',
-        },
+        margin:'auto',
         width:'min-content',
         padding:'1rem'
     },
@@ -56,9 +53,9 @@ function Id(props:IPageProps) {
     const [temp,setTemp] = useState<number>(-50);
     const [tempHistoryCharData,setTempHistoryCharData] = useState<any>();
     const [tempHistoryCharLabels,setTempHistoryCharLabels] = useState<any>();
-    const [defTargetTemp,setDefTargetTemp] = useState<number>(0);
     const [targetTemp,setTargetTemp] = useState<number>(0);
     const [tempTolerant,setTempTolerant] = useState<{n:number,p:number}>({n:0,p:0});
+    const [defTargetTemp,setDefTargetTemp] = useState<number>(0);
     //const [pageSize,setPageSize] = useState<Breakpoint>('xl');
     const router = useRouter();
     const { id } = router.query;
@@ -99,10 +96,18 @@ function Id(props:IPageProps) {
         });
 
         targetTempData.once('value',data => {
+            //setDefTargetTemp(data.val().temp);
+            setTargetTemp(data.val().temp);
             setDefTargetTemp(data.val().temp);
             setTempTolerant({n:data.val().tempTolerantN, p:data.val().tempTolerantP});
             //setTargetTemp(data.val());
         });
+
+        return () => {
+            tempData.off('value');
+            tempHistoryData.off('value');
+
+        }
 
     },[]);
 
@@ -143,7 +148,7 @@ function Id(props:IPageProps) {
              </div>
          </div>
          <div className={classes.center}>
-            <div className={classes.controllComponent} style={{width:'calc(100% - 100px)',maxWidth:' calc(100% - 100px)'}}>
+            <div className={classes.controllComponent} style={{width:'100%',maxWidth:'100%'}}>
                 <Paper>
                     <Line height={200} data={{
                         labels:tempHistoryCharLabels,
@@ -186,6 +191,9 @@ function Id(props:IPageProps) {
                         },
                         legend: {
                             display: true,
+                        },
+                        tooltips:{
+                            intersect:false
                         },
                         maintainAspectRatio: false,
                         responsive:true
