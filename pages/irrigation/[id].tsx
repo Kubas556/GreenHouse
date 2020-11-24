@@ -6,7 +6,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import React, {useEffect, useState} from "react";
 import {orange} from "@material-ui/core/colors";
 import {useRouter} from "next/router";
-import {Typography,Paper} from "@material-ui/core";
+import {Typography, Paper, isWidthDown} from "@material-ui/core";
 import withAuth from "../../components/WithAuth";
 import WithDrawerAppBar from "../../components/WithDrawerAppBar";
 import Tempmeter from "../../components/Tempmeter";
@@ -24,6 +24,8 @@ import SoilHumidity from "../../components/SoilHumidity";
 import AirHumidity from "../../components/AirHumidity";
 import WaterMixer from "../../components/waterMixer";
 import withWidth from "@material-ui/core/withWidth/withWidth";
+import ISoilHumidityConfig from "../../interfaces/ISoilHumidityConfig";
+import IAirHumidityConfig from "../../interfaces/IAirHumidityConfig";
 
 const useStyle = makeStyles(theme=>({
     center:{
@@ -112,6 +114,21 @@ function Id(props:IPageProps) {
 
     },[]);
 
+    let soilHumidityConfig:ISoilHumidityConfig = {
+        width: isWidthDown('xs',props.width)?200:337,
+        height: isWidthDown('xs',props.width)?200:337
+    };
+
+    let airHumidityConfig:IAirHumidityConfig = {
+        width: isWidthDown('xs',props.width)?200:337,
+        height: isWidthDown('xs',props.width)?200:337
+    };
+
+    let waterMixerConfig:IAirHumidityConfig = {
+        width: isWidthDown('xs',props.width)?200:337,
+        height: isWidthDown('xs',props.width)?200:337
+    };
+
  return(
      <div className={classes.page}>
          <Typography component={"h1"} variant={"h2"}>
@@ -120,17 +137,17 @@ function Id(props:IPageProps) {
          <div className={classes.center}>
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
-                     <SoilHumidity theme={props.appTheme} value={soilHumidity<soilHumidityAnalog.max?100:soilHumidity>soilHumidityAnalog.min?0:(100/(soilHumidityAnalog.max-soilHumidityAnalog.min))*(soilHumidity-soilHumidityAnalog.min)}/>
+                     <SoilHumidity config={soilHumidityConfig} theme={props.appTheme} value={soilHumidity<soilHumidityAnalog.max?100:soilHumidity>soilHumidityAnalog.min?0:(100/(soilHumidityAnalog.max-soilHumidityAnalog.min))*(soilHumidity-soilHumidityAnalog.min)}/>
                  </Paper>
              </div>
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
-                    <AirHumidity theme={props.appTheme} value={airHumidity} />
+                    <AirHumidity config={airHumidityConfig} theme={props.appTheme} value={airHumidity} />
                  </Paper>
              </div>
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
-                     <WaterMixer defaults={watering} theme={props.appTheme} onChange={waterMixChanged}/>
+                     <WaterMixer config={waterMixerConfig} defaults={watering} theme={props.appTheme} onChange={waterMixChanged}/>
                  </Paper>
              </div>
          </div>

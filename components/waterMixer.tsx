@@ -10,8 +10,8 @@ import WaterMixerTable from "./WaterMixerTable";
 function WaterMixer(props:IWaterMixer) {
     const radius = 119.82;
     const maxMl = 700;
-    const componentWidth = 337;
-    const componentHeight = 337;
+    const [componentWidth,setComponentWidth] = useState<number>(props.config.width?props.config.width:337);
+    const [componentHeight,setComponentHeight] = useState<number>(props.config.height?props.config.height:337);
     const maxProgress = 2*Math.PI*radius;
 
     const touchArea = useRef<HTMLDivElement>(null);
@@ -188,7 +188,7 @@ function WaterMixer(props:IWaterMixer) {
                 </svg>
             </div>
             <div>
-                <WaterMixerTable water={Math.round((totalValue/100)*waterValue)} fertiliser={Math.round((totalValue/100)*fertiliserValue)} onChange={ onTableChange }/>
+                {componentWidth < 300 ?null:<WaterMixerTable water={Math.round((totalValue/100)*waterValue)} fertiliser={Math.round((totalValue/100)*fertiliserValue)} onChange={ onTableChange }/>}
             </div>
         </div>
     )

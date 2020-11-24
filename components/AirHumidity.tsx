@@ -10,8 +10,8 @@ import IAirHumudity from "../interfaces/IAirHumudity";
 }*/
 
 const AirHumidity = (props:IAirHumudity) => {
-    const componentWidth = 337;
-    const componentHeight = 337;
+    const [componentWidth,setComponentWidth] = useState<number>(props.config.width?props.config.width:337);
+    const [componentHeight,setComponentHeight] = useState<number>(props.config.height?props.config.height:337);
     const minY = 176.4;
     const maxY = 18;
     const [currentValue,setCurrentValue] = useState(props.value?props.value:0);

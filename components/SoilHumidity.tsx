@@ -3,6 +3,7 @@ import React, {useRef} from "react";
 import anime, {AnimeInstance} from "animejs";
 import {useState,useEffect} from "react";
 import ISoilHumudity from "../interfaces/ISoilHumudity";
+import {number} from "prop-types";
 
 
 /*type Props = {
@@ -10,8 +11,8 @@ import ISoilHumudity from "../interfaces/ISoilHumudity";
 }*/
 
 const SoilHumidity = (props:ISoilHumudity) => {
-    const componentWidth = 337;
-    const componentHeight = 337;
+    const [componentWidth,setComponentWidth] = useState<number>(props.config.width?props.config.width:337);
+    const [componentHeight,setComponentHeight] = useState<number>(props.config.height?props.config.height:337);
     const bubbleBaseSize = 7;
     const minY = 251.27;
     const maxY = 113.27 ;
@@ -31,7 +32,7 @@ const SoilHumidity = (props:ISoilHumudity) => {
     function setValue(val:number) {
         let value = maxY + ((minY-maxY)/100)*(100-val);
         let percentage = Math.round(100-(((value-maxY)/(minY-maxY))*100));
-        setCurrentY(percentage>0?value:(minY+150));
+        setCurrentY(percentage>0?value:(minY+(componentHeight/2)));
 
         if(percentageLine.current) {
             percentageLine.current.setAttribute("y1", value.toString());

@@ -1,5 +1,6 @@
 import {useEffect} from "react";
 import anime from "animejs";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 function Loading(){
     useEffect(()=>{
@@ -15,13 +16,14 @@ function Loading(){
         })
     },[]);
 return (
-    <div className={"wrap"}>
-        <div className="wrap">
+    <div className="wrap">
+        {/*<div className="wrap">
             <div>Loading</div>
             <div className="loadingDot">.</div>
             <div className="loadingDot">.</div>
             <div className="loadingDot">.</div>
-        </div>
+        </div>*/}
+        <CircularProgress />
         <style jsx global>{`
             .wrap{
               width:100%;
