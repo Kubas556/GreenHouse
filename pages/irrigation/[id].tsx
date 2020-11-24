@@ -41,6 +41,11 @@ const useStyle = makeStyles(theme=>({
         width: '100%',
         position: 'relative'
     },
+    title:{
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '3rem'
+        }
+    },
     controllComponent:{
         margin:'auto',
         width:'min-content',
@@ -131,7 +136,7 @@ function Id(props:IPageProps) {
 
  return(
      <div className={classes.page}>
-         <Typography component={"h1"} variant={"h2"}>
+         <Typography component={"h1"} className={classes.title} variant={"h2"}>
              Zavlažování
          </Typography>
          <div className={classes.center}>
@@ -152,7 +157,7 @@ function Id(props:IPageProps) {
              </div>
          </div>
          <div className={classes.center}>
-            <div className={classes.controllComponent} style={{width:'100%'}}>
+            <div className={classes.controllComponent} style={{width:'100%',maxWidth:'100%'}}>
                 <Paper>
                     <Line height={200} data={{
                         labels:aitHumidityHistoryCharLabels,
@@ -189,14 +194,18 @@ function Id(props:IPageProps) {
                                 },
                                 ticks: {
                                     stepSize: 10,
-                                    padding:10
+                                    padding: 10
                                 }
                             }],
                         },
                         legend: {
                             display: true,
                         },
-                        maintainAspectRatio: false
+                        tooltips:{
+                            intersect:false
+                        },
+                        maintainAspectRatio: false,
+                        responsive:true
                     }}/>
                 </Paper>
             </div>
