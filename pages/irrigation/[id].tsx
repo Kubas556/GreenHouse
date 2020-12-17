@@ -6,9 +6,10 @@ import DateFnsUtils from '@date-io/date-fns';
 import React, {useEffect, useState} from "react";
 import {orange} from "@material-ui/core/colors";
 import {useRouter} from "next/router";
-import {Typography, Paper, isWidthDown} from "@material-ui/core";
+import {Typography, Paper, isWidthDown, Color} from "@material-ui/core";
 import withAuth from "../../components/WithAuth";
 import WithDrawerAppBar from "../../components/WithDrawerAppBar";
+import SaveIcon from '@material-ui/icons/Save';
 import Tempmeter from "../../components/Tempmeter";
 import Termostat from "../../components/Termostat";
 import {auth, firebase} from "../../firebase/index";
@@ -26,6 +27,9 @@ import WaterMixer from "../../components/waterMixer";
 import withWidth from "@material-ui/core/withWidth/withWidth";
 import ISoilHumidityConfig from "../../interfaces/ISoilHumidityConfig";
 import IAirHumidityConfig from "../../interfaces/IAirHumidityConfig";
+import {Alert} from "@material-ui/lab";
+import Snackbar from "@material-ui/core/Snackbar";
+import Fab from "@material-ui/core/Fab";
 
 const useStyle = makeStyles(theme=>({
     center:{
@@ -36,6 +40,10 @@ const useStyle = makeStyles(theme=>({
         [theme.breakpoints.down('sm')]: {
             flexDirection:'column'
         }
+    },
+    saveBtn:{
+        right: "0px",
+        position: "absolute"
     },
     page:{
         width: '100%',
@@ -56,6 +64,7 @@ const useStyle = makeStyles(theme=>({
 function Id(props:IPageProps) {
     const classes = useStyle();
     const [soilHumidity,setSoilHumidity] = useState<number>(0);
+    const [saveSnackbarOpen,setSaveSnackbarOpen] = useState<boolean>(false);
     const [soilHumidityAnalog,setSoilHumidityAnalog] = useState<{min:number,max:number}>({min:0,max:1});
     const [airHumidity,setAirHumidity] = useState<number>(0);
     const [airHumidityHistoryCharData,setAirHumidityHistoryCharData] = useState<any>();
@@ -69,12 +78,22 @@ function Id(props:IPageProps) {
     let soilHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/soilHumidity");
     let soilHumidityAnalogData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/soilHumidityAnalog");
     let airHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/airHumidity");
-    let humidityHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/history/soilHumidity");
+    let humidityHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/history/soilHumidity").limitToLast(100);
     let wateringData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigation");
     //let targetTempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp");
 
+    const [wateringDataToChange,setWateringDataToChange] = useState<{water:number, fertiliser:number, ratio:string, total:number}>();
+
     const waterMixChanged = (obj:{water:number, fertiliser:number, ratio:string, total:number}) => {
-        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigation").set(obj);
+        setWateringDataToChange(obj);
+    };
+
+    const saveChanges = () => {
+        if(wateringDataToChange)
+        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigation").set(wateringDataToChange).then(()=>{
+            setSaveSnackbarOpen(true);
+            setWateringDataToChange(undefined);
+        });
     };
 
     useEffect(()=>{
@@ -210,6 +229,15 @@ function Id(props:IPageProps) {
                 </Paper>
             </div>
          </div>
+         <Snackbar open={saveSnackbarOpen} autoHideDuration={6000} onClose={()=>setSaveSnackbarOpen(false)}>
+             <Alert severity="success">
+                 Změny Uloženy
+             </Alert>
+         </Snackbar>
+         <Fab variant="extended" disabled={!wateringDataToChange} className={classes.saveBtn} color={"secondary"} onClick={saveChanges}>
+             <SaveIcon/>
+             Uložit změny
+         </Fab>
      </div>
  )
 }

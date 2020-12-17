@@ -26,6 +26,9 @@ import {Breakpoint} from "@material-ui/core/styles/createBreakpoints";
 import ITermostatConfig from "../../interfaces/ITermostatConfig";
 import Snackbar from "@material-ui/core/Snackbar";
 import Slider from "@material-ui/core/Slider";
+import SaveIcon from '@material-ui/icons/Save';
+import Fab from "@material-ui/core/Fab";
+import {JSXElement} from "@babel/types";
 
 const useStyle = makeStyles(theme=>({
     center: {
@@ -40,6 +43,10 @@ const useStyle = makeStyles(theme=>({
     page: {
         width: '100%',
         position: 'relative'
+    },
+    saveBtn:{
+        right: "0px",
+        position: "absolute"
     },
     controllComponent: {
         margin:'auto',
@@ -56,6 +63,7 @@ function Id(props:IPageProps) {
     const [targetTemp,setTargetTemp] = useState<number>(0);
     const [tempTolerant,setTempTolerant] = useState<{n:number,p:number}>({n:0,p:0});
     const [defTargetTemp,setDefTargetTemp] = useState<number>(0);
+    const [saveSnackbarOpen,setSaveSnackbarOpen] = useState<boolean>(false);
     //const [pageSize,setPageSize] = useState<Breakpoint>('xl');
     const router = useRouter();
     const { id } = router.query;
@@ -63,20 +71,38 @@ function Id(props:IPageProps) {
 
 
     let tempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/temp");
-    let tempHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/history/temps");
+    let tempHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/history/temps").limitToLast(100);
     let targetTempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp");
+
+    const [termostatDataToChange,setTermostatDataToChange] = useState<number>();
+    const [termostatTolerantDataToChange,setTermostatTolerantDataToChange] = useState<{n:number,p:number}>();
 
     const termostatChange = (value:number) => {
         setTargetTemp(value);
-        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp/temp").set(value);
+        setTermostatDataToChange(value);
     };
 
     const onTermostatTolerantChange = (e:any,numbers:any) => {
         let values = numbers as number[];
         setTempTolerant({n:values[0]-targetTemp,p:values[1]-targetTemp});
-        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp/tempTolerantN").set(values[0]-targetTemp);
-        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp/tempTolerantP").set(values[1]-targetTemp);
+        setTermostatTolerantDataToChange({n:values[0]-targetTemp,p:values[1]-targetTemp});
     }
+
+    const saveChanges = () => {
+        if(termostatDataToChange)
+            firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp/temp").set(termostatDataToChange).then(()=>{
+                setTermostatDataToChange(undefined);
+                setSaveSnackbarOpen(true);
+            });
+
+        if(termostatTolerantDataToChange) {
+            firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp/tempTolerantN").set(termostatTolerantDataToChange.n);
+            firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp/tempTolerantP").set(termostatTolerantDataToChange.p).then(()=>{
+                setTermostatTolerantDataToChange(undefined);
+                setSaveSnackbarOpen(true);
+            });
+        }
+    };
 
     useEffect(()=>{
         tempData.on('value',data => {
@@ -204,6 +230,15 @@ function Id(props:IPageProps) {
                 </Paper>
             </div>
          </div>
+         <Fab variant="extended" disabled={!termostatDataToChange && !termostatTolerantDataToChange} className={classes.saveBtn} color={"secondary"} onClick={saveChanges}>
+             <SaveIcon/>
+             Uložit změny
+         </Fab>
+         <Snackbar open={saveSnackbarOpen} autoHideDuration={6000} onClose={()=>setSaveSnackbarOpen(false)}>
+             <Alert severity={"success"}>
+                 Změny Uloženy
+             </Alert>
+         </Snackbar>
      </div>
  )
 }
