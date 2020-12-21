@@ -57,7 +57,8 @@ function Tempmeter(props:ITempmeter){
             easing:easing,
             round:1,
             update:function(){
-                setTextValue(textAnim.text);
+                if(textAnim.text > minTemp && textAnim.text < maxTemp)
+                    setTextValue(textAnim.text);
             }
         }));
     },[currentTemp]);

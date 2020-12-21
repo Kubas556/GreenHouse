@@ -35,7 +35,7 @@ import Slider from "@material-ui/core/Slider";
 const useStyle = makeStyles(theme=>({
     center:{
         display:'flex',
-        width: 'calc(100% - 1px)',
+        //width: 'calc(100% - 1px)',
         justifyContent:'center',
         flexFlow:'wrap',
         [theme.breakpoints.down('sm')]: {
@@ -64,19 +64,21 @@ const useStyle = makeStyles(theme=>({
 
 function Id(props:IPageProps) {
     const classes = useStyle();
-    const [soilHumidity,setSoilHumidity] = useState<number>(0);
+    const [soilHumidity,setSoilHumidity] = useState<number>(133);
     const [saveSnackbarOpen,setSaveSnackbarOpen] = useState<boolean>(false);
     const [soilHumidityAnalog,setSoilHumidityAnalog] = useState<{min:number,max:number}>({min:0,max:1});
     const [airHumidity,setAirHumidity] = useState<number>(0);
-    const [airHumidityHistoryCharData,setAirHumidityHistoryCharData] = useState<any>();
-    const [aitHumidityHistoryCharLabels,setAirHumidityHistoryCharLabels] = useState<any>();
+    const [airHumidityHistoryCharData,setAirHumidityHistoryCharData] = useState<any>([0]);
+    const [airHumidityHistoryCharLabels,setAirHumidityHistoryCharLabels] = useState<any>();
     const [targetSoilHumidity,setTargetSoilHumidity] = useState<number>(-1);
     const [watering,setWatering] = useState<{fertiliser:number, total:number}>({fertiliser:0,total:500});
     const router = useRouter();
     const { id } = router.query;
     const timeFormat = 'MM/DD/YYYY HH:mm';
 
-
+    //##########################
+    //firebase data fetch variables
+    //##########################
     let soilHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/soilHumidity");
     let soilHumidityAnalogData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/soilHumidityAnalog");
     let airHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/airHumidity");
@@ -84,9 +86,15 @@ function Id(props:IPageProps) {
     let wateringData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigation");
     let targetSoilHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigationSoilHumidity");
 
+    //##########################
+    //    data to change
+    //##########################
     const [wateringDataToChange,setWateringDataToChange] = useState<{water:number, fertiliser:number, ratio:string, total:number}>();
     const [targetSoilHumidityDataToChange,setTargetSoilHumidityDataToChange] = useState<number>();
 
+    //##########################
+    //    on change events
+    //##########################
     const waterMixChanged = (obj:{water:number, fertiliser:number, ratio:string, total:number}) => {
         setWateringDataToChange(obj);
     };
@@ -96,6 +104,9 @@ function Id(props:IPageProps) {
         setTargetSoilHumidityDataToChange(value as number);
     };
 
+    //##########################
+    //    save data function
+    //##########################
     const saveChanges = () => {
         if(wateringDataToChange)
             firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigation").set(wateringDataToChange).then(()=>{
@@ -110,6 +121,9 @@ function Id(props:IPageProps) {
             });
     };
 
+    //##########################
+    //  firebase data fetching
+    //##########################
     useEffect(()=>{
         soilHumidityData.on('value',data => {
             setSoilHumidity(data.val());
@@ -124,15 +138,17 @@ function Id(props:IPageProps) {
         });
 
         humidityHistoryData.on('value',data => {
-            let charData:any[] = [];
-            let charLabels:any[] = [];
-            Object.keys(data.val()).forEach(key => {
-                charData.push(data.val()[key].value);
-                charLabels.push(data.val()[key].time[1]+'/'+data.val()[key].time[2]+'/'+data.val()[key].time[0]+' '+data.val()[key].time[3]+':'+data.val()[key].time[4])
-            });
+            if(data.val()) {
+                let charData: any[] = [];
+                let charLabels: any[] = [];
+                Object.keys(data.val()).forEach(key => {
+                    charData.push(data.val()[key].value);
+                    charLabels.push(data.val()[key].time[1] + '/' + data.val()[key].time[2] + '/' + data.val()[key].time[0] + ' ' + data.val()[key].time[3] + ':' + data.val()[key].time[4])
+                });
 
-            setAirHumidityHistoryCharData(charData);
-            setAirHumidityHistoryCharLabels(charLabels);
+                setAirHumidityHistoryCharData(charData);
+                setAirHumidityHistoryCharLabels(charLabels);
+            }
         });
 
         wateringData.once('value',data => {
@@ -152,6 +168,9 @@ function Id(props:IPageProps) {
 
     },[]);
 
+    //##########################
+    //    custom component configuration
+    //##########################
     let soilHumidityConfig:ISoilHumidityConfig = {
         width: isWidthDown('xs',props.width)?200:337,
         height: isWidthDown('xs',props.width)?200:337
@@ -205,7 +224,7 @@ function Id(props:IPageProps) {
             <div className={classes.controllComponent} style={{width:'100%',maxWidth:'100%'}}>
                 <Paper>
                     <Line height={200} data={{
-                        labels:aitHumidityHistoryCharLabels,
+                        labels:airHumidityHistoryCharLabels,
                         datasets: [{
                             label: 'value',
                             data: airHumidityHistoryCharData,

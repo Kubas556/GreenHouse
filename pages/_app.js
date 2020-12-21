@@ -77,6 +77,11 @@ export default function MyApp (props) {
                             height: "100vh"}
                         }>*/}
                 <CssBaseline />
+                <style>{
+                    "main{" +
+                    "min-width:0px;" +
+                    "}"
+                }</style>
                 <Component appTheme={theme} touchDisplay={touchDisplay} {...pageProps} /*setThemeBtn={toggleThemeSwitch.bind(this)}*/ switchTheme={switchTheme.bind(this)} />
                 {/*showBtn?<CustomAppBar component={Component} theme={theme} componentProps={pageProps} text={"Some name"}/>:null*/}
 

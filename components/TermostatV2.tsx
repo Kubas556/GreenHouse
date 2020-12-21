@@ -255,7 +255,7 @@ function Termostat(props:ITermostat){
         if(initValue != undefined) {
 
             let initAngleTrans = {
-                value: 0
+                value: currentValue
             }
 
             if(currentDefaultPropAnimation)

@@ -33,7 +33,7 @@ import {JSXElement} from "@babel/types";
 const useStyle = makeStyles(theme=>({
     center: {
         display:'flex',
-        width: 'calc(100% - 1px)',
+        //width: 'calc(100% - 1px)',
         justifyContent:'center',
         flexFlow:'wrap',
         [theme.breakpoints.down('sm')]: {
@@ -69,14 +69,22 @@ function Id(props:IPageProps) {
     const { id } = router.query;
     const timeFormat = 'MM/DD/YYYY HH:mm';
 
-
+    //##########################
+    //firebase data fetch variables
+    //##########################
     let tempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/temp");
     let tempHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/history/temps").limitToLast(100);
     let targetTempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp");
 
+    //##########################
+    //    data to change
+    //##########################
     const [termostatDataToChange,setTermostatDataToChange] = useState<number>();
     const [termostatTolerantDataToChange,setTermostatTolerantDataToChange] = useState<{n:number,p:number}>();
 
+    //##########################
+    //    on change events
+    //##########################
     const termostatChange = (value:number) => {
         setTargetTemp(value);
         setTermostatDataToChange(value);
@@ -88,6 +96,9 @@ function Id(props:IPageProps) {
         setTermostatTolerantDataToChange({n:values[0]-targetTemp,p:values[1]-targetTemp});
     }
 
+    //##########################
+    //    save data function
+    //##########################
     const saveChanges = () => {
         if(termostatDataToChange)
             firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp/temp").set(termostatDataToChange).then(()=>{
@@ -104,21 +115,26 @@ function Id(props:IPageProps) {
         }
     };
 
+    //##########################
+    //  firebase data fetching
+    //##########################
     useEffect(()=>{
         tempData.on('value',data => {
             setTemp(Number.parseInt(data.val()));
         });
 
         tempHistoryData.on('value',data => {
-            let charData:any[] = [];
-            let charLabels:any[] = [];
-            Object.keys(data.val()).forEach(key => {
-                charData.push(data.val()[key].temp);
-                charLabels.push(data.val()[key].time[1]+'/'+data.val()[key].time[2]+'/'+data.val()[key].time[0]+' '+data.val()[key].time[3]+':'+data.val()[key].time[4])
-            });
+            if(data.val()) {
+                let charData: any[] = [];
+                let charLabels: any[] = [];
+                Object.keys(data.val()).forEach(key => {
+                    charData.push(data.val()[key].temp);
+                    charLabels.push(data.val()[key].time[1] + '/' + data.val()[key].time[2] + '/' + data.val()[key].time[0] + ' ' + data.val()[key].time[3] + ':' + data.val()[key].time[4])
+                });
 
-            setTempHistoryCharData(charData);
-            setTempHistoryCharLabels(charLabels);
+                setTempHistoryCharData(charData);
+                setTempHistoryCharLabels(charLabels);
+            }
         });
 
         targetTempData.once('value',data => {
@@ -137,6 +153,9 @@ function Id(props:IPageProps) {
 
     },[]);
 
+    //##########################
+    //    custom component configuration
+    //##########################
     let thermostatConfig:ITermostatConfig = {
         width: isWidthDown('xs',props.width)?200:337,
         height: isWidthDown('xs',props.width)?200:337,

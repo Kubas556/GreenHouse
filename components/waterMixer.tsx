@@ -59,7 +59,7 @@ function WaterMixer(props:IWaterMixer) {
         props.onChange({
             water:Math.round((total/100)*(100-fertiliser)),
             fertiliser:Math.round((total/100)*fertiliser),
-            ratio:(fertiliser < (100-fertiliser)?"1.00:"+(fertiliser==0?"0.00":((100-fertiliser)/fertiliser).toFixed(2)):((100-fertiliser)==0?"0.00":(fertiliser/(100-fertiliser)).toFixed(2))+":1.00"),
+            ratio:(fertiliser < (100-fertiliser)?"1.00:"+(fertiliser==0?"0.00":((100-fertiliser)/fertiliser).toFixed(2)):((100-fertiliser)==0?"0.00":(fertiliser/(100-fertiliser)).toFixed(2))+":1.00")/*(fertiliser < (100-fertiliser)?"1.00:"+(fertiliser==0?"0.00":((100-fertiliser)/fertiliser).toFixed(2)):((100-fertiliser)==0?"0.00":(fertiliser/(100-fertiliser)).toFixed(2))+":1.00")*/,
             total:total
         });
     }
@@ -188,7 +188,7 @@ function WaterMixer(props:IWaterMixer) {
                 </svg>
             </div>
             <div>
-                {componentWidth < 300 ?null:<WaterMixerTable water={Math.round((totalValue/100)*waterValue)} fertiliser={Math.round((totalValue/100)*fertiliserValue)} onChange={ onTableChange }/>}
+                {componentWidth < 300 ?null:<WaterMixerTable water={(totalValue/100)*waterValue} fertiliser={(totalValue/100)*fertiliserValue} onChange={ onTableChange }/>}
             </div>
         </div>
     )

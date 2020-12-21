@@ -30,9 +30,14 @@ export default function WaterMixerTable(props:IWaterMixerTable) {
         setFertiliserValue(props.fertiliser);
     },[props.fertiliser]);
 
+    /*useEffect(() => {
+        setRatio(props.fertiliser < (100-props.fertiliser)?"1.00:"+(props.fertiliser==0?"0.00":((100-props.fertiliser)/props.fertiliser).toFixed(2)):((100-props.fertiliser)==0?"0.00":(props.fertiliser/(100-props.fertiliser)).toFixed(2))+":1.00");
+    },[props.fertiliser,props.water]);*/
+
     useEffect(() => {
-        setRatio((props.fertiliser < props.water ?"1.00:"+(props.water/props.fertiliser).toFixed(2):(props.fertiliser/props.water).toFixed(2)+":1.00"));
-    },[props.fertiliser,props.water]);
+        let ratio = fertiliserValue < (waterValue)?"1.00:"+(fertiliserValue==0?"0.00":((waterValue)/fertiliserValue).toFixed(2)):((waterValue)==0?"0.00":(fertiliserValue/(waterValue)).toFixed(2))+":1.00";
+        setRatio(ratio);
+    },[waterValue,fertiliserValue]);
 
     function validate(event:FormEvent<HTMLSpanElement>) {
         let input:HTMLSpanElement = event.nativeEvent.target as HTMLSpanElement;
@@ -42,25 +47,20 @@ export default function WaterMixerTable(props:IWaterMixerTable) {
             if(input.id==="water") {
                 //if(Number(input.innerText) > 100) {
                 setWaterValue(Number(input.innerText));
-                let ratio = (fertiliserValue < Number(input.innerText)?"1.00:"+(Number(input.innerText)/fertiliserValue).toFixed(2):(fertiliserValue/Number(input.innerText)).toFixed(2)+":1.00");
                 props.onChange({
                     fertiliser:fertiliserValue,
                     total:Number(input.innerText)+fertiliserValue
                 });
                 //}
-                setRatio(ratio);
             }
 
             if(input.id==="fertiliser") {
                 //if(Number(input.innerText) > 100) {
                 setFertiliserValue(Number(input.innerText));
-                let ratio = (Number(input.innerText) < waterValue?"1.00:"+(waterValue/Number(input.innerText)).toFixed(2):(Number(input.innerText)/waterValue).toFixed(2)+":1.00");
                 props.onChange({
                     fertiliser:Number(input.innerText),
                     total:Number(input.innerText)+waterValue
                 });
-                //}
-                setRatio(ratio);
             }
         }
     }
@@ -78,10 +78,10 @@ export default function WaterMixerTable(props:IWaterMixerTable) {
                 </TableHead>
                 <TableBody>
                         <TableRow>
-                            <TableCell align={'left'}><span id={"fertiliser"} contentEditable={true} suppressContentEditableWarning={true} onBlur={validate}>{fertiliserValue}</span><span> ml</span></TableCell>
-                            <TableCell align={'left'}><span id={"water"} contentEditable={true} suppressContentEditableWarning={true} onBlur={validate}>{waterValue}</span><span> ml</span></TableCell>
+                            <TableCell align={'left'}><span id={"fertiliser"} contentEditable={true} suppressContentEditableWarning={true} onBlur={validate}>{Math.round(fertiliserValue)}</span><span> ml</span></TableCell>
+                            <TableCell align={'left'}><span id={"water"} contentEditable={true} suppressContentEditableWarning={true} onBlur={validate}>{Math.round(waterValue)}</span><span> ml</span></TableCell>
                             <TableCell align={'left'}>{ratio}</TableCell>
-                            <TableCell align={'right'}>{fertiliserValue + waterValue} ml</TableCell>
+                            <TableCell align={'right'}>{Math.round(fertiliserValue + waterValue)} ml</TableCell>
                         </TableRow>
                 </TableBody>
             </Table>

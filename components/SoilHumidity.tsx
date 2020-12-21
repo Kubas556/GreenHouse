@@ -107,8 +107,10 @@ const SoilHumidity = (props:ISoilHumudity) => {
             targets: animParam,
             value:props.value?props.value:0,
             update: function() {
-                setValue(animParam.value);
-                setCurrentValue(animParam.value);
+                if(!(animParam.value < 0) && !(animParam.value > 100)) {
+                    setValue(animParam.value);
+                    setCurrentValue(animParam.value);
+                }
             }
         }));
     },[props.value]);
