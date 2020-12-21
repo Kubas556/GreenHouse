@@ -30,6 +30,7 @@ import IAirHumidityConfig from "../../interfaces/IAirHumidityConfig";
 import {Alert} from "@material-ui/lab";
 import Snackbar from "@material-ui/core/Snackbar";
 import Fab from "@material-ui/core/Fab";
+import Slider from "@material-ui/core/Slider";
 
 const useStyle = makeStyles(theme=>({
     center:{
@@ -69,6 +70,7 @@ function Id(props:IPageProps) {
     const [airHumidity,setAirHumidity] = useState<number>(0);
     const [airHumidityHistoryCharData,setAirHumidityHistoryCharData] = useState<any>();
     const [aitHumidityHistoryCharLabels,setAirHumidityHistoryCharLabels] = useState<any>();
+    const [targetSoilHumidity,setTargetSoilHumidity] = useState<number>(-1);
     const [watering,setWatering] = useState<{fertiliser:number, total:number}>({fertiliser:0,total:500});
     const router = useRouter();
     const { id } = router.query;
@@ -80,20 +82,32 @@ function Id(props:IPageProps) {
     let airHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/airHumidity");
     let humidityHistoryData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/history/soilHumidity").limitToLast(100);
     let wateringData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigation");
-    //let targetTempData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/targetTemp");
+    let targetSoilHumidityData = firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigationSoilHumidity");
 
     const [wateringDataToChange,setWateringDataToChange] = useState<{water:number, fertiliser:number, ratio:string, total:number}>();
+    const [targetSoilHumidityDataToChange,setTargetSoilHumidityDataToChange] = useState<number>();
 
     const waterMixChanged = (obj:{water:number, fertiliser:number, ratio:string, total:number}) => {
         setWateringDataToChange(obj);
     };
 
+    const targetSoilHumidityChanged = (evnt:any,value:number|number[]) => {
+        setTargetSoilHumidity(value as number);
+        setTargetSoilHumidityDataToChange(value as number);
+    };
+
     const saveChanges = () => {
         if(wateringDataToChange)
-        firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigation").set(wateringDataToChange).then(()=>{
-            setSaveSnackbarOpen(true);
-            setWateringDataToChange(undefined);
-        });
+            firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigation").set(wateringDataToChange).then(()=>{
+                setSaveSnackbarOpen(true);
+                setWateringDataToChange(undefined);
+            });
+
+        if(targetSoilHumidityDataToChange)
+            firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigationSoilHumidity").set(targetSoilHumidityDataToChange).then(()=>{
+                setSaveSnackbarOpen(true);
+                setTargetSoilHumidityDataToChange(undefined);
+            });
     };
 
     useEffect(()=>{
@@ -125,9 +139,9 @@ function Id(props:IPageProps) {
            setWatering(data.val());
         });
 
-        /*targetTempData.once('value',data=>{
-            setDefTemp(data.val());
-        });*/
+        targetSoilHumidityData.once('value',data=>{
+            setTargetSoilHumidity(data.val());
+        });
 
         return () => {
             soilHumidityData.off('value');
@@ -162,6 +176,18 @@ function Id(props:IPageProps) {
              <div className={classes.controllComponent}>
                  <Paper elevation={3} style={{padding: '1rem'}}>
                      <SoilHumidity config={soilHumidityConfig} theme={props.appTheme} value={soilHumidity<soilHumidityAnalog.max?100:soilHumidity>soilHumidityAnalog.min?0:(100/(soilHumidityAnalog.max-soilHumidityAnalog.min))*(soilHumidity-soilHumidityAnalog.min)}/>
+                     <Slider
+                         value={targetSoilHumidity}
+                         disabled={targetSoilHumidity < 0}
+                         valueLabelDisplay="on"
+                         valueLabelFormat={value=>100-Math.round(((value-soilHumidityAnalog.max)/(soilHumidityAnalog.min-soilHumidityAnalog.max))*100)+"%"}
+                         step={0.5}
+                         track={false}
+                         onChange={targetSoilHumidityChanged}
+                         min={soilHumidityAnalog.max}
+                         max={soilHumidityAnalog.min}
+                         marks={[{value:soilHumidityAnalog.min,label:"0%"},{value:soilHumidityAnalog.max,label:"100%"}]}
+                     />
                  </Paper>
              </div>
              <div className={classes.controllComponent}>
@@ -234,7 +260,7 @@ function Id(props:IPageProps) {
                  Změny Uloženy
              </Alert>
          </Snackbar>
-         <Fab variant="extended" disabled={!wateringDataToChange} className={classes.saveBtn} color={"secondary"} onClick={saveChanges}>
+         <Fab variant="extended" disabled={!wateringDataToChange && !targetSoilHumidityDataToChange} className={classes.saveBtn} color={"secondary"} onClick={saveChanges}>
              <SaveIcon/>
              Uložit změny
          </Fab>
