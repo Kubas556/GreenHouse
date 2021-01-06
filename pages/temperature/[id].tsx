@@ -120,7 +120,7 @@ function Id(props:IPageProps) {
     //##########################
     useEffect(()=>{
         tempData.on('value',data => {
-            setTemp(Number.parseInt(data.val()));
+            setTemp(Number.parseFloat(data.val()));
         });
 
         tempHistoryData.on('value',data => {

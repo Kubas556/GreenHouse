@@ -226,7 +226,7 @@ function Id(props:IPageProps) {
                     <Line height={200} data={{
                         labels:airHumidityHistoryCharLabels,
                         datasets: [{
-                            label: 'value',
+                            label: 'air humidity',
                             data: airHumidityHistoryCharData,
                             backgroundColor: function(context:any) {
                                 let gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 200);
