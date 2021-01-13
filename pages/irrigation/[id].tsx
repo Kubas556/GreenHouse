@@ -31,6 +31,9 @@ import {Alert} from "@material-ui/lab";
 import Snackbar from "@material-ui/core/Snackbar";
 import Fab from "@material-ui/core/Fab";
 import Slider from "@material-ui/core/Slider";
+import IconButton from "@material-ui/core/IconButton";
+import SettingsIcon from '@material-ui/icons/Settings';
+import SoilHumidityAnalogForm from "../../components/SoilHumidityAnalogForm";
 
 const useStyle = makeStyles(theme=>({
     center:{
@@ -72,6 +75,7 @@ function Id(props:IPageProps) {
     const [airHumidityHistoryCharLabels,setAirHumidityHistoryCharLabels] = useState<any>();
     const [targetSoilHumidity,setTargetSoilHumidity] = useState<number>(-1);
     const [watering,setWatering] = useState<{fertiliser:number, total:number}>({fertiliser:0,total:500});
+    const [soilHumidityAnalogConfigForm,setSoilHumidityAnalogConfigForm] = useState<boolean>(false);
     const router = useRouter();
     const { id } = router.query;
     const timeFormat = 'MM/DD/YYYY HH:mm';
@@ -91,6 +95,7 @@ function Id(props:IPageProps) {
     //##########################
     const [wateringDataToChange,setWateringDataToChange] = useState<{water:number, fertiliser:number, ratio:string, total:number}>();
     const [targetSoilHumidityDataToChange,setTargetSoilHumidityDataToChange] = useState<number>();
+    const [soilHumidityAnalogDataToChange,setSoilHumidityAnalogDataToChange] = useState<{min:number,max:number}>();
 
     //##########################
     //    on change events
@@ -102,6 +107,11 @@ function Id(props:IPageProps) {
     const targetSoilHumidityChanged = (evnt:any,value:number|number[]) => {
         setTargetSoilHumidity(value as number);
         setTargetSoilHumidityDataToChange(value as number);
+    };
+
+    const soilHumidityAnalogChanged = (analogData:{min:number, max:number}) => {
+        setSoilHumidityAnalog(analogData);
+        setSoilHumidityAnalogDataToChange(analogData);
     };
 
     //##########################
@@ -118,6 +128,12 @@ function Id(props:IPageProps) {
             firebase.database().ref("/users/"+props.user+"/devices/"+id+"/irrigationSoilHumidity").set(targetSoilHumidityDataToChange).then(()=>{
                 setSaveSnackbarOpen(true);
                 setTargetSoilHumidityDataToChange(undefined);
+            });
+
+        if(soilHumidityAnalogDataToChange)
+            firebase.database().ref("/users/"+props.user+"/devices/"+id+"/soilHumidityAnalog").set(soilHumidityAnalogDataToChange).then(()=>{
+                setSaveSnackbarOpen(true);
+                setSoilHumidityAnalogDataToChange(undefined);
             });
     };
 
@@ -207,6 +223,10 @@ function Id(props:IPageProps) {
                          max={soilHumidityAnalog.min}
                          marks={[{value:soilHumidityAnalog.min,label:"0%"},{value:soilHumidityAnalog.max,label:"100%"}]}
                      />
+                     <IconButton color={"primary"} onClick={()=>setSoilHumidityAnalogConfigForm(!soilHumidityAnalogConfigForm)} style={{marginLeft:"auto",display:"block"}} aria-label="soil humidity analog settings">
+                         <SettingsIcon />
+                     </IconButton>
+                     <SoilHumidityAnalogForm onChange={soilHumidityAnalogChanged} analogData={soilHumidityAnalog} open={soilHumidityAnalogConfigForm} handleClose={()=>setSoilHumidityAnalogConfigForm(!soilHumidityAnalogConfigForm)}/>
                  </Paper>
              </div>
              <div className={classes.controllComponent}>
@@ -279,7 +299,7 @@ function Id(props:IPageProps) {
                  Změny Uloženy
              </Alert>
          </Snackbar>
-         <Fab variant="extended" disabled={!wateringDataToChange && !targetSoilHumidityDataToChange} className={classes.saveBtn} color={"secondary"} onClick={saveChanges}>
+         <Fab variant="extended" disabled={!wateringDataToChange && !targetSoilHumidityDataToChange && !soilHumidityAnalogDataToChange} className={classes.saveBtn} color={"secondary"} onClick={saveChanges}>
              <SaveIcon/>
              Uložit změny
          </Fab>
