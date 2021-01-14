@@ -28,6 +28,7 @@ import {auth} from "../firebase/index";
 
 import IAppBar from "../interfaces/IAppBar"
 import Router from "next/router";
+import ProfileEditForm from "./ProfileEditForm";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -118,6 +119,7 @@ export default function WithDrawerAppBar(props:IAppBar) {
     const [open, setOpen] = useState<boolean>(false);
     const [avatarOpen,setAvatarOpen] = useState<boolean>(false);
     const avatarAnchor = useRef<HTMLDivElement>(null);
+    const [profileMenuOpen,setProfileMenuOpen] = useState<boolean>(false);
 
     const Component = props.component;
     const compProps = props.componentProps;
@@ -157,7 +159,7 @@ export default function WithDrawerAppBar(props:IAppBar) {
                                 <Avatar onClick={()=>setAvatarOpen(true)} className={classes.avatarIcon}>
                                 </Avatar>
                                 <Menu open={avatarOpen} onClick={()=>setAvatarOpen(false)} anchorEl={avatarAnchor.current}>
-                                    <MenuItem>Profile</MenuItem>
+                                    <MenuItem onClick={()=>setProfileMenuOpen(true)}>Profile</MenuItem>
                                     <MenuItem onClick={handleLogout}>Log Out</MenuItem>
                                 </Menu>
                             </div>:
@@ -168,6 +170,7 @@ export default function WithDrawerAppBar(props:IAppBar) {
                     </Toolbar>
             </AppBar>
             <main className={classes.content}>
+                <ProfileEditForm open={profileMenuOpen} handleClose={()=>setProfileMenuOpen(!profileMenuOpen)}/>
                 <div className={classes.toolbarOffset}/>
                 <Component {...compProps}/>
             </main>

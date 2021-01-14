@@ -55,7 +55,6 @@ export default function MyApp (props) {
                 const themeData = firebase.database().ref("/users/" + user.uid + "/profile/theme");
 
                 themeData.on('value', data => {
-                    console.log(data.val());
                     if(data.val() !== 0)
                         switchTheme();
                 })
