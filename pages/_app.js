@@ -24,7 +24,7 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import InboxIcon from '@material-ui/icons/Inbox'
 import MailIcon from '@material-ui/icons/Mail'
-import {auth} from '../firebase';
+import {auth, firebase} from '../firebase/index';
 import MenuIcon from "@material-ui/core/SvgIcon/SvgIcon";
 import Link from "next/link";
 
@@ -49,6 +49,23 @@ export default function MyApp (props) {
         if (jssStyles) {
             jssStyles.parentElement.removeChild(jssStyles);
         }
+
+        auth.onAuthStateChanged(user => {
+            if(user) {
+                const themeData = firebase.database().ref("/users/" + user.uid + "/profile/theme");
+
+                themeData.on('value', data => {
+                    console.log(data.val());
+                    if(data.val() !== 0)
+                        switchTheme();
+                })
+
+                return () => {
+                    themeData.off('value');
+                }
+            }
+        });
+
     },[]);
 
     const switchTheme = () => {

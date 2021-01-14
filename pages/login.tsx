@@ -31,9 +31,6 @@ function Login(props:IPageProps) {
     const classes = useStyles();
     const router = useRouter();
 
-    useEffect(()=>{
-        //props.setThemeBtn(false);
-    },[]);
 
     const handleSignIn = () => {
         auth.onAuthStateChanged(authUser => {
@@ -95,7 +92,7 @@ function Login(props:IPageProps) {
                                     fullWidth
                                     helperText={!username&&missingError?"required":null}
                                     variant="outlined"
-                                    label="Username"
+                                    label="Email"
                                     type="text"
                                     onChange={e => {
                                         // @ts-ignore

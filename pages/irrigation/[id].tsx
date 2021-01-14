@@ -209,7 +209,7 @@ function Id(props:IPageProps) {
          </Typography>
          <div className={classes.center}>
              <div className={classes.controllComponent}>
-                 <Paper elevation={3} style={{padding: '1rem'}}>
+                 <Paper elevation={3} style={{padding: '1rem',backdropFilter:"blur(2px)"}}>
                      <SoilHumidity config={soilHumidityConfig} theme={props.appTheme} value={soilHumidity<soilHumidityAnalog.max?100:soilHumidity>soilHumidityAnalog.min?0:(100/(soilHumidityAnalog.max-soilHumidityAnalog.min))*(soilHumidity-soilHumidityAnalog.min)}/>
                      <Slider
                          value={targetSoilHumidity}

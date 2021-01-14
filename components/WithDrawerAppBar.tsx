@@ -33,6 +33,7 @@ import FertilizerIcon from "../icons/fertilizerIcon";
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import Router from "next/router";
 import IWithDrawerAppBar from "../interfaces/IWithDrawerAppBar";
+import ProfileEditForm from "./ProfileEditForm";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -124,7 +125,8 @@ export default function WithDrawerAppBar(props:IWithDrawerAppBar) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState<boolean>(false);
-    const [avatarOpen,setAvatarOpen] = useState<boolean>(false);
+    const [avatarMenuOpen,setAvatarMenuOpen] = useState<boolean>(false);
+    const [profileMenuOpen,setProfileMenuOpen] = useState<boolean>(false);
     const avatarAnchor = useRef<HTMLDivElement>(null);
     const devId = props.deviceId;
 
@@ -174,10 +176,10 @@ export default function WithDrawerAppBar(props:IWithDrawerAppBar) {
                     {
                         auth.currentUser?
                             <div ref={avatarAnchor}>
-                                <Avatar onClick={()=>setAvatarOpen(true)} className={classes.avatarIcon}>
+                                <Avatar onClick={()=>setAvatarMenuOpen(true)} className={classes.avatarIcon}>
                                 </Avatar>
-                                <Menu open={avatarOpen} onClick={()=>setAvatarOpen(false)} anchorEl={avatarAnchor.current}>
-                                    <MenuItem>Profile</MenuItem>
+                                <Menu open={avatarMenuOpen} onClick={()=>setAvatarMenuOpen(false)} anchorEl={avatarAnchor.current}>
+                                    <MenuItem onClick={()=>setProfileMenuOpen(true)}>Profile</MenuItem>
                                     <MenuItem onClick={handleLogout}>Log Out</MenuItem>
                                 </Menu>
                             </div>:
@@ -229,12 +231,13 @@ export default function WithDrawerAppBar(props:IWithDrawerAppBar) {
                     <div className={classes.grow}/>
                     <ListItem style={{padding:"2px"}}>
                         <Tooltip title="Zpět na list" aria-label="add">
-                        <Button variant={"contained"} onClick={()=>Router.push("/")} startIcon={<ArrowBackIcon/>} color="secondary"></Button>
+                            <Button variant={"contained"} onClick={()=>Router.push("/")} startIcon={<ArrowBackIcon/>} color="secondary"></Button>
                         </Tooltip>
                     </ListItem>
                 </List>
             </Drawer>
             <main className={classes.content}>
+                <ProfileEditForm open={profileMenuOpen} handleClose={()=>setProfileMenuOpen(!profileMenuOpen)}/>
                 <div className={classes.toolbarOffset}/>
                 <Component {...compProps}/>
             </main>
