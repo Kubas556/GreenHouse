@@ -10,6 +10,11 @@ Pro správnou funkci vytvoř .env.local soubor s daty pro firebase
 `NEXT_PUBLIC_FIREBASE_APP_ID=<--here-->`<br>
 `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=<--here-->`<br>
 
-##jak spustit lokální verzi:
-1. `$ npm install`
-2. `$ npm run dev`
+## jak spustit lokální verzi:
+```bash
+# 1. install dependencies
+$ npm install
+
+# 2. run local development server
+$ npm run dev
+```
