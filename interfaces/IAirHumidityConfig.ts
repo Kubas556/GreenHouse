@@ -1,4 +1,4 @@
 export default interface IAirHumidityConfig {
-    width?:number,
-    height?:number
+  width?: number;
+  height?: number;
 }

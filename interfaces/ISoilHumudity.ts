@@ -1,6 +1,6 @@
-import ISoilHumidityConfig from "./ISoilHumidityConfig";
+import ISoilHumidityConfig from './ISoilHumidityConfig';
 export default interface IPageProps {
-    value:number,
-    theme:number,
-    config:ISoilHumidityConfig
+  value: number;
+  theme: number;
+  config: ISoilHumidityConfig;
 }
