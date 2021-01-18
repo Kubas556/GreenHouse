@@ -385,11 +385,14 @@ function ex2(props: IPageProps) {
   const router = useRouter();
   const { id } = router.query;
   const [name, setName] = useState('');
-  const nameData = firebase.database().ref(`/users/'${props.user}/devices/${id}/name`);
+  const nameData = firebase.database().ref(`/users/${props.user}/devices/${id}/name`);
   useEffect(() => {
     nameData.on('value', (data) => {
       setName(data.val());
     });
+    return () => {
+      nameData.off('value');
+    };
   }, []);
   return <WithDrawerAppBar component={Id} title={name} deviceId={id.toString()} componentProps={props} />;
 }

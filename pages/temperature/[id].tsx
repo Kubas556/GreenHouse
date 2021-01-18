@@ -304,6 +304,9 @@ function ex(props: IPageProps) {
     nameData.on('value', (data) => {
       setName(data.val());
     });
+    return () => {
+      nameData.off('value');
+    };
   }, []);
   return <WithDrawerAppBar component={Id} title={name} deviceId={id.toString()} componentProps={props} />;
 }

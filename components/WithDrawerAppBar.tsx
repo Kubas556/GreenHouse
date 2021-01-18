@@ -23,10 +23,11 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import Link from 'next/link';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { auth } from '../firebase/index';
+import { auth, firebase } from '../firebase/index';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import TempIcon from '../icons/tempIcon';
 import WaterCanIconFilled from '../icons/waterCanIconFilled';
 import FertilizerIcon from '../icons/fertilizerIcon';
@@ -34,6 +35,12 @@ import ShowChartIcon from '@material-ui/icons/ShowChart';
 import Router from 'next/router';
 import IWithDrawerAppBar from '../interfaces/IWithDrawerAppBar';
 import ProfileEditForm from './ProfileEditForm';
+import NotchedOutline from '@material-ui/core/OutlinedInput/NotchedOutline';
+import Badge from '@material-ui/core/Badge';
+import { JSXElement } from '@babel/types';
+import { Alert } from '@material-ui/lab';
+import { use } from 'ast-types';
+import text from 'node-html-parser/dist/nodes/text';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -127,11 +134,33 @@ export default function WithDrawerAppBar(props: IWithDrawerAppBar) {
   const [open, setOpen] = React.useState<boolean>(false);
   const [avatarMenuOpen, setAvatarMenuOpen] = useState<boolean>(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState<boolean>(false);
+  const [notificationsMenuOpen, setNotificationsMenuOpen] = useState<boolean>(false);
+  const [outOfWaterNotifi, setOutOfWaterNotifi] = useState<boolean>(false);
+  const [outOfFertiliserNotifi, setOutOfFertiliserNotifi] = useState<boolean>(false);
+  const [notificationsNumber, setNotificationsNumber] = useState<number>(0);
   const avatarAnchor = useRef<HTMLDivElement>(null);
+  const notificationsAnchor = useRef<any>();
   const devId = props.deviceId;
 
   const Component = props.component;
   const compProps = props.componentProps;
+
+  const notificationsData = firebase.database().ref(`/users/${auth.currentUser?.uid}/devices/${devId}/notifications`);
+
+  useEffect(() => {
+    notificationsData.on('value', (snapshot) => {
+      const data = snapshot.val();
+      setOutOfWaterNotifi(!!parseInt(data.lowWater));
+      setOutOfFertiliserNotifi(!!parseInt(data.lowFertiliser));
+
+      setNotificationsNumber([data.lowWater, data.lowFertiliser].filter(data => parseInt(data)).length);
+    });
+
+    return () => {
+      notificationsData.off('value');
+    };
+  }, []);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -176,13 +205,36 @@ export default function WithDrawerAppBar(props: IWithDrawerAppBar) {
             {props.title}
           </Typography>
           <div className={classes.grow} />
+          <div ref={notificationsAnchor}>
+            <IconButton onClick={() => setNotificationsMenuOpen(true)} aria-label="notifications">
+              <Badge color="secondary" overlap="circle" badgeContent={notificationsNumber}>
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <Menu getContentAnchorEl={null} open={notificationsMenuOpen} onClick={() => setNotificationsMenuOpen(false)} anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }} transformOrigin={{
+              vertical: 'top',
+              horizontal: 'center',
+            }} anchorEl={notificationsAnchor.current}>
+              {outOfWaterNotifi ? <MenuItem><Alert severity="error">Došla voda!</Alert></MenuItem> : null}
+              {outOfFertiliserNotifi ? <MenuItem><Alert severity="error">Došlo hnojivo!</Alert></MenuItem> : null}
+            </Menu>
+          </div>
           <IconButton onClick={compProps.switchTheme} aria-label="display more actions" color="inherit">
             {compProps.appTheme === true ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
           {auth.currentUser ? (
             <div ref={avatarAnchor}>
               <Avatar onClick={() => setAvatarMenuOpen(true)} className={classes.avatarIcon}></Avatar>
-              <Menu open={avatarMenuOpen} onClick={() => setAvatarMenuOpen(false)} anchorEl={avatarAnchor.current}>
+              <Menu getContentAnchorEl={null} open={avatarMenuOpen} onClick={() => setAvatarMenuOpen(false)} anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }} transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }} anchorEl={avatarAnchor.current}>
                 <MenuItem onClick={() => setProfileMenuOpen(true)}>Profile</MenuItem>
                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
               </Menu>
