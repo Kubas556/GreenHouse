@@ -153,7 +153,7 @@ export default function WithDrawerAppBar(props: IWithDrawerAppBar) {
       setOutOfWaterNotifi(!!parseInt(data.lowWater));
       setOutOfFertiliserNotifi(!!parseInt(data.lowFertiliser));
 
-      setNotificationsNumber([data.lowWater, data.lowFertiliser].filter(data => parseInt(data)).length);
+      setNotificationsNumber([data.lowWater, data.lowFertiliser].filter((data) => parseInt(data)).length);
     });
 
     return () => {
@@ -211,15 +211,30 @@ export default function WithDrawerAppBar(props: IWithDrawerAppBar) {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            <Menu getContentAnchorEl={null} open={notificationsMenuOpen} onClick={() => setNotificationsMenuOpen(false)} anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'center',
-            }} transformOrigin={{
-              vertical: 'top',
-              horizontal: 'center',
-            }} anchorEl={notificationsAnchor.current}>
-              {outOfWaterNotifi ? <MenuItem><Alert severity="error">Došla voda!</Alert></MenuItem> : null}
-              {outOfFertiliserNotifi ? <MenuItem><Alert severity="error">Došlo hnojivo!</Alert></MenuItem> : null}
+            <Menu
+              getContentAnchorEl={null}
+              open={notificationsMenuOpen}
+              onClick={() => setNotificationsMenuOpen(false)}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+              anchorEl={notificationsAnchor.current}
+            >
+              {outOfWaterNotifi ? (
+                <MenuItem>
+                  <Alert severity="error">Došla voda!</Alert>
+                </MenuItem>
+              ) : null}
+              {outOfFertiliserNotifi ? (
+                <MenuItem>
+                  <Alert severity="error">Došlo hnojivo!</Alert>
+                </MenuItem>
+              ) : null}
             </Menu>
           </div>
           <IconButton onClick={compProps.switchTheme} aria-label="display more actions" color="inherit">
@@ -228,13 +243,20 @@ export default function WithDrawerAppBar(props: IWithDrawerAppBar) {
           {auth.currentUser ? (
             <div ref={avatarAnchor}>
               <Avatar onClick={() => setAvatarMenuOpen(true)} className={classes.avatarIcon}></Avatar>
-              <Menu getContentAnchorEl={null} open={avatarMenuOpen} onClick={() => setAvatarMenuOpen(false)} anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
-              }} transformOrigin={{
-                vertical: 'top',
-                horizontal: 'center',
-              }} anchorEl={avatarAnchor.current}>
+              <Menu
+                getContentAnchorEl={null}
+                open={avatarMenuOpen}
+                onClick={() => setAvatarMenuOpen(false)}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+                anchorEl={avatarAnchor.current}
+              >
                 <MenuItem onClick={() => setProfileMenuOpen(true)}>Profile</MenuItem>
                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
               </Menu>

@@ -145,7 +145,14 @@ export default function WithDrawerAppBar(props: IAppBar) {
           {auth.currentUser ? (
             <div ref={avatarAnchor}>
               <Avatar onClick={() => setAvatarOpen(true)} className={classes.avatarIcon}></Avatar>
-              <Menu open={avatarOpen} onClick={() => setAvatarOpen(false)} anchorEl={avatarAnchor.current}>
+              <Menu open={avatarOpen} getContentAnchorEl={null} anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'center',
+                    }} onClick={() => setAvatarOpen(false)} anchorEl={avatarAnchor.current}>
                 <MenuItem onClick={() => setProfileMenuOpen(true)}>Profile</MenuItem>
                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
               </Menu>

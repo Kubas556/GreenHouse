@@ -7,11 +7,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import SoilHumiditySensorIcon from '../icons/soilHumiditySensor';
-import { Typography } from '@material-ui/core';
+import { IconButton, Typography } from '@material-ui/core';
 import { height } from '@material-ui/system';
 import { number } from 'prop-types';
 import MenuItem from '@material-ui/core/MenuItem';
 import { auth, firebase } from '../firebase/index';
+import Badge from '@material-ui/core/Badge';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 
 export default function ProfileEditForm(props: { open: boolean; handleClose: () => void }) {
   const [username, setUsername] = useState<string>();
@@ -19,10 +21,31 @@ export default function ProfileEditForm(props: { open: boolean; handleClose: () 
 
   const usernameData = firebase.database().ref(`/users/${auth.currentUser?.uid}/profile/username`);
   const themeData = firebase.database().ref(`/users/${auth.currentUser?.uid}/profile/theme`);
+  const userNotificationTokens = firebase.database().ref(`/users/${auth.currentUser?.uid}/profile/`).child('notificationTokens');
 
   const [usernameToChange, setUsernameToChange] = useState<string>();
   const [themeToChange, setThemeToChange] = useState<number>();
 
+  const requestNotificationsPermission = async () => {
+    try {
+      const messaging = firebase.messaging();
+      await messaging.requestPermission();
+      const token = await messaging.getToken();
+      console.log('got token:', token);
+      userNotificationTokens.once('value', (data) => {
+        if (data.val()) {
+          if (!(Object.values(data.val()).indexOf(token) > -1)) {
+            userNotificationTokens.push(token);
+          }
+        } else {
+          userNotificationTokens.push(token);
+        }
+      });
+      return token;
+    } catch (error) {
+      console.error(error);
+    }
+  };
   useEffect(() => {
     usernameData.on('value', (data) => {
       setUsername(data.val());
@@ -85,7 +108,11 @@ export default function ProfileEditForm(props: { open: boolean; handleClose: () 
               Light
             </MenuItem>
           </TextField>
-          <DialogContentText style={{ textAlign: 'center', paddingTop: '1rem' }}></DialogContentText>
+          <DialogContentText style={{ textAlign: 'center', paddingTop: '1rem' }}>
+            <Button endIcon={<NotificationsIcon/>} variant="contained" color="primary" onClick={requestNotificationsPermission} aria-label="notifications">
+              Enable notifications
+            </Button>
+          </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={props.handleClose} color="primary">

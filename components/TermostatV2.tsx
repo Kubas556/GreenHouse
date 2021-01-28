@@ -129,7 +129,7 @@ function Termostat(props: ITermostat) {
         update() {
           setCurrentValue(Math.round(propTransition.value));
         },
-      }),
+      })
     );
     setCurrentValue(val);
     props.onValueChanged(Number.parseInt(currentValue.toString()));
@@ -258,7 +258,7 @@ function Termostat(props: ITermostat) {
           update() {
             setCurrentValue(Math.round(initAngleTrans.value));
           },
-        }),
+        })
       );
     }
   }, [props.defaultValue]);
