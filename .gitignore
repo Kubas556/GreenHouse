@@ -3,4 +3,3 @@
 .vercel
 .env.local
 node_modules
-public
