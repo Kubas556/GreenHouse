@@ -8,8 +8,6 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* PWA primary color */}
-          <meta name="theme-color" content={lightTheme.palette.primary.main} />
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         </Head>
         <body>

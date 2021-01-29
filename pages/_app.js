@@ -77,6 +77,8 @@ export default function MyApp(props) {
       <Head>
         <title>Smart devices controll</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <meta name="theme-color" content={(theme ? darkTheme.palette.background.paper : lightTheme.palette.primary.main)} />
+        <link rel="manifest" href="/manifest.webmanifest"/>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
       </Head>
       <ThemeProvider theme={theme ? darkTheme : lightTheme}>
@@ -84,6 +86,7 @@ export default function MyApp(props) {
         <style>{'main{' + 'min-width:0px;' + '}'}</style>
         <Component appTheme={theme} touchDisplay={touchDisplay} {...pageProps} switchTheme={switchTheme.bind(this)} />
       </ThemeProvider>
+      <script src={'/resources/register.js'}></script>
     </React.Fragment>
   );
 }

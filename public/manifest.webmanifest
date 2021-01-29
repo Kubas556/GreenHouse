@@ -1,0 +1,20 @@
+{
+  "name": "chytrý skleník",
+  "short_name":"chytrý skleník",
+  "icons": [
+    {
+      "src": "/resources/192_icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/resources/512_icon.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "#3367D6",
+  "display": "standalone",
+  "theme_color": "#3367D6"
+}
