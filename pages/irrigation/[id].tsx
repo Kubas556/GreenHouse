@@ -70,8 +70,8 @@ function Id(props: IPageProps) {
   const [saveSnackbarOpen, setSaveSnackbarOpen] = useState<boolean>(false);
   const [soilHumidityAnalog, setSoilHumidityAnalog] = useState<{ min: number; max: number }>({ min: 0, max: 1 });
   const [airHumidity, setAirHumidity] = useState<number>(0);
-  const [airHumidityHistoryCharData, setAirHumidityHistoryCharData] = useState<any>([0]);
-  const [airHumidityHistoryCharLabels, setAirHumidityHistoryCharLabels] = useState<any>();
+  const [soilHumidityHistoryCharData, setSoilHumidityHistoryCharData] = useState<any>([0]);
+  const [soilHumidityHistoryCharLabels, setSoilHumidityHistoryCharLabels] = useState<any>();
   const [targetSoilHumidity, setTargetSoilHumidity] = useState<number>(-1);
   const [watering, setWatering] = useState<{ fertiliser: number; total: number }>({ fertiliser: 0, total: 500 });
   const [soilHumidityAnalogConfigForm, setSoilHumidityAnalogConfigForm] = useState<boolean>(false);
@@ -184,12 +184,12 @@ function Id(props: IPageProps) {
           charLabels.push(
             `${data.val()[key].time[1]}/${data.val()[key].time[2]}/${data.val()[key].time[0]} ${
               data.val()[key].time[3]
-            }:${data.val()[key].time[4]}`
+            }:${data.val()[key].time[4]}`,
           );
         });
 
-        setAirHumidityHistoryCharData(charData);
-        setAirHumidityHistoryCharLabels(charLabels);
+        setSoilHumidityHistoryCharData(charData);
+        setSoilHumidityHistoryCharLabels(charLabels);
       }
     });
 
@@ -306,11 +306,11 @@ function Id(props: IPageProps) {
             <Line
               height={200}
               data={{
-                labels: airHumidityHistoryCharLabels,
+                labels: soilHumidityHistoryCharLabels,
                 datasets: [
                   {
-                    label: 'air humidity',
-                    data: airHumidityHistoryCharData,
+                    label: 'soil humidity',
+                    data: soilHumidityHistoryCharData,
                     backgroundColor(context: any) {
                       const gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 200);
                       gradient.addColorStop(0, 'rgba(24,184,212,0.5)');
