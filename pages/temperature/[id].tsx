@@ -12,7 +12,7 @@ import Alert from '@material-ui/lab/Alert';
 import withAuth from '../../components/WithAuth';
 import WithDrawerAppBar from '../../components/WithDrawerAppBar';
 import Tempmeter from '../../components/Tempmeter';
-import Termostat from '../../components/TermostatV2';
+import Termostat from '../../components/Termostat';
 import { auth, firebase } from '../../firebase/index';
 import IPageProps from '../../interfaces/IPageProps';
 import Loading from '../../components/Loading';
@@ -142,7 +142,7 @@ function Id(props: IPageProps) {
           charLabels.push(
             `${data.val()[key].time[1]}/${data.val()[key].time[2]}/${data.val()[key].time[0]} ${
               data.val()[key].time[3]
-            }:${data.val()[key].time[4]}`
+            }:${data.val()[key].time[4]}`,
           );
         });
 

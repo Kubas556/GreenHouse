@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState, MouseEvent, SyntheticEvent } from 'react';
 import anime, { AnimeInstance } from 'animejs';
-import IThermostat from '../interfaces/ITermostat';
+import ITermostat from '../interfaces/ITermostat';
 import { useTheme } from '@material-ui/styles';
 
-function Termostat(props: IThermostat) {
+function Termostat(props: ITermostat) {
   const min = 0;
   const max = 50;
   const [componentWidth, setComponentWidth] = useState<number>(props.config.width ? props.config.width : 337);
@@ -11,7 +11,7 @@ function Termostat(props: IThermostat) {
   const minAngle = 0;
   const maxAngle = 270;
   const angleOverlap = (maxAngle - 180) / 2;
-  const lineSegCount = 25; // alternative 11;
+  const lineSegCount = 25; // optional 11;
   const valueLineSegCount = 16 * 2 + 1;
   const valueLineSegBigEach = 8;
   const theme = useTheme();
@@ -28,13 +28,11 @@ function Termostat(props: IThermostat) {
 
   const [lastNode, setLastNode] = useState<ChildNode>();
   const [lastNodeAngle, setLastNodeAngle] = useState<number>(0);
-  const [angleTrans, setAngleTrans] = useState<number>(0);
-  const [currentAngle, setCurrentAngle] = useState<number>(0);
-  const [currentAnimation, setCurrentAnimation] = useState<AnimeInstance>();
+  const [currentDefaultPropAnimation, setCurrentDefaultPropAnimation] = useState<AnimeInstance>();
+  const [textUserInputAnimation, setTextUserInputAnimation] = useState<AnimeInstance>();
   const [handAngle, setHandAngle] = useState<number>(0);
-  const [currentValue, setCurrentValue] = useState<number>(0);
+  const [currentValue, setCurrentValue] = useState<number>(props.defaultValue || 0);
   const [drag, setDrag] = useState<boolean>(false);
-  const [initialize, setInitialize] = useState<boolean>(true);
 
   const workspaceSize = {
     height: `${componentHeight}px`,
@@ -69,10 +67,70 @@ function Termostat(props: IThermostat) {
     maxRadius: 2 * Math.PI * 80.6 - ((2 * Math.PI * 80.6) / 360) * maxAngle,
   };
 
+  function generateSegments() {
+    let k = 0;
+    if (lines.current) lines.current.innerHTML = '';
+    for (let i = 0; i < valueLineSegCount; i++) {
+      const handAngle = Math.round((maxAngle / max) * k) - angleOverlap;
+      const line = `<div style="transform:rotate(${handAngle}deg)!important;width:${
+        lineContainerSizes.width
+      };" class="valueLineContainer"><div class="valueLineGroup"><div class=${
+        i % valueLineSegBigEach === 0 ? 'bigValueLine' : 'smallValueLine'
+      }></div><div class="value" style="transform:rotate(${-handAngle}deg)">${
+        i % valueLineSegBigEach === 0 ? Math.round(k) : ''
+      }</div></div></div>`;
+      if (lines.current) lines.current.innerHTML += line;
+      k += max / (valueLineSegCount - 1);
+    }
+
+    let j = 0;
+    for (let i = 0; i < lineSegCount; i++) {
+      const handAngle = Math.round((maxAngle / max) * j) - angleOverlap;
+      const line = `<div rotate=${handAngle} style="transform:rotate(${handAngle}deg)!important;width:${lineContainerSizes.width};"class="lineContainer"><div class="line"></div></div>`;
+      if (lines.current) lines.current.innerHTML += line;
+      j += max / (lineSegCount - 1);
+    }
+
+    const contData = document.getElementsByClassName('lineContainer');
+
+    const lineSegs = document.getElementsByClassName('line');
+    const first = [73, 80, 245];
+    const second = [244, 67, 54];
+
+    for (let i = 0; i < lineSegs.length; i++) {
+      const percent = i / (lineSegs.length - 1);
+
+      const red = first[0] + percent * (second[0] - first[0]);
+      const green = first[1] + percent * (second[1] - first[1]);
+      const blue = first[2] + percent * (second[2] - first[2]);
+
+      lineSegs[i].setAttribute('style', `background:rgb(${red},${green},${blue});`);
+    }
+
+    setContainers(contData);
+  }
+
   function inputUpdated(e: any) {
     const val = Number.parseInt(e.target.innerHTML);
+    if (textUserInputAnimation) textUserInputAnimation.pause();
+
+    const propTransition = {
+      value: 0,
+    };
+
+    setTextUserInputAnimation(
+      anime({
+        targets: propTransition,
+        value: [currentValue, val],
+        easing: 'linear',
+        duration: 500,
+        update() {
+          setCurrentValue(Math.round(propTransition.value));
+        },
+      }),
+    );
     setCurrentValue(val);
-    setCurrentAngle((maxAngle / max) * val - angleOverlap);
+    props.onValueChanged(Number.parseInt(currentValue.toString()));
   }
 
   function calculateAngle(x: number, y: number) {
@@ -93,8 +151,8 @@ function Termostat(props: IThermostat) {
 
     if (angle2 >= minAngle && angle2 <= maxAngle) {
       setCurrentValue(Math.round((max / maxAngle) * angle2));
-      setAngleTrans(angle2 - angleOverlap);
-      setHandAngle(angle2 - angleOverlap);
+      // setAngleTrans(angle2-angleOverlap);
+      // setHandAngle(angle2-angleOverlap);
     }
   }
 
@@ -102,6 +160,7 @@ function Termostat(props: IThermostat) {
     e.nativeEvent.preventDefault();
     if (drag) {
       calculateAngle(e.nativeEvent.offsetX - componentWidth / 2, e.nativeEvent.offsetY - componentHeight / 2);
+      props.onValueChanged(Number.parseInt(currentValue.toString()));
     }
   }
 
@@ -133,33 +192,35 @@ function Termostat(props: IThermostat) {
         componentHeight / 2;
 
       calculateAngle(testX, testY);
+      props.onValueChanged(Number.parseInt(currentValue.toString()));
     }
   }
+
+  useEffect(() => {
+    generateSegments();
+  }, []);
 
   useEffect(() => {
     if (containers) {
       const angle = Math.round(handAngle);
       if (angle <= maxAngle && angle >= minAngle - angleOverlap) {
-        for (let i = 0; i < containers.length; i++) {
-          const containerAngle = parseInt(containers[i].getAttribute('rotate') as string);
-          if (
-            (containerAngle > lastNodeAngle && containerAngle <= angle) ||
-            (containerAngle < lastNodeAngle && angle <= containerAngle)
-          ) {
+        const targetSegment = Array.from(containers).filter(c => parseInt(c.getAttribute('rotate') as string) <= angle).pop();
+        if (targetSegment) {
+          const otherSegments = Array.from(containers).filter(c => parseInt(c.getAttribute('rotate') as string) !== parseInt(targetSegment.getAttribute('rotate') as string));
+          otherSegments.forEach((segment:any) => {
             anime({
-              targets: lastNode,
+              targets: segment.childNodes[0],
               scale: [{ value: 1, easing: 'easeInOutQuad', duration: 500 }],
               delay: 0,
             });
-            anime({
-              targets: containers[i].childNodes[0],
-              scale: [{ value: 1.5, easing: 'easeOutSine', duration: 500 }],
-              delay: 0,
-            });
-            setLastNode(containers[i].childNodes[0]);
-            setLastNodeAngle(containerAngle);
-            break;
-          }
+          });
+          anime({
+            targets: targetSegment.childNodes[0],
+            scale: [{ value: 1.5, easing: 'easeOutSine', duration: 500 }],
+            delay: 0,
+          });
+          // setLastNode(targetSegment.childNodes[0]);
+          setLastNodeAngle(parseInt(targetSegment.getAttribute('rotate') as string));
         }
         if (hand.current) hand.current.style.transform = `rotate(${angle}deg)`;
       }
@@ -167,134 +228,32 @@ function Termostat(props: IThermostat) {
   }, [handAngle]);
 
   useEffect(() => {
-    const anim = {
-      value: angleTrans,
-    };
-
-    anime({
-      targets: anim,
-      value: currentAngle,
-      easing: 'linear',
-      duration: 500,
-      update() {
-        setHandAngle(anim.value);
-      },
-      complete: () => {
-        setAngleTrans(currentAngle);
-      },
-    });
-  }, [currentAngle]);
-
-  useEffect(() => {
     if (valueInput.current) valueInput.current.innerHTML = currentValue.toString();
-    if (!initialize) props.onValueChanged(Number.parseInt(currentValue.toString()));
+
+    setHandAngle((maxAngle / max) * currentValue - angleOverlap);
+    // if(!initialize)
+    // props.onValueChanged(Number.parseInt(currentValue.toString()));
   }, [currentValue]);
 
   useEffect(() => {
     const initValue = props.defaultValue;
     if (initValue !== undefined) {
-      let k = 0;
-      if (lines.current) lines.current.innerHTML = '';
-      for (let i = 0; i < valueLineSegCount; i++) {
-        const handAngle = Math.round((maxAngle / max) * k) - angleOverlap;
-        const line = `<div style="transform:rotate(${handAngle}deg)!important;width:${
-          lineContainerSizes.width
-        };" class="valueLineContainer"><div class="valueLineGroup"><div class=${
-          i % valueLineSegBigEach === 0 ? 'bigValueLine' : 'smallValueLine'
-        }></div><div class="value" style="transform:rotate(${-handAngle}deg)">${
-          i % valueLineSegBigEach === 0 ? Math.round(k) : ''
-        }</div></div></div>`;
-        if (lines.current) lines.current.innerHTML += line;
-        k += max / (valueLineSegCount - 1);
-      }
-
-      let j = 0;
-      for (let i = 0; i < lineSegCount; i++) {
-        const handAngle = Math.round((maxAngle / max) * j) - angleOverlap;
-        const line = `<div rotate=${handAngle} style="transform:rotate(${handAngle}deg)!important;width:${lineContainerSizes.width};"class="lineContainer"><div class="line"></div></div>`;
-        if (lines.current) lines.current.innerHTML += line;
-        j += max / (lineSegCount - 1);
-      }
-
-      const contData = document.getElementsByClassName('lineContainer');
-      let initlastNode = contData[0].childNodes[0];
-      let initLastNodeAngle = 0;
-      anime({
-        targets: contData[0].childNodes[0],
-        scale: [{ value: 1.5, easing: 'easeOutSine', duration: 500 }],
-        delay: 0,
-      });
-
-      const lineSegs = document.getElementsByClassName('line');
-      const first = [73, 80, 245];
-      const second = [244, 67, 54];
-
-      for (let i = 0; i < lineSegs.length; i++) {
-        const percent = i / (lineSegs.length - 1);
-
-        const red = first[0] + percent * (second[0] - first[0]);
-        const green = first[1] + percent * (second[1] - first[1]);
-        const blue = first[2] + percent * (second[2] - first[2]);
-
-        lineSegs[i].setAttribute('style', `background:rgb(${red},${green},${blue});`);
-      }
-      setContainers(contData);
-      const updateHandAngle = (angle: number) => {
-        // tslint:disable-next-line:no-parameter-reassignment
-        angle = Math.round(angle);
-
-        if (angle <= maxAngle && angle >= minAngle) {
-          for (let i = 0; i < contData.length; i++) {
-            const containerAngle = parseInt(contData[i].getAttribute('rotate') as string);
-            if (
-              (containerAngle > initLastNodeAngle && containerAngle <= angle) ||
-              (containerAngle < initLastNodeAngle && angle <= containerAngle)
-            ) {
-              anime({
-                targets: initlastNode,
-                scale: [{ value: 1, easing: 'easeInOutQuad', duration: 500 }],
-                delay: 0,
-              });
-              anime({
-                targets: contData[i].childNodes[0],
-                scale: [{ value: 1.5, easing: 'easeOutSine', duration: 500 }],
-                delay: 0,
-              });
-              initlastNode = contData[i].childNodes[0];
-              initLastNodeAngle = containerAngle;
-              break;
-            }
-          }
-        }
-      };
-
       const initAngleTrans = {
-        value: 0,
+        value: currentValue,
       };
 
-      if (currentAnimation) currentAnimation.pause();
+      if (currentDefaultPropAnimation) currentDefaultPropAnimation.pause();
 
-      setCurrentAnimation(
+      setCurrentDefaultPropAnimation(
         anime({
           targets: initAngleTrans,
-          value: (maxAngle / max) * initValue,
+          value: initValue,
           easing: 'linear',
           duration: 500,
           update() {
-            updateHandAngle(initAngleTrans.value);
+            setCurrentValue(Math.round(initAngleTrans.value));
           },
-          complete() {
-            setLastNode(initlastNode);
-            setLastNodeAngle(initLastNodeAngle);
-
-            if (initValue !== undefined) {
-              setCurrentValue(initValue);
-              setCurrentAngle((maxAngle / max) * initValue - angleOverlap);
-            }
-
-            setInitialize(false);
-          },
-        })
+        }),
       );
     }
   }, [props.defaultValue]);
@@ -373,6 +332,7 @@ function Termostat(props: IThermostat) {
           border-radius: 100%;
           user-select: none;
           font-family: 'Inter', sans-serif;
+          display:flex;
         }
         .workspace .valueGroup {
           position: absolute;
@@ -432,6 +392,7 @@ function Termostat(props: IThermostat) {
           display: flex;
           flex-direction: row;
           align-items: center;
+          font-size: 1.5rem;
         }
         .value {
           margin-left: ${props.config.innerLinesTextLeftOffset ? props.config.innerLinesTextLeftOffset : '0.5rem'};
