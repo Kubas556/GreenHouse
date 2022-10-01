@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState, MouseEvent, SyntheticEvent } from 'react';
 import anime, { AnimeInstance } from 'animejs';
-import { firebase } from '../firebase';
 import ITermostat from '../interfaces/ITermostat';
-import { number } from 'prop-types';
 import { useTheme } from '@material-ui/styles';
 
 function Termostat(props: ITermostat) {
@@ -129,7 +127,7 @@ function Termostat(props: ITermostat) {
         update() {
           setCurrentValue(Math.round(propTransition.value));
         },
-      }),
+      })
     );
     setCurrentValue(val);
     props.onValueChanged(Number.parseInt(currentValue.toString()));
@@ -258,7 +256,7 @@ function Termostat(props: ITermostat) {
           update() {
             setCurrentValue(Math.round(initAngleTrans.value));
           },
-        }),
+        })
       );
     }
   }, [props.defaultValue]);

@@ -1,22 +1,8 @@
-import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import { createTheme } from '@material-ui/core/styles'
 
-declare module '@material-ui/core/styles/createMuiTheme' {
-  interface Theme {
-    status: {
-      danger: string;
-    };
-  }
-  // allow configuration using `createMuiTheme`
-  interface ThemeOptions {
-    status?: {
-      danger?: string;
-    };
-  }
-}
 
-const lightTheme = createMuiTheme({
+const lightTheme = createTheme({
   palette: {
     type: 'light',
     primary: {
@@ -25,16 +11,16 @@ const lightTheme = createMuiTheme({
     secondary: {
       main: '#ffc400',
     },
-  },
-  status: {
-    danger: red[500],
+    error: { 
+      main: red[500]
+    }
   },
   typography: {
     // fontFamily: '"Inter", sans-serif'
   },
 });
 
-const darkTheme = createMuiTheme({
+const darkTheme = createTheme({
   palette: {
     type: 'dark',
     primary: {
@@ -47,9 +33,9 @@ const darkTheme = createMuiTheme({
       paper: '#303030',
       default: '#212121',
     },
-  },
-  status: {
-    danger: red[500],
+    error: { 
+      main: red[500]
+    }
   },
   typography: {
     // fontFamily: '"Inter", sans-serif'

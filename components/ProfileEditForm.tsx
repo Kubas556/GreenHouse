@@ -6,39 +6,43 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import SoilHumiditySensorIcon from '../icons/soilHumiditySensor';
-import { IconButton, Typography } from '@material-ui/core';
-import { height } from '@material-ui/system';
-import { number } from 'prop-types';
+import { ref, child, get, push, off, set } from 'firebase/database';
+import { getToken } from 'firebase/messaging';
 import MenuItem from '@material-ui/core/MenuItem';
-import { auth, firebase } from '../firebase/index';
-import Badge from '@material-ui/core/Badge';
+import { authInstance, database, messaging } from '../firebase/index';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 export default function ProfileEditForm(props: { open: boolean; handleClose: () => void }) {
   const [username, setUsername] = useState<string>();
   const [theme, setTheme] = useState<number>();
 
-  const usernameData = firebase.database().ref(`/users/${auth.currentUser?.uid}/profile/username`);
-  const themeData = firebase.database().ref(`/users/${auth.currentUser?.uid}/profile/theme`);
-  const userNotificationTokens = firebase.database().ref(`/users/${auth.currentUser?.uid}/profile/`).child('notificationTokens');
+  const usernameData = ref(database, `/users/${authInstance.currentUser?.uid}/profile/username`);
+  const themeData = ref(database, `/users/${authInstance.currentUser?.uid}/profile/theme`);
+  const userNotificationTokens = child(
+    ref(database, `/users/${authInstance.currentUser?.uid}/profile/`),
+    'notificationTokens'
+  );
 
   const [usernameToChange, setUsernameToChange] = useState<string>();
   const [themeToChange, setThemeToChange] = useState<number>();
 
   const requestNotificationsPermission = async () => {
+    if (messaging === undefined) return;
+
     try {
-      const messaging = firebase.messaging();
-      await messaging.requestPermission();
-      const token = await messaging.getToken();
+      //await messaging.requestPermission();
+      const access = await Notification.requestPermission();
+      if (access !== 'granted') throw 'access denied';
+
+      const token = await getToken(messaging);
       console.log('got token:', token);
-      userNotificationTokens.once('value', (data) => {
+      get(userNotificationTokens).then((data) => {
         if (data.val()) {
           if (!(Object.values(data.val()).indexOf(token) > -1)) {
-            userNotificationTokens.push(token);
+            push(userNotificationTokens, token);
           }
         } else {
-          userNotificationTokens.push(token);
+          push(userNotificationTokens, token);
         }
       });
       return token;
@@ -47,28 +51,28 @@ export default function ProfileEditForm(props: { open: boolean; handleClose: () 
     }
   };
   useEffect(() => {
-    usernameData.on('value', (data) => {
+    get(usernameData).then((data) => {
       setUsername(data.val());
     });
 
-    themeData.on('value', (data) => {
+    get(themeData).then((data) => {
       setTheme(data.val());
     });
 
     return () => {
-      usernameData.off('value');
-      themeData.off('value');
+      off(usernameData, 'value');
+      off(themeData, 'value');
     };
   }, []);
 
   function saveChanges() {
     if (usernameToChange) {
-      usernameData.set(usernameToChange);
+      set(usernameData, usernameToChange);
       setUsernameToChange(undefined);
     }
 
     if (themeToChange === 0 || themeToChange) {
-      themeData.set(themeToChange);
+      set(themeData, themeToChange);
       setThemeToChange(undefined);
     }
   }
@@ -109,7 +113,14 @@ export default function ProfileEditForm(props: { open: boolean; handleClose: () 
             </MenuItem>
           </TextField>
           <DialogContentText style={{ textAlign: 'center', paddingTop: '1rem' }}>
-            <Button endIcon={<NotificationsIcon/>} variant="contained" color="primary" onClick={requestNotificationsPermission} aria-label="notifications">
+            <Button
+              endIcon={<NotificationsIcon />}
+              variant="contained"
+              color="primary"
+              disabled={!messaging}
+              onClick={requestNotificationsPermission}
+              aria-label="notifications"
+            >
               Enable notifications
             </Button>
           </DialogContentText>

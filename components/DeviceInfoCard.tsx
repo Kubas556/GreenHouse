@@ -1,6 +1,7 @@
 import { Button, Card, CardActions, CardContent, Typography } from '@material-ui/core';
+import { ref, get } from 'firebase/database';
 import React, { useEffect, useState } from 'react';
-import { firebase } from '../firebase/index';
+import { database } from '../firebase/index';
 import LaunchIcon from '@material-ui/icons/Launch';
 import IDeviceCard from '../interfaces/IDeviceCard';
 
@@ -8,19 +9,19 @@ function DeviceInfoCard(props: IDeviceCard) {
   const [temp, setTemp] = useState<string>('waiting');
   const [name, setName] = useState<string>('waiting');
   const [type, setType] = useState<string>('waiting');
-  const tempData = firebase.database().ref(`/users/${props.userId}/devices/${props.id}/temp`);
-  const nameData = firebase.database().ref(`/users/${props.userId}/devices/${props.id}/name`);
-  const typeData = firebase.database().ref(`/users/${props.userId}/devices/${props.id}/type`);
+  const tempData = ref(database, `/users/${props.userId}/devices/${props.id}/temp`);
+  const nameData = ref(database, `/users/${props.userId}/devices/${props.id}/name`);
+  const typeData = ref(database, `/users/${props.userId}/devices/${props.id}/type`);
 
   useEffect(() => {
-    tempData.once('value', (data) => {
+    get(tempData).then((data) => {
       setTemp(data.val());
     });
-    nameData.once('value', (data) => {
+    get(nameData).then((data) => {
       setName(data.val());
       // console.log(Object.keys(data.val()));
     });
-    typeData.once('value', (data) => {
+    get(typeData).then((data) => {
       setType(data.val());
     });
   }, []);

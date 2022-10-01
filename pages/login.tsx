@@ -1,14 +1,11 @@
 import { Container, TextField, Grid, Paper, Button, Typography, Fab } from '@material-ui/core';
 import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { auth, firebase } from '../firebase/index';
+import { authInstance } from '../firebase/index';
+import { onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
 import { makeStyles } from '@material-ui/core/styles';
-import React, { useState, useEffect, useRef, SyntheticEvent } from 'react';
+import React, { useState } from 'react';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { error } from 'next/dist/build/output/log';
 import IPageProps from '../interfaces/IPageProps';
-import { NextApiRequest } from 'next';
-import router from 'next/dist/client/router';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -32,12 +29,12 @@ function Login(props: IPageProps) {
   const router = useRouter();
 
   const handleSignIn = () => {
-    auth.onAuthStateChanged((authUser) => {
+    onAuthStateChanged(authInstance, (authUser) => {
       if (authUser) {
         router.push('/');
       }
     });
-    auth.signInWithEmailAndPassword(username, password).catch(function (error) {
+    signInWithEmailAndPassword(authInstance, username, password).catch(function (error) {
       // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;

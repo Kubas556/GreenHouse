@@ -26,7 +26,8 @@ import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { auth, firebase } from '../firebase/index';
+import { authInstance, firebase, database } from '../firebase/index';
+import { off, onValue } from 'firebase/database';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import TempIcon from '../icons/tempIcon';
 import WaterCanIconFilled from '../icons/waterCanIconFilled';
@@ -37,10 +38,10 @@ import IWithDrawerAppBar from '../interfaces/IWithDrawerAppBar';
 import ProfileEditForm from './ProfileEditForm';
 import NotchedOutline from '@material-ui/core/OutlinedInput/NotchedOutline';
 import Badge from '@material-ui/core/Badge';
-import { JSXElement } from '@babel/types';
 import { Alert } from '@material-ui/lab';
 import { use } from 'ast-types';
-import text from 'node-html-parser/dist/nodes/text';
+import { ref } from 'firebase/database';
+import { signOut } from 'firebase/auth';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -145,10 +146,10 @@ export default function WithDrawerAppBar(props: IWithDrawerAppBar) {
   const Component = props.component;
   const compProps = props.componentProps;
 
-  const notificationsData = firebase.database().ref(`/users/${auth.currentUser?.uid}/devices/${devId}/notifications`);
+  const notificationsData = ref(database, `/users/${authInstance.currentUser?.uid}/devices/${devId}/notifications`);
 
   useEffect(() => {
-    notificationsData.on('value', (snapshot) => {
+    onValue(notificationsData, (snapshot) => {
       const data = snapshot.val();
       setOutOfWaterNotifi(!!parseInt(data.lowWater));
       setOutOfFertiliserNotifi(!!parseInt(data.lowFertiliser));
@@ -157,7 +158,7 @@ export default function WithDrawerAppBar(props: IWithDrawerAppBar) {
     });
 
     return () => {
-      notificationsData.off('value');
+      off(notificationsData, 'value');
     };
   }, []);
 
@@ -170,8 +171,7 @@ export default function WithDrawerAppBar(props: IWithDrawerAppBar) {
   };
 
   const handleLogout = () => {
-    auth
-      .signOut()
+    signOut(authInstance)
       .then(() => {
         alert('Logout successful');
       })
@@ -240,7 +240,7 @@ export default function WithDrawerAppBar(props: IWithDrawerAppBar) {
           <IconButton onClick={compProps.switchTheme} aria-label="display more actions" color="inherit">
             {compProps.appTheme === true ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
-          {auth.currentUser ? (
+          {authInstance.currentUser ? (
             <div ref={avatarAnchor}>
               <Avatar onClick={() => setAvatarMenuOpen(true)} className={classes.avatarIcon}></Avatar>
               <Menu

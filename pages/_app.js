@@ -26,9 +26,11 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import InboxIcon from '@material-ui/icons/Inbox';
 import MailIcon from '@material-ui/icons/Mail';
-import { auth, firebase } from '../firebase/index';
+import { authInstance, database } from '../firebase/index';
+import { onAuthStateChanged } from 'firebase/auth';
 import MenuIcon from '@material-ui/core/SvgIcon/SvgIcon';
 import Link from 'next/link';
+import { off, onValue, ref } from 'firebase/database';
 
 export default function MyApp(props) {
   const [theme, setTheme] = useState(false);
@@ -50,16 +52,16 @@ export default function MyApp(props) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
 
-    auth.onAuthStateChanged((user) => {
+    onAuthStateChanged(authInstance, (user) => {
       if (user) {
-        const themeData = firebase.database().ref('/users/' + user.uid + '/profile/theme');
+        const themeData = ref(database, '/users/' + user.uid + '/profile/theme');
 
-        themeData.on('value', (data) => {
+        onValue(themeData, (data) => {
           if (data.val() !== 0) switchTheme();
         });
 
         return () => {
-          themeData.off('value');
+          off(themeData, 'value');
         };
       }
     });
@@ -77,8 +79,11 @@ export default function MyApp(props) {
       <Head>
         <title>Smart devices controll</title>
         <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-        <meta name="theme-color" content={(theme ? darkTheme.palette.background.paper : lightTheme.palette.primary.main)} />
-        <link rel="manifest" href="/manifest.webmanifest"/>
+        <meta
+          name="theme-color"
+          content={theme ? darkTheme.palette.background.paper : lightTheme.palette.primary.main}
+        />
+        <link rel="manifest" href="/manifest.webmanifest" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet" />
       </Head>
       <ThemeProvider theme={theme ? darkTheme : lightTheme}>

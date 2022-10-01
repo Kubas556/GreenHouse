@@ -1,26 +1,13 @@
-import Link from 'next/link';
-import useSWR from 'swr';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import DateFnsUtils from '@date-io/date-fns';
+import { makeStyles } from '@material-ui/core/styles';
 import React, { useEffect, useState } from 'react';
-import { orange } from '@material-ui/core/colors';
 import { useRouter } from 'next/router';
-import { Typography, Paper, isWidthDown, Color } from '@material-ui/core';
+import { Typography, Paper, isWidthDown } from '@material-ui/core';
 import withAuth from '../../components/WithAuth';
 import WithDrawerAppBar from '../../components/WithDrawerAppBar';
 import SaveIcon from '@material-ui/icons/Save';
-import Tempmeter from '../../components/Tempmeter';
-import Termostat from '../../components/Termostat';
-import { auth, firebase } from '../../firebase/index';
+import { database } from '../../firebase/index';
 import IPageProps from '../../interfaces/IPageProps';
-import Loading from '../../components/Loading';
-import { object, string } from 'prop-types';
 import { Line } from 'react-chartjs-2';
-import onlyDesktop from '../../components/OnlyDesktop';
-import FireBackground from '../../components/FireBackground';
-import { width } from '@material-ui/system';
-import { url } from 'inspector';
 import SoilHumidity from '../../components/SoilHumidity';
 import AirHumidity from '../../components/AirHumidity';
 import WaterMixer from '../../components/waterMixer';
@@ -34,6 +21,8 @@ import Slider from '@material-ui/core/Slider';
 import IconButton from '@material-ui/core/IconButton';
 import SettingsIcon from '@material-ui/icons/Settings';
 import SoilHumidityAnalogForm from '../../components/SoilHumidityAnalogForm';
+import { ref, limitToLast, set, onValue, get, off, query } from 'firebase/database';
+import 'chart.js/auto';
 
 const useStyle = makeStyles((theme) => ({
   center: {
@@ -82,15 +71,12 @@ function Id(props: IPageProps) {
   // ##########################
   // firebase data fetch variables
   // ##########################
-  const soilHumidityData = firebase.database().ref(`/users/${props.user}/devices/${id}/soilHumidity`);
-  const soilHumidityAnalogData = firebase.database().ref(`/users/${props.user}/devices/${id}/soilHumidityAnalog`);
-  const airHumidityData = firebase.database().ref(`/users/${props.user}/devices/${id}/airHumidity`);
-  const humidityHistoryData = firebase
-    .database()
-    .ref(`/users/${props.user}/devices/${id}/history/soilHumidity`)
-    .limitToLast(100);
-  const wateringData = firebase.database().ref(`/users/${props.user}/devices/${id}/irrigation`);
-  const targetSoilHumidityData = firebase.database().ref(`/users/${props.user}/devices/${id}/irrigationSoilHumidity`);
+  const soilHumidityData = ref(database, `/users/${props.user}/devices/${id}/soilHumidity`);
+  const soilHumidityAnalogData = ref(database, `/users/${props.user}/devices/${id}/soilHumidityAnalog`);
+  const airHumidityData = ref(database, `/users/${props.user}/devices/${id}/airHumidity`);
+  const humidityHistoryData = ref(database, `/users/${props.user}/devices/${id}/history/soilHumidity`);
+  const wateringData = query(ref(database, `/users/${props.user}/devices/${id}/irrigation`), limitToLast(100));
+  const targetSoilHumidityData = ref(database, `/users/${props.user}/devices/${id}/irrigationSoilHumidity`);
 
   // ##########################
   //    data to change
@@ -126,36 +112,29 @@ function Id(props: IPageProps) {
   // ##########################
   const saveChanges = () => {
     if (wateringDataToChange) {
-      firebase
-        .database()
-        .ref(`/users/${props.user}/devices/${id}/irrigation`)
-        .set(wateringDataToChange)
-        .then(() => {
-          setSaveSnackbarOpen(true);
-          setWateringDataToChange(undefined);
-        });
+      set(ref(database, `/users/${props.user}/devices/${id}/irrigation`), wateringDataToChange).then(() => {
+        setSaveSnackbarOpen(true);
+        setWateringDataToChange(undefined);
+      });
     }
 
     if (targetSoilHumidityDataToChange) {
-      firebase
-        .database()
-        .ref(`/users/${props.user}/devices/${id}/irrigationSoilHumidity`)
-        .set(targetSoilHumidityDataToChange)
-        .then(() => {
-          setSaveSnackbarOpen(true);
-          setTargetSoilHumidityDataToChange(undefined);
-        });
+      set(
+        ref(database, `/users/${props.user}/devices/${id}/irrigationSoilHumidity`),
+        targetSoilHumidityDataToChange
+      ).then(() => {
+        setSaveSnackbarOpen(true);
+        setTargetSoilHumidityDataToChange(undefined);
+      });
     }
 
     if (soilHumidityAnalogDataToChange) {
-      firebase
-        .database()
-        .ref(`/users/${props.user}/devices/${id}/soilHumidityAnalog`)
-        .set(soilHumidityAnalogDataToChange)
-        .then(() => {
+      set(ref(database, `/users/${props.user}/devices/${id}/soilHumidityAnalog`), soilHumidityAnalogDataToChange).then(
+        () => {
           setSaveSnackbarOpen(true);
           setSoilHumidityAnalogDataToChange(undefined);
-        });
+        }
+      );
     }
   };
 
@@ -163,19 +142,19 @@ function Id(props: IPageProps) {
   //  firebase data fetching
   // ##########################
   useEffect(() => {
-    soilHumidityData.on('value', (data) => {
+    onValue(soilHumidityData, (data) => {
       setSoilHumidity(data.val());
     });
 
-    soilHumidityAnalogData.on('value', (data) => {
+    onValue(soilHumidityAnalogData, (data) => {
       setSoilHumidityAnalog(data.val());
     });
 
-    airHumidityData.on('value', (data) => {
+    onValue(airHumidityData, (data) => {
       setAirHumidity(data.val());
     });
 
-    humidityHistoryData.on('value', (data) => {
+    onValue(humidityHistoryData, (data) => {
       if (data.val()) {
         const charData: any[] = [];
         const charLabels: any[] = [];
@@ -184,7 +163,7 @@ function Id(props: IPageProps) {
           charLabels.push(
             `${data.val()[key].time[1]}/${data.val()[key].time[2]}/${data.val()[key].time[0]} ${
               data.val()[key].time[3]
-            }:${data.val()[key].time[4]}`,
+            }:${data.val()[key].time[4]}`
           );
         });
 
@@ -193,19 +172,19 @@ function Id(props: IPageProps) {
       }
     });
 
-    wateringData.once('value', (data) => {
+    get(wateringData).then((data) => {
       setWatering(data.val());
     });
 
-    targetSoilHumidityData.once('value', (data) => {
+    get(targetSoilHumidityData).then((data) => {
       setTargetSoilHumidity(data.val());
     });
 
     return () => {
-      soilHumidityData.off('value');
-      soilHumidityAnalogData.off('value');
-      airHumidityData.off('value');
-      humidityHistoryData.off('value');
+      off(soilHumidityData, 'value');
+      off(soilHumidityAnalogData, 'value');
+      off(airHumidityData, 'value');
+      off(humidityHistoryData, 'value');
     };
   }, []);
 
@@ -310,6 +289,8 @@ function Id(props: IPageProps) {
                 datasets: [
                   {
                     label: 'soil humidity',
+                    xAxisID: 'xAxes',
+                    yAxisID: 'yAxes',
                     data: soilHumidityHistoryCharData,
                     backgroundColor(context: any) {
                       const gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 200);
@@ -320,42 +301,41 @@ function Id(props: IPageProps) {
                     pointBackgroundColor: 'rgba(0,0,0,0)', // original color 'rgb(24,184,212)'
                     pointBorderColor: 'rgba(0,0,0,0)',
                     borderColor: 'rgb(24,184,212)',
-                    borderWidth: 0,
+                    borderWidth: 0.5,
                     fill: true,
                   },
                 ],
               }}
               options={{
                 scales: {
-                  xAxes: [
-                    {
+                  xAxes: {
+                    display: false,
+                    grid: {
                       display: false,
-                      gridLines: {
-                        display: false,
-                      },
                     },
-                  ],
-                  yAxes: [
-                    {
-                      display: true,
-                      gridLines: {
-                        color: props.appTheme === 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-                        zeroLineColor: props.appTheme === 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-                        drawTicks: false,
-                        display: false,
-                      },
-                      ticks: {
-                        stepSize: 10,
-                        padding: 10,
-                      },
+                  },
+                  yAxes: {
+                    display: true,
+                    type: 'linear',
+                    grid: {
+                      color: props.appTheme === 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                      /* zeroLineColor: props.appTheme === 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)', */
+                      drawTicks: false,
+                      display: false,
                     },
-                  ],
+                    ticks: {
+                      stepSize: 10,
+                      padding: 10,
+                    },
+                  },
                 },
-                legend: {
-                  display: true,
-                },
-                tooltips: {
-                  intersect: false,
+                plugins: {
+                  legend: {
+                    display: true,
+                  },
+                  tooltip: {
+                    intersect: false,
+                  },
                 },
                 maintainAspectRatio: false,
                 responsive: true,
@@ -383,15 +363,16 @@ function Id(props: IPageProps) {
 
 function ex2(props: IPageProps) {
   const router = useRouter();
-  const { id } = router.query;
+  const id = router.query.id as string;
+
   const [name, setName] = useState('');
-  const nameData = firebase.database().ref(`/users/${props.user}/devices/${id}/name`);
+  const nameData = ref(database, `/users/${props.user}/devices/${id}/name`);
   useEffect(() => {
-    nameData.on('value', (data) => {
+    onValue(nameData, (data) => {
       setName(data.val());
     });
     return () => {
-      nameData.off('value');
+      off(nameData, 'value');
     };
   }, []);
   return <WithDrawerAppBar component={Id} title={name} deviceId={id.toString()} componentProps={props} />;

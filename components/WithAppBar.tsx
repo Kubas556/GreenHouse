@@ -4,10 +4,11 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 
-import React, { createRef, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { auth } from '../firebase/index';
+import { makeStyles } from '@material-ui/core/styles';
+import { authInstance } from '../firebase/index';
+import { signOut } from 'firebase/auth';
 
 import IAppBar from '../interfaces/IAppBar';
 import Router from 'next/router';
@@ -115,8 +116,7 @@ export default function WithDrawerAppBar(props: IAppBar) {
   };
 
   const handleLogout = () => {
-    auth
-      .signOut()
+    signOut(authInstance)
       .then(() => {
         alert('Logout successful');
       })
@@ -142,17 +142,23 @@ export default function WithDrawerAppBar(props: IAppBar) {
           <IconButton onClick={compProps.switchTheme} aria-label="display more actions" color="inherit">
             {compProps.appTheme === true ? <Brightness7Icon /> : <Brightness4Icon />}
           </IconButton>
-          {auth.currentUser ? (
+          {authInstance.currentUser ? (
             <div ref={avatarAnchor}>
               <Avatar onClick={() => setAvatarOpen(true)} className={classes.avatarIcon}></Avatar>
-              <Menu open={avatarOpen} getContentAnchorEl={null} anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'center',
-              }}
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'center',
-                    }} onClick={() => setAvatarOpen(false)} anchorEl={avatarAnchor.current}>
+              <Menu
+                open={avatarOpen}
+                getContentAnchorEl={null}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+                onClick={() => setAvatarOpen(false)}
+                anchorEl={avatarAnchor.current}
+              >
                 <MenuItem onClick={() => setProfileMenuOpen(true)}>Profile</MenuItem>
                 <MenuItem onClick={handleLogout}>Log Out</MenuItem>
               </Menu>

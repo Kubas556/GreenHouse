@@ -1,19 +1,20 @@
-import { Typography, Card, CardContent, Box, Menu, MenuItem } from '@material-ui/core';
+import { Typography, Card, Box } from '@material-ui/core';
 import Link from 'next/link';
-import React, { createRef, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import withAuth from '../components/WithAuth';
 import WithAppBar from '../components/WithAppBar';
 import IPageProps from '../interfaces/IPageProps';
-import { firebase } from '../firebase/index';
+import { database } from '../firebase/index';
 import DeviceInfoCard from '../components/DeviceInfoCard';
 import Loading from '../components/Loading';
+import { ref, onValue } from 'firebase/database';
 
 function index(props: IPageProps) {
-  const devicesData = firebase.database().ref(`/users/${props.user}/devices`);
+  const devicesData = ref(database, `/users/${props.user}/devices`);
   const [devices, setDevices] = useState<string[]>([]);
 
   useEffect(() => {
-    devicesData.on('value', (data) => {
+    onValue(devicesData, (data) => {
       setDevices(Object.keys(data.val()));
     });
   }, []);

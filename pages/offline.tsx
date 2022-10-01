@@ -1,5 +1,5 @@
 import IPageProps from '../interfaces/IPageProps';
-import React, { useState } from 'react';
+import React from 'react';
 
 function Offline(props: IPageProps) {
   return (

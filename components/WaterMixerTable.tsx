@@ -4,12 +4,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { ChangeEvent, FormEvent, FormEventHandler, useEffect, useState } from 'react';
-import { number } from 'prop-types';
-import { types } from 'util';
-import { TextField } from '@material-ui/core';
-import Input from '@material-ui/core/Input';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import { FormEvent, useEffect, useState } from 'react';
 
 interface IWaterMixerTable {
   onChange: (obj: { fertiliser: number; total: number }) => void;

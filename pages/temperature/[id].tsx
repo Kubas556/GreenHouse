@@ -1,10 +1,5 @@
-import Link from 'next/link';
-import useSWR from 'swr';
-import { DatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { createMuiTheme, makeStyles, ThemeProvider } from '@material-ui/core/styles';
-import DateFnsUtils from '@date-io/date-fns';
+import { makeStyles } from '@material-ui/core/styles';
 import React, { useEffect, useState } from 'react';
-import { orange } from '@material-ui/core/colors';
 import { useRouter } from 'next/router';
 import withWidth, { isWidthDown } from '@material-ui/core/withWidth';
 import { Typography, Paper } from '@material-ui/core';
@@ -13,22 +8,16 @@ import withAuth from '../../components/WithAuth';
 import WithDrawerAppBar from '../../components/WithDrawerAppBar';
 import Tempmeter from '../../components/Tempmeter';
 import Termostat from '../../components/Termostat';
-import { auth, firebase } from '../../firebase/index';
+import { database } from '../../firebase/index';
 import IPageProps from '../../interfaces/IPageProps';
-import Loading from '../../components/Loading';
-import { number, object, string } from 'prop-types';
 import { Line } from 'react-chartjs-2';
-import onlyDesktop from '../../components/OnlyDesktop';
-import FireBackground from '../../components/FireBackground';
-import { width } from '@material-ui/system';
-import { url } from 'inspector';
-import { Breakpoint } from '@material-ui/core/styles/createBreakpoints';
 import ITermostatConfig from '../../interfaces/ITermostatConfig';
 import Snackbar from '@material-ui/core/Snackbar';
 import Slider from '@material-ui/core/Slider';
 import SaveIcon from '@material-ui/icons/Save';
 import Fab from '@material-ui/core/Fab';
-import { JSXElement } from '@babel/types';
+import { get, limitToLast, off, onValue, query, ref, set } from 'firebase/database';
+import 'chart.js/auto';
 
 const useStyle = makeStyles((theme) => ({
   center: {
@@ -70,9 +59,9 @@ function Id(props: IPageProps) {
   // ##########################
   // firebase data fetch variables
   // ##########################
-  const tempData = firebase.database().ref(`/users/${props.user}/devices/${id}/temp`);
-  const tempHistoryData = firebase.database().ref(`/users/${props.user}/devices/${id}/history/temps`).limitToLast(100);
-  const targetTempData = firebase.database().ref(`/users/${props.user}/devices/${id}/targetTemp`);
+  const tempData = ref(database, `/users/${props.user}/devices/${id}/temp`);
+  const tempHistoryData = query(ref(database, `/users/${props.user}/devices/${id}/history/temps`), limitToLast(100));
+  const targetTempData = ref(database, `/users/${props.user}/devices/${id}/targetTemp`);
 
   // ##########################
   //    data to change
@@ -99,29 +88,25 @@ function Id(props: IPageProps) {
   // ##########################
   const saveChanges = () => {
     if (termostatDataToChange) {
-      firebase
-        .database()
-        .ref(`/users/${props.user}/devices/${id}/targetTemp/temp`)
-        .set(termostatDataToChange)
-        .then(() => {
-          setTermostatDataToChange(undefined);
-          setSaveSnackbarOpen(true);
-        });
+      set(ref(database, `/users/${props.user}/devices/${id}/targetTemp/temp`), termostatDataToChange).then(() => {
+        setTermostatDataToChange(undefined);
+        setSaveSnackbarOpen(true);
+      });
     }
 
     if (termostatTolerantDataToChange) {
-      firebase
-        .database()
-        .ref(`/users/${props.user}/devices/${id}/targetTemp/tempTolerantN`)
-        .set(termostatTolerantDataToChange.n);
-      firebase
-        .database()
-        .ref(`/users/${props.user}/devices/${id}/targetTemp/tempTolerantP`)
-        .set(termostatTolerantDataToChange.p)
-        .then(() => {
-          setTermostatTolerantDataToChange(undefined);
-          setSaveSnackbarOpen(true);
-        });
+      set(
+        ref(database, `/users/${props.user}/devices/${id}/targetTemp/tempTolerantN`),
+        termostatTolerantDataToChange.n
+      );
+
+      set(
+        ref(database, `/users/${props.user}/devices/${id}/targetTemp/tempTolerantP`),
+        termostatTolerantDataToChange.p
+      ).then(() => {
+        setTermostatTolerantDataToChange(undefined);
+        setSaveSnackbarOpen(true);
+      });
     }
   };
 
@@ -129,11 +114,11 @@ function Id(props: IPageProps) {
   //  firebase data fetching
   // ##########################
   useEffect(() => {
-    tempData.on('value', (data) => {
+    onValue(tempData, (data) => {
       setTemp(Number.parseFloat(data.val()));
     });
 
-    tempHistoryData.on('value', (data) => {
+    onValue(tempHistoryData, (data) => {
       if (data.val()) {
         const charData: any[] = [];
         const charLabels: any[] = [];
@@ -142,24 +127,25 @@ function Id(props: IPageProps) {
           charLabels.push(
             `${data.val()[key].time[1]}/${data.val()[key].time[2]}/${data.val()[key].time[0]} ${
               data.val()[key].time[3]
-            }:${data.val()[key].time[4]}`,
+            }:${data.val()[key].time[4]}`
           );
         });
 
         setTempHistoryCharData(charData);
+        console.log(data.val());
         setTempHistoryCharLabels(charLabels);
       }
     });
 
-    targetTempData.once('value', (data) => {
+    get(targetTempData).then((data) => {
       setTargetTemp(data.val().temp);
       setDefTargetTemp(data.val().temp);
       setTempTolerant({ n: data.val().tempTolerantN, p: data.val().tempTolerantP });
     });
 
     return () => {
-      tempData.off('value');
-      tempHistoryData.off('value');
+      off(tempData, 'value');
+      off(tempHistoryData, 'value');
     };
   }, []);
 
@@ -221,6 +207,8 @@ function Id(props: IPageProps) {
                 datasets: [
                   {
                     label: 'temp',
+                    xAxisID: 'xAxes',
+                    yAxisID: 'yAxes',
                     data: tempHistoryCharData,
                     backgroundColor(context: any) {
                       const gradient = context.chart.ctx.createLinearGradient(0, 0, 0, 200);
@@ -231,48 +219,44 @@ function Id(props: IPageProps) {
                     pointBackgroundColor: 'rgba(0,0,0,0)', // 'red',
                     pointBorderColor: 'rgba(0,0,0,0)',
                     borderColor: 'red',
-                    borderWidth: 0,
+                    borderWidth: 0.5,
                     fill: true,
                   },
                 ],
               }}
               options={{
                 scales: {
-                  xAxes: [
-                    {
+                  xAxes: {
+                    display: false,
+                    grid: {
                       display: false,
-                      gridLines: {
-                        display: false,
-                      },
                     },
-                  ],
-                  yAxes: [
-                    {
-                      display: true,
-                      gridLines: {
-                        color: props.appTheme === 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-                        zeroLineColor: props.appTheme === 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
-                        drawTicks: false,
-                        display: false,
-                      },
-                      ticks: {
-                        stepSize: 10,
-                        padding: 10,
-                      },
+                  },
+                  yAxes: {
+                    display: true,
+                    type: 'linear',
+                    grid: {
+                      color: props.appTheme === 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                      /*zeroLineColor: props.appTheme === 1 ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',*/
+                      drawTicks: false,
+                      display: false,
                     },
-                  ],
+                    ticks: {
+                      stepSize: 10,
+                      padding: 10,
+                    },
+                  },
                 },
-                legend: {
-                  display: true,
-                },
-                tooltips: {
-                  intersect: false,
+                plugins: {
+                  legend: {
+                    display: true,
+                  },
+                  tooltip: {
+                    intersect: false,
+                  },
                 },
                 maintainAspectRatio: false,
                 responsive: true,
-                /*xAxes:[{
-
-                        }]*/
               }}
             />
           </Paper>
@@ -297,15 +281,15 @@ function Id(props: IPageProps) {
 
 function ex(props: IPageProps) {
   const router = useRouter();
-  const { id } = router.query;
+  const id = router.query.id as string;
   const [name, setName] = useState('');
-  const nameData = firebase.database().ref(`/users/${props.user}/devices/${id}/name`);
+  const nameData = ref(database, `/users/${props.user}/devices/${id}/name`);
   useEffect(() => {
-    nameData.on('value', (data) => {
+    onValue(nameData, (data) => {
       setName(data.val());
     });
     return () => {
-      nameData.off('value');
+      off(nameData, 'value');
     };
   }, []);
   return <WithDrawerAppBar component={Id} title={name} deviceId={id.toString()} componentProps={props} />;

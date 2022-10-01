@@ -1,4 +1,4 @@
-import React, { ReactComponentElement, ReactElement } from 'react';
+import React from 'react';
 
 const onlyDesktop = (Component: React.ComponentType<any>) => {
   return class extends React.Component {
